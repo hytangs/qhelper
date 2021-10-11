@@ -1,10 +1,10 @@
 <template>
-  <div>Block</div>
+  <div>Regular Support</div>
 </template>
 
 <script>
 export default {
-  name: "RegSelectRoom.vue"
+  name: "GuestService.vue"
 }
 </script>
 

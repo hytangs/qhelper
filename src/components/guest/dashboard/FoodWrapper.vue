@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Wraps the food and shop sections</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "FoodWrapper.vue"
 }
 </script>
 

@@ -1,10 +1,10 @@
 <template>
-  <div>Block</div>
+  <div>manage opening/closing of hotels</div>
 </template>
 
 <script>
 export default {
-  name: "RegForm.vue"
+  name: "HotelManage.vue"
 }
 </script>
 

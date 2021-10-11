@@ -1,10 +1,10 @@
 <template>
-  <div>Block</div>
+  <div>Manage guest's food selection</div>
 </template>
 
 <script>
 export default {
-  name: "RegWrapper.vue"
+  name: "FoodManage.vue"
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>Block</div>
+  <div>Layout: sidebar, if needed</div>
 </template>
 
 <script>

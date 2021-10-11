@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Daily Select Food by guest</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "FoodSelection.vue"
 }
 </script>
 

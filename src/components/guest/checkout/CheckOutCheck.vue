@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Check out clearance conducted here</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "CheckOutCheck.vue"
 }
 </script>
 

@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Registration part I: form submission</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "RegForm.vue"
 }
 </script>
 

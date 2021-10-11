@@ -1,5 +1,5 @@
 <template>
-  <div>Block</div>
+  <div>Login functionality for admin</div>
 </template>
 
 <script>

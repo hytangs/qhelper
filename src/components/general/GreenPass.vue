@@ -1,5 +1,5 @@
 <template>
-  <div>Block</div>
+  <div>Green pass generation functionality for staff & guests</div>
 </template>
 
 <script>

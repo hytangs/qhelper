@@ -1,5 +1,5 @@
 <template>
-  <div>Block</div>
+  <div>function wrapper for guest's daily dashboard.</div>
 </template>
 
 <script>

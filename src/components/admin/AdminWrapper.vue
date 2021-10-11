@@ -1,5 +1,5 @@
 <template>
-  <div>Block</div>
+  <div>Access control wrapper for admin console</div>
 </template>
 
 <script>

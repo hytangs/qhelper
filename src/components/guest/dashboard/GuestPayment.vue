@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Payment functionality</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "GuestPayment.vue"
 }
 </script>
 

@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>See and Buy shop items functionality</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "FoodShopSelection.vue"
 }
 </script>
 

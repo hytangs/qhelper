@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Wraps the entertainment pages</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "EntertainmentWrapper.vue"
 }
 </script>
 

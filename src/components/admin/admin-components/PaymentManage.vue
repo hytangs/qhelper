@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>See all past recorded payments</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "PaymentManage.vue"
 }
 </script>
 

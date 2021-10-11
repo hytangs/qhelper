@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Add / lock hotel room type and rooms</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "HotelRoomManage.vue"
 }
 </script>
 

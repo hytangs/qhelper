@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>AI live chat functionality-if have time do</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "LiveChat.vue"
 }
 </script>
 

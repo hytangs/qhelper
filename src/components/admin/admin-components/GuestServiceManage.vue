@@ -1,10 +1,10 @@
 <template>
-  <div>guest login functionality</div>
+  <div>Manage Guest Service</div>
 </template>
 
 <script>
 export default {
-  name: "GuestLogin.vue"
+  name: "GuestServiceManage.vue"
 }
 </script>
 
