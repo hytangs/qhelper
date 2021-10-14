@@ -183,6 +183,52 @@
   </div>
 </template>
 
+<script>
+import firebaseApp from '..../firebase.js';
+import { getFirestore } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+const db = getFirestore(firebaseApp);
+
+export default {
+    methods: {
+        async savetofs() {    
+            var gender  = document.getElementById("gender").value
+            var fname  = document.getElementById("fname").value
+            var lname =  document.getElementById("lname").value
+            var nric  = document.getElementById("nric").value
+            var contact =  document.getElementById("contact").value
+            var doa =  document.getElementById("doa").value
+            var cod =  document.getElementById("cod").value
+            var flight =  document.getElementById("flight").value
+            var seat =  document.getElementById("seat").value
+            var sdate =  document.getElementById("sdate").value
+            var edate =  document.getElementById("edate").value
+            var country =  document.getElementById("country").value
+            var vaccine =  document.getElementById("vaccine").value
+            var passtype =  document.getElementById("passtype").value
+
+            alert(" Welcome " + gender + " "  + fname + "! Information submitted successfully.") 
+
+            try {
+                const docRef = await setDoc(doc(db, "RegInfo", nric), {
+                    Gender: gender, Fname: fname, Lname: lname, NRIC: nric, Contact: contact,
+                    DOA: doa, COD: cod, Flight: flight, Seat: seat, Sdate: sdate, Edate: edate, 
+                    Country: country, Vaccine: vaccine, Passtype: passtype,
+                })
+                console.log(docRef)
+                document.getElementById("regform").reset();
+                this.$emit("added")
+            }
+            catch(error) {
+                console.error("Error adding document: ", error);
+            }
+        }
+    }
+
+}
+</script>
+
+
 <style scoped>
 #logo {
   font-size: 40px;
