@@ -10,7 +10,7 @@
 // @ is an alias to /src
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import menu from '../src/views/admin/menu.js'
+import menu from './views/admin/menu.js'
 import NavBar from './components/plugins/NavBar'
 import AsideMenu from './components/plugins/AsideMenu'
 import FooterBar from './components/plugins/FooterBar'
@@ -47,5 +47,3 @@ export default {
   }
 }
 </script>
-
-

@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: "IndexHandling"
+  name: 'IndexHandling'
 }
 </script>
 

@@ -1,118 +1,86 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
-import IndexHandling from "../views/general/IndexHandling";
+import { createRouter, createWebHashHistory } from 'vue-router'
+import AdminHome from '../views/admin/Home'
 
 const routes = [
-    // index page set as about page and redirect page.
-    {
-        meta: {
-            title: 'QHelper 0.3.0'
-        },
-        path: '/',
-        name: 'QHelper',
-        component: IndexHandling
+  {
+    // Document title tag
+    // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
+    meta: {
+      title: 'Dashboard'
     },
-    // Guest Arrival Portal
-    {
-        meta: {
-            title: 'Guest Arrivals'
-        },
-        path: '/arrivals',
-        name: 'Arrivals',
-        component: () => import('../views/arrivals/ArrivalsPage.vue')
+    path: '/admin',
+    name: 'home',
+    component: AdminHome
+  },
+  {
+    meta: {
+      title: 'Tables'
     },
-    // Guest Dashboard Portal
-    {
-        meta: {
-            title: 'Dashboard'
-        },
-        path: '/guest/home',
-        name: 'Dashboard',
-        component: () => import('../views/guest/GuestDashboard.vue')
+    path: '/admin/tables',
+    name: 'tables',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "tables" */ '../views/admin/Tables')
+  },
+  {
+    meta: {
+      title: 'Forms'
     },
-    {
-        meta: {
-            title: 'Guest Login'
-        },
-        path: '/guest/login',
-        name: 'home',
-        component: () => import('../views/guest/GuestLoginPage.vue')
+    path: '/admin/forms',
+    name: 'forms',
+    component: () => import('../../../../Desktop/qhelper/src/views/admin/Forms')
+  },
+  {
+    meta: {
+      title: 'Profile'
     },
-    // admin portal
-    {
-        meta: {
-            title: 'Admin Console'
-        },
-        path: '/admin/home',
-        name: 'Dashboard',
-        component: () => import('../views/admin/Home')
+    path: '/admin/profile',
+    name: 'profile',
+    component: () => import(/* webpackChunkName: "profile" */ '../../../../Desktop/qhelper/src/views/admin/Profile')
+  },
+  {
+    meta: {
+      title: 'Ui'
     },
-    {
-        meta: {
-            title: 'Tables'
-        },
-        path: '/admin/tables',
-        name: 'tables',
-        component: () => import('../views/admin/Tables')
+    path: '/admin/ui',
+    name: 'ui',
+    component: () => import(/* webpackChunkName: "ui" */ '../../../../Desktop/qhelper/src/views/admin/Ui')
+  },
+  {
+    meta: {
+      title: 'Responsive layout'
     },
-    {
-        meta: {
-            title: 'Forms'
-        },
-        path: '/admin/forms',
-        name: 'forms',
-        component: () => import('../views/admin/Forms')
+    path: '/admin/responsive',
+    name: 'responsive',
+    component: () => import(/* webpackChunkName: "responsive" */ '../../../../Desktop/qhelper/src/views/admin/Responsive')
+  },
+  {
+    meta: {
+      title: 'Login',
+      fullScreen: true
     },
-    {
-        meta: {
-            title: 'Profile'
-        },
-        path: '/admin/profile',
-        name: 'profile',
-        component: () => import('../views/admin/Profile')
+    path: '/admin/login',
+    name: 'Login',
+    component: () => import('../views/admin/Login')
+  },
+  {
+    meta: {
+      title: 'Error',
+      fullScreen: true
     },
-    {
-        meta: {
-            title: 'Ui'
-        },
-        path: '/admin/ui',
-        name: 'ui',
-        component: () => import('../views/admin/Ui')
-    },
-    {
-        meta: {
-            title: 'Responsive layout'
-        },
-        path: '/admin/responsive',
-        name: 'responsive',
-        component: () => import('../views/admin/Responsive')
-    },
-    {
-        meta: {
-            title: 'Login',
-            fullScreen: true
-        },
-        path: '/admin/login',
-        name: 'login',
-        component: () => import('../views/admin/Login')
-    },
-    {
-        meta: {
-            title: 'Error',
-            fullScreen: true
-        },
-        path: '/admin/error',
-        name: 'error',
-        component: () => import('../views/admin/Error')
-    }
+    path: '/admin/error',
+    name: 'Error',
+    component: () => import('../views/admin/Error')
+  }
 ]
 
-
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
-    scrollBehavior (to, from, savedPosition) {
-        return savedPosition || { top: 0 }
-    }
+  history: createWebHashHistory(),
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return savedPosition || { top: 0 }
+  }
 })
 
 export default router
