@@ -7,8 +7,8 @@
 
 <script>
 import { computed } from 'vue'
-import { colorsBg, colorsBorders, colorsOutline } from '@/colors.js'
-import Icon from 'Icon'
+import { colorsBg, colorsBorders, colorsOutline } from './colors.js'
+import Icon from './Icon'
 
 export default {
   name: 'Pill',
