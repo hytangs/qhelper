@@ -1,4 +1,6 @@
 <template>
+  <nav-bar/>
+  <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
   <hero-bar>Dashboard</hero-bar>
   <main-section>
@@ -92,6 +94,8 @@
       <clients-table />
     </card-component>
   </main-section>
+  <footer-bar/>
+  <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
 <script>
@@ -121,6 +125,11 @@ import JbButton from '../../../src/components/plugins/JbButton'
 import CardTransactionBar from '../../../src/components/plugins/CardTransactionBar'
 import CardClientBar from '../../../src/components/plugins/CardClientBar'
 import TitleSubBar from '../../../src/components/plugins/TitleSubBar'
+import menu from '../../../src/views/admin/menu.js'
+import NavBar from '../../../src/components/plugins/NavBar'
+import AsideMenu from '../../../src/components/plugins/AsideMenu'
+import FooterBar from '../../../src/components/plugins/FooterBar'
+import Overlay from '../../../src/components/plugins/Overlay'
 
 export default {
   name: 'Home',
@@ -136,7 +145,13 @@ export default {
     Notification,
     JbButton,
     CardTransactionBar,
-    CardClientBar
+    CardClientBar,
+    Overlay,
+    FooterBar,
+    AsideMenu,
+    NavBar
+
+
   },
   setup () {
     const titleStack = ref(['Admin', 'Dashboard'])
@@ -173,7 +188,8 @@ export default {
       mdiMonitorCellphone,
       mdiReload,
       mdiGithub,
-      mdiChartPie
+      mdiChartPie,
+      menu
     }
   }
 }

@@ -19,20 +19,48 @@ export default [
       to: '/admin/dashboard',
       icon: mdiDesktopMac,
       label: 'Dashboard'
-    }
-  ],
-  [
+    },
     {
-      to: '/admin',
+      to: '/admin/rooms',
+      icon: mdiTable,
+      label: 'Rooms',
+    },
+    {
+      to: '/admin/foods',
       icon: mdiDesktopMac,
-      label: 'Dashboard'
-    }
+      label: 'Foods'
+    },
+    {
+      to: '/admin/shops',
+      icon: mdiDesktopMac,
+      label: 'Shops'
+    },
+    {
+      to: '/admin/finance',
+      icon: mdiDesktopMac,
+      label: 'Finance'
+    },
+    {
+      to: '/admin/security',
+      icon: mdiDesktopMac,
+      label: 'Security'
+    },
+    {
+      to: '/admin/hr',
+      icon: mdiDesktopMac,
+      label: 'Staff'
+    },
+    {
+      to: '/admin/blank',
+      icon: mdiDesktopMac,
+      label: 'Template'
+    },
   ],
   'Template',
   [
     {
-      to: '/admin/foodselection',
-      label: 'FoodSelection',
+      to: '/admin',
+      label: 'Home',
       icon: mdiTable,
       updateMark: true
     },

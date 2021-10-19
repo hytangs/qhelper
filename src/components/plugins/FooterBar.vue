@@ -2,11 +2,11 @@
   <footer v-show="isFooterBarVisible" class="bg-white py-2 px-6 dark:bg-gray-900">
     <level>
       <div>
-        <b>&copy; {{ year }}, <a href="https://justboil.me/" target="_blank">JustBoil.me</a>.</b>
-        Get more with <a href="https://justboil.me/tailwind-admin-templates/vue-dashboard" target="_blank" class="text-blue-500">Premium version</a>
+        &copy; {{ year }}, <b>QHelper COVID-19 Quarantine Assistance System</b>
+        by NUS BT3103 Group 10. Please visit our <a href="https://github.com/hytangs/qhelper" target="_blank" class="text-blue-500">Github Repository</a>.
       </div>
       <div class="md:py-2">
-      <a href="https://justboil.me">
+      <a href="https://github.com/hytangs/qhelper">
           <jb-logo class="w-auto h-8 md:h-6" />
       </a>
       </div>

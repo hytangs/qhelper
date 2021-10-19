@@ -6,7 +6,7 @@ const routes = [
       title: 'QHelper Running'
     },
     path: '/',
-    name: 'home',
+    name: 'IndexHandling',
     component: () => import('../views/general/IndexHandling')
   },
 
@@ -63,10 +63,7 @@ const routes = [
     },
     path: '/admin/foodselection',
     name: 'foodselection',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "tables" */ '../views/admin/FoodSelection')
+    component: () => import('../views/admin/FoodSelection')
   },
   {
     meta: {
@@ -74,10 +71,7 @@ const routes = [
     },
     path: '/admin/tables',
     name: 'tables',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "tables" */ '../views/admin/Tables')
+    component: () => import('../views/admin/Tables')
   },
   {
     meta: {
@@ -119,6 +113,14 @@ const routes = [
     path: '/admin/login',
     name: 'Login',
     component: () => import('../views/admin/Login')
+  },
+  {
+    meta: {
+      title: 'Blank Page'
+    },
+    path: '/admin/blank',
+    name: 'blank',
+    component: () => import('../views/admin/AdminTemplate')
   },
   {
     meta: {
