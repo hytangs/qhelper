@@ -1,11 +1,12 @@
 <template>
 <h1> Welcome to QHelper! </h1>
-<p> Please enter from respective portals.</p>
+<p> Please enter via respective portals.</p>
 </template>
 
 <script>
+
 export default {
-  name: 'IndexHandling'
+  name: 'IndexHandling',
 }
 </script>
 

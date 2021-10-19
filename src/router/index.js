@@ -6,7 +6,7 @@ const routes = [
       title: 'QHelper Running'
     },
     path: '/',
-    name: 'home',
+    name: 'IndexHandling',
     component: () => import('../views/general/IndexHandling')
   },
 
