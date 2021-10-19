@@ -6,6 +6,26 @@ import store from './store'
 
 import './css/main.css'
 
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyD1iBnxKAPkGU_qGopbmUMECeS2oYG7nVA",
+  authDomain: "qhelper21.firebaseapp.com",
+  projectId: "qhelper21",
+  storageBucket: "qhelper21.appspot.com",
+  messagingSenderId: "867568402454",
+  appId: "1:867568402454:web:bae95927b353242c397537",
+  measurementId: "G-B7TZ4M3CKE"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line no-unused-vars
+const analytics = getAnalytics(app);
+
 /* Fetch sample data */
 store.dispatch('fetch', 'clients')
 store.dispatch('fetch', 'foodselection')
