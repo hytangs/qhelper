@@ -4,7 +4,7 @@
   <title-bar :title-stack="titleStack" />
   <hero-bar>Blank Page</hero-bar>
   <main-section>
-    <br> <br> <h1>    Blank Page for construction</h1> <br> <br>
+    <br> <br> <h1 class="text-2xl">Blank Page for construction</h1> <br> <br>
   </main-section>
   <footer-bar/>
   <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />

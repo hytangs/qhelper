@@ -1,12 +1,12 @@
 <template>
   <full-screen-section bg="login" v-slot="{ cardClass, cardRounded }">
     <card-component  :class="cardClass" :rounded="cardRounded" @submit.prevent="submit" form>
-
-      <field label="Login" help="Please enter your login">
+      <h1 class="text-2xl">QHelper Smart Admin</h1> <br>
+      <field label="Account" help="Please enter your admin account name.">
         <control v-model="form.login" :icon="mdiAccount" name="login" autocomplete="username"/>
       </field>
 
-      <field label="Password" help="Please enter your password">
+      <field label="Password" help="Please enter your password.">
         <control v-model="form.pass" :icon="mdiAsterisk" type="password" name="password" autocomplete="current-password"/>
       </field>
 
@@ -16,7 +16,6 @@
 
       <jb-buttons>
         <jb-button type="submit" color="info" label="Login" />
-        <jb-button to="/" color="info" outline label="Back" />
       </jb-buttons>
     </card-component>
   </full-screen-section>
@@ -49,7 +48,7 @@ export default {
   },
   setup () {
     const form = reactive({
-      login: 'john.doe',
+      login: 'masteradmin',
       pass: 'very-secret-password-fYjUw-',
       remember: ['remember']
     })
@@ -57,7 +56,7 @@ export default {
     const router = useRouter()
 
     const submit = () => {
-      router.push('/')
+      router.push('/admin/dashboard')
     }
 
     return {
