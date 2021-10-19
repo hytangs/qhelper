@@ -31,6 +31,12 @@ export default [
   'Settings',
   [
     {
+      to: '/admin/foodselection',
+      label: 'FoodSelection',
+      icon: mdiTable,
+      updateMark: true
+    },
+    {
       to: '/admin/tables',
       label: 'Tables',
       icon: mdiTable,
