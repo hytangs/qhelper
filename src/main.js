@@ -28,6 +28,7 @@ const analytics = getAnalytics(app);
 
 /* Fetch sample data */
 store.dispatch('fetch', 'clients')
+store.dispatch('fetch', 'foodselection')
 store.dispatch('fetch', 'history')
 
 /* Dark mode */
