@@ -1,4 +1,6 @@
 <template>
+  <nav-bar/>
+  <aside-menu :menu="menu"/>
   <modal-box
     v-model="modalOneActive"
     title="Please confirm action"
@@ -221,6 +223,8 @@
   </main-section>
 
   <bottom-other-pages-section />
+  <footer-bar/>
+  <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
 <script>
@@ -255,6 +259,11 @@ import Field from '../../components/plugins/Field'
 import CheckRadioPicker from '../../components/plugins/CheckRadioPicker'
 import BottomOtherPagesSection from '../../components/plugins/BottomOtherPagesSection'
 import TitleSubBar from '../../components/plugins/TitleSubBar'
+import menu from '../../../src/views/admin/menu.js'
+import NavBar from '../../../src/components/plugins/NavBar'
+import AsideMenu from '../../../src/components/plugins/AsideMenu'
+import FooterBar from '../../../src/components/plugins/FooterBar'
+import Overlay from '../../../src/components/plugins/Overlay'
 
 export default {
   name: 'Ui',
@@ -272,7 +281,11 @@ export default {
     TitledSection,
     CheckRadioPicker,
     Field,
-    BottomOtherPagesSection
+    BottomOtherPagesSection,
+    Overlay,
+    FooterBar,
+    AsideMenu,
+    NavBar
   },
   setup () {
     const titleStack = ref(['Admin', 'UI Components'])
@@ -322,7 +335,8 @@ export default {
       mdiPlusCircle,
       mdiBroadcast,
       mdiLifebuoy,
-      mdiClose
+      mdiClose,
+      menu
     }
   }
 }

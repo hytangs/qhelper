@@ -1,5 +1,6 @@
 <template>
-
+  <nav-bar/>
+  <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
 
   <hero-bar>Responsive layout</hero-bar>
@@ -53,6 +54,8 @@
   </main-section>
 
   <bottom-other-pages-section />
+  <footer-bar/>
+  <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
 <script>
@@ -62,6 +65,12 @@ import HeroBar from '../../components/plugins/HeroBar'
 import TitledSection from '../../components/plugins/TitledSection'
 import MainSection from '../../components/plugins/MainSection'
 import BottomOtherPagesSection from '../../components/plugins/BottomOtherPagesSection'
+import Overlay from "../../components/plugins/Overlay";
+import FooterBar from "../../components/plugins/FooterBar";
+import AsideMenu from "../../components/plugins/AsideMenu";
+import NavBar from "../../components/plugins/NavBar";
+import menu from '../../../src/views/admin/menu.js'
+
 
 export default {
   name: 'Responsive',
@@ -70,13 +79,18 @@ export default {
     MainSection,
     TitledSection,
     HeroBar,
-    TitleBar
+    TitleBar,
+    Overlay,
+    FooterBar,
+    AsideMenu,
+    NavBar
   },
   setup () {
     const titleStack = ref(['Admin', 'Responsive layout'])
 
     return {
-      titleStack
+      titleStack,
+      menu
     }
   }
 }

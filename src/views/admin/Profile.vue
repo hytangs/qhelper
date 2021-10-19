@@ -1,4 +1,6 @@
 <template>
+  <nav-bar/>
+  <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
 
   <user-card />
@@ -83,6 +85,8 @@
   </main-section>
 
   <bottom-other-pages-section />
+  <footer-bar/>
+  <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
 <script>
@@ -100,6 +104,11 @@ import JbButton from '../../components/plugins/JbButton'
 import BottomOtherPagesSection from '../../components/plugins/BottomOtherPagesSection'
 import JbButtons from '../../components/plugins/JbButtons'
 import UserCard from '../../components/plugins/UserCard'
+import menu from '../../../src/views/admin/menu.js'
+import NavBar from '../../../src/components/plugins/NavBar'
+import AsideMenu from '../../../src/components/plugins/AsideMenu'
+import FooterBar from '../../../src/components/plugins/FooterBar'
+import Overlay from '../../../src/components/plugins/Overlay'
 
 export default {
   name: 'Profile',
@@ -114,7 +123,11 @@ export default {
     Control,
     FilePicker,
     JbButton,
-    BottomOtherPagesSection
+    BottomOtherPagesSection,
+    Overlay,
+    FooterBar,
+    AsideMenu,
+    NavBar
   },
   setup () {
     const store = useStore()
@@ -151,7 +164,8 @@ export default {
       mdiLock,
       mdiMail,
       mdiAsterisk,
-      mdiFormTextboxPassword
+      mdiFormTextboxPassword,
+      menu
     }
   }
 }

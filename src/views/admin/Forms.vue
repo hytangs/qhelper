@@ -1,4 +1,6 @@
 <template>
+  <nav-bar/>
+  <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
   <hero-bar>Forms</hero-bar>
 
@@ -77,6 +79,8 @@
   </main-section>
 
   <bottom-other-pages-section />
+  <footer-bar/>
+  <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
 <script>
@@ -96,6 +100,11 @@ import JbButtons from '../../components/plugins/JbButtons'
 import BottomOtherPagesSection from '../../components/plugins/BottomOtherPagesSection'
 import TitledSection from '../../components/plugins/TitledSection'
 import TitleSubBar from '../../components/plugins/TitleSubBar'
+import menu from '../../../src/views/admin/menu.js'
+import NavBar from '../../../src/components/plugins/NavBar'
+import AsideMenu from '../../../src/components/plugins/AsideMenu'
+import FooterBar from '../../../src/components/plugins/FooterBar'
+import Overlay from '../../../src/components/plugins/Overlay'
 
 export default {
   name: 'Forms',
@@ -113,7 +122,11 @@ export default {
     Control,
     JbButton,
     JbButtons,
-    BottomOtherPagesSection
+    BottomOtherPagesSection,
+    Overlay,
+    FooterBar,
+    AsideMenu,
+    NavBar
   },
   setup () {
     const titleStack = ref(['Admin', 'Forms'])
@@ -154,7 +167,8 @@ export default {
       mdiBallotOutline,
       mdiAccount,
       mdiMail,
-      mdiCheck
+      mdiCheck,
+      menu
     }
   }
 }

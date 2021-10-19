@@ -1,4 +1,6 @@
 <template>
+  <nav-bar/>
+  <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
   <hero-bar>Tables</hero-bar>
   <main-section>
@@ -30,6 +32,8 @@
   </main-section>
 
   <bottom-other-pages-section />
+  <footer-bar/>
+  <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
 <script>
@@ -43,6 +47,11 @@ import TitleBar from '../../components/plugins/TitleBar'
 import HeroBar from '../../components/plugins/HeroBar'
 import BottomOtherPagesSection from '../../components/plugins/BottomOtherPagesSection'
 import TitleSubBar from '../../components/plugins/TitleSubBar'
+import menu from '../../../src/views/admin/menu.js'
+import NavBar from '../../../src/components/plugins/NavBar'
+import AsideMenu from '../../../src/components/plugins/AsideMenu'
+import FooterBar from '../../../src/components/plugins/FooterBar'
+import Overlay from '../../../src/components/plugins/Overlay'
 
 export default {
   name: 'Tables',
@@ -54,7 +63,11 @@ export default {
     CardComponent,
     ClientsTable,
     Notification,
-    BottomOtherPagesSection
+    BottomOtherPagesSection,
+    Overlay,
+    FooterBar,
+    AsideMenu,
+    NavBar
   },
   setup () {
     const titleStack = ref(['Admin', 'Tables'])
@@ -64,7 +77,8 @@ export default {
       mdiMonitorCellphone,
       mdiAccountMultiple,
       mdiTableBorder,
-      mdiTableOff
+      mdiTableOff,
+      menu
     }
   }
 }
