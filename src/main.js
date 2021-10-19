@@ -8,6 +8,7 @@ import './css/main.css'
 
 /* Fetch sample data */
 store.dispatch('fetch', 'clients')
+store.dispatch('fetch', 'foodselection')
 store.dispatch('fetch', 'history')
 
 /* Dark mode */

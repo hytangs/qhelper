@@ -1,32 +1,36 @@
 <template>
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Tables</hero-bar>
+  <hero-bar>Food Selection - Order Details</hero-bar>
   <main-section>
     <notification color="info" :icon="mdiMonitorCellphone">
       <b>Responsive table.</b> Collapses on mobile
     </notification>
 
-    <card-component class="mb-6" title="Clients" :icon="mdiAccountMultiple" has-table>
-      <clients-table checkable/>
+    <card-component class="mb-6" title="Breakfast" :icon="mdiAccountMultiple" has-table>
+      <food-selection-table checkable/>
     </card-component>
 
-    <title-sub-bar :icon="mdiTableBorder" title="Wrapped variation"/>
+    <!-- <title-sub-bar :icon="mdiTableBorder" title="Wrapped variation"/> -->
 
-    <notification color="success" :icon="mdiTableBorder">
+    <!-- <notification color="success" :icon="mdiTableBorder">
       <b>Tightly wrapped</b> &mdash; table header becomes card header
-    </notification>
+    </notification> -->
 
-    <card-component class="mb-6" has-table>
-      <clients-table checkable/>
+    <card-component class="mb-6" title="Lunch" :icon="mdiAccountMultiple" has-table>
+      <food-selection-table checkable/>
     </card-component>
 
-    <title-sub-bar :icon="mdiTableOff" title="Empty variation"/>
+    <!-- <title-sub-bar :icon="mdiTableOff" title="Empty variation"/> -->
 
-    <notification color="danger" :icon="mdiTableOff">
+    <!-- <notification color="danger" :icon="mdiTableOff">
       <b>Empty table.</b> When there's nothing to show
-    </notification>
+    </notification> -->
 
-    <card-component empty/>
+    <!-- <card-component empty/> -->
+    <card-component class="mb-6" title="Dinner" :icon="mdiAccountMultiple" has-table>
+      <food-selection-table checkable/>
+    </card-component>
+
   </main-section>
 
   <bottom-other-pages-section />
@@ -37,27 +41,27 @@ import { ref } from 'vue'
 import { mdiMonitorCellphone, mdiAccountMultiple, mdiTableBorder, mdiTableOff } from '@mdi/js'
 import MainSection from '../../components/plugins/MainSection'
 import Notification from '../../components/plugins/Notification'
-import ClientsTable from '../../components/plugins/ClientsTable'
+import FoodSelectionTable from '../../components/plugins/FoodSelectionTable'
 import CardComponent from '../../components/plugins/CardComponent'
 import TitleBar from '../../components/plugins/TitleBar'
 import HeroBar from '../../components/plugins/HeroBar'
 import BottomOtherPagesSection from '../../components/plugins/BottomOtherPagesSection'
-import TitleSubBar from '../../components/plugins/TitleSubBar'
+// import TitleSubBar from '../../components/plugins/TitleSubBar'
 
 export default {
   name: 'Tables',
   components: {
-    TitleSubBar,
+    // TitleSubBar,
     MainSection,
     HeroBar,
     TitleBar,
     CardComponent,
-    ClientsTable,
+    FoodSelectionTable,
     Notification,
     BottomOtherPagesSection
   },
   setup () {
-    const titleStack = ref(['Admin', 'Tables'])
+    const titleStack = ref(['Admin', 'FoodSelection'])
 
     return {
       titleStack,
