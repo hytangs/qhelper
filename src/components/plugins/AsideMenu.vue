@@ -11,7 +11,7 @@
         <icon :path="mdiMenu" class="cursor-pointer" size="24" />
       </nav-bar-item>
       <div class="flex-1 px-3">
-        <span>Admin</span> <b class="font-black">One</b>
+        <span>QHelper</span> <b class="font-black">Admin</b>
       </div>
     </div>
     <div>
