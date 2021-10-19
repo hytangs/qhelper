@@ -1,7 +1,7 @@
 <template>
   <full-screen-section bg="login" v-slot="{ cardClass, cardRounded }">
     <card-component  :class="cardClass" :rounded="cardRounded" @submit.prevent="submit" form>
-      <h1 class="text-2xl">QHelper Smart Admin</h1> <br>
+      <h1 class="text-2xl">QHelper <b>Smart Admin</b></h1> <br>
       <field label="Account" help="Please enter your admin account name.">
         <control v-model="form.login" :icon="mdiAccount" name="login" autocomplete="username"/>
       </field>
