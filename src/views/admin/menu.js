@@ -56,6 +56,21 @@ export default [
       label: 'Template'
     },
   ],
+  'Links',
+  [
+    {
+      href: 'https://www.covid.gov.sg',
+      label: 'COVID-19',
+      icon: mdiMonitorClean,
+      target: '_blank'
+    },
+    {
+      href: 'https://safetravel.ica.gov.sg',
+      label: 'Regulations',
+      icon: mdiCommaBox,
+      target: '_blank'
+    }
+  ],
   'Template',
   [
     {
@@ -112,21 +127,6 @@ export default [
           label: 'Sub-item Two'
         }
       ]
-    }
-  ],
-  'Links',
-  [
-    {
-      href: 'https://www.covid.gov.sg',
-      label: 'COVID-19',
-      icon: mdiMonitorClean,
-      target: '_blank'
-    },
-    {
-      href: 'https://safetravel.ica.gov.sg',
-      label: 'Regulations',
-      icon: mdiCommaBox,
-      target: '_blank'
     }
   ]
 ]

@@ -27,7 +27,9 @@ export default {
         login: 'bg-gradient-to-tr from-purple-400 via-pink-500 to-red-500',
         loginDark: 'bg-gradient-to-tr from-purple-900 via-pink-900 to-red-900',
         error: 'bg-gradient-to-tr from-pink-400 via-red-500 to-yellow-500',
-        errorDark: 'bg-gradient-to-tr from-pink-900 via-red-900 to-yellow-900'
+        errorDark: 'bg-gradient-to-tr from-pink-900 via-red-900 to-yellow-900',
+        notfound: 'bg-gradient-to-tr from-pink-400 via-red-500 to-yellow-500',
+        notfoundDark: 'bg-gradient-to-tr from-pink-900 via-red-900 to-yellow-900',
       }
 
       const bgKey = darkMode.value ? `${props.bg}Dark` : props.bg

@@ -13,11 +13,11 @@ const routes = [
   // Guests Arrivals
   {
     meta: {
-      title: 'QHelper Running'
+      title: 'Arrival Registration'
     },
-    path: '/',
-    name: 'home',
-    component: () => import('../views/general/IndexHandling')
+    path: '/arrivals',
+    name: 'ArrivalsPage',
+    component: () => import('../views/arrivals/ArrivalsPage')
   },
 
   // Guests Daily Dashboard
@@ -130,7 +130,12 @@ const routes = [
     path: '/admin/error',
     name: 'Error',
     component: () => import('../views/admin/Error')
-  }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundHandling',
+    component:  () => import('../views/general/NotFoundHandling')
+  },
 ]
 
 const router = createRouter({
