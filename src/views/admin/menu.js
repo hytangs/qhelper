@@ -26,7 +26,7 @@ export default [
       label: 'Rooms',
     },
     {
-      to: '/admin/foods',
+      to: '/admin/foodselection',
       icon: mdiDesktopMac,
       label: 'Foods'
     },

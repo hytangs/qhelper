@@ -1,4 +1,6 @@
 <template>
+  <nav-bar/>
+  <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
   <hero-bar>Food Selection - Order Details</hero-bar>
   <main-section>
@@ -34,6 +36,8 @@
   </main-section>
 
   <bottom-other-pages-section />
+  <footer-bar/>
+  <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
 <script>
@@ -46,29 +50,39 @@ import CardComponent from '../../components/plugins/CardComponent'
 import TitleBar from '../../components/plugins/TitleBar'
 import HeroBar from '../../components/plugins/HeroBar'
 import BottomOtherPagesSection from '../../components/plugins/BottomOtherPagesSection'
-// import TitleSubBar from '../../components/plugins/TitleSubBar'
+//import TitleSubBar from '../../components/plugins/TitleSubBar'
+import menu from '../../../src/views/admin/menu.js'
+import NavBar from '../../../src/components/plugins/NavBar'
+import AsideMenu from '../../../src/components/plugins/AsideMenu'
+import FooterBar from '../../../src/components/plugins/FooterBar'
+import Overlay from '../../../src/components/plugins/Overlay'
 
 export default {
   name: 'Tables',
   components: {
-    // TitleSubBar,
+    //TitleSubBar,
     MainSection,
     HeroBar,
     TitleBar,
     CardComponent,
     FoodSelectionTable,
     Notification,
-    BottomOtherPagesSection
+    BottomOtherPagesSection,
+    Overlay,
+    FooterBar,
+    AsideMenu,
+    NavBar
   },
   setup () {
-    const titleStack = ref(['Admin', 'FoodSelection'])
+    const titleStack = ref(['Admin', 'Tables'])
 
     return {
       titleStack,
       mdiMonitorCellphone,
       mdiAccountMultiple,
       mdiTableBorder,
-      mdiTableOff
+      mdiTableOff,
+      menu
     }
   }
 }
