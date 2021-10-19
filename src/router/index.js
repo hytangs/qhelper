@@ -1,7 +1,52 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import AdminHome from '../views/admin/Home'
 
 const routes = [
+  {
+    meta: {
+      title: 'QHelper Running'
+    },
+    path: '/',
+    name: 'home',
+    component: () => import('../views/general/IndexHandling')
+  },
+
+  // Guests Arrivals
+  {
+    meta: {
+      title: 'QHelper Running'
+    },
+    path: '/',
+    name: 'home',
+    component: () => import('../views/general/IndexHandling')
+  },
+
+  // Guests Daily Dashboard
+  {
+    meta: {
+      title: 'QHelper Running'
+    },
+    path: '/',
+    name: 'home',
+    component: () => import('../views/general/IndexHandling')
+  },
+  {
+    meta: {
+      title: 'QHelper Running'
+    },
+    path: '/',
+    name: 'home',
+    component: () => import('../views/general/IndexHandling')
+  },
+
+  // Admin Dashboard
+  {
+    meta: {
+      title: 'Admin'
+    },
+    path: '/admin/dashboard',
+    name: 'dashboard',
+    component: () => import('../views/admin/AdminDashboard')
+  },
   {
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
@@ -10,7 +55,7 @@ const routes = [
     },
     path: '/admin',
     name: 'home',
-    component: AdminHome
+    component: () => import('../views/admin/Home')
   },
   {
     meta: {
@@ -29,7 +74,7 @@ const routes = [
     },
     path: '/admin/forms',
     name: 'forms',
-    component: () => import('../../../../Desktop/qhelper/src/views/admin/Forms')
+    component: () => import('../views/admin/Forms')
   },
   {
     meta: {
@@ -37,7 +82,7 @@ const routes = [
     },
     path: '/admin/profile',
     name: 'profile',
-    component: () => import(/* webpackChunkName: "profile" */ '../../../../Desktop/qhelper/src/views/admin/Profile')
+    component: () => import('../views/admin/Profile')
   },
   {
     meta: {
@@ -45,7 +90,7 @@ const routes = [
     },
     path: '/admin/ui',
     name: 'ui',
-    component: () => import(/* webpackChunkName: "ui" */ '../../../../Desktop/qhelper/src/views/admin/Ui')
+    component: () => import('../views/admin/Ui')
   },
   {
     meta: {
@@ -53,7 +98,7 @@ const routes = [
     },
     path: '/admin/responsive',
     name: 'responsive',
-    component: () => import(/* webpackChunkName: "responsive" */ '../../../../Desktop/qhelper/src/views/admin/Responsive')
+    component: () => import('../views/admin/Responsive')
   },
   {
     meta: {

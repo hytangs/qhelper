@@ -13,15 +13,22 @@ import {
 } from '@mdi/js'
 
 export default [
-  'General',
+  'Manage',
   [
     {
-      to: '/admin/home',
+      to: '/admin/dashboard',
+      icon: mdiDesktopMac,
+      label: 'AdminDashboard'
+    }
+  ],
+  [
+    {
+      to: '/admin',
       icon: mdiDesktopMac,
       label: 'Dashboard'
     }
   ],
-  'Examples',
+  'Settings',
   [
     {
       to: '/admin/tables',
