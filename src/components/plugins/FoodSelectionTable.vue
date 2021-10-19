@@ -1,9 +1,9 @@
 <template>
-  <modal-box v-model="isModalActive" title="Sample modal">
-    <p>Check/Update the<b>Order Details</b></p>
+  <modal-box v-model="isModalActive" title="Order Details">
+    <p>Check/Update the <b>Order Details</b></p>
   </modal-box>
 
-  <modal-box v-model="isModalDangerActive" large-title="Please confirm" button="danger" has-cancel>
+  <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
     <p>Remove <b>Order</b></p>
   </modal-box>
 
