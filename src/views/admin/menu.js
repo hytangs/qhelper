@@ -1,7 +1,7 @@
 import {
   mdiAccountCircle,
   mdiDesktopMac,
-  mdiGithub,
+  mdiCommaBox,
   mdiLock,
   mdiAlertCircle,
   mdiMonitorClean,
@@ -18,7 +18,7 @@ export default [
     {
       to: '/admin/dashboard',
       icon: mdiDesktopMac,
-      label: 'AdminDashboard'
+      label: 'Dashboard'
     }
   ],
   [
@@ -28,7 +28,7 @@ export default [
       label: 'Dashboard'
     }
   ],
-  'Settings',
+  'Template',
   [
     {
       to: '/admin/foodselection',
@@ -86,18 +86,18 @@ export default [
       ]
     }
   ],
-  'About',
+  'Links',
   [
     {
-      href: 'https://justboil.me/tailwind-admin-templates/vue-dashboard',
-      label: 'Premium version',
+      href: 'https://www.covid.gov.sg',
+      label: 'COVID-19',
       icon: mdiMonitorClean,
       target: '_blank'
     },
     {
-      href: 'https://github.com/justboil/admin-one-vue-tailwind',
-      label: 'GitHub',
-      icon: mdiGithub,
+      href: 'https://safetravel.ica.gov.sg',
+      label: 'Regulations',
+      icon: mdiCommaBox,
       target: '_blank'
     }
   ]
