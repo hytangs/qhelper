@@ -51,6 +51,7 @@
         <jb-button type="submit" color="info" label="Confirm >" />
   </jb-buttons>
 </main-section>
+
 </template>
 
 <script>
@@ -62,7 +63,7 @@ import TitledSection from '../plugins/TitledSection'
 
 export default {
     name: 'RoomSelection',
-    
+
     components: {
     MainSection,
     CardComponent,
