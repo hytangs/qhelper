@@ -26,7 +26,8 @@
             <option value="mr">Mr</option>
             <option value="mrs">Mrs</option>
             <option value="ms">Ms</option>
-          </select>
+          </select >
+          &nbsp;
           <input
             type="text"
             id="fname"
@@ -35,7 +36,6 @@
           />
         </div>
       </div>
-      <br />
       <div class="row">
         <div class="col-name">
           <label for="nric">NRIC / Passport Number</label>
@@ -48,7 +48,6 @@
             placeholder="e.g: A12345678"
           />
         </div>
-        <br />
         <div class="col-name">
           <label for="doa">Date of Arrival</label>
         </div>
@@ -60,7 +59,6 @@
             placeholder="e.g: 01/09/2021"
           />
         </div>
-        <br />
         <div class="col-name">
           <label for="flight">Flight / Coach / Ferry Number</label>
         </div>
@@ -72,7 +70,7 @@
             placeholder="e.g: MU567"
           />
         </div>
-        <br />
+        <br>
         <text>Travel History (Past 14 days)</text>
         <div class="col-name">
           <label for="sdate"
@@ -89,7 +87,6 @@
           ---
           <input type="date" id="edate" name="edate" />
         </div>
-        <br />
         <div class="col-name">
           <label for="vaccine">COVID-19 Vaccination History</label>
         </div>
@@ -117,7 +114,6 @@
           />
         </div>
       </div>
-      <br />
       <div class="row">
         <div class="col-name">
           <label for="contact">Contact Number</label>
@@ -130,7 +126,6 @@
             placeholder="e.g: +65 12345678"
           />
         </div>
-        <br />
         <div class="col-name">
           <label for="cod">Country of Departure</label>
         </div>
@@ -139,14 +134,13 @@
             <option value="china">China</option>
           </select>
         </div>
-        <br />
         <div class="col-name">
           <label for="seat">Seat Number</label>
         </div>
         <div class="col-con">
           <input type="text" id="seat" name="seat" placeholder="e.g: 45D" />
         </div>
-        <br /><br />
+        <br /><br>
         <div class="col-name">
           <label for="country">Country & Region</label>
         </div>
@@ -155,7 +149,6 @@
             <option value="china">China</option>
           </select>
         </div>
-        <br />
         <div class="col-name">
           <label for="passtype">Arrival Passenger Type</label>
         </div>
@@ -173,12 +166,14 @@
         I hereby declare that the information above mentioned is true to the
         best of my knowledge.
       </h4>
+      <br>
       <h4>
         I understand that in the event of my information being found false or
         incorrect at any stage, I shall fully be liable to the prevaling laws
         and / or subject to sanictions.
       </h4>
-      <input type="submit" value="Declare and Continue  >" class="btn" />
+      <br>&nbsp;&nbsp;&nbsp;
+      <button @click="roomselect(), savetofs()">Declare and Continue  ></button>
     </div>
   </div>
 </template>
@@ -191,6 +186,10 @@ const db = getFirestore(firebaseApp);
 
 export default {
     methods: {
+        roomselect() {
+          this.$router.push('/arrivals/roomselection')
+        },
+        
         async savetofs() {
             var gender  = document.getElementById("gender").value
             var fname  = document.getElementById("fname").value
@@ -231,84 +230,86 @@ export default {
 
 <style scoped>
 #logo {
-  font-size: 40px;
+  font-size: 30px;
   text-align: left;
+  color: rgb(55, 55, 156);
+  font-weight: bold;
 }
 #hotel {
-  font-size: 30px;
+  font-size: 20px;
   color: rgb(154, 177, 206);
+  font-weight: bold;
 }
 #title {
-  font-size: 30px;
+  font-size: 20px;
   color: rgb(133, 130, 130);
+  font-weight: bold;
 }
 #top-left {
   position: relative;
   width: 50%;
-  height: 10vh;
-  top: 10vh;
-  text-align: center;
+  height: 8vh;
+  text-align: left;
   float: left;
 }
 #top-right {
   position: relative;
-  width: 50%;
-  height: 10vh;
-  top: 10vh;
-  text-align: center;
+  width: 30%;
+  height: 8vh;
+  left: 2vw;
+  text-align: justify;
   float: left;
 }
 #mid {
-  position: relative;
   width: 100%;
-  height: 10vh;
-  top: 12vh;
-  text-align: center;
+  padding: 0px 80px;
+  text-align: left;
+  float: left;
 }
 #reg_form {
   position: relative;
-  width: 80vw;
-  height: 60vh;
-  top: 20vh;
-  left: 9vw;
+  width: 65vw;
+  height: 70vh;
+  top: 4vh;
   border-style: solid;
   border-width: 5px;
   border-color: lavender;
+  float: left;
 }
 #left {
   position: relative;
-  width: 35%;
+  width: 45%;
   height: 100%;
   top: 5%;
-  left: 8%;
+  left: 2%;
   float: left;
   text-align: left;
 }
 #middle {
   position: relative;
-  width: 25%;
+  width: 20%;
   height: 100%;
   top: 5%;
-  left: 8%;
+  left: 2%;
   float: left;
   text-align: left;
 }
 #right {
   position: relative;
-  width: 20%;
+  width: 30%;
   height: 80%;
-  top: 15%;
-  left: 10%;
+  top: 20%;
+  left: 2%;
   float: left;
 }
 text,
 .col-name {
   color: rgb(55, 55, 156);
-  font-size: large;
+  font-size: 15px;
   font-weight: bold;
 }
-.btn {
-  width: 240px;
+button {
+  width: 220px;
   height: 30px;
   color: white;
   padding: 0;
@@ -316,5 +317,21 @@ text,
   font-size: large;
   font-weight: bold;
   background: rgb(77, 77, 236);
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+select, input{
+  height: 4vh;
+  width: 11vw;
+  padding: 2px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+#sdate, #edate, #passtype, #vaccine {
+  width: 13vw;
+}
+h4 {
+  font-weight: 500;
+  text-align: center;
 }
 </style>

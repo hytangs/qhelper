@@ -1,6 +1,6 @@
 <template>
-  <RegistrationForm v-if="step === 0"></RegistrationForm>
-  <RoomSelection v-else-if="step === 1"></RoomSelection>
+  <RegistrationForm v-if="step == 0" @add="change"/>
+  <RoomSelection v-if="step == 1"/>
 </template>
 
 <script>
@@ -16,7 +16,12 @@ export default {
   },
   data() {
     return {
-      step: 0
+      step: 0,
+    }
+  },
+  methods:{
+    change(){
+      this.step += 1
     }
   }
 }

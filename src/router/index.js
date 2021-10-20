@@ -20,6 +20,15 @@ const routes = [
     component: () => import('../views/arrivals/ArrivalsPage')
   },
 
+  {
+    meta: {
+      title: 'Room Selection'
+    },
+    path: '/arrivals/roomselection',
+    name: 'RoomSelectionPage',
+    component: () => import('../views/arrivals/RoomSelectionPage')
+  },
+
   // Guests Daily Dashboard
   {
     meta: {
