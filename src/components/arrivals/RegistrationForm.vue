@@ -89,7 +89,6 @@ export default {
       roomselect() {
         this.$router.push('/arrivals/roomselection')
       },
-      
       async savetofs() {
         var gender  = document.getElementById("gender").value
         var fname  = document.getElementById("fname").value
@@ -220,7 +219,6 @@ export default {
         genderOptions,
         submit
       }
-    
   },
 }
 </script>
