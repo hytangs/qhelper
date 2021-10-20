@@ -50,12 +50,7 @@
   <jb-buttons>
         <jb-button type="submit" color="info" label="Confirm >" />
   </jb-buttons>
-<<<<<<< HEAD
 </full-screen-section>
-=======
-</main-section>
-
->>>>>>> 05bd64589a735ca1dbff555ffcd9d879054df592
 </template>
 
 <script>
@@ -67,10 +62,6 @@ import TitledSection from '../plugins/TitledSection'
 
 export default {
     name: 'RoomSelection',
-<<<<<<< HEAD
-=======
-
->>>>>>> 05bd64589a735ca1dbff555ffcd9d879054df592
     components: {
     FullScreenSection,
     CardComponent,

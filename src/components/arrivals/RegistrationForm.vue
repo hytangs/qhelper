@@ -29,15 +29,12 @@
         <control placeholder="Seat Number" v-model="form.travelSeat" id = "seat" />
       </field>
 
-<<<<<<< HEAD
       <field label="Travel History (Past 14 Days)" help="DD/MM/YYYY">
         <control placeholder="Start Date" v-model="form.historyStart" id="sdate" />
         <control placeholder="End Date" v-model="form.historyEnd" id="edate"/>
         <control placeholder="Country" v-model="form.historyCountry" id="country" />
       </field>
 
-=======
->>>>>>> 05bd64589a735ca1dbff555ffcd9d879054df592
       <field label="Covid-19 Vaccination History">
         <control :options="vaccineOptions" v-model="form.vaccine" id ="vaccine"/>
       </field>
