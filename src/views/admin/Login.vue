@@ -34,6 +34,7 @@ import Divider from '../../../src/components/plugins/Divider.vue'
 import JbButton from '../../../src/components/plugins/JbButton'
 import JbButtons from '../../../src/components/plugins/JbButtons'
 
+
 export default {
   name: 'Login',
   components: {
@@ -56,6 +57,7 @@ export default {
     const router = useRouter()
 
     const submit = () => {
+      form.login
       router.push('/admin/dashboard')
     }
 
