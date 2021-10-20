@@ -13,7 +13,7 @@ const routes = [
   // Guests Arrivals
   {
     meta: {
-      title: 'Arrival Registration'
+      title: 'Arrival Registration',
     },
     path: '/arrivals',
     name: 'ArrivalsPage',
@@ -22,7 +22,8 @@ const routes = [
 
   {
     meta: {
-      title: 'Room Selection'
+      title: 'Room Selection',
+      fullScreen: true
     },
     path: '/arrivals/roomselection',
     name: 'RoomSelectionPage',
