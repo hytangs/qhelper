@@ -1,46 +1,46 @@
 <template>
 <main-section>
   <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
-    <card-component form>
+    <card-component form id = "regform">
       <field label="Name">
-        <control :options="genderOptions" v-model="form.gender" />
-        <control placeholder="First Name" v-model="form.firstName"/>
-        <control placeholder="Last Name" v-model="form.lastName"/>
+        <control :options="genderOptions" v-model="form.gender" id = "gender"/>
+        <control placeholder="First Name" v-model="form.firstName" id = "fname"/>
+        <control placeholder="Last Name" v-model="form.lastName" id = "lname"/>
       </field>
 
       <field label="NRIC / Passport Number">
-        <control placeholder="e.g. A12345678" v-model="form.nric" />
+        <control placeholder="e.g. A12345678" v-model="form.nric" id = "nric"/>
       </field>
 
       <field label="Contact Number">
-        <control type="tel" placeholder="Your phone number" v-model="form.contact" />
+        <control type="tel" placeholder="Your phone number" v-model="form.contact" id = "contact"/>
       </field>
 
       <field label="Date of Arrival">
-        <control placeholder="DD/MM/YYYY" v-model="form.arrivalDate" />
+        <control placeholder="DD/MM/YYYY" v-model="form.arrivalDate" id = "doa"/>
       </field>
 
       <field label="Country of Departure">
-        <control :options="countryOptions" v-model="form.country" />
+        <control :options="countryOptions" v-model="form.country" id = "cod"/>
       </field>
 
       <field label="Flight / Coach / Ferry Details">
-        <control placeholder="Flight / Coach / Ferry Number" v-model="form.travelNumber" />
-        <control placeholder="Seat Number" v-model="form.travelSeat" />
+        <control placeholder="Flight / Coach / Ferry Number" v-model="form.travelNumber" id = "flight"/>
+        <control placeholder="Seat Number" v-model="form.travelSeat" id = "seat" />
       </field>
 
       <field label="Travel History (Past 14 Days)" help="DD/MM/YYYY">
-        <control placeholder="Start Date" v-model="form.historyStart" />
-        <control placeholder="End Date" v-model="form.historyEnd" />
-        <control placeholder="Country" v-model="form.historyCountry" />
+        <control placeholder="Start Date" v-model="form.historyStart" id="sdate" />
+        <control placeholder="End Date" v-model="form.historyEnd" id="edate"/>
+        <control placeholder="Country" v-model="form.historyCountry" id="country" />
       </field>
 
       <field label="Covid-19 Vaccination History">
-        <control :options="vaccineOptions" v-model="form.vaccine" />
+        <control :options="vaccineOptions" v-model="form.vaccine" id ="vaccine"/>
       </field>
 
       <field label="Arrival Passenger Type">
-        <control :options="passengerOptions" v-model="form.passengerType" />
+        <control :options="passengerOptions" v-model="form.passengerType" id = "passtype"/>
       </field>
     </card-component>
 
@@ -53,8 +53,9 @@
         and / or subject to sanictions.
         <br><br>
         <jb-buttons>
-          <jb-button type="submit" color="info" label="Declare and Continue >" @click="roomselect(), savetofs()"/>
+          <jb-button type="submit" color="info" label="Declare and Continue >" @click="savetofs()"/>
         </jb-buttons>
+        <button @click="savetofs()">Hello</button>
       </div>
     </card-component>
   </div>
@@ -66,7 +67,6 @@ import firebaseApp from '../../firebase.js';
 import { getFirestore } from 'firebase/firestore';
 import { doc, setDoc } from 'firebase/firestore';
 const db = getFirestore(firebaseApp);
-
 import MainSection from '../plugins/MainSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
@@ -75,6 +75,7 @@ import Field from '../plugins/Field'
 import Control from '../plugins/Control'
 
 export default {
+  
   components:{
     MainSection,
     CardComponent,
@@ -125,44 +126,71 @@ export default {
 
     setup() {
       const countryOptions = [
-        {id:1, label:'Brunei'},
-        {id:2, label:'Germany'},
-        {id:3, label:'HongKong'},
-        {id:4, label:'Macao'},
-        {id:5, label:'Mainland China'},
-        {id:6, label:'Canada'},
-        {id:7, label:'Denmark'},
-        {id:8, label:'France'},
-        {id:9, label:'Italy'},
-        {id:10, label:'Netherlands'},
-        {id:11, label:'Spain'},
-        {id:12, label:'United Kingdom'},
-        {id:13, label:'United States'},
-        {id:14, label:'South Korea'},
+        "Germany",
+        "Hong Kong",
+        "Mainland China",
+        "Canada",
+        "Danmark",
+        "France",
+        "Italy",
+        "Spain",
+        "United Kingdom",
+        "United States",
+        "South Korea",
+        // {id:1, label:'Brunei'},
+        // {id:2, label:'Germany'},
+        // {id:3, label:'HongKong'},
+        // {id:4, label:'Macao'},
+        // {id:5, label:'Mainland China'},
+        // {id:6, label:'Canada'},
+        // {id:7, label:'Denmark'},
+        // {id:8, label:'France'},
+        // {id:9, label:'Italy'},
+        // {id:10, label:'Netherlands'},
+        // {id:11, label:'Spain'},
+        // {id:12, label:'United Kingdom'},
+        // {id:13, label:'United States'},
+        // {id:14, label:'South Korea'},
       ]
 
       const vaccineOptions = [
-        {id:1, label:'Not Vaccinated'},
-        {id:2, label:'Fully Vaccinated - Pfizer/BioNTech'},
-        {id:3, label:'Fully Vaccinated - Moderna'},
-        {id:4, label:'Fully Vaccinated - Astrazeneca'},
-        {id:5, label:'Fully Vaccinated - Covishield'},
-        {id:6, label:'Fully Vaccinated - Janssen'},
-        {id:7, label:'Fully Vaccinated - Sinopharm'},
-        {id:8, label:'Fully Vaccinated - Sinovac'},
+        "Not Vaccinated",
+        "Fully Vaccinated - Pfizer/BioNTech",
+        "Fully Vaccinated - Moderna",
+        "Fully Vaccinated - Astrazeneca",
+        "Fully Vaccinated - Covishield",
+        "Fully Vaccinated - Janssen",
+        "Fully Vaccinated - Janssen",
+        "Fully Vaccinated - Sinopharm",
+        "Fully Vaccinated - Sinovac",
+        // {id:1, label:'Not Vaccinated'},
+        // {id:2, label:'Fully Vaccinated - Pfizer/BioNTech'},
+        // {id:3, label:'Fully Vaccinated - Moderna'},
+        // {id:4, label:'Fully Vaccinated - Astrazeneca'},
+        // {id:5, label:'Fully Vaccinated - Covishield'},
+        // {id:6, label:'Fully Vaccinated - Janssen'},
+        // {id:7, label:'Fully Vaccinated - Sinopharm'},
+        // {id:8, label:'Fully Vaccinated - Sinovac'},
       ]
 
       const passengerOptions = [
-        {id:1, label:'Singaporean'},
-        {id:2, label:'Short Term Visitor'},
-        {id:3, label:'Long Term Pass Holder'},
+        "Singaporean",
+        "Short Term Visitor",
+        "Long Term Pass Holder",
+        // {id:1, label:'Singaporean'},
+        // {id:2, label:'Short Term Visitor'},
+        // {id:3, label:'Long Term Pass Holder'},
       ]
 
       const genderOptions = [
-        {id:1, label:'Mr'},
-        {id:2, label:'Miss'},
-        {id:3, label:'Mrs'},
-        {id:4, label:'Madam'},
+        "Mr",
+        "Miss",
+        "Mrs",
+        "Madam",
+        // {id:1, label:'Mr'},
+        // {id:2, label:'Miss'},
+        // {id:3, label:'Mrs'},
+        // {id:4, label:'Madam'},
       ]
       const form = ({
         firstName:'',
@@ -181,7 +209,7 @@ export default {
       })
 
       const submit = () => {
-        //saveTofs
+        this.savetofs()
       }
 
       return {

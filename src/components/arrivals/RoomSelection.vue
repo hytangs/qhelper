@@ -1,6 +1,6 @@
 <template>
 <titled-section>Hi {{name}}, Please select the room type according to your preference.</titled-section>
-<main-section>
+<full-screen-section bg="login"> 
   <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 ">
     <card-component>
       <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
@@ -50,11 +50,11 @@
   <jb-buttons>
         <jb-button type="submit" color="info" label="Confirm >" />
   </jb-buttons>
-</main-section>
+</full-screen-section>
 </template>
 
 <script>
-import MainSection from '../plugins/MainSection'
+import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
@@ -62,9 +62,8 @@ import TitledSection from '../plugins/TitledSection'
 
 export default {
     name: 'RoomSelection',
-    
     components: {
-    MainSection,
+    FullScreenSection,
     CardComponent,
     JbButton,
     JbButtons,
