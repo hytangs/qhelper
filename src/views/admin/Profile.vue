@@ -5,7 +5,7 @@
 
   <user-card />
 
-  <main-section>
+  <main-section v-if="zones === 0">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <card-component
         title="Edit Profile"
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import {ref, reactive, computed} from 'vue'
 import { useStore } from 'vuex'
 import { mdiAccount, mdiAccountCircle, mdiLock, mdiMail, mdiAsterisk, mdiFormTextboxPassword } from '@mdi/js'
 import MainSection from '../../components/plugins/MainSection'
@@ -153,6 +153,8 @@ export default {
       //
     }
 
+    const zones = computed(() => store.state.zones)
+
     return {
       titleStack,
       profileForm,
@@ -165,7 +167,8 @@ export default {
       mdiMail,
       mdiAsterisk,
       mdiFormTextboxPassword,
-      menu
+      menu,
+      zones
     }
   }
 }

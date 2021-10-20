@@ -23,7 +23,10 @@ export default createStore({
 
     /* Sample data (commonly used) */
     clients: [],
-    history: []
+    history: [],
+
+    /* Access Control */
+    zones: 0
   },
   mutations: {
     /* A fit-them-all commit */

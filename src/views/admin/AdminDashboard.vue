@@ -3,16 +3,15 @@
   <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
   <hero-bar>Dashboard</hero-bar>
-  <main-section>
-    <notification color="info" :icon="mdiGithub">
-      Please star this project on
-      <a href="https://github.com/justboil/admin-one-vue-tailwind" class="underline" target="_blank">GitHub</a>
+  <main-section v-if="zones === 1">
+    <notification color="info" :icon="mdiAlertCircle">
+      Please follow Personal Data Protection Act when using this system.
       <template #right>
         <jb-button
-            href="https://github.com/justboil/admin-one-vue-tailwind"
-            :icon="mdiGithub"
+            href="https://www.pdpc.gov.sg/Overview-of-PDPA/The-Legislation/Personal-Data-Protection-Act"
+            :icon="mdiAlertCircle"
             :outline="darkMode"
-            label="GitHub"
+            label="View"
             target="_blank"
             small
         />
@@ -110,7 +109,8 @@ import {
   mdiMonitorCellphone,
   mdiReload,
   mdiGithub,
-  mdiChartPie
+  mdiChartPie,
+  mdiAlertCircle,
 } from '@mdi/js'
 import * as chartConfig from '../../../src/components/plugins/Charts/chart.config'
 import LineChart from '../../../src/components/plugins/Charts/LineChart'
@@ -173,6 +173,8 @@ export default {
 
     const darkMode = computed(() => store.state.darkMode)
 
+    const zones = computed(() => store.state.zones)
+
     return {
       titleStack,
       chartData,
@@ -188,7 +190,9 @@ export default {
       mdiReload,
       mdiGithub,
       mdiChartPie,
+      mdiAlertCircle,
       menu,
+      zones
     }
   }
 }
