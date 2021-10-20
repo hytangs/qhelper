@@ -1,5 +1,5 @@
 <template>
-  <full-screen-section bg="notfound" v-slot="{ cardClass, cardRounded }">
+  <full-screen-section bg="notfound" >
     <card-component :class="cardClass" :rounded="cardRounded">
 
       <div class="space-y-3">

@@ -132,6 +132,10 @@ const routes = [
     component: () => import('../views/admin/Error')
   },
   {
+    meta: {
+      title: 'Not Found',
+      fullScreen: true
+    },
     path: '/:pathMatch(.*)*',
     name: 'NotFoundHandling',
     component:  () => import('../views/general/NotFoundHandling')
