@@ -11,9 +11,9 @@
     
     <tbody>
       <tr>
-        <td data-label="Alert ID"> {{alertId}} </td>
-        <td data-label="Room Info"> {{roomNo}} </td>
-        <td data-label="Reasons"> {{reasons}} </td>
+        <td data-label="Alert ID"> ID </td>
+        <td data-label="Room Info"> Room Number </td>
+        <td data-label="Reasons"> Reasons </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />

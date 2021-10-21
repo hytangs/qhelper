@@ -11,9 +11,9 @@
     
     <tbody>
       <tr>
-        <td data-label="Patient ID"> {{patientID}} </td>
-        <td data-label="Name"> {{name}} </td>
-        <td data-label="Date"> {{date}} </td>
+        <td data-label="Patient ID"> ID </td>
+        <td data-label="Name"> Name of patient </td>
+        <td data-label="Date"> DD-MM-YYYY </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" />

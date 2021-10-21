@@ -9,7 +9,7 @@
     
     <tbody>
       <tr>
-        <td data-label="Notifications"> {{notifications}} </td>
+        <td data-label="Notifications"> Notification </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" />
@@ -31,7 +31,6 @@ export default {
   components: {
     JbButtons,
     JbButton
-    MainSection
   },
 
   setup() {

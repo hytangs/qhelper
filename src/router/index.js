@@ -88,6 +88,22 @@ const routes = [
   },
   {
     meta: {
+      title: 'Rooms'
+    },
+    path: '/admin/rooms',
+    name: 'rooms',
+    component: () => import('../views/admin/GuestService')
+  },
+  {
+    meta: {
+      title: 'Health'
+    },
+    path: '/admin/health',
+    name: 'health',
+    component: () => import('../views/admin/HealthDeclaration')
+  },
+  {
+    meta: {
       title: 'Tables'
     },
     path: '/admin/tables',

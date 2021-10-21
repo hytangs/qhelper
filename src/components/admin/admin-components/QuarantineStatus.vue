@@ -14,12 +14,12 @@
     
     <tbody>
       <tr>
-        <td data-label="Room Info"> {{roomNo}} </td>
-        <td data-label="Start Date"> {{startDate}} </td>
-        <td data-label="End Date"> {{endDate}} </td>
-        <td data-label="Next PCR Test"> {{pcr}} </td>
-        <td data-label="Quarantine Plan"> {{quarantine}} </td>
-        <td data-label="Departure Country"> {{departureCountry}} </td>
+        <td data-label="Room Info"> Room Number </td>
+        <td data-label="Start Date"> DD-MM-YYYY </td>
+        <td data-label="End Date"> DD-MM-YYYY </td>
+        <td data-label="Next PCR Test"> DD-MM-YYYY </td>
+        <td data-label="Quarantine Plan"> Quarantine Plan </td>
+        <td data-label="Departure Country"> Country of Departure </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
