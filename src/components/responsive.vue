@@ -4,7 +4,7 @@
     <a href = "#" class = "logo">QHelper</a>
     <ul>
       <li><a href = "#home">Home</a></li>
-      <li><a href = "#">Meals</a></li>
+      <li><a href = "#meals">Meals</a></li>
       <li><a href = "#">Costs</a></li>
       <li><a href = "#entertainment">Entertainment</a></li>
       <li><a href = "#">Checkout</a></li>
@@ -18,14 +18,18 @@
   <div class = "home_area" id="home">
     <home/>
   </div>
+  <div class="menu" id = "meals">
+    <meals/>
+  </div>
   <div class = "entertainment_area" id = "entertainment">
-  <entertainment/>
-</div>
+    <entertainment/>
+  </div>
   </body>
 </template>
 
 <script>
 import home from '@/components/home.vue'
+import meals from '@/components/meals.vue'
 /*import costs from '@/components/costs.vue'*/
 import entertainment from '@/components/entertainment.vue'
 
@@ -35,6 +39,7 @@ export default {
 name: "responsive",
 components: {
   home,
+  meals,
   entertainment
 },
 
