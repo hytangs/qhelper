@@ -6,28 +6,72 @@
       <li><a href = "#home">Home</a></li>
       <li><a href = "#">Meals</a></li>
       <li><a href = "#">Costs</a></li>
-      <li><a href = "#">Entertainment</a></li>
+      <li><a href = "#entertainment">Entertainment</a></li>
       <li><a href = "#">Checkout</a></li>
       <li><a href = "#">Contact</a></li>
     </ul>
+    <div class="date">
+  <p>Current Date & Time: {{currentDateTime()}} {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</p>
+  </div>
   </header>
   <section class="banner"></section>
   <div class = "home_area" id="home">
     <home/>
   </div>
+  <div class = "entertainment_area" id = "entertainment">
+  <entertainment/>
+</div>
   </body>
 </template>
 
 <script>
 import home from '@/components/home.vue'
+/*import costs from '@/components/costs.vue'*/
+import entertainment from '@/components/entertainment.vue'
+
+const date = new Date();
 
 export default {
-  name: 'responsive',
-  components: {
-    home
-  }
-}
+name: "responsive",
+components: {
+  home,
+  entertainment
+},
 
+data() {
+  return {
+    dateTime: {
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+      seconds: date.getSeconds(),
+    },
+    timer: undefined,
+  };
+},
+  methods: {
+    currentDateTime() {
+      const current = new Date();
+      const date = current.getFullYear()+'-'+(current.getMonth()+1)+'-'+current.getDate();
+      const dateTime = date;
+      
+      return dateTime;
+    },
+      setDateTime() {
+    const date = new Date();
+    this.dateTime = {
+      hours: date.getHours(),
+      minutes: date.getMinutes(),
+      seconds: date.getSeconds(),
+    };
+  },
+},
+beforeMount() {
+  this.timer = setInterval(this.setDateTime, 1000);
+},
+beforeUnmount() {
+  clearInterval(this.timer);
+},
+};
 window.addEventListener("scroll", function(){
   var header = document.querySelector("header");
   header.classList.toggle("sticky", window.scrollY)
@@ -58,13 +102,13 @@ header{
   justify-content: space-between;
   align-items: center;
   transition: 0.6s;
-  padding: 40px 100px;
+  padding: 6px 100px;
   z-index: 100000;
 }
 
 header.sticky{
-  padding: 5px 100px;
-  background-color: white;
+  padding: 6px 100px;
+  background-color: black;
 }
 
 header .logo{
@@ -104,15 +148,16 @@ header ul li a{
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url("C:/Users/Jie Hui/Documents/BT3103/Project/test/src/assets/welcome_page.png");
+  background: url("https://www.wallpaperkiss.com/wimg/b/181-1810457_big.jpg");
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   background-size: cover;
 }
 
 header.sticky .logo,
-header.sticky ul li a {
-  color:black;
+header.sticky ul li a,
+header.sticky .date {
+  color:white;
 }
 
 .home_area{
@@ -123,7 +168,36 @@ header.sticky ul li a {
   flex-wrap: wrap;
   flex-direction: row;
   width:100%;
+  height: 100vh;
+  background-color:whitesmoke;
+}
+
+.costs_area{
+  position:relative;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width:100%;
   height: 70vh;
+  background-color:beige;
+}
+
+.date {
+  width:16%;
+  position:relative;
+}
+
+.entertainment_area{
+  position:relative;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width:100%;
+  height: 100vh;
   background-color:whitesmoke;
 }
 </style>
