@@ -1,5 +1,5 @@
 <template>
-<main-section>
+<full-screen-section bg="login"> 
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
         
       <card-component>
@@ -32,11 +32,11 @@
       </card-component>
 
     </div>
-  </main-section>
+  </full-screen-section> 
 </template>
 
 <script>
-import MainSection from '../plugins/MainSection'
+import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
@@ -52,7 +52,7 @@ export default {
     },
 
     components: {
-        MainSection,
+        FullScreenSection,
         CardComponent,
         JbButton,
         JbButtons,
