@@ -1,9 +1,13 @@
 <template>
-<main-section>
-  <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
-    <card-component form id = "regform">
-      <field label="Name">
+<full-screen-section bg = "login" id = "container" v-slot="{ cardClass, cardRounded }">
+  <!-- <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 "> -->
+    <card-component style="overflow-y:scroll; height:600px;"
+    :class="cardClass" :rounded="cardRounded" form id = "regform">
+      <field label="Gender">
         <control :options="genderOptions" v-model="form.gender" id = "gender"/>
+      </field>
+
+      <field label="Name">
         <control placeholder="First Name" v-model="form.firstName" id = "fname"/>
         <control placeholder="Last Name" v-model="form.lastName" id = "lname"/>
       </field>
@@ -16,24 +20,25 @@
         <control type="tel" placeholder="Your phone number" v-model="form.contact" id = "contact"/>
       </field>
 
-      <field label="Date of Arrival">
+      <field label="Country of Departure and Date of Arrival">
+        <control :options="countryOptions" v-model="form.country" id = "cod"/>
         <control placeholder="DD/MM/YYYY" v-model="form.arrivalDate" id = "doa"/>
       </field>
 
-      <field label="Country of Departure">
+      <!-- <field label="Country of Departure">
         <control :options="countryOptions" v-model="form.country" id = "cod"/>
-      </field>
+      </field> -->
 
       <field label="Flight / Coach / Ferry Details">
-        <control placeholder="Flight / Coach / Ferry Number" v-model="form.travelNumber" id = "flight"/>
+        <control placeholder="Flight Number" v-model="form.travelNumber" id = "flight"/>
         <control placeholder="Seat Number" v-model="form.travelSeat" id = "seat" />
       </field>
 
-      <field label="Travel History (Past 14 Days)" help="DD/MM/YYYY">
+      <!-- <field label="Travel History (Past 14 Days)" help="DD/MM/YYYY">
         <control placeholder="Start Date" v-model="form.historyStart" id="sdate" />
         <control placeholder="End Date" v-model="form.historyEnd" id="edate"/>
         <control placeholder="Country" v-model="form.historyCountry" id="country" />
-      </field>
+      </field> -->
 
       <field label="Covid-19 Vaccination History">
         <control :options="vaccineOptions" v-model="form.vaccine" id ="vaccine"/>
@@ -42,10 +47,27 @@
       <field label="Arrival Passenger Type">
         <control :options="passengerOptions" v-model="form.passengerType" id = "passtype"/>
       </field>
-    </card-component>
+
+      <!-- <check-radio-picker class="text-gray-500 dark:text-gray-400" 
+      name="declare" v-model="form.declare" 
+      :options="{ 
+        declare: 'I hereby declare that the information above mentioned is true to the best of my knowledge.' 
+        }" />
+
+        <check-radio-picker class="text-gray-500 dark:text-gray-400" 
+      name="law" v-model="form.law" 
+      :options="{ 
+        law: 'I understand that in the event of my information being found false or incorrect at any stage, \
+        I shall fully be liable to the prevaling laws and / or subject to sanictions.' 
+        }" /> -->
+
+        <!-- <jb-buttons>
+          <jb-button type="submit" color="info" label="Declare and Continue >" 
+            @click="RegistrationDone = true, roomselect(), savetofs()"/>
+        </jb-buttons> -->
 
     <card-component @submit.prevent="submit">
-      <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
+      <div class="text-center text-gray-500 dark:text-gray-400">
         I hereby declare that the information above mentioned is true to the best of my knowledge.
         <br><br>
         I understand that in the event of my information being found false or
@@ -53,13 +75,15 @@
         and / or subject to sanictions.
         <br><br>
         <jb-buttons>
-          <jb-button type="submit" color="info" label="Declare and Continue >" @click="savetofs()"/>
+          <jb-button type="submit" color="info" label="Declare and Continue >" 
+            @click="roomselect(), savetofs()"/>
         </jb-buttons>
-        <button @click="savetofs()">Hello</button>
       </div>
     </card-component>
-  </div>
-</main-section>
+
+    </card-component>
+  <!-- </div> -->
+</full-screen-section>
 </template>
 
 <script>
@@ -67,8 +91,9 @@ import firebaseApp from '../../firebase.js';
 import { getFirestore } from 'firebase/firestore';
 import { doc, setDoc } from 'firebase/firestore';
 const db = getFirestore(firebaseApp);
-import MainSection from '../plugins/MainSection'
+import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
+//import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
 import Field from '../plugins/Field'
@@ -77,8 +102,9 @@ import Control from '../plugins/Control'
 export default {
   
   components:{
-    MainSection,
+    FullScreenSection,
     CardComponent,
+    //CheckRadioPicker,
     Field,
     Control,
     JbButton,
@@ -100,9 +126,9 @@ export default {
         var cod =  document.getElementById("cod").value
         var flight =  document.getElementById("flight").value
         var seat =  document.getElementById("seat").value
-        var sdate =  document.getElementById("sdate").value
-        var edate =  document.getElementById("edate").value
-        var country =  document.getElementById("country").value
+        // var sdate =  document.getElementById("sdate").value
+        // var edate =  document.getElementById("edate").value
+        // var country =  document.getElementById("country").value
         var vaccine =  document.getElementById("vaccine").value
         var passtype =  document.getElementById("passtype").value
 
@@ -111,8 +137,9 @@ export default {
         try {
             const docRef = await setDoc(doc(db, "RegInfo", nric), {
                 Gender: gender, Fname: fname, Lname: lname, NRIC: nric, Contact: contact,
-                DOA: doa, COD: cod, Flight: flight, Seat: seat, Sdate: sdate, Edate: edate,
-                Country: country, Vaccine: vaccine, Passtype: passtype,
+                DOA: doa, COD: cod, Flight: flight, Seat: seat, //Sdate: sdate, Edate: edate,
+                //Country: country, 
+                Vaccine: vaccine, Passtype: passtype,
             })
             console.log(docRef)
             document.getElementById("regform").reset();
@@ -193,6 +220,7 @@ export default {
         // {id:4, label:'Madam'},
       ]
       const form = ({
+        gender:genderOptions[0],
         firstName:'',
         lastName:'',
         nric: '',
@@ -227,5 +255,12 @@ export default {
 
 
 <style scoped>
-
+jb-buttons {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 </style>
