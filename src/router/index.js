@@ -14,7 +14,7 @@ const routes = [
   {
     meta: {
       title: 'Arrival Registration',
-      // fullScreen: true
+      fullScreen: true
     },
     path: '/arrivals',
     name: 'ArrivalsPage',
