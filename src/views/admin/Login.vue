@@ -33,6 +33,7 @@ import Control from '../../../src/components/plugins/Control'
 import Divider from '../../../src/components/plugins/Divider.vue'
 import JbButton from '../../../src/components/plugins/JbButton'
 import JbButtons from '../../../src/components/plugins/JbButtons'
+import connector from "../../connector";
 
 
 export default {
@@ -56,9 +57,16 @@ export default {
 
     const router = useRouter()
 
-    const submit = () => {
-      form.login
-      router.push('/admin/dashboard')
+    const submit = async () => {
+      console.log(form.login)
+      console.log(form.pass)
+      let t = await connector.methods.checkPwd(form.login, form.pass);
+      console.log(t.result)
+      if (await t.result === true) {
+        await router.push('/admin/dashboard')
+      } else {
+        router.push('/admin/error')
+      }
     }
 
     return {
