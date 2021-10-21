@@ -26,6 +26,11 @@ export default [
       label: 'Rooms',
     },
     {
+      to: '/admin/health',
+      icon: mdiTable,
+      label: 'Health',
+    },
+    {
       to: '/admin/foodselection',
       icon: mdiDesktopMac,
       label: 'Foods'

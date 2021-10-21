@@ -13,11 +13,11 @@
     
     <tbody>
       <tr>
-        <td data-label="Plan Name"> {{planName}} </td>
-        <td data-label="Days"> {{days}} </td>
-        <td data-label="PCR Tests"> {{pcrTests}} </td>
-        <td data-label="Highlight"> {{highlight}} </td>
-        <td data-label="Country"> {{country}} </td>
+        <td data-label="Plan Name"> Plan Name </td>
+        <td data-label="Days"> Number of Days </td>
+        <td data-label="PCR Tests"> Days for PCR Test </td>
+        <td data-label="Highlight"> Highlight </td>
+        <td data-label="Country"> Country </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />

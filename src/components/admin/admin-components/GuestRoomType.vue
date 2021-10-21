@@ -10,10 +10,10 @@
     </thead>
     
     <tbody>
-      <tr v-for="room in Rooms" :key="room.id">
-        <td data-label="Room Type"> {{room.roomType}} </td>
-        <td data-label="Rate"> {{room.rate}} </td>
-        <td data-label="Vacancy"> {{room.vacancy}} </td>
+      <tr>
+        <td data-label="Room Type"> Room Type </td>
+        <td data-label="Rate"> Room Rate </td>
+        <td data-label="Vacancy"> Number of vacant room </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />

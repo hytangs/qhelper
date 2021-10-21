@@ -12,11 +12,11 @@
     </thead>
     <tbody>
       <tr>
-        <td data-label="Room Number"> {{roomNo}} </td>
-        <td data-label="Status"> {{status}} </td>
-        <td data-label="Type"> {{roomType}} </td>
-        <td data-label="Cehck Out"> {{endDate}} </td>
-        <td data-label="Requests"> {{requests}} </td>
+        <td data-label="Room Number"> Room Number </td>
+        <td data-label="Status"> Status </td>
+        <td data-label="Type"> Room Type </td>
+        <td data-label="Cehck Out"> DD-MM-YYYY </td>
+        <td data-label="Requests"> What are the requests </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />

@@ -11,13 +11,13 @@
     
     <tbody>
       <tr>
-        <td data-label="Room Number"> {{roomNo}} </td>
-        <td data-label="Guest"> {{guest}} </td>
-        <td data-label="Requests / Feedback"> {{requests}} </td>
+        <td data-label="Room Number"> Room Number </td>
+        <td data-label="Guest"> Name </td>
+        <td data-label="Requests / Feedback"> What are the list of requests from the guests. </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiChatProcessing" small @click="isModalActive = true" />
-            <jb-button color="danger" :icon="mdiAccountCancel" small @click="isModalDangerActive = true" />
+            <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" />
           </jb-buttons>
         </td>
       </tr>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mdiChatProcessing, mdiAccountCancel } from '@mdi/js'
+import { mdiChatProcessing, mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 
@@ -41,7 +41,7 @@ export default {
   setup() {
     return {
         mdiChatProcessing,
-        mdiAccountCancel
+        mdiTrashCan
       }
   },
 }
