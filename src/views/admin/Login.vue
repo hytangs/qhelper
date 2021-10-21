@@ -34,7 +34,7 @@ import Divider from '../../../src/components/plugins/Divider.vue'
 import JbButton from '../../../src/components/plugins/JbButton'
 import JbButtons from '../../../src/components/plugins/JbButtons'
 import connector from "../../connector";
-import {useStore} from "vuex";
+import LocalSession from "../../store/localsession";
 
 
 export default {
@@ -50,7 +50,6 @@ export default {
     JbButtons
   },
   setup () {
-    const store = useStore()
 
     const form = reactive({
       login: 'masteradmin',
@@ -60,10 +59,6 @@ export default {
 
     const router = useRouter()
 
-    const submitProfile = (zoneAssigned) => {
-      store.commit('zone', zoneAssigned)
-    }
-
     const submit = async () => {
       console.log(form.login)
       console.log(form.pass)
@@ -71,11 +66,14 @@ export default {
       await connector.methods.checkPwd(form.login, form.pass).then(result => {
         if (result === true) {
           console.log(result)
-          router.push('/admin/dashboard')
-          submitProfile(connector.methods.getZone(form.login))
+          connector.methods.getZone(form.login).then(zone => {
+            console.log(zone)
+            LocalSession.methods.initializeAdminSession(form.login, form.pass, zone)
+            router.push('/admin/dashboard')
+          })
         } else {
-          router.push('/admin/error')
           console.log(result)
+          alert("Account Username / Password error!")
         }
       })
     }

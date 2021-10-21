@@ -25,6 +25,7 @@ export default {
             let docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
+                console.log(docSnap.data().zone)
                 return await docSnap.data().zone;
             } else {
                 return 0;

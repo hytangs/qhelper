@@ -7,6 +7,7 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import menu from './views/admin/menu.js'
+import localsession from "./store/localsession";
 
 export default {
   name: 'Home',
@@ -14,6 +15,8 @@ export default {
   },
   setup () {
     const store = useStore()
+
+    localsession.methods.initializeStorage()
 
     store.commit('user', {
       name: 'John Doe',

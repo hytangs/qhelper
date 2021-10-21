@@ -1,10 +1,10 @@
 <template>
   <nav-bar/>
   <aside-menu :menu="menu"/>
-  <title-bar v-if="zones === 1" :title-stack="titleStack" />
-  <hero-bar v-if="zones === 1">Dashboard</hero-bar>
+  <title-bar v-if="zone !== '0'" :title-stack="titleStack" />
+  <hero-bar v-if="zone !== '0'">Dashboard</hero-bar>
   <hero-bar v-else>Unauthorized</hero-bar>
-  <main-section v-if="zones === 1">
+  <main-section v-if="zone !== '0'">
     <notification color="info" :icon="mdiAlertCircle">
       Please follow Personal Data Protection Act when using this system.
       <template #right>
@@ -137,6 +137,7 @@ import NavBar from '../../../src/components/plugins/NavBar'
 import AsideMenu from '../../../src/components/plugins/AsideMenu'
 import FooterBar from '../../../src/components/plugins/FooterBar'
 import Overlay from '../../../src/components/plugins/Overlay'
+import localsession from "../../store/localsession";
 
 
 export default {
@@ -180,7 +181,8 @@ export default {
 
     const darkMode = computed(() => store.state.darkMode)
 
-    const zones = computed(() => store.state.zones)
+    const zone = localsession.methods.getAdminZone()
+
 
     return {
       titleStack,
@@ -199,7 +201,7 @@ export default {
       mdiChartPie,
       mdiAlertCircle,
       menu,
-      zones
+      zone
     }
   }
 }

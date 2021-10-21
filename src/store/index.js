@@ -26,7 +26,7 @@ export default createStore({
     history: [],
 
     /* Access Control */
-    zones: 0
+    zones: false
   },
   mutations: {
     /* A fit-them-all commit */
