@@ -34,6 +34,7 @@ import Divider from '../../../src/components/plugins/Divider.vue'
 import JbButton from '../../../src/components/plugins/JbButton'
 import JbButtons from '../../../src/components/plugins/JbButtons'
 import connector from "../../connector";
+import {useStore} from "vuex";
 
 
 export default {
@@ -49,6 +50,8 @@ export default {
     JbButtons
   },
   setup () {
+    const store = useStore()
+
     const form = reactive({
       login: 'masteradmin',
       pass: 'very-secret-password-fYjUw-',
@@ -57,16 +60,24 @@ export default {
 
     const router = useRouter()
 
+    const submitProfile = (zoneAssigned) => {
+      store.commit('zone', zoneAssigned)
+    }
+
     const submit = async () => {
       console.log(form.login)
       console.log(form.pass)
-      let t = await connector.methods.checkPwd(form.login, form.pass);
-      console.log(t.result)
-      if (await t.result === true) {
-        await router.push('/admin/dashboard')
-      } else {
-        router.push('/admin/error')
-      }
+      // eslint-disable-next-line no-unused-vars
+      await connector.methods.checkPwd(form.login, form.pass).then(result => {
+        if (result === true) {
+          console.log(result)
+          router.push('/admin/dashboard')
+          submitProfile(connector.methods.getZone(form.login))
+        } else {
+          router.push('/admin/error')
+          console.log(result)
+        }
+      })
     }
 
     return {
