@@ -45,11 +45,11 @@
       </div>
       <jb-button color="info" label="Select" v-on:click="selectRoom()"/>
     </card-component>
-  </div>
 
-  <jb-buttons>
-        <jb-button type="submit" color="info" label="Confirm >" />
-  </jb-buttons>
+    <jb-buttons>
+        <jb-button type="submit" color="info" label="Confirm >" @click="passgenerate()"/>
+    </jb-buttons>
+  </div>
 </full-screen-section>
 </template>
 
@@ -78,6 +78,10 @@ export default {
     async selectRoom() {
       //
     },
+
+    passgenerate() {
+      this.$router.push('/arrivals/passgeneration')
+    }
   }
 }
 </script>

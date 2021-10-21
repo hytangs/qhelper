@@ -31,6 +31,16 @@ const routes = [
     component: () => import('../views/arrivals/RoomSelectionPage')
   },
 
+  {
+    meta: {
+      title: 'Pass Generation',
+      fullScreen: true
+    },
+    path: '/arrivals/passgeneration',
+    name: 'PassGenerationPage',
+    component: () => import('../views/arrivals/PassGenerationPage')
+  },
+
   // Guests Daily Dashboard
   {
     meta: {
