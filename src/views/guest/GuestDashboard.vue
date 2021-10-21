@@ -1,7 +1,7 @@
 <template>
   <body>
   <header>
-    <a href = "#" class = "logo">QHelper</a>
+    <a href = "#" class = "logo text-3xl"> QHELPER </a>
     <ul>
       <li><a href = "#home">Home</a></li>
       <li><a href = "#">Meals</a></li>
@@ -123,7 +123,6 @@ header .logo{
   color: black;
   text-decoration: none;
   font-size: 2em;
-  text-transform: uppercase;
   letter-spacing: 2px;
   transition: 0.6s;
 }

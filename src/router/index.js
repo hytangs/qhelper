@@ -44,7 +44,7 @@ const routes = [
   // Guests Daily Dashboard
   {
     meta: {
-      title: 'Login',
+      title: 'Guest Login',
       fullScreen: true
     },
     path: '/guest/login',
@@ -53,7 +53,7 @@ const routes = [
   },
   {
     meta: {
-      title: 'QuickAssist'
+      title: 'Daily Assist'
     },
     path: '/guest/dashboard',
     name: 'GuestDashboard',
@@ -63,7 +63,7 @@ const routes = [
   // Admin Dashboard
   {
     meta: {
-      title: 'Admin'
+      title: 'Smart Admin'
     },
     path: '/admin/dashboard',
     name: 'dashboard',
@@ -149,7 +149,7 @@ const routes = [
       fullScreen: true
     },
     path: '/admin/login',
-    name: 'Login',
+    name: 'Admin Login',
     component: () => import('../views/admin/Login')
   },
   {
