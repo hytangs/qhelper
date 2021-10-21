@@ -44,19 +44,20 @@ const routes = [
   // Guests Daily Dashboard
   {
     meta: {
-      title: 'QHelper Running'
+      title: 'Login',
+      fullScreen: true
     },
-    path: '/guest',
-    name: 'GuestDashboard',
-    component: () => import('../views/guest/GuestDashboard')
+    path: '/guest/login',
+    name: 'GuestLoginPage',
+    component: () => import('../views/guest/GuestLoginPage')
   },
   {
     meta: {
-      title: 'QHelper Running'
+      title: 'QuickAssist'
     },
-    path: '/',
-    name: 'home',
-    component: () => import('../views/general/IndexHandling')
+    path: '/guest/dashboard',
+    name: 'GuestDashboard',
+    component: () => import('../views/guest/GuestDashboard')
   },
 
   // Admin Dashboard
