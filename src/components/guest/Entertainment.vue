@@ -1,13 +1,12 @@
 <template>
 <div class = "entertain">
 <NavBar/><br>
-<entertainrouter-view/>
+
 </div>
 </template>
 
 <script>
 import NavBar from './entertainments/NavBar'
-import 
 
 export default {
     name: "Entertainment",

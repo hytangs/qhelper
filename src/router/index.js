@@ -46,9 +46,9 @@ const routes = [
     meta: {
       title: 'QHelper Running'
     },
-    path: '/',
-    name: 'home',
-    component: () => import('../views/general/IndexHandling')
+    path: '/guest',
+    name: 'GuestDashboard',
+    component: () => import('../views/guest/GuestDashboard')
   },
   {
     meta: {
