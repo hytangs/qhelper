@@ -1,13 +1,39 @@
 <template>
 <div id="home">
-<div id="announcement">
-  <div><br><h2>Announcement</h2></div>
+<div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap">
+  <div class="p-6">
+    <h2>Announcement</h2>
+  </div>
+  <div id = "announcement">
+    <!--Announcements to be located here-->
+  </div>
 </div>
 
-<div id = "three">
-  <div class="subcards"><br><h4>Health Status</h4></div>
-  <div class="subcards"><br><h4>Remaining Quarantine Time</h4></div>
-  <div class="subcards"><br><h4>Next PCR Test Date</h4></div>
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
+  <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
+    <div class="p-6">
+      <h4>Health Status</h4>
+    </div>
+    <div class="subcards">
+      <!--Health Status to be located here-->
+    </div>
+  </div>
+  <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
+    <div class="p-6">
+      <h4>Remaining Quarantine Time</h4>
+    </div>
+    <div class="subcards">
+      <!--Quarantine Time to be located here-->
+    </div>
+  </div>
+  <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
+    <div class="p-6">
+      <h4>Next PCR Test Date</h4>
+    </div>
+    <div class="subcards">
+      <!--Next PCR Test Date to be located here-->
+    </div>
+  </div>
 </div>
 </div>
 </template>
@@ -19,16 +45,17 @@
 <style scoped>
 
 #announcement {
-  --tw-bg-opacity: 1;
-  background-color: rgba(255,255,255,var(--tw-bg-opacity));
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgba(243,244,246,var(--tw-border-opacity));
   width:100%;
-  height: 35vh;
-  margin-bottom: 4rem;
-  border-radius: 10px;
+  height: 25vh;
+  margin-bottom: 1rem;
+}
+
+.shadow {
   box-shadow: 0px 8px 8px -8px grey;
+}
+
+.bottomgap{
+  margin-bottom: 4rem;
 }
 
 #three{
@@ -40,13 +67,9 @@
 }
 
 .subcards{
-  --tw-bg-opacity: 1;
-  background-color: rgba(255,255,255,var(--tw-bg-opacity));
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgba(243,244,246,var(--tw-border-opacity));
-  border-radius: 10px;
-  box-shadow: 0px 8px 8px -8px grey;
+  width: 100%;
+  height: 20vh;
+  margin-bottom: 1rem;
 }
 
 #home{
