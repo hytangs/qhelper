@@ -1,14 +1,35 @@
 <template>
-    <div id ="logged"> 
+    <div id ="logged">
       <div id="nav">
-        <entertainrouter-link to="/shows">Shows</entertainrouter-link> |
-        <entertainrouter-link to="/albums">Albums</entertainrouter-link> |
-        <entertainrouter-link to="/podcasts">Podcasts</entertainrouter-link> 
+        <a @click="changeEntertainSection(1)">Shows</a> |
+        <a @click="changeEntertainSection(2)">Albums</a> |
+        <a @click="changeEntertainSection(3)">Podcasts</a>
+        <Shows v-show="currentSection === 1"/>
+        <Album v-show="currentSection === 2"/>
+        <Podcast v-show="currentSection === 3"/>
     </div>
     </div>
 </template>
 
 <script>
+import Shows from "./Shows";
+import Album from "./Album";
+import Podcast from "./Podcast";
+export default {
+  components: {Podcast, Album, Shows},
+  data() {
+    return {
+      currentSection : 1
+    }
+  },
+  methods: {
+    changeEntertainSection(id) {
+      this.currentSection = id
+    }
+
+  }
+
+}
 </script>
 
 <style scoped>

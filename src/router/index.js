@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+
 const routes = [
   {
     meta: {
@@ -178,6 +179,25 @@ const routes = [
     name: 'NotFoundHandling',
     component:  () => import('../views/general/NotFoundHandling')
   },
+
+    // Supplementary Routes
+  {
+    path: '/entertain/albums',
+    name: 'Albums',
+    component: () => import('../components/guest/entertainments/Album')
+  },
+
+  {
+    path: '/entertain/podcasts',
+    name: 'Podcasts',
+    component: () => import('../components/guest/entertainments/Podcast')
+  },
+
+  {
+    path: '/entertain/shows',
+    name: 'Shows',
+    component: () => import('../components/guest/entertainments/Shows')
+  }
 ]
 
 const router = createRouter({
