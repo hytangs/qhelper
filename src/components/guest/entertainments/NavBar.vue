@@ -3,10 +3,13 @@
       <div id="nav">
         <a @click="changeEntertainSection(1)">Shows</a> |
         <a @click="changeEntertainSection(2)">Albums</a> |
-        <a @click="changeEntertainSection(3)">Podcasts</a>
+        <a @click="changeEntertainSection(3)">Podcasts</a> |
+        <a @click="changeEntertainSection(4)">Games</a>
+        <br> <br>
         <Shows v-show="currentSection === 1"/>
         <Album v-show="currentSection === 2"/>
         <Podcast v-show="currentSection === 3"/>
+        <Games v-show="currentSection === 4" />
     </div>
     </div>
 </template>
@@ -15,8 +18,9 @@
 import Shows from "./Shows";
 import Album from "./Album";
 import Podcast from "./Podcast";
+import Games from "./Games";
 export default {
-  components: {Podcast, Album, Shows},
+  components: {Games, Podcast, Album, Shows},
   data() {
     return {
       currentSection : 1
@@ -52,7 +56,7 @@ export default {
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+#nav a:hover {
   color:goldenrod;
 }
 </style>

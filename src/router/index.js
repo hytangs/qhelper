@@ -197,6 +197,12 @@ const routes = [
     path: '/entertain/shows',
     name: 'Shows',
     component: () => import('../components/guest/entertainments/Shows')
+  },
+
+  {
+    path: '/entertain/games',
+    name: 'Games',
+    component: () => import('../components/guest/entertainments/Games')
   }
 ]
 
