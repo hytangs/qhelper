@@ -1,13 +1,13 @@
 <template>
 <div id="home">
 <div id="announcement">
-  <div><h2>Announcement</h2></div>
+  <div><br><h2>Announcement</h2></div>
 </div>
 
 <div id = "three">
-  <div class="subcards"><h4>Health Status</h4></div>
-  <div class="subcards"><h4>Remaining Quarantine Time</h4></div>
-  <div class="subcards"><h4>Next PCR Test Date</h4></div>
+  <div class="subcards"><br><h4>Health Status</h4></div>
+  <div class="subcards"><br><h4>Remaining Quarantine Time</h4></div>
+  <div class="subcards"><br><h4>Next PCR Test Date</h4></div>
 </div>
 </div>
 </template>

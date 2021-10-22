@@ -3,12 +3,12 @@
   <header>
     <a href = "#" class = "logo text-3xl"> QHELPER </a>
     <ul>
-      <li><a href = "#home">Home</a></li>
-      <li><a href = "#">Meals</a></li>
-      <li><a href = "#">Costs</a></li>
-      <li><a href = "#entertainment">Entertainment</a></li>
-      <li><a href = "#">Checkout</a></li>
-      <li><a href = "#">Contact</a></li>
+      <li><a class = "title" href = "#home">Home</a></li>
+      <li><a class = "title" href = "#">Meals</a></li>
+      <li><a class = "title" href = "#">Shop</a></li>
+      <li><a class = "title" href = "#entertainment">Entertainment</a></li>
+      <li><a class = "title" href = "#">Checkout</a></li>
+      <li><a class = "title" href = "#">Contact</a></li>
     </ul>
     <div class="date">
       <p>Current Date & Time: {{currentDateTime()}} {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</p>
@@ -16,7 +16,7 @@
   </header>
   <section class="banner"></section>
   <div class = "home_area" id="home">
-    <Home/>
+    <div class = "area"><Home/></div>
   </div>
   <!--<div class = "costs_area" id = "costs">
     <costs/>
@@ -108,12 +108,12 @@ header{
   justify-content: space-between;
   align-items: center;
   transition: 0.6s;
-  padding: 6px 100px;
+  padding: 15px 100px;
   z-index: 100000;
 }
 
 header.sticky{
-  padding: 6px 100px;
+  padding: 10px 100px;
   background-color: black;
 }
 
@@ -204,5 +204,39 @@ header.sticky .date {
   width:100%;
   height: 100vh;
   background-color:whitesmoke;
+}
+
+.area{ /* change the width of the white cards */
+  width: 70%;
+}
+
+/* titles changing color when hovering */
+
+.title:hover {
+  color: white;
+}
+
+.title:hover::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  margin: -7px;
+  border-bottom: 2px solid white;
+}
+
+header.sticky ul li a:hover {
+  color: goldenrod;
+}
+
+header.sticky .title:hover::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  margin: -7px;
+  border-bottom: 2px solid goldenrod;
 }
 </style>
