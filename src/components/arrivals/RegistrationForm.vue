@@ -2,7 +2,9 @@
 <full-screen-section bg = "login" id = "container" v-slot="{ cardClass, cardRounded }">
   <card-component style="overflow-y:scroll; height:600px;"
   form id = "regform" :class="cardClass" :rounded="cardRounded" @submit.prevent="submit">
-      <h1 class="text-2xl">QHelper <b>Miracle</b></h1> <br>
+      <h1 class="text-3xl">QHelper <b>Miracle Check In</b></h1> <br>
+      <p class="text-lg text-gray-900">Welcome to Singapore. Your health and safety is
+        important to us. Please fill up the registration form before check in.</p> <br>
 
       <field label="Gender">
         <control :options="genderOptions" v-model="form.gender" id = "gender"/>
@@ -49,21 +51,21 @@
         <control :options="passengerOptions" v-model="form.passengerType" id = "passtype"/>
       </field>
 
-      <!-- <check-radio-picker class="text-gray-500 dark:text-gray-400" 
-      name="declare" v-model="form.declare" 
-      :options="{ 
-        declare: 'I hereby declare that the information above mentioned is true to the best of my knowledge.' 
+      <!-- <check-radio-picker class="text-gray-500 dark:text-gray-400"
+      name="declare" v-model="form.declare"
+      :options="{
+        declare: 'I hereby declare that the information above mentioned is true to the best of my knowledge.'
         }" />
 
-        <check-radio-picker class="text-gray-500 dark:text-gray-400" 
-      name="law" v-model="form.law" 
-      :options="{ 
+        <check-radio-picker class="text-gray-500 dark:text-gray-400"
+      name="law" v-model="form.law"
+      :options="{
         law: 'I understand that in the event of my information being found false or incorrect at any stage, \
-        I shall fully be liable to the prevaling laws and / or subject to sanictions.' 
+        I shall fully be liable to the prevaling laws and / or subject to sanictions.'
         }" /> -->
 
         <!-- <jb-buttons>
-          <jb-button type="submit" color="info" label="Declare and Continue >" 
+          <jb-button type="submit" color="info" label="Declare and Continue >"
             @click="roomselect(), savetofs()"/>
         </jb-buttons> -->
     <card-component>
@@ -75,8 +77,8 @@
         and / or subject to sanictions.
         <br><br>
         <jb-buttons>
-          <jb-button type="submit" color="info" label="Declare and Continue >" 
-            @click="savetofs(), roomselect()"/> 
+          <jb-button type="submit" color="info" label="Declare and Continue >"
+            @click="savetofs(), roomselect()"/>
         </jb-buttons>
       </div>
     </card-component>
@@ -100,7 +102,7 @@ import Field from '../plugins/Field'
 import Control from '../plugins/Control'
 
 export default {
-  
+
   components:{
     FullScreenSection,
     CardComponent,
@@ -138,7 +140,7 @@ export default {
             const docRef = await setDoc(doc(db, "RegInfo", nric), {
                 Gender: gender, Fname: fname, Lname: lname, NRIC: nric, Contact: contact,
                 DOA: doa, COD: cod, Flight: flight, Seat: seat, Sdate: sdate, Edate: edate,
-                Country: country, 
+                Country: country,
                 Vaccine: vaccine, Passtype: passtype,
             })
             console.log(docRef)
@@ -153,17 +155,47 @@ export default {
 
     setup() {
       const countryOptions = [
-        "Germany",
-        "Hong Kong",
-        "Mainland China",
-        "Canada",
-        "Danmark",
-        "France",
-        "Italy",
-        "Spain",
-        "United Kingdom",
-        "United States",
-        "South Korea",
+        "United States", "Canada", "Afghanistan", "Albania", "Algeria", "American Samoa",
+        "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and/or Barbuda", "Argentina",
+        "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
+        "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan",
+        "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil",
+        "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso",
+        "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands",
+        "Central African Republic", "Chad", "Chile", "China", "Christmas Island",
+        "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands",
+        "Costa Rica", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark",
+        "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt",
+        "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia",
+        "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France",
+        "France, Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories",
+        "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland",
+        "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
+        "Haiti", "Heard and Mc Donald Islands", "Honduras", "Hong Kong", "Hungary", "Iceland",
+        "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy",
+        "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati",
+        "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan",
+        "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia",
+        "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau",
+        "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta",
+        "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico",
+        "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia",
+        "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands",
+        "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria",
+        "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau",
+        "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland",
+        "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda",
+        "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa",
+        "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone",
+        "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa",
+        "South Georgia South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon",
+        "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland",
+        "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo",
+        "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan",
+        "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
+        "United States minor outlying islands", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City State",
+        "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands",
+        "Western Sahara", "Yemen", "Yugoslavia", "Zaire", "Zambia", "Zimbabwe"
         // {id:1, label:'Brunei'},
         // {id:2, label:'Germany'},
         // {id:3, label:'HongKong'},
