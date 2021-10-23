@@ -23,6 +23,10 @@
         <control type="tel" placeholder="Your phone number" v-model="form.contact" id = "contact"/>
       </field>
 
+      <field label="Email">
+        <control placeholder="Your email address" v-model="form.email" id = "email"/>
+      </field>
+
       <field label="Country of Departure and Date of Arrival">
         <control :options="countryOptions" v-model="form.country" id = "cod"/>
         <control placeholder="DD/MM/YYYY" v-model="form.arrivalDate" id = "doa"/>
@@ -118,23 +122,24 @@ export default {
         var lname =  document.getElementById("lname").value
         var nric  = document.getElementById("nric").value
         var contact =  document.getElementById("contact").value
+        var email =  document.getElementById("email").value
         var doa =  document.getElementById("doa").value
         var cod =  document.getElementById("cod").value
         var flight =  document.getElementById("flight").value
         var seat =  document.getElementById("seat").value
-        var sdate =  document.getElementById("sdate").value
-        var edate =  document.getElementById("edate").value
-        var country =  document.getElementById("country").value
+        // var sdate =  document.getElementById("sdate").value
+        // var edate =  document.getElementById("edate").value
+        // var country =  document.getElementById("country").value
         var vaccine =  document.getElementById("vaccine").value
         var passtype =  document.getElementById("passtype").value
 
         alert(" Welcome " + gender + " "  + fname + "! Information submitted successfully.")
 
         try {
-            const docRef = await setDoc(doc(db, "RegInfo", nric), {
+            const docRef = await setDoc(doc(db, "RegInfo", email), {
                 Gender: gender, Fname: fname, Lname: lname, NRIC: nric, Contact: contact,
-                DOA: doa, COD: cod, Flight: flight, Seat: seat, Sdate: sdate, Edate: edate,
-                Country: country,
+                Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat, //Sdate: sdate, 
+                //Edate: edate, Country: country, 
                 Vaccine: vaccine, Passtype: passtype,
             })
             console.log(docRef)

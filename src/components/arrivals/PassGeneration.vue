@@ -3,27 +3,35 @@
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
         
       <card-component>
-        <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
-            {{name}} <br>
+        <div class="text-center py-24 lg:py-4 text-gray-500 dark:text-gray-400">
+            <text class="text-2xl"><b>{{name}} <br>
             Room {{roomNo}} <br>
-            Check In <br>
-            <img alt="qr" src="../../../public/assets/qr_checkin.png"> <br>
+            Check In <br> </b></text> <br>
+            <img class ="center" alt="qr" src="../../../public/assets/qr_checkin.png"> <br>
+            <text> <b>
             Room Type: {{roomType}} <br>
             Valid Until: {{time}} <br>
-            For One Time Use Only
+            For One Time Use Only </b>
+            </text>
         </div>
       </card-component>
 
       <card-component>
-        <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
-            Congratulations!<br><br>
-            Check In Completed! Enjoy your stay with us! <br><br>
-            Quarantine Reminder:
+        <div id="rules" class="text-center py-24 lg:py-4 text-gray-500 dark:text-gray-400">
+            <text class="text-2xl"><b>
+            Congratulations!<br>
+            Check In Completed!<br>
+            Enjoy your stay with us! <br><br>
+            <h1>Quarantine Reminder: </h1>
+            </b>
+            </text>
+            <br>
             <ul>
-                <li> Do not leave the room. </li>
-                <li> No visitors allowed. </li>
-                <li> Complete health declaration once a day. </li>
+                <li> 1. Do not leave the room. </li>
+                <li> 2. No visitors allowed. </li>
+                <li> 3. Complete health declaration once a day. </li>
             </ul>
+            <br><br>
             <jb-buttons>
                 <jb-button color="info" label="Save to Photos" v-on:click="saveToPhotos()"/>
                 <jb-button color="info" label="Go to Dashboard" v-on:click="goDashboard()"/>
@@ -77,6 +85,25 @@ export default {
 img {
     width: 275px;
     height: 269px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+li {
+    text-align: left;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: left;
+}
+
+#rules {
+  margin: 60px auto 20px;
 }
 
 </style>
