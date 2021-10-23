@@ -1,13 +1,18 @@
 <template>
 <div id="home">
-<div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap">
+<div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a">
   <div class="p-6">
     <h2>Announcement</h2>
   </div>
   <div id = "announcement">
+    <button @click="() => TogglePopup('buttonTrigger')"><b>Health Declaration Form</b></button>
     <!--Announcements to be located here-->
   </div>
 </div>
+
+<Popup v-if="popupTriggers.buttonTrigger" :TogglePopup="() => TogglePopup('buttonTrigger')">
+  
+</Popup><br>
 
 <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
   <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
@@ -39,15 +44,37 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import Popup from './popup/Popup';
 
-</script>
+export default {
+  name:"Home",
+  components: {
+    Popup
+  },
+  setup() {
+    const popupTriggers = ref({
+      buttonTrigger: true
+    });
+
+    const TogglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger]
+    }
+    return {
+      Popup,
+      popupTriggers,
+      TogglePopup
+    }
+  }
+}
+</script>>
 
 <style scoped>
-
 #announcement {
   width:100%;
   height: 25vh;
   margin-bottom: 1rem;
+  text-indent: 20px;
 }
 
 .shadow {
@@ -55,15 +82,7 @@
 }
 
 .bottomgap{
-  margin-bottom: 4rem;
-}
-
-#three{
-  display: grid;
-  grid-template-columns: repeat(3,minmax(0,1fr));
-  gap: 1.5rem;
-  height: 30vh;
-  width: 100%;
+  margin-bottom: 2rem;
 }
 
 .subcards{
@@ -76,6 +95,5 @@
   grid-template-rows: repeat(2,minmax(0,1fr));;
   width: 99%;
   text-align: left;
-  text-indent: 20px;
 }
 </style>

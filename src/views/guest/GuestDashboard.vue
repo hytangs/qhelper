@@ -10,8 +10,17 @@
       <li><a class = "title" href = "#">Checkout</a></li>
       <li><a class = "title" href = "#">Contact</a></li>
     </ul>
-    <div class="date">
-      <p>Current Date & Time: {{currentDateTime()}} {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</p>
+    <!--<div class="date">
+      <p>Date & Time : {{currentDateTime()}} {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</p>
+    </div>-->
+    <!--Exit Icon-->
+    <div class="exit flex items-center flex-grow-0 flex-shrink-0 relative cursor-pointer hover:text-blue-500 text-black dark:text-white dark:hover:text-gray-400 py-2 px-3 lg:w-16 lg:justify-center">
+      <span class="inline-flex justify-center items-center w-6 h-6 transition-colors" data-v-3ca1866b="">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </span>
+      <span class="px-2 transition-colors lg:hidden">Log out</span>
     </div>
   </header>
   <section class="banner"></section>
@@ -31,16 +40,16 @@
 import Home from '../../components/guest/Home'
 import Entertainment from '../../components/guest/Entertainment'
 
-const date = new Date();
+/*const date = new Date();*/
 
 export default {
   name: "GuestDashboard",
   components: {
     Home,
     Entertainment
-  },
+  }
 
-  data() {
+  /*data() {
     return {
       dateTime: {
         hours: date.getHours(),
@@ -75,7 +84,7 @@ export default {
 
   beforeUnmount() {
     clearInterval(this.timer);
-  },
+  },*/
 };
 
 window.addEventListener("scroll", function(){
@@ -161,7 +170,7 @@ header ul li a{
 
 header.sticky .logo,
 header.sticky ul li a,
-header.sticky .date {
+header.sticky .exit {
   color:white;
 }
 
@@ -189,10 +198,10 @@ header.sticky .date {
   background-color:beige;
 }
 
-.date {
+/*.date {
   width:16%;
   position:relative;
-}
+}*/
 
 .entertainment_area{
   position:relative;
@@ -238,5 +247,9 @@ header.sticky .title:hover::after {
   bottom: 0;
   margin: -7px;
   border-bottom: 2px solid goldenrod;
+}
+
+.exit:hover{
+  color: white;
 }
 </style>
