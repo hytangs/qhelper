@@ -106,7 +106,6 @@ import FoodSelectionTable from "../../components/plugins/FoodSelectionTable";
 import CardComponent from "../../components/plugins/CardComponent";
 import TitleBar from "../../components/plugins/TitleBar";
 import HeroBar from "../../components/plugins/HeroBar";
-import BottomOtherPagesSection from "../../components/plugins/BottomOtherPagesSection";
 //import TitleSubBar from '../../components/plugins/TitleSubBar'
 import menu from "../../../src/views/admin/menu.js";
 import NavBar from "../../../src/components/plugins/NavBar";
@@ -131,7 +130,6 @@ export default {
     CardComponent,
     FoodSelectionTable,
     //Notification,
-    BottomOtherPagesSection,
     Overlay,
     FooterBar,
     AsideMenu,
