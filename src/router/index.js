@@ -98,11 +98,27 @@ const routes = [
   },
   {
     meta: {
+      title: 'Staff'
+    },
+    path: '/admin/staff',
+    name: 'staff',
+    component: () => import('../views/admin/Staff')
+  },
+  {
+    meta: {
       title: 'Rooms'
     },
     path: '/admin/rooms',
     name: 'rooms',
     component: () => import('../views/admin/GuestService')
+  },
+  {
+    meta: {
+      title: 'Security'
+    },
+    path: '/admin/security',
+    name: 'security',
+    component: () => import('../views/admin/Security')
   },
   {
     meta: {
