@@ -5,22 +5,24 @@
   <hero-bar>Guest Service</hero-bar>
   <main-section>
     <br> 
-    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
-      <card-component class="mb-6" title="Room Status" has-table>
-        <field>
-          <control placeholder="Room Number" v-model="roomNumber" />
-        </field>
-        <field>
-          <control placeholder="Room Status" :options="roomStatusOptions" v-model="roomNumber" />
-        </field>
-        <field>
-          <control placeholder="Room Type" :options="roomTypeOptions" v-model="roomType" />
-        </field>
-        <jb-buttons type="justify-start lg:justify-end" no-wrap>
-          <jb-button color="info" label="Search" v-on:click="search()"/>
-        </jb-buttons>
-        <GuestRoomStatus/>
-      </card-component>
+    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3 ">
+      <div class="col-span-2">
+        <card-component class="mb-6" title="Room Status" has-table>
+          <field>
+            <control placeholder="Room Number" v-model="roomNumber" />
+          </field>
+          <field>
+            <control placeholder="Room Status" :options="roomStatusOptions" v-model="roomNumber" />
+          </field>
+          <field>
+            <control placeholder="Room Type" :options="roomTypeOptions" v-model="roomType" />
+          </field>
+          <jb-buttons type="justify-start lg:justify-end" no-wrap>
+            <jb-button color="info" label="Search" v-on:click="search()"/>
+          </jb-buttons>
+          <GuestRoomStatus/>
+        </card-component>
+      </div>
 
       <card-component class="mb-6" title="Room Types & Rates" has-table>
         <GuestRoomType/>
@@ -75,7 +77,7 @@ export default {
     GuestRoomType
   },
   setup() {
-    const titleStack = ref(['Admin', 'Health'])
+    const titleStack = ref(['Admin', 'Rooms'])
 
     return {
       titleStack,
