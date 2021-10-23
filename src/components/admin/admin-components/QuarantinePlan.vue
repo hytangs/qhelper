@@ -1,4 +1,8 @@
 <template>
+<modal-box v-model="isModalActive" title="Modify">
+  <p>Modify the <b>Quarantine Plan</b></p>
+</modal-box>
+
 <table>
     <thead>
       <tr>
@@ -29,21 +33,27 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { mdiPencilOutline } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
+import ModalBox from '../../plugins/ModalBox'
 
 export default {
   name: "QuarantinePlan.vue",
 
   components: {
     JbButtons,
-    JbButton
+    JbButton,
+    ModalBox
   },
 
   setup() {
+    const isModalActive = ref(false)
+
     return {
       mdiPencilOutline, 
+      isModalActive,
     }
   },
 }

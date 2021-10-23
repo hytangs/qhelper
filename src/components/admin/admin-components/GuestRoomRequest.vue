@@ -3,9 +3,10 @@
   <p>Reply the <b>Request / Feedback</b></p>
 </modal-box>
 
-  <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
-    <p>Delete <b>Request / Feedback</b></p>
-  </modal-box>
+<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
+  <p>Delete <b>Request / Feedback</b></p>
+</modal-box>
+
 <table>
     <thead>
       <tr>
