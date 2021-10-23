@@ -1,54 +1,60 @@
 <template>
-<titled-section>Hi {{name}}, Please select the room type according to your preference.</titled-section>
 <full-screen-section bg="login"> 
-  <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 ">
-    <card-component>
-      <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
-        <strong>Smart Single Room</strong>
-        <img alt="Single photo" src="../../../public/assets/single.png"><br>
-        <strong>$200</strong>
-        /Day <br>
-        including meals &amp; GST. <br>
-      </div>
-      <jb-button color="info" label="Select" v-on:click="selectRoom"/>
-    </card-component>
+  <div class="grid">
+    <div class="row text-center py-24 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-2xl text-dark">
+      <h1>Hi {{name}}, Please select the room type according to your preference.</h1>
+    </div>
+    <div class="row">
+      <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 ">
+        <card-component>
+          <div class="text-center py-24 lg:py-12 text-dark">
+            <strong>Smart Single Room</strong>
+            <img alt="Single photo" src="../../../public/assets/single.png"><br>
+            <strong>$200</strong>
+            /Day <br>
+            including meals &amp; GST. <br>
+          </div>
+          <jb-button color="info" label="Select" v-on:click="selectRoom"/>
+        </card-component>
 
-    <card-component>
-      <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
-        <strong>Premium Queens Room</strong>
-        <img alt="queen photo" src="../../../public/assets/queen.png"><br>
-        <strong>$300</strong>
-        /Day <br>
-        including meals &amp; GST. <br>
-      </div>
-      <jb-button color="info" label="Select" v-on:click="selectRoom"/>
-    </card-component>
+        <card-component>
+          <div class="text-center py-24 lg:py-12 text-dark">
+            <strong>Premium Queens Room</strong>
+            <img alt="queen photo" src="../../../public/assets/queen.png"><br>
+            <strong>$300</strong>
+            /Day <br>
+            including meals &amp; GST. <br>
+          </div>
+          <jb-button color="info" label="Select" v-on:click="selectRoom"/>
+        </card-component>
 
-    <card-component>
-      <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
-        <strong>Premium Kings Room</strong>
-        <img alt="king photo" src="../../../public/assets/king.png"><br>
-        <strong>$400</strong>
-        /Day <br>
-        including meals &amp; GST. <br>
-      </div>
-      <jb-button color="info" label="Select" v-on:click="selectRoom"/>
-    </card-component>
+        <card-component>
+          <div class="text-center py-24 lg:py-12 text-dark">
+            <strong>Premium Kings Room</strong>
+            <img alt="king photo" src="../../../public/assets/king.png"><br>
+            <strong>$400</strong>
+            /Day <br>
+            including meals &amp; GST. <br>
+          </div>
+          <jb-button color="info" label="Select" v-on:click="selectRoom"/>
+        </card-component>
 
-    <card-component>
-      <div class="text-center py-24 lg:py-12 text-gray-500 dark:text-gray-400">
-        <strong>Premium Apartment</strong>
-        <img alt="apartment photo" src="../../../public/assets/apartment.png"><br>
-        <strong>$800</strong>
-        /Day <br>
-        including meals &amp; GST. <br>
-      </div>
-      <jb-button color="info" label="Select" v-on:click="selectRoom()"/>
-    </card-component>
+        <card-component>
+          <div class="text-center py-24 lg:py-12 text-dark">
+            <strong>Premium Apartment</strong>
+            <img alt="apartment photo" src="../../../public/assets/apartment.png"><br>
+            <strong>$800</strong>
+            /Day <br>
+            including meals &amp; GST. <br>
+          </div>
+          <jb-button color="info" label="Select" v-on:click="selectRoom()"/>
+        </card-component>
 
-    <jb-buttons>
-        <jb-button type="submit" color="info" label="Confirm >" @click="passgenerate()"/>
-    </jb-buttons>
+        <jb-buttons>
+            <jb-button type="submit" color="info" label="Confirm >" @click="passgenerate()"/>
+        </jb-buttons>
+      </div>
+    </div>
   </div>
 </full-screen-section>
 </template>
@@ -58,7 +64,7 @@ import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
-import TitledSection from '../plugins/TitledSection'
+//import TitledSection from '../plugins/TitledSection'
 
 export default {
     name: 'RoomSelection',
@@ -67,7 +73,7 @@ export default {
     CardComponent,
     JbButton,
     JbButtons,
-    TitledSection
+    // TitledSection
     },
 
     props: {
