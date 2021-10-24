@@ -1,4 +1,8 @@
 <template>
+<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
+  <p>Delete <b>Medical Checkouts</b></p>
+</modal-box>
+
 <table>
     <thead>
       <tr>
@@ -16,7 +20,7 @@
         <td data-label="Date"> DD-MM-YYYY </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true" />
+            <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, remove()" />
           </jb-buttons>
         </td>
       </tr>
@@ -25,23 +29,35 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
+import ModalBox from '../../plugins/ModalBox'
 
 export default {
   name: "QuarantineMedicalCheckouts.vue",
 
   components: {
     JbButtons,
-    JbButton
+    JbButton,
+    ModalBox
   },
 
   setup() {
+    const isModalDangerActive = ref(false)
+
     return {
       mdiTrashCan, 
+      isModalDangerActive
     }
   },
+
+  methods: {
+    remove() {
+      // remove data
+    }
+  }
 }
 </script>
 

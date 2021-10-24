@@ -21,6 +21,11 @@ export default [
       label: 'Dashboard'
     },
     {
+      to: '/admin/staff',
+      icon: mdiAccountCircle,
+      label: 'Staff'
+    },
+    {
       to: '/admin/rooms',
       icon: mdiTable,
       label: 'Rooms',
@@ -49,11 +54,6 @@ export default [
       to: '/admin/security',
       icon: mdiDesktopMac,
       label: 'Security'
-    },
-    {
-      to: '/admin/hr',
-      icon: mdiDesktopMac,
-      label: 'Staff'
     },
     {
       to: '/admin/blank',

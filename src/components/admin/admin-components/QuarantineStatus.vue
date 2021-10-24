@@ -1,4 +1,13 @@
 <template>
+
+<modal-box v-model="isModalActive" title="Modift">
+  <p>Modify the <b>Quarantine Status</b> for room</p>
+</modal-box>
+
+<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
+  <p>Clear <b>Quarantine Status</b> for room</p>
+</modal-box>
+
 <table>
     <thead>
       <tr>
@@ -32,22 +41,31 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { mdiPencilOutline, mdiAccountCancel } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
+import ModalBox from '../../plugins/ModalBox'
 
 export default {
   name: "QuarantineStatus.vue",
 
   components: {
     JbButtons,
-    JbButton
+    JbButton,
+    ModalBox
   },
 
   setup() {
+    const isModalActive = ref(false)
+
+    const isModalDangerActive = ref(false)
+
     return {
       mdiPencilOutline, 
-      mdiAccountCancel
+      mdiAccountCancel,
+      isModalActive,
+      isModalDangerActive
     }
   },
 }
