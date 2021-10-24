@@ -1,13 +1,16 @@
 <template>
-<full-screen-section bg="login"> 
+<full-screen-section bg="login">
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
-        
+
       <card-component>
         <div class="text-center py-24 lg:py-4 text-gray-500 dark:text-gray-400">
             <text class="text-2xl"><b>{{name}} <br>
             Room {{roomNo}} <br>
             Check In <br> </b></text> <br>
-            <img class ="center" alt="qr" src="../../../public/assets/qr_checkin.png"> <br>
+            <div id="qrcode">
+              <QrcodeVue :value="'https://example.com'" :size=250 />
+            </div>
+            <br>
             <text> <b>
             Room Type: {{roomType}} <br>
             Valid Until: {{time}} <br>
@@ -40,7 +43,7 @@
       </card-component>
 
     </div>
-  </full-screen-section> 
+  </full-screen-section>
 </template>
 
 <script>
@@ -48,6 +51,7 @@ import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
+import QrcodeVue from "qrcode.vue";
 
 export default {
     name: 'PassGeneration',
@@ -64,6 +68,7 @@ export default {
         CardComponent,
         JbButton,
         JbButtons,
+        QrcodeVue
     },
 
     methods: {
@@ -82,7 +87,7 @@ export default {
 
 <style scoped>
 
-img {
+#qrcode {
     width: 275px;
     height: 269px;
 }
