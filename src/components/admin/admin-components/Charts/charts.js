@@ -68,4 +68,48 @@ export const chartColors = {
       ]
     }
   }
+
+  export const samplePieChartData = () => {
+    const labels = ['Call','Email','OTA','Social Media','Website','Others']
+    // for (let i = 1; i <= points; i++) {
+    //   labels.push(`0${i}`)
+    // }
+  
+    return {
+      labels,
+      datasets: [
+        datasetObject('Bookings', "white", true, [
+            'rgb(255, 99, 132)',
+            'rgb(247, 179, 89)',
+            'rgb(187, 224, 99)',
+            'rgb(89, 150, 247)',
+            'rgb(198, 155, 250)',
+            'rgb(226, 220, 232)'
+          ],
+        [28,24,11,7,32,2]),
+      ]
+    }
+  }
+
+  export const samplePieChartData2 = () => {
+    const labels = ['Call','Email','OTA','Social Media','Website','Others']
+    // for (let i = 1; i <= points; i++) {
+    //   labels.push(`0${i}`)
+    // }
+  
+    return {
+      labels,
+      datasets: [
+        datasetObject('Bookings', "white", true, [
+            'rgb(255, 99, 132)',
+            'rgb(247, 179, 89)',
+            'rgb(187, 224, 99)',
+            'rgb(89, 150, 247)',
+            'rgb(198, 155, 250)',
+            'rgb(226, 220, 232)'
+          ],
+        [18,32,1,14,48,2]),
+      ]
+    }
+  }
   

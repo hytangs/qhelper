@@ -6,13 +6,14 @@
 import { ref, watch, computed, onMounted } from "vue";
 import {
   Chart,
-  LineElement,
   PointElement,
-  LineController,
+  DoughnutController,
   LinearScale,
   CategoryScale,
   Tooltip,
-  Legend
+  Legend,
+  ArcElement,
+  Title
 } from "chart.js";
 
 export default {
@@ -29,38 +30,36 @@ export default {
     let chart;
 
     Chart.register(
-      LineElement,
       PointElement,
-      LineController,
+      DoughnutController,
       LinearScale,
       CategoryScale,
       Tooltip,
-      Legend
+      Legend,
+      ArcElement,
+      Title
     );
 
-    onMounted(() => {
+    onMounted((text) => {
       chart = new Chart(root.value, {
-        type: "line",
+        type: "doughnut",
         data: props.data,
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          scales: {
-            y: {
-              display: true,
-            },
-            x: {
-              display: true,
-            },
-          },
           plugins: {
             legend: {
               labels: {
                 usePointStyle: true,
               },
+              position: "bottom"
             },
             tooltips:{
               enabled: true,
+            },
+            title: {
+                display: true,
+                text: text
             }
           },
         },

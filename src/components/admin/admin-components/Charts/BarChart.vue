@@ -12,6 +12,7 @@ import {
   LinearScale,
   CategoryScale,
   Tooltip,
+  Legend
 } from "chart.js";
 
 export default {
@@ -33,7 +34,8 @@ export default {
       BarController,
       LinearScale,
       CategoryScale,
-      Tooltip
+      Tooltip,
+      Legend
     );
 
     onMounted(() => {
@@ -53,9 +55,7 @@ export default {
           },
           plugins: {
             legend: {
-              labels: {
-                usePointStyle: true,
-              },
+              display: false,
             },
             tooltips:{
               enabled: true,
