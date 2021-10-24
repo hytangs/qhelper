@@ -4,7 +4,7 @@
     <a href = "#" class = "logo text-3xl"> QHELPER </a>
     <ul>
       <li><a class = "title" href = "#home">Home</a></li>
-      <li><a class = "title" href = "#">Meals</a></li>
+      <li><a class = "title" href = "#meals">Meals</a></li>
       <li><a class = "title" href = "#">Shop</a></li>
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
       <li><a class = "title" href = "#">Checkout</a></li>
@@ -27,6 +27,9 @@
   <div class = "home_area" id="home">
     <div class = "white_home_area"><Home/></div>
   </div>
+  <div class = "meal_page" id="meals">
+    <Meals/>
+  </div>
   <!--<div class = "costs_area" id = "costs">
     <costs/>
   </div>-->
@@ -38,6 +41,7 @@
 
 <script>
 import Home from '../../components/guest/Home'
+import Meals from '../../components/guest/Meals'
 import Entertainment from '../../components/guest/Entertainment'
 
 /*const date = new Date();*/
@@ -46,6 +50,7 @@ export default {
   name: "GuestDashboard",
   components: {
     Home,
+    Meals,
     Entertainment
   }
 
