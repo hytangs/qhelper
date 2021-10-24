@@ -39,7 +39,7 @@
 }
 
 .song {
-    border-radius: 10px;
+    border-radius: 5px;
     width: 65%;
     height: 100%;
     box-shadow: 8px 8px 8px -8px grey;

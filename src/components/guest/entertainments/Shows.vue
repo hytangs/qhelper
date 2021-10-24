@@ -33,7 +33,7 @@
 }
 
 .video {
-    border-radius: 10px;
+    border-radius: 5px;
     width: 100%;
     height: 55%;
     box-shadow: 8px 8px 8px -6px grey;
@@ -42,7 +42,7 @@
 .shows{
     display: grid;
     grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 1.5rem;
+    gap: 1.7rem;
     height: 60vh;
     width: 100%;
 }
