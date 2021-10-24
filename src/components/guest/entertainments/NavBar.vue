@@ -6,12 +6,13 @@
         <a @click="changeEntertainSection(3)">Podcasts</a> |
         <a @click="changeEntertainSection(4)">Games</a>
         <br> <br>
+      </div>
         <Shows v-show="currentSection === 1"/>
         <Album v-show="currentSection === 2"/>
         <Podcast v-show="currentSection === 3"/>
         <Games v-show="currentSection === 4" />
     </div>
-    </div>
+    
 </template>
 
 <script>
@@ -58,5 +59,9 @@ export default {
 
 #nav a:hover {
   color:goldenrod;
+}
+
+#logged{
+  text-align: center;
 }
 </style>

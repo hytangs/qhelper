@@ -25,13 +25,13 @@
   </header>
   <section class="banner"></section>
   <div class = "home_area" id="home">
-    <div class = "area"><Home/></div>
+    <div class = "white_home_area"><Home/></div>
   </div>
   <!--<div class = "costs_area" id = "costs">
     <costs/>
   </div>-->
   <div class = "entertainment_area" id = "entertainment">
-    <Entertainment/>
+    <div class="white_entertainment_area"><Entertainment/></div>
   </div>
   </body>
 </template>
@@ -215,8 +215,12 @@ header.sticky .exit {
   background-color:whitesmoke;
 }
 
-.area{ /* change the width of the white cards */
+.white_home_area{ /* change the width of the white cards */
   width: 70%;
+}
+
+.white_entertainment_area {
+  width: 90%;
 }
 
 /* titles changing color when hovering */

@@ -1,15 +1,43 @@
-<template>
-    <div class = "show">
+<!--<template>
+    <div class = "flex flex-col justify-between size">
         <div class="container">
+        <div class="p-6">
         <h3> You Must Remember This </h3>
+        </div>
+        <div class = "horizontal">
         <iframe class = "pc" src="https://open.spotify.com/embed/episode/0V325sPEOQ6iTQbJmk26Vc" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
+        </div>
         <div class="container">
+            <div class="p-6">
             <h3> The Daily </h3>
+            </div>
+            <div class="horizontal">
             <iframe class = "pc" src="https://open.spotify.com/embed/episode/3qMnfMUhAMEwPEOCyQPyQL" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            </div>
         </div>
          <div class = "container">
+        <div class="p-6">
         <h3> Rotten Mango </h3>
+        </div>
+        <div class="horizontal">
+        <iframe class = "pc" src="https://open.spotify.com/embed/show/2DZwvzn6Z3xCFZrwZGDrbj" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+        </div>
+    </div>
+</template>-->
+<template>
+    <div class="flex flex-col justify-between show">
+        <div class="border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded mb-6 last:mb-0" hoverable="">
+            <div class="p-6"><h3> You Must Remember This </h3></div>
+        <iframe class = "pc" src="https://open.spotify.com/embed/episode/0V325sPEOQ6iTQbJmk26Vc" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>           
+        </div>
+        <div class="border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded mb-6 last:mb-0" hoverable="">
+            <div class="p-6"><h3> The Daily </h3></div>
+            <iframe class = "pc" src="https://open.spotify.com/embed/episode/3qMnfMUhAMEwPEOCyQPyQL" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+        <div class="border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded mb-6 last:mb-0" hoverable="">
+            <div class="p-6"><h3> Rotten Mango </h3></div>
         <iframe class = "pc" src="https://open.spotify.com/embed/show/2DZwvzn6Z3xCFZrwZGDrbj" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
     </div>
@@ -20,7 +48,7 @@
 .container{
     --tw-bg-opacity: 1;
     /*background-color: rgba(255,255,255,var(--tw-bg-opacity));*/
-    border-width: 1px;
+    /*border-width: 1px;*/
     --tw-border-opacity: 1;
     height: 100%;
     /*border-color: rgba(243,244,246,var(--tw-border-opacity));*/
@@ -29,16 +57,19 @@
 
 .pc {
     border-radius: 10px;
-    width: 50%;
-    height: 100%;
-    box-shadow: 0px 8px 8px -8px grey;
+    width: 100%;
+    box-shadow: 8px 8px 8px -8px grey;
 }
 
 .show{
-    display: grid;
+    /*display: grid;
     grid-template-rows: repeat(3,minmax(0,1fr));
-    gap: 5rem;
+    gap: 0rem;*/
     height: 60vh;
-    width: 100%;
+}
+
+.horizontal{
+    display: flex;
+    justify-content: center;
 }
 </style>
