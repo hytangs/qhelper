@@ -75,6 +75,11 @@
       </div>
 
     </card-component>
+
+    <card-component :icon="mdiAccountMultiple" class="mb-6" title="Guest Payment History" has-table>
+      <PaymentHistory/>
+    </card-component>
+
   </main-section>
   <footer-bar />
   <overlay
@@ -112,6 +117,7 @@ import NavBar from "../../../src/components/plugins/NavBar";
 import AsideMenu from "../../../src/components/plugins/AsideMenu";
 import FooterBar from "../../../src/components/plugins/FooterBar";
 import Overlay from "../../../src/components/plugins/Overlay";
+import PaymentHistory from '../../../src/components/admin/admin-components/PaymentHistory'
 
 export default {
   name: "Home",
@@ -128,6 +134,7 @@ export default {
     FooterBar,
     AsideMenu,
     NavBar,
+    PaymentHistory
   },
   setup() {
     const titleStack = ref(["Admin", "Finance"]);
