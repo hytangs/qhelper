@@ -51,6 +51,30 @@
         </card-component>
       </div>
     </card-component>
+
+    <card-component
+      title="Occupancy and Revenue per Room of Different Room Types"
+      :icon="mdiFinance"
+      :header-icon="mdiReload"
+      class="mb-6"
+      @header-icon-click="fillBarChartData2, fillBarChartData3"
+    >
+
+      <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
+        <card-component class="mb-6" title="Occupancy Report">
+          <div v-if="barchartData2">
+            <bar-chart :data="barchartData2" class="h-96" />
+          </div>
+        </card-component>
+
+        <card-component class="mb-6" title="Revenue per Room Report">
+          <div v-if="barchartData3">
+            <bar-chart :data="barchartData3" class="h-96" />
+          </div>
+        </card-component>
+      </div>
+
+    </card-component>
   </main-section>
   <footer-bar />
   <overlay
@@ -110,6 +134,8 @@ export default {
 
     const linechartData = ref(null);
     const barchartData = ref(null);
+    const barchartData2 = ref(null);
+    const barchartData3 = ref(null);
     const piechartData = ref(null);
     const piechartData2 = ref(null);
 
@@ -119,6 +145,14 @@ export default {
 
     const fillBarChartData = () => {
       barchartData.value = charts.sampleBarChartData();
+    };
+
+    const fillBarChartData2 = () => {
+      barchartData2.value = charts.sampleBarChartData2();
+    };
+
+    const fillBarChartData3 = () => {
+      barchartData3.value = charts.sampleBarChartData3();
     };
 
     const fillPieChartData = () => {
@@ -131,9 +165,11 @@ export default {
 
     onMounted(() => {
       fillLineChartData(),
-        fillBarChartData(),
-        fillPieChartData(),
-        fillPieChartData2();
+      fillBarChartData(),
+      fillBarChartData2(),
+      fillBarChartData3(),
+      fillPieChartData(),
+      fillPieChartData2();
     });
 
     const store = useStore();
@@ -150,6 +186,10 @@ export default {
       fillLineChartData,
       barchartData,
       fillBarChartData,
+      barchartData2,
+      fillBarChartData2,
+      barchartData3,
+      fillBarChartData3,
       piechartData,
       fillPieChartData,
       piechartData2,

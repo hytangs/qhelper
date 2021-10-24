@@ -69,6 +69,36 @@ export const chartColors = {
     }
   }
 
+  export const sampleBarChartData2 = () => {
+    const labels = ['Single','Queen','King','Apartment']
+    // for (let i = 1; i <= points; i++) {
+    //   labels.push(`0${i}`)
+    // }
+  
+    return {
+      labels,
+      datasets: [
+        datasetObject('Occupancy','rgb(187, 224, 99)', true, 'rgba(187, 224, 99, 0.2)',
+        [0.92,0.88,0.78,0.64]),
+      ]
+    }
+  }
+
+  export const sampleBarChartData3 = () => {
+    const labels = ['Single','Queen','King','Apartment']
+    // for (let i = 1; i <= points; i++) {
+    //   labels.push(`0${i}`)
+    // }
+  
+    return {
+      labels,
+      datasets: [
+        datasetObject('Revenue Per Room','rgb(247, 179, 89)', true, 'rgba(247, 179, 89, 0.2)',
+        [240,360,480,920]),
+      ]
+    }
+  }
+
   export const samplePieChartData = () => {
     const labels = ['Call','Email','OTA','Social Media','Website','Others']
     // for (let i = 1; i <= points; i++) {
