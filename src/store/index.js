@@ -24,7 +24,6 @@ export default createStore({
     /* Sample data (commonly used) */
     clients: [],
     history: [],
-    staff: [],
 
     /* Access Control */
     zones: false

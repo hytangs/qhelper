@@ -30,6 +30,7 @@ const analytics = getAnalytics(app);
 store.dispatch('fetch', 'clients')
 store.dispatch('fetch', 'foodselection')
 store.dispatch('fetch', 'history')
+store.dispatch('fetch', 'staff')
 
 /* Dark mode */
 // store.dispatch('darkMode')

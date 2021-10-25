@@ -95,6 +95,7 @@ import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
 import Level from '../../plugins/Level'
+import UserAvatar from '../../plugins/UserAvatar'
 
 export default {
   name: "HRTable.vue",
@@ -103,7 +104,8 @@ export default {
     JbButtons,
     JbButton,
     ModalBox,
-    Level
+    Level,
+    UserAvatar
   },
 
   setup() {
