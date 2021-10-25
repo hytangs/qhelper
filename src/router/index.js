@@ -90,6 +90,14 @@ const routes = [
   },
   {
     meta: {
+      title: 'Shops'
+    },
+    path: '/admin/shops',
+    name: 'shops',
+    component: () => import('../views/admin/Shops')
+  },
+  {
+    meta: {
       title: 'Finance'
     },
     path: '/admin/finance',
