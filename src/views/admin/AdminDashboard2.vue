@@ -54,7 +54,7 @@
           trend-type="up"
           color="text-green-500"
           :icon="mdiAccountMultiple"
-          :number="120"
+          :number="30"
           label="Current Employees"
         />
         <card-widget
@@ -77,10 +77,18 @@
         />
       </div>
     </card-component>
+
+    <card-component :icon="mdiAccountMultiple" class="mb-12" title="Internal Communication" has-table>
+      <internal-communication />
+    </card-component>
+    <card-component :icon="mdiAccountMultiple" class="mb-12" title="Assistance Request" has-table>
+      <assistance-request />
+    </card-component>
+    
   </main-section>
   <main-section v-else>
     <h1 class="text-2xl text-gray-700 hover:text-gray-900">
-      You don't have access to visit this page.<br>
+      You don't have access to visit this page.<br />
       Please contact web administrator for more info.
     </h1>
   </main-section>
@@ -94,7 +102,7 @@
 
 <script>
 // @ is an alias to /src
-import { computed, ref} from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import {
   mdiAccountMultiple,
@@ -107,7 +115,8 @@ import {
   mdiChartPie,
   mdiAlertCircle,
   mdiBed,
-  mdiBedEmpty
+  mdiBedEmpty,
+  mdiTableAccount
 } from "@mdi/js";
 import MainSection from "../../../src/components/plugins/MainSection";
 import TitleBar from "../../../src/components/plugins/TitleBar";
@@ -122,6 +131,8 @@ import AsideMenu from "../../../src/components/plugins/AsideMenu";
 import FooterBar from "../../../src/components/plugins/FooterBar";
 import Overlay from "../../../src/components/plugins/Overlay";
 import localsession from "../../store/localsession";
+import InternalCommunication from "../../../src/components/admin/admin-components/InternalCommunication";
+import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
 
 export default {
   name: "AdminDashboard",
@@ -137,6 +148,8 @@ export default {
     AsideMenu,
     NavBar,
     CardComponent,
+    InternalCommunication,
+    AssistanceRequest,
   },
   setup() {
     const titleStack = ref(["Admin", "Dashboard"]);
@@ -161,6 +174,7 @@ export default {
       mdiAlertCircle,
       mdiBed,
       mdiBedEmpty,
+      mdiTableAccount,
       menu,
       zone,
     };

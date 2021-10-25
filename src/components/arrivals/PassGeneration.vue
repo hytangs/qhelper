@@ -7,8 +7,8 @@
             <text class="text-2xl"><b>{{name}} <br>
             Room {{roomNo}} <br>
             Check In <br> </b></text> <br>
-            <div id="qrcode">
-              <QrcodeVue :value="'https://example.com'" :size=250 />
+            <div id="qrcode" class = "center">
+              <QrcodeVue :value="'https://example.com'" :size=275 />
             </div>
             <br>
             <text> <b>
@@ -89,7 +89,7 @@ export default {
 
 #qrcode {
     width: 275px;
-    height: 269px;
+    height: 275px;
 }
 
 .center {

@@ -15,16 +15,20 @@
         <control placeholder="Last Name" v-model="form.lastName" id = "lname"/>
       </field>
 
+      <field label="Email">
+        <control placeholder="Your email address" v-model="form.email" id = "email"/>
+      </field>
+
+      <field label="Password">
+        <control placeholder="Enter your password" v-model="form.password" id = "password"/>
+      </field>
+
       <field label="NRIC / Passport Number">
         <control placeholder="e.g. A12345678" v-model="form.nric" id = "nric"/>
       </field>
 
       <field label="Contact Number">
         <control type="tel" placeholder="Your phone number" v-model="form.contact" id = "contact"/>
-      </field>
-
-      <field label="Email">
-        <control placeholder="Your email address" v-model="form.email" id = "email"/>
       </field>
 
       <field label="Country of Departure and Date of Arrival">
@@ -120,9 +124,10 @@ export default {
         var gender  = document.getElementById("gender").value
         var fname  = document.getElementById("fname").value
         var lname =  document.getElementById("lname").value
+        var email =  document.getElementById("email").value
+        var password =  document.getElementById("password").value
         var nric  = document.getElementById("nric").value
         var contact =  document.getElementById("contact").value
-        var email =  document.getElementById("email").value
         var doa =  document.getElementById("doa").value
         var cod =  document.getElementById("cod").value
         var flight =  document.getElementById("flight").value
@@ -140,7 +145,7 @@ export default {
                 Gender: gender, Fname: fname, Lname: lname, NRIC: nric, Contact: contact,
                 Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat, //Sdate: sdate, 
                 //Edate: edate, Country: country, 
-                Vaccine: vaccine, Passtype: passtype,
+                Vaccine: vaccine, Passtype: passtype, Password: password,
             })
             console.log(docRef)
             // document.getElementById("regform").reset();

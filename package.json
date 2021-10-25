@@ -26,6 +26,7 @@
     "vue-numerals": "^4.0.6",
     "vue-router": "^4.0.0-0",
     "vue-scroll-reveal": "^1.0.11",
+    "vue-simple-password-meter": "^0.1.0",
     "vue-sticky-element": "^1.1.2",
     "vuex": "^4.0.0-0"
   },
