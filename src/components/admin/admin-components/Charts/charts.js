@@ -142,4 +142,24 @@ export const chartColors = {
       ]
     }
   }
+
+  export const samplePieChartData3 = () => {
+    const labels = ['Entrance', 'Exit', 'Staff Lounge', 'Staff Pantry']
+    // for (let i = 1; i <= points; i++) {
+    //   labels.push(`0${i}`)
+    // }
+  
+    return {
+      labels,
+      datasets: [
+        datasetObject('Bookings', "white", true, [
+            'rgb(255, 99, 132)',
+            'rgb(247, 179, 89)',
+            'rgb(187, 224, 99)',
+            'rgb(89, 150, 247)',
+        ],
+        [12,7,2,9]),
+      ]
+    }
+  }
   

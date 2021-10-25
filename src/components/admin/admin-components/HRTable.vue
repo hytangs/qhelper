@@ -5,8 +5,30 @@
 
 <modal-box v-model="isModalActive2" title="Modify">
   <p>Modify the details of employee</p>
+  <!-- <field>
+    <control placeholder="Name" v-model="new_name" />
+    <control placeholder="Staff ID" v-model="new_id" />
+    <control placeholder="Position" v-model="new_position" />
+  </field>
+  <field label="Grant Access" wrap-body>
+    <check-radio-picker
+      name="sample-checkbox"
+      v-model="customElementsForm.checkbox"
+      :options="{ A: 'A', B: 'B', C: 'C', D: 'D' }"
+    />
+  </field>
+  <field label="Deployed" wrap-body>
+    <check-radio-picker
+      name="sample-radio"
+      type="radio"
+      v-model="customElementsForm.radio"
+      :options="{ yes: 'Yes', no: 'No' }"
+    ></check-radio-picker>
+  </field>
+  <jb-buttons type="justify-left lg:justify-left" no-wrap>
+    <jb-button color="info" label="Confirm" v-on:click="updateStaff()"/>
+  </jb-buttons> -->
 </modal-box>
-
 
 <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
   <p>Delete <b>Employee information</b></p>
@@ -81,6 +103,10 @@ export default {
   methods: {
     async removeData() {
       // remove feedback
+    },
+
+    async updateStaff() {
+      //update staff info
     }
   }
 }
