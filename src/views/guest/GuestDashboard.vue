@@ -5,7 +5,7 @@
     <ul>
       <li><a class = "title" href = "#home">Home</a></li>
       <li><a class = "title" href = "#meals">Meals</a></li>
-      <li><a class = "title" href = "#">Shop</a></li>
+      <li><a class = "title" href = "#shop">Shop</a></li>
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
       <li><a class = "title" href = "#">Checkout</a></li>
       <li><a class = "title" href = "#">Contact</a></li>
@@ -30,6 +30,9 @@
   <div class = "meal_page" id="meals">
     <Meals/>
   </div>
+  <div class="shop_page" id="shops">
+    <Shop/>
+  </div>
   <!--<div class = "costs_area" id = "costs">
     <costs/>
   </div>-->
@@ -42,6 +45,7 @@
 <script>
 import Home from '../../components/guest/Home'
 import Meals from '../../components/guest/Meals'
+import Shop from '../../components/guest/Shop'
 import Entertainment from '../../components/guest/Entertainment'
 
 /*const date = new Date();*/
@@ -51,6 +55,7 @@ export default {
   components: {
     Home,
     Meals,
+    Shop,
     Entertainment
   }
 
