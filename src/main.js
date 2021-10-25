@@ -31,6 +31,7 @@ store.dispatch('fetch', 'clients')
 store.dispatch('fetch', 'foodselection')
 store.dispatch('fetch', 'history')
 store.dispatch('fetch', 'staff')
+store.dispatch('fetch', 'roomType')
 
 /* Dark mode */
 // store.dispatch('darkMode')

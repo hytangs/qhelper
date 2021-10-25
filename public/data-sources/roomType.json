@@ -1,0 +1,5 @@
+{"data":[{"id":1, "type": "Single Room", "rate": 200, "vacancy":"150/201"},
+    {"id":2, "type": "Queens Room", "rate": 300, "vacancy":"33/50"},
+    {"id":3, "type": "Kings Room", "rate": 400, "vacancy":"28/40"},
+    {"id":4, "type": "Apartment", "rate": 800, "vacancy":"0/5"}
+    ]}
