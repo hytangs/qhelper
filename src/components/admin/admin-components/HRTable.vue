@@ -37,6 +37,7 @@
 <table>
     <thead>
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Staff ID</th>
         <th>Position</th>
@@ -48,13 +49,16 @@
     </thead>
     
     <tbody>
-      <tr>
-        <td data-label="Name"> Name of employee </td>
-        <td data-label="Staff ID"> 123456 </td>
-        <td data-label="Position"> Guest Service Management </td>
-        <td data-label="Grant Access"> Areas employees can access </td>
-        <td data-label="Deployed">Yes/No</td>
-        <td data-label="Tags"> Work from home? </td>
+      <tr v-for="staff in itemsPaginated" :key="staff.id">
+        <td class="image-cell">
+          <user-avatar :username="staff.name" class="image" />
+        </td>
+        <td data-label="Name"> {{staff.name}} </td>
+        <td data-label="Staff ID">{{staff.id}} </td>
+        <td data-label="Position"> {{staff.position}} </td>
+        <td data-label="Grant Access"> {{staff.access}} </td>
+        <td data-label="Deployed">{{staff.deployed}}</td>
+        <td data-label="Tags"> {{staff.tags}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiEye" small @click="isModalActive1 = true" />
@@ -65,14 +69,32 @@
       </tr>
     </tbody>
 </table>
+<div class="table-pagination">
+  <level>
+    <jb-buttons>
+      <jb-button
+        v-for="page in pagesList"
+        @click="currentPage = page"
+        :active="page === currentPage"
+        :label="page + 1"
+        :key="page"
+        :outline="darkMode"
+        small
+      />
+    </jb-buttons>
+    <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
+  </level>
+</div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 import { mdiEye, mdiPencilOutline, mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
+import Level from '../../plugins/Level'
 
 export default {
   name: "HRTable.vue",
@@ -80,15 +102,46 @@ export default {
   components: {
     JbButtons,
     JbButton,
-    ModalBox
+    ModalBox,
+    Level
   },
 
   setup() {
+    const store = useStore()
+
+    const darkMode = computed(() => store.state.darkMode)
+
+    const items = computed(() => store.state.staff)
+
     const isModalActive1 = ref(false)
 
     const isModalActive2 = ref(false)
 
     const isModalDangerActive = ref(false)
+
+    const perPage = ref(10)
+
+    const currentPage = ref(0)
+
+    const checkedRows = ref([])
+
+    const itemsPaginated = computed(
+      () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
+    )
+
+    const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+
+    const currentPageHuman = computed(() => currentPage.value + 1)
+
+    const pagesList = computed(() => {
+      const pagesList = []
+
+      for (let i = 0; i < numPages.value; i++) {
+        pagesList.push(i)
+      }
+
+      return pagesList
+    })
 
     return {
         mdiEye,
@@ -96,7 +149,14 @@ export default {
         mdiTrashCan,
         isModalActive1,
         isModalActive2,
-        isModalDangerActive
+        isModalDangerActive,
+        currentPage,
+        currentPageHuman,
+        numPages,
+        checkedRows,
+        itemsPaginated,
+        pagesList,
+        darkMode
       }
   },
 
