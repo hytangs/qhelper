@@ -196,7 +196,7 @@ header.sticky .exit {
   background-color:whitesmoke;
 }
 
-.costs_area{
+.meal_page{
   position:relative;
   display:flex;
   justify-content: space-around;
@@ -204,14 +204,26 @@ header.sticky .exit {
   flex-wrap: wrap;
   flex-direction: row;
   width:100%;
-  height: 70vh;
-  background-color:beige;
+  height: 100vh;
+  background-color:whitesmoke;
 }
 
 /*.date {
   width:16%;
   position:relative;
 }*/
+
+.shop_page{
+  position:relative;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width:100%;
+  height: 100vh;
+  background-color:whitesmoke;
+}
 
 .entertainment_area{
   position:relative;
