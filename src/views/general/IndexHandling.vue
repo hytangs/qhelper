@@ -1,22 +1,56 @@
 <template>
-<div id="index">
-  <h1 class="text-3xl"> Welcome to QHelper! </h1>
-  <p> Please enter via respective portals.</p> <br>
-  <jb-button to="/arrivals" color="info" outline label="Guest Arrivals" />
-  <jb-button to="/guest/login" color="info" outline label="Guest Portal" />
-  <jb-button to="/admin/login" color="info" outline label="Admin Portal" />
-</div>
+    <full-screen-section bg="login" v-slot="{ cardClass, cardRounded }">
+      <card-component
+        :class="cardClass"
+        :rounded="cardRounded"
+      >
+        <h1 class="text-3xl">Welcome to <b>QHelper!</b></h1>
+        <br>
+        <p>Please enter via respective portals.</p>
+
+        <divider />
+
+        <!-- <jb-buttons> -->
+          <jb-button
+            to="/arrivals"
+            color="info"
+            outline
+            label="Guest Arrivals"
+          />
+          <jb-button
+            to="/guest/login"
+            color="info"
+            outline
+            label="Guest Portal"
+          />
+          <jb-button
+            to="/admin/login"
+            color="info"
+            outline
+            label="Admin Portal"
+          />
+        <!-- </jb-buttons> -->
+      </card-component>
+    </full-screen-section>
 </template>
 
 <script>
-import JbButton from "../../components/plugins/JbButton";
+import FullScreenSection from '../../../src/components/plugins/FullScreenSection';
+import CardComponent from '../../../src/components/plugins/CardComponent';
+import Divider from '../../../src/components/plugins/Divider.vue';
+import JbButton from '../../../src/components/plugins/JbButton';
+//import JbButtons from '../../../src/components/plugins/JbButtons'
 
 export default {
-  name: 'IndexHandling',
+  name: "IndexHandling",
   components: {
-    JbButton
-  }
-}
+    FullScreenSection,
+    CardComponent,
+    Divider,
+    JbButton,
+    //JbButtons
+  },
+};
 </script>
 
 <style scoped>
