@@ -4,9 +4,33 @@
   <title-bar :title-stack="titleStack" />
   <hero-bar>Retail Shop Management</hero-bar>
   <main-section>
+    <notification color="info" :icon="mdiAlertCircle">
+      There are <b>2</b> new orders received! <b>3</b> pending orders remaining!
+      <template #right>
+        <jb-button
+          :icon="mdiAlertCircle"
+          :outline="darkMode"
+          label="View"
+          target="_blank"
+          small
+        />
+      </template>
+    </notification>
     <card-component :icon="mdiAccountMultiple" class="mb-6" title="Orders List" has-table>
       <ShopOrders/>
     </card-component>
+    <notification color="warning" :icon="mdiAlertCircle">
+      Several goods are <b> Out of Stock! </b> Check Inventory!
+      <template #right>
+        <jb-button
+          :icon="mdiAlertCircle"
+          :outline="darkMode"
+          label="View"
+          target="_blank"
+          small
+        />
+      </template>
+    </notification>
     <card-component :icon="mdiTable" class="mb-6" title="Inventory List" has-table>
       <Inventory/>
     </card-component>
@@ -31,7 +55,8 @@ import {
   mdiMail,
   mdiTableBorder,
   mdiTableOff,
-  mdiTable
+  mdiTable,
+  mdiAlertCircle
 } from "@mdi/js";
 import MainSection from "../../components/plugins/MainSection";
 //import Notification from '../../components/plugins/Notification'
@@ -45,7 +70,9 @@ import FooterBar from "../../../src/components/plugins/FooterBar";
 import Overlay from "../../../src/components/plugins/Overlay";
 import CardComponent from "../../../src/components/plugins/CardComponent";
 import ShopOrders from '../../../src/components/admin/admin-components/ShopOrders';
-import Inventory from '../../../src/components/admin/admin-components/Inventory'
+import Inventory from '../../../src/components/admin/admin-components/Inventory';
+import Notification from "../../../src/components/plugins/Notification";
+import JbButton from "../../../src/components/plugins/JbButton";
 
 export default {
   name: "Tables",
@@ -61,7 +88,9 @@ export default {
     NavBar,
     CardComponent,
     ShopOrders,
-    Inventory
+    Inventory,
+    Notification,
+    JbButton
   },
   setup() {
 
@@ -76,6 +105,7 @@ export default {
       mdiMail,
       mdiTableBorder,
       mdiTableOff,
+      mdiAlertCircle,
       mdiTable,
       menu,
     };
