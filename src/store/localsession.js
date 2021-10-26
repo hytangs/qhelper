@@ -5,6 +5,8 @@ export default {
             localStorage.adminpass = null;
             localStorage.adminadmitted = false;
             localStorage.adminzone = 0;
+            localStorage.guestuser = null;
+            localStorage.guestlastfoodselectdate = '';
         },
 
         initializeAdminSession(user, pass, zone) {

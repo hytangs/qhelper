@@ -12,7 +12,7 @@
         <Podcast v-show="currentSection === 3"/>
         <Games v-show="currentSection === 4" />
     </div>
-    
+
 </template>
 
 <script>

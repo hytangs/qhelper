@@ -1,6 +1,7 @@
 <template>
 <div id="mealpage">
     <h1>Menu for 31st October, 2021</h1>
+    <br>
     <div class= "form_container">
         <form id="breakfast">
             <div class="formhead">
@@ -246,5 +247,11 @@ img {
 
 .formhead{
     display: inline-flex;
+}
+
+h1{
+    font-size: 30px;
+    font:bold;
+    font-family: 'Lucida Handwriting';
 }
 </style>
