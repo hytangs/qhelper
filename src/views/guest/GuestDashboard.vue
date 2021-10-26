@@ -265,7 +265,7 @@ header.sticky .title:hover::after {
   flex-wrap: wrap;
   flex-direction: row;
   width:100%;
-  height: 100vh;
+  height: 100%;
   background-color:whitesmoke;
 }
 
@@ -281,7 +281,7 @@ header.sticky .title:hover::after {
   flex-wrap: wrap;
   flex-direction: row;
   width:100%;
-  height: 100vh;
+  height: 100%;
   background-color:whitesmoke;
 }
 
