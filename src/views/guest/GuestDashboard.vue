@@ -15,12 +15,11 @@
     </div>-->
     <!--Exit Icon-->
     <div class="exit flex items-center flex-grow-0 flex-shrink-0 relative cursor-pointer hover:text-blue-500 text-black dark:text-white dark:hover:text-gray-400 py-2 px-3 lg:w-16 lg:justify-center">
-      <span class="inline-flex justify-center items-center w-6 h-6 transition-colors" data-v-3ca1866b="">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+      <span class="inline-flex justify-center items-center w-6 h-6 transition-colors" data-v-42f089b8="">
+        <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block" data-v-42f089b8="">
+          <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z" data-v-42f089b8=""></path>
         </svg>
       </span>
-      <span class="px-2 transition-colors lg:hidden">Log out</span>
     </div>
   </header>
   <section class="banner"></section>
