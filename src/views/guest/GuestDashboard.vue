@@ -196,34 +196,11 @@ header.sticky .exit {
   background-color:whitesmoke;
 }
 
-.meal_page{
-  position:relative;
-  display:flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width:100%;
-  height: 100vh;
-  background-color:whitesmoke;
-}
-
 /*.date {
   width:16%;
   position:relative;
 }*/
 
-.shop_page{
-  position:relative;
-  display:flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width:100%;
-  height: 100vh;
-  background-color:whitesmoke;
-}
 
 .entertainment_area{
   position:relative;
@@ -293,6 +270,22 @@ header.sticky .title:hover::after {
 }
 
 .meal_area{
+  width: 70%;
+}
+
+.shop_page{
+  position:relative;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width:100%;
+  height: 100vh;
+  background-color:whitesmoke;
+}
+
+.shop_area{
   width: 70%;
 }
 </style>
