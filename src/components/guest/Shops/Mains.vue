@@ -190,4 +190,12 @@ img {
     width: 100%;
     height: 200px;
 }
+
+.shadow{
+    box-shadow: 0px 8px 8px -8px grey;
+}
+
+.shadow:hover{
+    box-shadow: 0px 1px 15px grey;
+}
 </style>
