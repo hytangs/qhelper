@@ -38,7 +38,7 @@
     <Meals/>
   </div>
   <div class="shop_page" id="shops">
-    <Shop/>
+    <div class="white_shop_area"><Shop/></div>
   </div>
   <!--<div class = "costs_area" id = "costs">
     <costs/>
@@ -229,7 +229,7 @@ header.sticky .color {
   flex-wrap: wrap;
   flex-direction: row;
   width:100%;
-  height: 100vh;
+  height: 100%;
   background-color:whitesmoke;
 }
 
@@ -251,6 +251,10 @@ header.sticky .color {
 
 .white_entertainment_area {
   width: 90%;
+}
+
+.white_shop_area{
+  width:70%
 }
 
 /* titles changing color when hovering */
@@ -285,9 +289,5 @@ header.sticky .title:hover::after {
 
 .exit:hover{
   color: white;
-}
-
-.color:hover{
-  color:white;
 }
 </style>

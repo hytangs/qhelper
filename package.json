@@ -12,6 +12,7 @@
   "dependencies": {
     "@j-t-mcc/vue3-chartjs": "^1.2.0",
     "@mdi/js": "^5.9.55",
+    "@splidejs/vue-splide": "^0.5.4",
     "axios": "^0.21.1",
     "chart.js": "^3.5.1",
     "core-js": "^3.6.5",
@@ -28,6 +29,7 @@
     "vue-scroll-reveal": "^1.0.11",
     "vue-simple-password-meter": "^0.1.0",
     "vue-sticky-element": "^1.1.2",
+    "vue3-carousel": "^0.1.29",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
