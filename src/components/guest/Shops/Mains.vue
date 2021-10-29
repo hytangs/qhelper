@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div id="snacks">
         <Splide :options="{ rewind: true }">
         <SplideSlide>
         <div class="slider">
