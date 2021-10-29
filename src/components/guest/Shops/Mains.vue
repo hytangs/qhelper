@@ -6,11 +6,11 @@
         <div class="grid grid-cols-2 gap-6 lg:grid-cols-3 mb-6">
                 <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
                     <div class="item_img">
-                        <img src="https://assets.teenvogue.com/photos/57dbfa1a046b3a2e2a7362fd/master/pass/GettyImages-94638755.jpg">
+                        <img src="https://images.food52.com/lQS4pWAs5NP6SKag2fYJ6kD1TUE=/fit-in/1200x1200/6dce5818-5cc6-4858-a733-ad93ad51469a--2019-0813_shin-ramyun_3x2_ty-mecham_001.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Cup Noodles</h4>
-                        <h4 style="float: right">$2.00</h4>
+                        <h5 style="float: left">Shin Ramyun</h5>
+                        <h6 style="float: right">$3.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -38,8 +38,8 @@
                         <img src="https://www.gourmetz.com.sg/wp-content/uploads/2020/09/gourmetzBento6-1.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Bento</h4>
-                        <h4 style="float: right">$7.00</h4>
+                        <h5 style="float: left">Chinese Style Bento</h5>
+                        <h6 style="float: right">$7.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -66,8 +66,8 @@
                         <img src="https://t4.ftcdn.net/jpg/03/31/41/97/360_F_331419759_SZdw93F2MXm7c8dUYFQ0n2UkT473jYf2.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Nugget and Fries</h4>
-                        <h4 style="float: right">$5.50</h4>
+                        <h5 style="float: left">Nugget and Fries</h5>
+                        <h6 style="float: right">$5.50</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -94,8 +94,8 @@
                         <img src="https://thestayathomechef.com/wp-content/uploads/2017/08/Most-Amazing-Lasagna-2-e1574792735811.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Beef Lagsana</h4>
-                        <h4 style="float: right">$8.00</h4>
+                        <h5 style="float: left">Beef Lagsana</h5>
+                        <h6 style="float: right">$8.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -122,8 +122,8 @@
                         <img src="https://asianinspirations.com.au/wp-content/uploads/2019/04/R02156_Mums-NasiLemak.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Nasi Lemak</h4>
-                        <h4 style="float: right">$6.00</h4>
+                        <h5 style="float: left">Nasi Lemak</h5>
+                        <h6 style="float: right">$6.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -150,8 +150,8 @@
                         <img src="https://www.palatesensations.com/images/e0a528b00b4ec64425d1b3191aa40d46.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Prata with Curry</h4>
-                        <h4 style="float: right">$4.00</h4>
+                        <h5 style="float: left">Prata with Curry</h5>
+                        <h6 style="float: right">$4.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -182,11 +182,11 @@
         <div class="grid grid-cols-2 gap-6 lg:grid-cols-3 mb-6">
                 <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
                     <div class="item_img">
-                        <img src="https://assets.teenvogue.com/photos/57dbfa1a046b3a2e2a7362fd/master/pass/GettyImages-94638755.jpg">
+                        <img src="http://www.sanjeevkapoor.com/UploadFiles/RecipeImages/Garlic-Naan.JPG">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Cup Noodles</h4>
-                        <h4 style="float: right">$2.00</h4>
+                        <h5 style="float: left">Butter Chicken</h5>
+                        <h6 style="float: right">$15.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -211,11 +211,11 @@
                 </div>
                 <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
                     <div class="item_img">
-                        <img src="https://www.gourmetz.com.sg/wp-content/uploads/2020/09/gourmetzBento6-1.jpg">
+                        <img src="https://d2eohwa6gpdg50.cloudfront.net/wp-content/uploads/sites/5/2020/10/27162538/AFN_assam_laksa_main_image1-1350x900.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Bento</h4>
-                        <h4 style="float: right">$7.00</h4>
+                        <h5 style="float: left">Penang Asam Laksa</h5>
+                        <h6 style="float: right">$7.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -239,11 +239,11 @@
                     </div>
                 </div><div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
                     <div class="item_img">
-                        <img src="https://t4.ftcdn.net/jpg/03/31/41/97/360_F_331419759_SZdw93F2MXm7c8dUYFQ0n2UkT473jYf2.jpg">
+                        <img src="http://cdn.cnn.com/cnnnext/dam/assets/160325033254-hk-dim-sum-fook-lam-moon.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Nugget and Fries</h4>
-                        <h4 style="float: right">$5.50</h4>
+                        <h5 style="float: left">Dim Sum Set</h5>
+                        <h6 style="float: right">$15</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -267,11 +267,11 @@
                     </div>
                 </div><div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
                     <div class="item_img">
-                        <img src="https://thestayathomechef.com/wp-content/uploads/2017/08/Most-Amazing-Lasagna-2-e1574792735811.jpg">
+                        <img src="https://i1.wp.com/topsushimaker.com/wp-content/uploads/2019/05/2843-top.jpeg?fit=960%2C598&ssl=1">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Beef Lagsana</h4>
-                        <h4 style="float: right">$8.00</h4>
+                        <h5 style="float: left">Japanese Sushi Platter</h5>
+                        <h6 style="float: right">$18.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -295,11 +295,11 @@
                     </div>
                 </div><div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
                     <div class="item_img">
-                        <img src="https://asianinspirations.com.au/wp-content/uploads/2019/04/R02156_Mums-NasiLemak.jpg">
+                        <img src="https://www.sbs.com.au/food/sites/sbs.com.au.food/files/styles/full/public/korean-fried-chicken-4-ways.jpg?itok=zCqhrLHx">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Nasi Lemak</h4>
-                        <h4 style="float: right">$6.00</h4>
+                        <h5 style="float: left">Korean Fried Chicken</h5>
+                        <h6 style="float: right">$18.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -323,11 +323,11 @@
                     </div>
                 </div><div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
                     <div class="item_img">
-                        <img src="https://www.palatesensations.com/images/e0a528b00b4ec64425d1b3191aa40d46.jpg">
+                        <img src="https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/thai-mango-salad/AFN_thai_mango_salad_main_image.jpg">
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
-                        <h4 style="float: left">Prata with Curry</h4>
-                        <h4 style="float: right">$4.00</h4>
+                        <h5 style="float: left">Som Tum Mamuang</h5>
+                        <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
@@ -379,6 +379,7 @@ img {
     text-align: center;
     display: block;
     width: 100%;
+    height: 25vh;
 }
 
 .shadow{
