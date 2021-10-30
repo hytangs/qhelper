@@ -1,11 +1,9 @@
 <template>
   <RegistrationForm />
-  <!-- <RoomSelection v-if="step == 1"/> -->
 </template>
 
 <script>
 import RegistrationForm from "../../components/arrivals/RegistrationForm";
-// import RoomSelection from "../../components/arrivals/RoomSelection";
 
 
 export default {

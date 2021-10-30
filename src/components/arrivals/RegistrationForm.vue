@@ -20,11 +20,11 @@
       </field>
 
       <field label="Password">
-        <control placeholder="Enter your password" v-model="form.password" id = "password"/>
+        <control placeholder="Enter a password with 6 - 12 digits" v-model="form.password" id = "password"/>
       </field>
 
-      <field label="NRIC / Passport Number">
-        <control placeholder="e.g. A12345678" v-model="form.nric" id = "nric"/>
+      <field label="Passport / Travel Document Number">
+        <control placeholder="e.g. A12345678" v-model="form.identity" id = "identity"/>
       </field>
 
       <field label="Contact Number">
@@ -33,7 +33,7 @@
 
       <field label="Country of Departure and Date of Arrival">
         <control :options="countryOptions" v-model="form.country" id = "cod"/>
-        <control placeholder="DD/MM/YYYY" v-model="form.arrivalDate" id = "doa"/>
+        <control placeholder="YYYYMMDD format (eg. 20211031)" v-model="form.arrivalDate" id = "doa"/>
       </field>
 
       <!-- <field label="Country of Departure">
@@ -53,34 +53,17 @@
         <control :options="passengerOptions" v-model="form.passengerType" id = "passtype"/>
       </field>
 
-      <!-- <check-radio-picker class="text-gray-500 dark:text-gray-400"
-      name="declare" v-model="form.declare"
-      :options="{
-        declare: 'I hereby declare that the information above mentioned is true to the best of my knowledge.'
-        }" />
-
-        <check-radio-picker class="text-gray-500 dark:text-gray-400"
-      name="law" v-model="form.law"
-      :options="{
-        law: 'I understand that in the event of my information being found false or incorrect at any stage, \
-        I shall fully be liable to the prevaling laws and / or subject to sanictions.'
-        }" /> -->
-
-        <!-- <jb-buttons>
-          <jb-button type="submit" color="info" label="Declare and Continue >"
-            @click="roomselect(), savetofs()"/>
-        </jb-buttons> -->
     <card-component>
       <div class="text-center text-gray-500 dark:text-gray-400">
         I hereby declare that the information above mentioned is true to the best of my knowledge.
         <br><br>
         I understand that in the event of my information being found false or
-        incorrect at any stage, I shall fully be liable to the prevaling laws
-        and / or subject to sanictions.
+        incorrect at any stage, I shall fully be liable to the prevailing laws
+        and / or subject to sanctions.
         <br><br>
         <jb-buttons>
           <jb-button type="submit" color="info" label="Declare and Continue >"
-            @click="savetofs(), roomselect()"/>
+            @click="savetofs()"/>
         </jb-buttons>
       </div>
     </card-component>
@@ -121,44 +104,122 @@ export default {
       },
 
       async savetofs() {
-        var gender  = document.getElementById("gender").value
-        var fname  = document.getElementById("fname").value
-        var lname =  document.getElementById("lname").value
-        var email =  document.getElementById("email").value
-        var password =  document.getElementById("password").value
-        var nric  = document.getElementById("nric").value
-        var contact =  document.getElementById("contact").value
-        var doa =  document.getElementById("doa").value
-        var cod =  document.getElementById("cod").value
-        var flight =  document.getElementById("flight").value
-        var seat =  document.getElementById("seat").value
+        var passed = true
+        var error = []
+
+        var gender = document.getElementById("gender").value
+        if (gender === '' || gender === " - Choose Below - ") {
+          passed = false
+          error.push("Please select your gender")
+        }
+
+        var fname = document.getElementById("fname").value
+        if (fname === '') {
+          passed = false
+          error.push("Please fill in first name")
+        }
+
+        var lname = document.getElementById("lname").value
+        if (lname === '') {
+          passed = false
+          error.push("Please fill in last name (Single name guests should fill in first name again)")
+        }
+
+        var email = document.getElementById("email").value
+        if (email === '') {
+          passed = false
+          error.push("Please fill in an email address")
+        } else if (email.indexOf("a") === -1 || email.indexOf(".") === -1) {
+          passed = false
+          error.push("Please fill in a valid email address")
+        }
+
+        var password = document.getElementById("password").value
+        if (password.length < 6 || password.length > 12) {
+          passed = false
+          error.push("Please input a password with 6 - 12 digits")
+        }
+
+        var identity = document.getElementById("identity").value
+        if (identity === '') {
+          passed = false
+          error.push("Please fill in your passport / travel document number")
+        }
+
+        var contact = document.getElementById("contact").value
+        if (contact === '') {
+          passed = false
+          error.push("Please fill in your contact number")
+        } else if (isNaN(parseInt(contact))) {
+          passed = false
+          error.push("Please fill in a valid contact number")
+        }
+
+        var doa = document.getElementById("doa").value
+        if (doa.length !== 8 || isNaN(parseInt(doa))) {
+          passed = false
+          error.push("Please fill in your correct date of arrival")
+        }
+
+        var cod = document.getElementById("cod").value
+        if (cod === '' || cod === " - Choose Below - ") {
+          passed = false
+          error.push("Please choose your country of departure")
+        }
+
+        var flight = document.getElementById("flight").value
+        if (flight.length < 3) {
+          passed = false
+          error.push("Please input your correct flight number")
+        }
+
+        var seat = document.getElementById("seat").value
+        if (seat.length < 1) {
+          passed = false
+          error.push("Please input your correct seat number")
+        }
         // var sdate =  document.getElementById("sdate").value
         // var edate =  document.getElementById("edate").value
         // var country =  document.getElementById("country").value
-        var vaccine =  document.getElementById("vaccine").value
-        var passtype =  document.getElementById("passtype").value
+        var vaccine = document.getElementById("vaccine").value
+        if (vaccine === '' || vaccine === " - Choose Below - ") {
+          passed = false
+          error.push("Please choose your vaccination history")
+        }
+        var passtype = document.getElementById("passtype").value
+        if (passtype === '') {
+          passed = false
+        }
 
-        alert(" Welcome " + gender + " "  + fname + "! Information submitted successfully.")
-
-        try {
+        if (passed === false) {
+          if (error.length > 1) {
+            alert("Multiple issues found: " + error + ".")
+          } else {
+            alert("An issue found: " + error + ".")
+          }
+        } else {
+          try {
             const docRef = await setDoc(doc(db, "RegInfo", email), {
-                Gender: gender, Fname: fname, Lname: lname, NRIC: nric, Contact: contact,
-                Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat, //Sdate: sdate, 
-                //Edate: edate, Country: country, 
-                Vaccine: vaccine, Passtype: passtype, Password: password,
+              Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
+              Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
+              Vaccine: vaccine, Passtype: passtype, Password: password,
             })
             console.log(docRef)
-            // document.getElementById("regform").reset();
+
             this.$emit("added")
-        }
-        catch(error) {
+          } catch (error) {
             console.error("Error adding document: ", error);
+          } finally {
+            alert(" Welcome " + gender + " " + fname + "! Form submitted successfully.")
+            this.roomselect()
+          }
         }
       }
     },
 
     setup() {
       const countryOptions = [
+        " - Choose Below - ",
         "United States", "Canada", "Afghanistan", "Albania", "Algeria", "American Samoa",
         "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and/or Barbuda", "Argentina",
         "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
@@ -217,7 +278,8 @@ export default {
       ]
 
       const vaccineOptions = [
-        "Not Vaccinated",
+        " - Choose Below - ",
+        "Not Vaccinated / Partially Vaccinated",
         "Fully Vaccinated - Pfizer/BioNTech",
         "Fully Vaccinated - Moderna",
         "Fully Vaccinated - Astrazeneca",
@@ -237,6 +299,7 @@ export default {
       ]
 
       const passengerOptions = [
+        " - Choose Below - ",
         "Singaporean",
         "Short Term Visitor",
         "Long Term Pass Holder",
@@ -246,6 +309,7 @@ export default {
       ]
 
       const genderOptions = [
+        " - Choose Below - ",
         "Mr",
         "Miss",
         "Mrs",
