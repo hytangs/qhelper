@@ -1,4 +1,4 @@
-<template>
+<!--<template>
 <div id="mealpage">
     <h1>Menu for 31st October, 2021</h1>
     <br>
@@ -174,7 +174,7 @@
         </form>
     </div>    
 </div>
-</template> 
+</template>
 
 <script>
 export default {
@@ -254,4 +254,73 @@ h1{
     font:bold;
     font-family: 'Lucida Handwriting';
 }
+</style>-->
+
+<template>
+<div class = "shop-page">
+    <h1><b>Menu For {{currentDateTime()}}</b></h1>
+<NavBarMeal/>
+<button style="float:right" class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3" type="submit" @click="TogglePopup()">
+    <span class="px-2">Submit</span>
+</button>
+<br>
+</div>
+</template>
+
+<script>
+import NavBarMeal from './Meal/NavBarMeal'
+
+const date = new Date();
+
+export default {
+    name: "Meals",
+    components:{
+        NavBarMeal
+    },
+
+  data() {
+    return {
+      dateTime: {
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+      },
+      timer: undefined,
+    };
+  },
+  methods: {
+    currentDateTime() {
+      const current = new Date();
+      const date = current.getDate()+'-'+(current.getMonth()+1)+'-'+current.getFullYear();
+      const dateTime = date;
+
+      return dateTime;
+    },
+
+    setDateTime() {
+      const date = new Date();
+      this.dateTime = {
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+      };
+    },
+  },
+
+  beforeMount() {
+    this.timer = setInterval(this.setDateTime, 1000);
+  },
+
+  beforeUnmount() {
+    clearInterval(this.timer);
+  },
+};
+
+</script>
+
+<style scoped>
+h1{
+    text-align:center;
+}
 </style>
+
