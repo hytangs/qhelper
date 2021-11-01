@@ -3,7 +3,7 @@
     <p>Check the <b>Order Details</b> / Handle the <b>Order</b></p>
   </modal-box>
 
-  <table id='table'>
+  <table id='shop orders'>
     <thead>
       <tr>
         <th>Guest Name</th>
@@ -91,7 +91,7 @@ import ModalBox from "../../plugins/ModalBox";
 
 import firebaseApp from "../../../firebase.js";
 import { getFirestore } from "firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -110,7 +110,7 @@ export default {
 
       z.forEach((docs) => {
         let yy = docs.data();
-        var table = document.getElementById("table");
+        var table = document.getElementById("shop orders");
         var row = table.insertRow(ind);
 
         var name = yy.Name;
@@ -138,11 +138,30 @@ export default {
         cell6.innerHTML = orderStatus;
         cell7.innerHTML = timeOfPayment;
         
-        cell8.appendChild(JbButton);
+        var bu = document.createElement("button");
+        bu.className = "bwt";
+        bu.id = String(room);
+        bu.icon = "mdiPencilOutline";
+        bu.innerHTML = "Delete";
+        bu.onclick = function() {
+          deleteinstrument(room);
+        };
+        cell8.appendChild(bu);
 
       });
     }
     display();
+    async function deleteinstrument(room) {
+      var x = room;
+      alert("You are going to delete " + x);
+      await deleteDoc(doc(db, "RoomOrder", x));
+      console.log("Document successfully deleted!", x);
+      let tb = document.getElementById("shop order");
+      while (tb.rows.length > 1) {
+        tb.deleteRow(1);
+      }
+      display();
+    }
   },
 
   setup() {

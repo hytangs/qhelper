@@ -4,7 +4,7 @@
       Update the <b>Inventory Information</b></p>
 </modal-box>
 
-<table>
+<table id = "inventory table">
     <thead>
       <tr>
         <th>Item</th>
@@ -65,6 +65,11 @@ import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
 
+import firebaseApp from "../../../firebase.js";
+import { getFirestore } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+
 export default {
   name: "PaymentHistory",
 
@@ -72,6 +77,61 @@ export default {
     JbButtons,
     JbButton,
     ModalBox
+  },
+
+  mounted() {
+    async function display() {
+      let z = await getDocs(collection(db, "Inventory"));
+      let ind = 1;
+
+      z.forEach((docs) => {
+        let yy = docs.data();
+        var table = document.getElementById("inventory table");
+        var row = table.insertRow(ind);
+
+        var item = yy.Item;
+        var type = yy.Type;
+        var description = yy.Description;
+        var price = yy.Price;
+        var quantity = yy.QuantityRemained;
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+
+        cell1.innerHTML = item;
+        cell2.innerHTML = type;
+        cell3.innerHTML = description;
+        cell4.innerHTML = price;
+        cell5.innerHTML = quantity;
+
+        var bu = document.createElement("button");
+        bu.className = "bwt";
+        bu.id = String(item);
+        bu.icon = "mdiPencilOutline";
+        bu.innerHTML = "Delete";
+        bu.onclick = function() {
+          deleteinstrument(item);
+        };
+        cell6.appendChild(bu);
+
+      });
+    }
+    display();
+    async function deleteinstrument(item) {
+      var x = item;
+      alert("You are going to delete " + x);
+      await deleteDoc(doc(db, "Inventory", x));
+      console.log("Document successfully deleted!", x);
+      let tb = document.getElementById("inventory table");
+      while (tb.rows.length > 1) {
+        tb.deleteRow(1);
+      }
+      display();
+    }
   },
 
   setup() {
