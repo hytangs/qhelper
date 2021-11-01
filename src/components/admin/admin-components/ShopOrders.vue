@@ -91,7 +91,7 @@ import ModalBox from "../../plugins/ModalBox";
 
 import firebaseApp from "../../../firebase.js";
 import { getFirestore } from "firebase/firestore";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -105,7 +105,7 @@ export default {
 
   mounted() {
     async function display() {
-      let z = await getDocs(collection(db, "RoomOrder"));
+      let z = await getDocs(collection(db, "ShopOrder"));
       let ind = 1;
 
       z.forEach((docs) => {
@@ -129,6 +129,7 @@ export default {
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
+        var cell9 = row.insertCell(8);
 
         cell1.innerHTML = name;
         cell2.innerHTML = room;
@@ -141,12 +142,20 @@ export default {
         var bu = document.createElement("button");
         bu.className = "bwt";
         bu.id = String(room);
-        bu.icon = "mdiPencilOutline";
         bu.innerHTML = "Delete";
         bu.onclick = function() {
           deleteinstrument(room);
         };
         cell8.appendChild(bu);
+
+        var bu2 = document.createElement("button");
+        bu2.className = "bwt";
+        bu2.id = String(room);
+        bu2.innerHTML = "Done";
+        bu2.onclick = function() {
+          updateinstrument(room);
+        };
+        cell9.appendChild(bu2);
 
       });
     }
@@ -154,10 +163,21 @@ export default {
     async function deleteinstrument(room) {
       var x = room;
       alert("You are going to delete " + x);
-      await deleteDoc(doc(db, "RoomOrder", x));
+      await deleteDoc(doc(db, "ShopOrder", x));
       console.log("Document successfully deleted!", x);
-      let tb = document.getElementById("shop order");
-      while (tb.rows.length > 1) {
+      let tb = document.getElementById("shop orders");
+      if (tb.rows.length > 1) {
+        tb.deleteRow(1);
+      }
+      display();
+    }
+    async function updateinstrument(room) {
+      var x = room;
+      alert("You are going to update the order status of Room " + x);
+      await updateDoc(doc(db, "ShopOrder", x), {OrderStatus: "Order Delivered"})
+      console.log("Document successfully updated!", x);
+      let tb = document.getElementById("shop orders");
+      if (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
       display();
