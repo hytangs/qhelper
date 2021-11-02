@@ -31,9 +31,9 @@
                 <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3" type="submit" @click="TogglePopup()">
                     <span class="px-2">Declare</span>
                 </button>
-                <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-500 hover:text-white text-blue-500 border-blue-600 mr-3 last:mr-0 mb-3" type="reset">
+                <!--<button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-500 hover:text-white text-blue-500 border-blue-600 mr-3 last:mr-0 mb-3" type="reset">
                     <span class="px-2">Reset</span>
-                </button>
+                </button>-->
             </div>
         </div>
     </form>
