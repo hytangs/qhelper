@@ -33,19 +33,13 @@
           </div>
 
           <template #dropdown>
-            <nav-bar-item to="/profile">
-              <nav-bar-item-label :icon="mdiAccount" label="My Profile"/>
-            </nav-bar-item>
             <nav-bar-item>
               <nav-bar-item-label :icon="mdiCogOutline" label="Settings"/>
             </nav-bar-item>
-            <nav-bar-item>
+            <nav-bar-item href="https://outlook.com">
               <nav-bar-item-label :icon="mdiEmail" label="Messages"/>
             </nav-bar-item>
             <nav-bar-menu-divider/>
-            <nav-bar-item>
-              <nav-bar-item-label :icon="mdiLogout" label="Log Out"/>
-            </nav-bar-item>
           </template>
         </nav-bar-menu>
         <nav-bar-item @click.prevent="toggleLightDark" has-divider is-desktop-icon-only>
