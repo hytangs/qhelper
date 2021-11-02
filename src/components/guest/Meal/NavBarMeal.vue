@@ -1,4 +1,4 @@
-<template>
+<!--<template>
     <div id ="logged3">
       <div id="nav3">
         <a @click="changeShopSection(1)">Breakfast</a> |
@@ -60,3 +60,4 @@ export default {
   text-align: center;
 }
 </style>
+-->
