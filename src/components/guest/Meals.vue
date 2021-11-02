@@ -19,7 +19,7 @@
         </div>
         <br><br>
         <transition name="fade">
-          <div class="grid grid-cols-2 gap-6 lg:grid-cols-3 mb-6 w-3/4 m-auto">
+          <div class="grid grid-cols-2 gap-3 lg:grid-cols-3 mb-6 w-3/4 m-auto">
             <div v-bind:key="j" v-for="(item, j) in meal.items"
                  class="max-w-sm rounded overflow-hidden shadow-lg p-3 border bg-white border-gray-400 relative">
               <a href="javascript:void(0)" class="absolute right-0 pr-5 pt-2" v-on:click="showHideModal(item)">
@@ -97,9 +97,9 @@ export default {
           time: "Breakfast", isBreakfast: true, visible: true, items: [
             {
               name: "English Breakfast",
-              desc: "",
-              price: 8000,
-              priceUnit: "EUR",
+              desc: "Food",
+              price: 8,
+              priceUnit: " SGD",
               selected: false,
               src: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2019/02/full-english-7355w-2.jpg",
               lgSrc: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2019/02/full-english-7355w-2.jpg"
@@ -107,8 +107,8 @@ export default {
             {
               name: "Cereal Milk",
               desc: "",
-              price: 90,
-              priceUnit: "EUR",
+              price: 3,
+              priceUnit: " SGD",
               selected: false,
               src: "https://www.eatthis.com/wp-content/uploads/sites/4/media/images/ext/642461595/cereal-milk-flakes.jpg?quality=82&strip=all",
               lgSrc: "https://www.eatthis.com/wp-content/uploads/sites/4/media/images/ext/642461595/cereal-milk-flakes.jpg?quality=82&strip=all"
@@ -116,8 +116,8 @@ export default {
             {
               name: "French Toast",
               desc: "",
-              price: 90,
-              priceUnit: "EUR",
+              price: 9,
+              priceUnit: " SGD",
               selected: false,
               src: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2020/12/french-toast-9582w.jpg",
               lgSrc: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2020/12/french-toast-9582w.jpg"
@@ -125,8 +125,8 @@ export default {
             {
               name: "Pancakes",
               desc: "",
-              price: 90,
-              priceUnit: "EUR",
+              price: 7,
+              priceUnit: " SGD",
               selected: false,
               src: "https://thumbor.thedailymeal.com/zyAUA6IkWMK5h26dwt4ri_N6GUA=//https://www.thedailymeal.com/sites/default/files/recipe/2020/pancakes-shutterstock.JPG",
               lgSrc: "https://thumbor.thedailymeal.com/zyAUA6IkWMK5h26dwt4ri_N6GUA=//https://www.thedailymeal.com/sites/default/files/recipe/2020/pancakes-shutterstock.JPG"
@@ -134,8 +134,8 @@ export default {
             {
               name: "Japchae",
               desc: "",
-              price: 90,
-              priceUnit: "EUR",
+              price: 5,
+              priceUnit: " SGD",
               selected: false,
               src: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/06/14/0/FNK_Japchae_H2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1623679822091.jpeg",
               lgSrc: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/06/14/0/FNK_Japchae_H2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1623679822091.jpeg"
@@ -143,8 +143,8 @@ export default {
             {
               name: "Congee",
               desc: "",
-              price: 90,
-              priceUnit: "EUR",
+              price: 4,
+              priceUnit: " SGD",
               selected: false,
               src: "https://www.asiancookingmom.com/wp-content/uploads/2020/05/Shrimp-Congee-17-of-17.jpg",
               lgSrc: "https://www.asiancookingmom.com/wp-content/uploads/2020/05/Shrimp-Congee-17-of-17.jpg"
@@ -154,116 +154,116 @@ export default {
           {
             time: "Lunch", isLunch: true, visible: false, items: [
               {
-                name: "English Breakfast",
+                name: "Pizza",
                 desc: "",
-                price: 8000,
-                priceUnit: "EUR",
+                price: 8,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2019/02/full-english-7355w-2.jpg",
-                lgSrc: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2019/02/full-english-7355w-2.jpg"
+                src: "https://media.istockphoto.com/photos/tasty-pepperoni-pizza-and-cooking-ingredients-tomatoes-basil-on-black-picture-id1083487948?k=20&m=1083487948&s=612x612&w=0&h=ROZ5t1K4Kjt5FQteVxTyzv_iqFcX8aqpl7YuA1Slm7w=",
+                lgSrc: "https://media.istockphoto.com/photos/tasty-pepperoni-pizza-and-cooking-ingredients-tomatoes-basil-on-black-picture-id1083487948?k=20&m=1083487948&s=612x612&w=0&h=ROZ5t1K4Kjt5FQteVxTyzv_iqFcX8aqpl7YuA1Slm7w="
               },
               {
-                name: "Cereal Milk",
+                name: "Grilled Cheese",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 5,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://www.eatthis.com/wp-content/uploads/sites/4/media/images/ext/642461595/cereal-milk-flakes.jpg?quality=82&strip=all",
-                lgSrc: "https://www.eatthis.com/wp-content/uploads/sites/4/media/images/ext/642461595/cereal-milk-flakes.jpg?quality=82&strip=all"
+                src: "https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-articleLarge.jpg?quality=75&auto=webp&disable=upscale",
+                lgSrc: "https://static01.nyt.com/images/2021/02/17/dining/17tootired-grilled-cheese/17tootired-grilled-cheese-articleLarge.jpg?quality=75&auto=webp&disable=upscale"
               },
               {
-                name: "French Toast",
+                name: "Spaghetti with Meatballs",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 8,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2020/12/french-toast-9582w.jpg",
-                lgSrc: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2020/12/french-toast-9582w.jpg"
+                src: "https://hips.hearstapps.com/delish/assets/17/39/1506456062-delish-spaghetti-meatballs.jpg",
+                lgSrc: "https://hips.hearstapps.com/delish/assets/17/39/1506456062-delish-spaghetti-meatballs.jpg"
               },
               {
-                name: "Pancakes",
+                name: "Tom Yum Soup with White Rice",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 6,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://thumbor.thedailymeal.com/zyAUA6IkWMK5h26dwt4ri_N6GUA=//https://www.thedailymeal.com/sites/default/files/recipe/2020/pancakes-shutterstock.JPG",
-                lgSrc: "https://thumbor.thedailymeal.com/zyAUA6IkWMK5h26dwt4ri_N6GUA=//https://www.thedailymeal.com/sites/default/files/recipe/2020/pancakes-shutterstock.JPG"
+                src: "https://asianinspirations.com.au/wp-content/uploads/2019/11/R00098_Seafood_Tom_Yum_Soup-2.jpg",
+                lgSrc: "https://asianinspirations.com.au/wp-content/uploads/2019/11/R00098_Seafood_Tom_Yum_Soup-2.jpg"
               },
               {
-                name: "Japchae",
+                name: "Hainanese Chicken Rice",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 7,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/06/14/0/FNK_Japchae_H2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1623679822091.jpeg",
-                lgSrc: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/06/14/0/FNK_Japchae_H2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1623679822091.jpeg"
+                src: "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2020/06/chicken-rice.jpg",
+                lgSrc: "https://static.thehoneycombers.com/wp-content/uploads/sites/2/2020/06/chicken-rice.jpg"
               },
               {
-                name: "Congee",
+                name: "Quinoa Salad Bowl",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 8,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://www.asiancookingmom.com/wp-content/uploads/2020/05/Shrimp-Congee-17-of-17.jpg",
-                lgSrc: "https://www.asiancookingmom.com/wp-content/uploads/2020/05/Shrimp-Congee-17-of-17.jpg"
+                src: "https://iheartvegetables.com/wp-content/uploads/2019/03/Greek-Quinoa-Salad-6-of-13.jpg",
+                lgSrc: "https://iheartvegetables.com/wp-content/uploads/2019/03/Greek-Quinoa-Salad-6-of-13.jpg"
               },
             ]
           },
           {
             time: "Dinner", isDinner: true, visible: false, items: [
               {
-                name: "English Breakfast",
+                name: "Hokkien Prawn Noodle",
                 desc: "",
-                price: 8000,
-                priceUnit: "EUR",
+                price: 7,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2019/02/full-english-7355w-2.jpg",
-                lgSrc: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2019/02/full-english-7355w-2.jpg"
+                src: "https://noobcook.com/wp-content/uploads/2014/03/hokkeinmee3.jpg",
+                lgSrc: "https://noobcook.com/wp-content/uploads/2014/03/hokkeinmee3.jpg"
               },
               {
-                name: "Cereal Milk",
+                name: "Impossible Burger",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 9,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://www.eatthis.com/wp-content/uploads/sites/4/media/images/ext/642461595/cereal-milk-flakes.jpg?quality=82&strip=all",
-                lgSrc: "https://www.eatthis.com/wp-content/uploads/sites/4/media/images/ext/642461595/cereal-milk-flakes.jpg?quality=82&strip=all"
+                src: "https://www.dcvelocity.com/ext/resources/images/articles/2020/202005/20200514impossible_burger.jpg?1589468649",
+                lgSrc: "https://www.dcvelocity.com/ext/resources/images/articles/2020/202005/20200514impossible_burger.jpg?1589468649"
               },
               {
-                name: "French Toast",
+                name: "Japanese Ramen",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 8,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2020/12/french-toast-9582w.jpg",
-                lgSrc: "https://iamafoodblog.b-cdn.net/wp-content/uploads/2020/12/french-toast-9582w.jpg"
+                src: "https://i1.wp.com/seonkyounglongest.com/wp-content/uploads/2020/09/Easy-Tonkotsu-26-mini.jpg?fit=1000%2C667&ssl=1",
+                lgSrc: "https://i1.wp.com/seonkyounglongest.com/wp-content/uploads/2020/09/Easy-Tonkotsu-26-mini.jpg?fit=1000%2C667&ssl=1"
               },
               {
-                name: "Pancakes",
+                name: "Egg Fried Rice",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 5,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://thumbor.thedailymeal.com/zyAUA6IkWMK5h26dwt4ri_N6GUA=//https://www.thedailymeal.com/sites/default/files/recipe/2020/pancakes-shutterstock.JPG",
-                lgSrc: "https://thumbor.thedailymeal.com/zyAUA6IkWMK5h26dwt4ri_N6GUA=//https://www.thedailymeal.com/sites/default/files/recipe/2020/pancakes-shutterstock.JPG"
+                src: "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/dtf-fried-rice/AFN_din_tai_fung_fried_rice_main_image.jpg.transform/desktop-img/img.jpg",
+                lgSrc: "https://asianfoodnetwork.com/content/dam/afn/global/en/recipes/dtf-fried-rice/AFN_din_tai_fung_fried_rice_main_image.jpg.transform/desktop-img/img.jpg"
               },
               {
-                name: "Japchae",
+                name: "Falafel Pita Pocket",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 8,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/06/14/0/FNK_Japchae_H2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1623679822091.jpeg",
-                lgSrc: "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2021/06/14/0/FNK_Japchae_H2_s4x3.jpg.rend.hgtvcom.616.462.suffix/1623679822091.jpeg"
+                src: "https://missionfoods.com/uploads/falafel-pita-pocket-tahini-sauce.jpg",
+                lgSrc: "https://missionfoods.com/uploads/falafel-pita-pocket-tahini-sauce.jpg"
               },
               {
-                name: "Congee",
+                name: "Beef Burrito",
                 desc: "",
-                price: 90,
-                priceUnit: "EUR",
+                price: 7,
+                priceUnit: " SGD",
                 selected: false,
-                src: "https://www.asiancookingmom.com/wp-content/uploads/2020/05/Shrimp-Congee-17-of-17.jpg",
-                lgSrc: "https://www.asiancookingmom.com/wp-content/uploads/2020/05/Shrimp-Congee-17-of-17.jpg"
+                src: "https://www.onceuponachef.com/images/2018/03/Breakfast-Burritos.jpg",
+                lgSrc: "https://www.onceuponachef.com/images/2018/03/Breakfast-Burritos.jpg"
               },
             ]
           }]
