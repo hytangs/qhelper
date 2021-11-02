@@ -2,7 +2,7 @@
 <full-screen-section bg="login"> 
   <div class="grid">
     <div class="row text-center py-20 lg:px-0 lg:max-w-2xl lg:mx-auto text-3xl text-dark">
-      <h1>Hi {{name}}, Please select the room type according to your preference.</h1>
+      <h1>Hi {{this.$route.params.fname}}, Please select the room type according to your preference.</h1>
     </div>
     <div class="row">
       <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 text-xl">
@@ -80,24 +80,25 @@ export default {
     },
 
     props: {
-      name:String
+      name:String,
+      roomtype:String
     },
 
     methods: {
       selectRoom1() {
-        roomType = "single";
+        roomType = "Single";
       },
 
       selectRoom2() {
-        roomType = "queens"
+        roomType = "Queens"
       },
 
       selectRoom3() {
-        roomType = "kings"
+        roomType = "Kings"
       },
 
       selectRoom4() {
-        roomType = "apartment"
+        roomType = "Apartment"
       },
 
       async savetofs() {
@@ -107,7 +108,10 @@ export default {
       },
 
       passgenerate() {
-        this.$router.push('/arrivals/passgeneration')
+        // this.$router.push('/arrivals/passgeneration')
+        this.$router.push({name: "PassGenerationPage", 
+        path: '/arrivals/passgeneration', params: {
+          roomtype: roomType}})
       }
   }
 }

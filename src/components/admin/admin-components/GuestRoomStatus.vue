@@ -14,18 +14,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td data-label="Room Number"> Room Number </td>
-        <td data-label="Status"> Status </td>
-        <td data-label="Type"> Room Type </td>
-        <td data-label="Cehck Out"> DD-MM-YYYY </td>
-        <td data-label="Requests"> What are the requests </td>
-        <td class="actions-cell">
-          <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
-          </jb-buttons>
-        </td>
-      </tr>
+      <template v-for="(col) in table" :key="col.RoomNumber">
+        <GuestEntry
+          :RoomNumber="col.RoomNumber"
+          :Status="col.Status"
+          :RoomType="col.RoomType"
+          :Checkout="col.Checkout"
+          :Requests="col.Requests">
+        </GuestEntry>
+      </template>
     </tbody>
 </table>
 </template>
@@ -33,16 +30,16 @@
 <script>
 import { ref } from 'vue'
 import { mdiPencilOutline } from '@mdi/js'
-import JbButtons from '../../plugins/JbButtons'
-import JbButton from '../../plugins/JbButton'
+//import JbButtons from '../../plugins/JbButtons'
+//import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
+import GuestEntry from "./GuestEntry";
 
 export default {
   name: "GuestRoomStatus.vue",
 
   components: {
-    JbButtons,
-    JbButton,
+    GuestEntry,
     ModalBox
   },
 
@@ -54,6 +51,34 @@ export default {
         isModalActive
       }
   },
+
+  data() {
+    return {
+      table: [
+        {
+          RoomNumber: 'String',
+          Status: 'String',
+          RoomType: 'String',
+          Checkout: 'String',
+          Requests: 'String'
+        },
+        {
+          RoomNumber: 'String',
+          Status: 'String',
+          RoomType: 'String',
+          Checkout: 'String',
+          Requests: 'String'
+        },
+        {
+          RoomNumber: 'String',
+          Status: 'String',
+          RoomType: 'String',
+          Checkout: 'String',
+          Requests: 'String'
+        }
+      ]
+    }
+  }
 }
 </script>
 

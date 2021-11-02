@@ -30,6 +30,7 @@ const routes = [
     },
     path: '/arrivals/roomselection',
     name: 'RoomSelectionPage',
+    props: true,
     component: () => import('../views/arrivals/RoomSelectionPage')
   },
 
@@ -40,6 +41,7 @@ const routes = [
     },
     path: '/arrivals/passgeneration',
     name: 'PassGenerationPage',
+    props: true,
     component: () => import('../views/arrivals/PassGenerationPage')
   },
 
