@@ -236,9 +236,10 @@ const routes = [
     path: '/entertain/games',
     name: 'Games',
     component: () => import('../components/guest/entertainments/Games')
-  }
+  },
+
   //Guest Side Routers
-  
+
   {
     meta: {
         title: 'Meals'
@@ -246,8 +247,8 @@ const routes = [
     path: '/meals',
     name: 'meals',
     component: () => import('../components/guest/Meals')
-   }, 
-     
+   },
+
    {
     meta: {
         title: 'Shop'
