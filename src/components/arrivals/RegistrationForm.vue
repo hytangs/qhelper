@@ -88,6 +88,11 @@ import Control from '../plugins/Control'
 
 export default {
 
+  props: {
+    fname: String,
+    email: Number
+  },
+
   components:{
     FullScreenSection,
     CardComponent,
@@ -100,7 +105,30 @@ export default {
 
   methods: {
       roomselect() {
-        this.$router.push('/arrivals/roomselection')
+        this.$router.push({name: "RoomSelectionPage", 
+        path: '/arrivals/roomselection', params: {
+          fname: document.getElementById("fname").value,
+          email: document.getElementById("email").value}})
+      },
+
+      // need to update based on the quarantine period policy
+      checkQuarantine(cod) {
+        if (["Australia", "Austria", "Bahrain", "Belgium", "Bhutan", "Brunei", "Bulgaria", 
+        "Canada", "Croatia", "Cyprus", "Czech Republic", "Denmark" , "Fiji", "France" , 
+        "Finland", "Germany", "Greece", "Iceland", "Ireland", "Italy", "Japan", "Liechtenstein", 
+        "Luxembourg", "Malta", "New Zealand", "Norway", "Poland", "Portugal", "the Republic of Korea", 
+        "Saudi Arabia", "Slovakia", "Spain", "Sweden", "Switzerland", "Turkey", "The Netherlands", 
+        "The United Kingdom", "The United States", "Vatican City"].includes(cod)) {
+          return "7";
+        } else if (["Cambodia", "Egypt", "Estonia", "Hungary", "Indonesia", "Israel", "Latvia", "Lithuania", 
+        "Malaysia", "Maldives", "Mongolia", "Qatar", "Rwanda", "Samoa", "Seychelles", "Slovenia", "South Africa", 
+        "Tonga", "UAE", "Vietnam"].includes(cod)) {
+          return "10";
+        } else if (["Hong Kong", "Macao", "Mainland China", "Taiwan"].includes(cod)) {
+          return "1";
+        } else {
+          return "14";
+        }
       },
 
       async savetofs() {
@@ -210,7 +238,9 @@ export default {
           } catch (error) {
             console.error("Error adding document: ", error);
           } finally {
-            alert(" Welcome " + gender + " " + fname + "! Form submitted successfully.")
+            alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
+            alert("Based on the latest quarantine policy, your quarantine period will be " +
+            this.checkQuarantine(cod) +" days.")
             this.roomselect()
           }
         }

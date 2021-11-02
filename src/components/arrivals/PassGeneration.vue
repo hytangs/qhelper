@@ -12,7 +12,7 @@
             </div>
             <br>
             <text> <b>
-            Room Type: {{roomType}} <br>
+            Room Type: {{this.$route.params.roomtype}} <br>
             Valid Until: {{time}} <br>
             For One Time Use Only </b>
             </text>
