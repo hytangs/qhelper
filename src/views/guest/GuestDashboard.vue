@@ -40,12 +40,6 @@
   <div class="shop_page" id="shops">
     <div class="white_shop_area"><Shop/></div>
   </div>
-  <!--<div class = "costs_area" id = "costs">
-    <costs/>
-  </div>-->
-  <div class = "entertainment_area" id = "entertainment">
-    <div class="white_entertainment_area"><Entertainment/></div>
-  </div>
   </body>
 </template>
 
@@ -53,7 +47,6 @@
 import Home from '../../components/guest/Home'
 import Meals from '../../components/guest/Meals'
 import Shop from '../../components/guest/Shop'
-import Entertainment from '../../components/guest/Entertainment'
 
 /*const date = new Date();*/
 
@@ -62,8 +55,7 @@ export default {
   components: {
     Home,
     Meals,
-    Shop,
-    Entertainment
+    Shop
   }
 
   /*data() {

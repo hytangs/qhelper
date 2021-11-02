@@ -268,6 +268,15 @@ const routes = [
     name: 'contact',
     component: () => import('../components/guest/Contact')
    }, 
+
+   {
+    meta: {
+        title: 'Entertainment'
+    },
+    path: '/entertainment',
+    name: 'entertainment',
+    component: () => import('../components/guest/Entertainment')
+   }, 
    
 ]
 

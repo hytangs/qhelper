@@ -1,47 +1,46 @@
-<!--<template>
-    <div class = "flex flex-col justify-between size">
-        <div class="container">
-        <div class="p-6">
-        <h3> You Must Remember This </h3>
-        </div>
-        <div class = "horizontal">
-        <iframe class = "pc" src="https://open.spotify.com/embed/episode/0V325sPEOQ6iTQbJmk26Vc" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        </div>
-        </div>
-        <div class="container">
-            <div class="p-6">
-            <h3> The Daily </h3>
-            </div>
-            <div class="horizontal">
-            <iframe class = "pc" src="https://open.spotify.com/embed/episode/3qMnfMUhAMEwPEOCyQPyQL" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-            </div>
-        </div>
-         <div class = "container">
-        <div class="p-6">
-        <h3> Rotten Mango </h3>
-        </div>
-        <div class="horizontal">
-        <iframe class = "pc" src="https://open.spotify.com/embed/show/2DZwvzn6Z3xCFZrwZGDrbj" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-        </div>
-        </div>
-    </div>
-</template>-->
 <template>
-    <div class="show">
-        <div class="container" hoverable="">
+    <div class="podcasts">
+    <Splide :options="{ rewind: true }">
+    <SplideSlide>
+        <div class="p-6" hoverable="">
              <h3> You Must Remember This </h3>
         <iframe class = "pc" src="https://open.spotify.com/embed/episode/0V325sPEOQ6iTQbJmk26Vc" scrolling="no" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>           
         </div>
-        <div class="container" hoverable="">
+        <div class="p-6" hoverable="">
             <h3> The Daily </h3>
             <iframe class = "pc" src="https://open.spotify.com/embed/episode/3qMnfMUhAMEwPEOCyQPyQL" scrolling="no" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
-        <div class="container" hoverable="">
+        <div class="p-6" hoverable="">
             <h3> Rotten Mango </h3>
         <iframe class = "pc" src="https://open.spotify.com/embed/show/2DZwvzn6Z3xCFZrwZGDrbj" scrolling="no" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
+    </SplideSlide>
+    <SplideSlide>
+        <div class="p-6" hoverable="">
+             <h3> Teenager Therapy </h3>
+             <iframe class="pc" src="https://open.spotify.com/embed/episode/7MqxCYBTPMF1SetYvMbV1u?utm_source=generator" scrolling="no" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+        <div class="p-6" hoverable="">
+            <h3> Think Fast, Talk Smart </h3>
+            <iframe class="pc" src="https://open.spotify.com/embed/episode/38MMbHeBO9KfsmiK5lTOZY?utm_source=generator" scrolling="no" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+        <div class="p-6" hoverable="">
+            <h3> The Joe Rogan Experience </h3>
+            <iframe class="pc" src="https://open.spotify.com/embed/episode/72Q3cyEAHXmGGLefFJ40Hl?utm_source=generator" scrolling="no" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+    </SplideSlide></Splide>
     </div>
 </template>
+
+<script>
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import { defineComponent } from 'vue';
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
+
+export default defineComponent( {
+  components: { Splide, SplideSlide },
+} );
+</script>
 
 <style scoped>
 
@@ -57,18 +56,18 @@
 
 .pc {
     border-radius: 12px;
-    width: 52%;
-    margin-left: 24%;
+    width: 100%;
     height: auto;
     box-shadow: 8px 8px 8px -8px grey;
-    margin-top: 1rem;    
+    margin-top: 1rem;
 }
 
-.show{
+.podcasts{
     display: grid;
     grid-template-rows: repeat(3,minmax(0,1fr), "horizontal");
     height: 60vh;
-    gap:1rem;
-    width: 100%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: -1%;
 }
 </style>
