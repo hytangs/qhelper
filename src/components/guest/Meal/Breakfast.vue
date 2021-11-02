@@ -1,4 +1,4 @@
-<template>
+<!--<template>
     <div id="Breakfast">
         <div class="grid grid-cols-2 gap-6 lg:grid-cols-3 mb-6">
                 <div class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow">
@@ -102,3 +102,4 @@ img {
     box-shadow: 0px 8px 8px -8px grey;
 }
 </style>
+-->
