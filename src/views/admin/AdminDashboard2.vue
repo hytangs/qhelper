@@ -78,11 +78,33 @@
       </div>
     </card-component>
 
-    <card-component :icon="mdiAccountMultiple" class="mb-12" title="Internal Communication" has-table>
+    <!-- <card-component :icon="mdiAccountMultiple" class="mb-12" title="Internal Communication" has-table>
       <internal-communication />
-    </card-component>
+    </card-component> -->
     <card-component :icon="mdiAccountMultiple" class="mb-12" title="Assistance Request" has-table>
       <assistance-request />
+    </card-component>
+
+    <card-component
+      title="Booking Summary"
+      :icon="mdiFinance"
+      :header-icon="mdiReload"
+      class="mb-6"
+      @header-icon-click="fillPieChartData, fillPieChartData2"
+    >
+      <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
+        <card-component class="mb-6" title="International Guests">
+          <div v-if="piechartData">
+            <pie-chart :data="piechartData" class="h-96" />
+          </div>
+        </card-component>
+
+        <card-component class="mb-6" title="Domestic Guests">
+          <div v-if="piechartData2">
+            <pie-chart :data="piechartData2" class="h-96" />
+          </div>
+        </card-component>
+      </div>
     </card-component>
 
   </main-section>
@@ -102,7 +124,7 @@
 
 <script>
 // @ is an alias to /src
-import {computed, ref} from "vue";
+import {computed, ref, onMounted} from "vue";
 import { useStore } from "vuex";
 import {
   mdiAccountMultiple,
@@ -118,6 +140,8 @@ import {
   mdiBedEmpty,
   mdiTableAccount
 } from "@mdi/js";
+import * as charts from "../../../src/components/admin/admin-components/Charts/charts";
+import PieChart from "../../../src/components/admin/admin-components/Charts/PieChart";
 import MainSection from "../../../src/components/plugins/MainSection";
 import TitleBar from "../../../src/components/plugins/TitleBar";
 import HeroBar from "../../../src/components/plugins/HeroBar";
@@ -131,7 +155,7 @@ import AsideMenu from "../../../src/components/plugins/AsideMenu";
 import FooterBar from "../../../src/components/plugins/FooterBar";
 import Overlay from "../../../src/components/plugins/Overlay";
 import localsession from "../../store/localsession";
-import InternalCommunication from "../../../src/components/admin/admin-components/InternalCommunication";
+//import InternalCommunication from "../../../src/components/admin/admin-components/InternalCommunication";
 import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
 import connector from "../../connector";
 
@@ -149,8 +173,9 @@ export default {
     AsideMenu,
     NavBar,
     CardComponent,
-    InternalCommunication,
+    // InternalCommunication,
     AssistanceRequest,
+    PieChart,
   },
   setup() {
     const titleStack = ref(["Admin", "Dashboard"]);
@@ -160,6 +185,23 @@ export default {
     const darkMode = computed(() => store.state.darkMode);
 
     const zone = localsession.methods.getAdminZone();
+
+    const piechartData = ref(null);
+    const piechartData2 = ref(null);
+
+    const fillPieChartData = () => {
+      piechartData.value = charts.samplePieChartData();
+    };
+
+    const fillPieChartData2 = () => {
+      piechartData2.value = charts.samplePieChartData2();
+    };
+
+    onMounted(() => {
+      fillPieChartData(),
+      fillPieChartData2();
+    });
+
 
     let meta = {
       "totalrooms" : 4
@@ -184,7 +226,11 @@ export default {
       menu,
       zone,
       meta,
-      store
+      store,
+      piechartData,
+      fillPieChartData,
+      piechartData2,
+      fillPieChartData2,
     };
   },
 
