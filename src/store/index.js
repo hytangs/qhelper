@@ -26,8 +26,14 @@ export default createStore({
     history: [],
 
     /* Access Control */
-    zones: false
+    zones: false,
+
+    /* Meta Admin Data */
+    totalrooms: 0,
+    vacantrooms: 0,
+    occupiedrooms: 0
   },
+
   mutations: {
     /* A fit-them-all commit */
     basic (state, payload) {
@@ -45,6 +51,12 @@ export default createStore({
       if (payload.avatar) {
         state.userAvatar = payload.avatar
       }
+    },
+
+    meta (state, {meta}) {
+      state.totalrooms = meta.totalrooms
+      state.vacantrooms = meta.vacantrooms
+      state.occupiedrooms = meta.occupiedrooms
     }
   },
   actions: {

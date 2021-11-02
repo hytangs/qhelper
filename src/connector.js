@@ -1,6 +1,6 @@
 
 import firebaseApp from "./firebase";
-import {getFirestore, doc, getDoc} from "firebase/firestore";
+import {getFirestore, doc, getDoc, collection, getDocs} from "firebase/firestore";
 import sha256 from "./components/plugins/helpers/sha256"
 
 const db = getFirestore(firebaseApp);
@@ -31,6 +31,21 @@ export default {
                 return await docSnap.data().zone;
             } else {
                 return 0;
+            }
+        },
+        async getMetaTuple() {
+            const roomMeta = await getDocs(collection(db, "RoomMeta"));
+            var totalrooms = 0
+            var vacantrooms = 0
+            roomMeta.forEach((doc) => {
+                totalrooms += parseInt(doc.data().total)
+                vacantrooms += parseInt(doc.data().vacant)
+            });
+            var occupiedrooms = totalrooms - vacantrooms
+            return {
+                "totalrooms":totalrooms,
+                "occupiedrooms":occupiedrooms,
+                "vacantrooms":vacantrooms
             }
         }
     }

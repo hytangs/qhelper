@@ -30,15 +30,15 @@
           trend-type="down"
           color="text-green-500"
           :icon="mdiAccountMultiple"
-          :number="80"
-          label="Current Guests"
+          :number=store.state.totalrooms
+          label="Total Rooms"
         />
         <card-widget
-          trend="6%"
+          trend=" "
           trend-type="up"
           color="text-green-500"
           :icon="mdiBed"
-          :number="72"
+          :number=store.state.occupiedrooms
           label="Occupied Rooms"
         />
         <card-widget
@@ -46,7 +46,7 @@
           trend-type="down"
           color="text-green-500"
           :icon="mdiBedEmpty"
-          :number="48"
+          :number=store.state.vacantrooms
           label="Vacant Rooms"
         />
         <card-widget
@@ -84,7 +84,7 @@
     <card-component :icon="mdiAccountMultiple" class="mb-12" title="Assistance Request" has-table>
       <assistance-request />
     </card-component>
-    
+
   </main-section>
   <main-section v-else>
     <h1 class="text-2xl text-gray-700 hover:text-gray-900">
@@ -102,7 +102,7 @@
 
 <script>
 // @ is an alias to /src
-import { computed, ref } from "vue";
+import {computed, ref} from "vue";
 import { useStore } from "vuex";
 import {
   mdiAccountMultiple,
@@ -133,6 +133,7 @@ import Overlay from "../../../src/components/plugins/Overlay";
 import localsession from "../../store/localsession";
 import InternalCommunication from "../../../src/components/admin/admin-components/InternalCommunication";
 import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
+import connector from "../../connector";
 
 export default {
   name: "AdminDashboard",
@@ -160,6 +161,11 @@ export default {
 
     const zone = localsession.methods.getAdminZone();
 
+    let meta = {
+      "totalrooms" : 4
+    }
+    console.log(meta)
+
     return {
       titleStack,
       darkMode,
@@ -177,8 +183,16 @@ export default {
       mdiTableAccount,
       menu,
       zone,
+      meta,
+      store
     };
   },
+
+  async created() {
+    const store = useStore()
+    let meta = await connector.methods.getMetaTuple().then(x => x)
+    store.commit('meta' , {meta})
+  }
 };
 </script>
 
