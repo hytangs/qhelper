@@ -6,17 +6,20 @@
     <td data-label="Check Out"> {{ Checkout }} </td>
     <td data-label="Requests"> {{ Requests }} </td>
     <td class="actions-cell">
-      <jb-buttons type="justify-start lg:justify-end" no-wrap>
-        <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
-      </jb-buttons>
+      <JbButtons type="justify-start lg:justify-end" no-wrap>
+        <JbButton class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
+      </JbButtons>
     </td>
   </tr>
 </template>
 
 <script>
+import JbButton from '../../plugins/JbButton'
+import JbButtons from '../../plugins/JbButtons'
+
 export default {
   name: "GuestEntry",
-
+  components: {JbButtons, JbButton},
   props: {
     RoomNumber: String,
     Status: String,
@@ -24,6 +27,13 @@ export default {
     Checkout: String,
     Requests: String
   },
+
+  setup() {
+    return {
+      JbButton,
+      JbButtons
+    }
+  }
 }
 
 </script>
