@@ -121,7 +121,7 @@ const routes = [
     },
     path: '/admin/rooms',
     name: 'rooms',
-    component: () => import('../views/admin/GuestService')
+    component: () => import('../views/admin/Rooms')
   },
   {
     meta: {
@@ -258,7 +258,7 @@ const routes = [
     path: '/shop',
     name: 'shop',
     component: () => import('../components/guest/Shop')
-   }, 
+   },
 
    {
     meta: {
@@ -267,8 +267,7 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: () => import('../components/guest/Contact')
-   }, 
-
+   },
    {
     meta: {
         title: 'Entertainment'
@@ -277,7 +276,7 @@ const routes = [
     name: 'entertainment',
     component: () => import('../components/guest/Entertainment')
    }, 
-   
+
 ]
 
 const router = createRouter({

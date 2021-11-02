@@ -12,9 +12,6 @@
       <nav-bar-item type="hidden lg:flex xl:hidden" @click.prevent="menuOpenLg">
         <icon :path="mdiMenu" size="24" />
       </nav-bar-item>
-      <nav-bar-item>
-        <nav-bar-search />
-      </nav-bar-item>
     </div>
     <div class="flex-none items-stretch flex h-14 lg:hidden">
       <nav-bar-item class="items-center flex" @click.prevent="menuNavBarToggle">
@@ -30,41 +27,19 @@
         class="max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex lg:items-stretch lg:justify-end lg:ml-auto"
       >
         <nav-bar-menu has-divider>
-          <nav-bar-item-label :icon="mdiMenu" label="Sample menu"/>
-
-          <template #dropdown>
-            <nav-bar-item>
-              <nav-bar-item-label :icon="mdiClockOutline" label="Item One"/>
-            </nav-bar-item>
-            <nav-bar-item>
-              <nav-bar-item-label :icon="mdiCloud" label="Item Two"/>
-            </nav-bar-item>
-            <nav-bar-menu-divider/>
-            <nav-bar-item>
-              <nav-bar-item-label :icon="mdiCrop" label="Item Last"/>
-            </nav-bar-item>
-          </template>
-        </nav-bar-menu>
-        <nav-bar-menu has-divider>
           <user-avatar class="w-6 h-6 mr-3 inline-flex" />
           <div>
             <span>{{ userName }}</span>
           </div>
 
           <template #dropdown>
-            <nav-bar-item to="/profile">
-              <nav-bar-item-label :icon="mdiAccount" label="My Profile"/>
-            </nav-bar-item>
             <nav-bar-item>
               <nav-bar-item-label :icon="mdiCogOutline" label="Settings"/>
             </nav-bar-item>
-            <nav-bar-item>
+            <nav-bar-item href="https://outlook.com">
               <nav-bar-item-label :icon="mdiEmail" label="Messages"/>
             </nav-bar-item>
             <nav-bar-menu-divider/>
-            <nav-bar-item>
-              <nav-bar-item-label :icon="mdiLogout" label="Log Out"/>
-            </nav-bar-item>
           </template>
         </nav-bar-menu>
         <nav-bar-item @click.prevent="toggleLightDark" has-divider is-desktop-icon-only>
@@ -109,12 +84,12 @@ import NavBarMenu from './NavBarMenu'
 import NavBarMenuDivider from './NavBarMenuDivider'
 import UserAvatar from './UserAvatar'
 import Icon from './Icon'
-import NavBarSearch from './NavBarSearch'
+//import NavBarSearch from './NavBarSearch'
 
 export default {
   name: 'NavBar',
   components: {
-    NavBarSearch,
+    //NavBarSearch,
     UserAvatar,
     NavBarMenu,
     NavBarItem,

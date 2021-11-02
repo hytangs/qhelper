@@ -9,27 +9,7 @@
   <title-bar :title-stack="titleStack" />
   <hero-bar>Guest Service</hero-bar>
   <main-section>
-    <br>
-    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3 ">
-      <GuestRoomStatus/>
-      <div class="col-span-2">
-        <card-component class="mb-6" title="Room Status" has-table>
-          <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 ">
-            <field>
-              <control placeholder="Room Number" v-model="roomNumber" />
-            </field>
-            <field>
-              <control :options="roomStatusOptions" v-model="roomNumber" />
-            </field>
-            <field>
-              <control :options="roomTypeOptions" v-model="roomType" />
-            </field>
-            <jb-buttons type="justify-center lg:justify-center" no-wrap>
-              <jb-button color="info" label="Search" v-on:click="search()"/>
-            </jb-buttons>
-          </div>
-        </card-component>
-      </div>
+    <title-sub-bar :icon="mdiChartPie" title="Sales Data overview" />
 
       <card-component class="mb-6" title="Room Types & Rates" has-table>
         <GuestRoomType/>
@@ -37,7 +17,7 @@
           <jb-button color="info" label="Add New Room Types" v-on:click="isModalActive = true, addNewRoom()"/>
         </jb-buttons>
       </card-component>
-  </div>
+
 
   <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
       <card-component class="mb-6" title="Request / Feedback" has-table>
@@ -59,8 +39,6 @@ import NavBar from '../../../src/components/plugins/NavBar'
 import AsideMenu from '../../../src/components/plugins/AsideMenu'
 import FooterBar from '../../../src/components/plugins/FooterBar'
 import Overlay from '../../../src/components/plugins/Overlay'
-import Field from '../../components/plugins/Field'
-import Control from '../../components/plugins/Control'
 import JbButton from '../../components/plugins/JbButton'
 import JbButtons from '../../components/plugins/JbButtons'
 import ModalBox from '../../components/plugins/ModalBox'
@@ -71,6 +49,7 @@ import GuestRoomBroadcast from '../../../src/components/admin/admin-components/G
 import GuestRoomRequest from '../../../src/components/admin/admin-components/GuestRoomRequest'
 import GuestRoomStatus from '../../../src/components/admin/admin-components/GuestRoomStatus'
 import GuestRoomType from '../../../src/components/admin/admin-components/GuestRoomType'
+import TitleSubBar from "../../../src/components/plugins/TitleSubBar";
 import {ref} from "vue";
 
 export default {
@@ -80,8 +59,6 @@ export default {
     FooterBar,
     AsideMenu,
     NavBar,
-    Field,
-    Control,
     ModalBox,
     JbButton,
     JbButtons,
@@ -91,7 +68,8 @@ export default {
     GuestRoomBroadcast,
     GuestRoomRequest,
     GuestRoomStatus,
-    GuestRoomType
+    GuestRoomType,
+    TitleSubBar
   },
   setup() {
     const titleStack = ref(['Admin', 'Rooms'])
