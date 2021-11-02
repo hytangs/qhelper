@@ -56,25 +56,25 @@ export default {
     return {
       table: [
         {
-          RoomNumber: 'String',
+          RoomNumber: '1101',
           Status: 'String',
           RoomType: 'String',
-          Checkout: 'String',
+          Checkout: '00000000',
           Requests: 'String'
         },
         {
-          RoomNumber: 'String',
+          RoomNumber: '1102',
           Status: 'String',
           RoomType: 'String',
           Checkout: 'String',
-          Requests: 'String'
+          Requests: 'wer'
         },
         {
-          RoomNumber: 'String',
+          RoomNumber: '1103',
           Status: 'String',
           RoomType: 'String',
           Checkout: 'String',
-          Requests: 'String'
+          Requests: 'sd'
         }
       ]
     }
