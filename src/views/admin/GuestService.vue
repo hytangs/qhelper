@@ -11,6 +11,7 @@
   <main-section>
     <br>
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3 ">
+      <GuestRoomStatus/>
       <div class="col-span-2">
         <card-component class="mb-6" title="Room Status" has-table>
           <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 ">
@@ -27,10 +28,8 @@
               <jb-button color="info" label="Search" v-on:click="search()"/>
             </jb-buttons>
           </div>
-
         </card-component>
       </div>
-      <GuestRoomStatus/>
 
       <card-component class="mb-6" title="Room Types & Rates" has-table>
         <GuestRoomType/>
