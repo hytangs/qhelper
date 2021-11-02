@@ -256,7 +256,17 @@ const routes = [
     path: '/shop',
     name: 'shop',
     component: () => import('../components/guest/Shop')
-   },
+   }, 
+
+   {
+    meta: {
+        title: 'Contact'
+    },
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../components/guest/Contact')
+   }, 
+   
 ]
 
 const router = createRouter({
