@@ -18,7 +18,7 @@
     </thead>
     
     <tbody>
-      <tr>
+      <!-- <tr>
         <td data-label="Guest Name"> Howell Hand </td>
         <td data-label="Room"> 0221 </td>
         <td data-label="Payment Amount"> 920 </td>
@@ -46,7 +46,7 @@
             <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
           </jb-buttons>
         </td>
-      </tr>
+      </tr> -->
     </tbody>
 </table>
 </template>
@@ -54,8 +54,8 @@
 <script>
 import { ref } from 'vue'
 import { mdiPencilOutline } from '@mdi/js'
-import JbButtons from '../../plugins/JbButtons'
-import JbButton from '../../plugins/JbButton'
+//import JbButtons from '../../plugins/JbButtons'
+//import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
 import firebaseApp from "../../../firebase.js";
 import { getFirestore } from "firebase/firestore";
@@ -66,8 +66,8 @@ export default {
   name: "PaymentHistory",
 
   components: {
-    JbButtons,
-    JbButton,
+    //JbButtons,
+    //JbButton,
     ModalBox
   },
 
@@ -142,7 +142,7 @@ export default {
       await deleteDoc(doc(db, "Payment", x));
       console.log("Document successfully deleted!", x);
       let tb = document.getElementById("payment");
-      if (tb.rows.length > 1) {
+      while (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
       display();

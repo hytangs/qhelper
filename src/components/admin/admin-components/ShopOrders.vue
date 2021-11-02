@@ -166,7 +166,7 @@ export default {
       await deleteDoc(doc(db, "ShopOrder", x));
       console.log("Document successfully deleted!", x);
       let tb = document.getElementById("shop orders");
-      if (tb.rows.length > 1) {
+      while (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
       display();
@@ -177,7 +177,7 @@ export default {
       await updateDoc(doc(db, "ShopOrder", x), {OrderStatus: "Order Delivered"})
       console.log("Document successfully updated!", x);
       let tb = document.getElementById("shop orders");
-      if (tb.rows.length > 1) {
+      while (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
       display();
