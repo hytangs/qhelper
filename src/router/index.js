@@ -237,6 +237,25 @@ const routes = [
     name: 'Games',
     component: () => import('../components/guest/entertainments/Games')
   }
+  //Guest Side Routers
+  
+  {
+    meta: {
+        title: 'Meals'
+    },
+    path: '/meals',
+    name: 'meals',
+    component: () => import('../components/guest/Meals')
+   }, 
+     
+   {
+    meta: {
+        title: 'Shop'
+    },
+    path: '/shop',
+    name: 'shop',
+    component: () => import('../components/guest/Shop')
+   },
 ]
 
 const router = createRouter({

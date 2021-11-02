@@ -32,10 +32,10 @@
   </header>
   <section class="banner"></section>
   <div class = "home_area" id="home">
-    <div class = "white_home_area"><Home/></div>
+    <div class = "white_home_area"><br><br><br><Home/></div>
   </div>
   <div class = "meal_page" id="meals">
-    <Meals/>
+    <div class="white_shop_area"><Meals/></div>
   </div>
   <div class="shop_page" id="shops">
     <div class="white_shop_area"><Shop/></div>
@@ -200,7 +200,7 @@ header.sticky .color {
   flex-wrap: wrap;
   flex-direction: row;
   width:100%;
-  height: 100vh;
+  height: 100%;
   background-color:whitesmoke;
 }
 
@@ -212,7 +212,7 @@ header.sticky .color {
   flex-wrap: wrap;
   flex-direction: row;
   width:100%;
-  height: 100vh;
+  height: 100%;
   background-color:whitesmoke;
 }
 
