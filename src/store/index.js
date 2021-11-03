@@ -33,12 +33,20 @@ export default createStore({
     vacantrooms: 0,
     occupiedrooms: 0,
 
-    /* JSON Default Storage */
+    /* Room Default JSON Storage */
     roomTypeDefault: [{
       roomType: 'Room Type Undefined',
       roomVacancy: '0',
       roomTotal: '0',
       roomPrice: '0'
+    }],
+
+    roomGuestDefault: [{
+      roomNo: '0000',
+      roomGuestName: "First Last",
+      roomStatus: 'Occupied',
+      roomCheckout: 'Undefined',
+      roomType: 'Undefined'
     }]
   },
 
@@ -69,7 +77,12 @@ export default createStore({
 
     alterroomtype (state, meta) {
       state.roomTypeDefault = meta
+    },
+
+    alterroomguest (state, meta) {
+      state.roomGuestDefault = meta
     }
+
   },
   actions: {
     asideMobileToggle ({ commit, state }, payload = null) {

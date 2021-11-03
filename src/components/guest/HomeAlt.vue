@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a href = "#landing" class = "logo text-3xl"> QHELPER </a>
+    <a href = "#guest/dashboard" class = "logo text-3xl"> QHELPER </a>
     <ul>
       <li><a class = "title" href = "#home">Home</a></li>
       <li><a class = "title" href = "#meals">Meals</a></li>

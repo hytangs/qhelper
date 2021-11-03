@@ -1,13 +1,13 @@
 <template>
-  <body>
+  <body ref ="top">
   <header>
-    <a href = "#landing" class = "logo text-3xl"> QHELPER </a>
+    <a @click="scrollMeTo('top')" class = "logo text-3xl"> QHELPER </a>
     <ul>
       <li><a class = "title" @click="scrollMeTo('home')">Home</a></li>
       <li><a class = "title" href = "#meals">Meals</a></li>
       <li><a class = "title" href = "#shop">Shop</a></li>
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
-      <li><a class = "title" href = "#">Checkout</a></li>
+      <li><a class = "title" href = "#checkout">Checkout</a></li>
       <li><a class = "title" href = "#contact">Contact</a></li>
     </ul>
     <!--<div class="date">

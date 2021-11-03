@@ -108,7 +108,7 @@ export default {
 
     const isAsideMobileExpanded = computed(() => store.state.isAsideMobileExpanded)
 
-    const userName = computed(() => store.state.userName)
+    const userName = computed(() => localsession.methods.getAdminName())
 
     const menuToggleMobileIcon = computed(() => isAsideMobileExpanded.value ? mdiBackburger : mdiForwardburger)
 

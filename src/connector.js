@@ -59,13 +59,16 @@ export default {
                         output.push({
                             roomNo: key,
                             roomStatus: x[key],
-                            roomType: x['name']
+                            roomType: x['name'],
+                            roomGuestName: 'Not yet ready',
+                            roomCheckout: 'N/A'
                         })
                     }
                 }
                 outputMeta = outputMeta.concat(output)
             });
-            console.log(outputMeta)
+            outputMeta.sort((x, y) => (x.roomNo - y.roomNo))
+            return outputMeta
         },
         async getRoomTypeInfo() {
             const roomMeta = await getDocs(collection(db, "RoomMeta"));

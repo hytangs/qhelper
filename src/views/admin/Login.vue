@@ -65,7 +65,6 @@ export default {
       // eslint-disable-next-line no-unused-vars
       await connector.methods.checkPwd(form.login, form.pass).then(result => {
         if (result === true) {
-          console.log(result)
           connector.methods.getZone(form.login).then(zone => {
             console.log(zone)
             LocalSession.methods.initializeAdminSession(form.login, form.pass, zone)
