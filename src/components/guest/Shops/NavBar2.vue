@@ -45,6 +45,47 @@
       <p>Have submitted shop orders today already!</p>
     </div>
   </modal-box>
+  <modal-box
+    v-model="isModalDangerActive"
+    large-title="Place Order"
+    button="danger"
+  >
+    <div v-if="this.total > 0 & orderedAlready == false">
+      <p>
+        <b>Total: ${{ parseFloat(this.total).toFixed(2) }}</b>
+      </p>
+      <field label="Name">
+        <control placeholder="Your Name" id="name" />
+      </field>
+      <field label="Room">
+        <control placeholder="Your Room Number" id="room" />
+      </field>
+      <field label="PaymentMethod">
+        <control
+          placeholder="--Choose Below--"
+          :options="paymentMethods"
+          id="paymentMethod"
+        />
+      </field>
+      <jb-buttons>
+        <jb-button
+          color="info"
+          label="Submit Order"
+          @click="savetofs()"
+        />
+      </jb-buttons>
+    </div>
+    <div v-if="this.total == 0 & orderedAlready == false">
+      <p>
+        <b>No items ordered yet!</b>
+      </p>
+    </div>
+    <div v-if="orderedAlready == true">
+      <p>
+        <b>Have submitted shop orders today already!</b>
+      </p>
+    </div>
+  </modal-box>
   <div id="logged2">
     <div id="nav2">
       <a @click="changeShopSection(1)">Mains</a> |
@@ -80,7 +121,10 @@
           View my Cart
         </button>
         &nbsp;
-        <button class="clear-cart btn btn-danger" @click="savetofs()">
+        <button
+          class="clear-cart btn btn-danger"
+          @click="(isModalDangerActive = true), totalCost()"
+        >
           Order Now
         </button>
       </div>
@@ -120,11 +164,16 @@
 
 <script>
 import { ref } from "vue";
+import moment from "moment";
 import Mains from "./Mains";
 import Snacks from "./Snacks";
 import Drinks from "./Drinks";
 import Supplies from "./Supplies";
 import ModalBox from "../../plugins/ModalBox";
+import Field from "../../plugins/Field";
+import Control from "../../plugins/Control";
+import JbButton from '../../plugins/JbButton'
+import JbButtons from '../../plugins/JbButtons'
 
 import firebaseApp from "../../../firebase.js";
 import { getFirestore } from "firebase/firestore";
@@ -132,7 +181,7 @@ import { doc, setDoc } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
-  components: { Mains, Snacks, Drinks, Supplies, ModalBox },
+  components: { Mains, Snacks, Drinks, Supplies, ModalBox, Field, Control, JbButton, JbButtons},
 
   data() {
     return {
@@ -143,17 +192,17 @@ export default {
     async savetofs() {
       if (this.orderedAlready == false) {
         try {
-          const docRef = await setDoc(doc(db, "ShopOrder", "0101"), {
-            Name: "John",
-            Room: 1234,
+          var name = document.getElementById("name").value
+          var room = document.getElementById("room").value
+          var paymentMethod = document.getElementById("paymentMethod").value
+          const docRef = await setDoc(doc(db, "ShopOrder", room), {
+            Name: name,
+            Room: room,
             ItemsOrdered: "Ramyun: " + String(this.ramyun),
             PaymentAmount: parseFloat(this.total).toFixed(2),
-            PaymentMethod: "Mastercard",
+            PaymentMethod: paymentMethod,
             OrderStatus: "Order Received",
-            TimeOfPayment: new Date()
-              .toJSON()
-              .slice(0, 10)
-              .replace(/-/g, "/"),
+            TimeOfPayment: moment(String(new Date())).format('MM/DD/YYYY')
           });
           console.log(docRef);
           this.orderedAlready = true;
@@ -240,7 +289,15 @@ export default {
   },
   setup() {
     const isModalActive = ref(false);
+    const isModalDangerActive = ref(false);
     const orderedAlready = ref(false);
+    const paymentMethods = [
+      "VISA",
+      "Mastercard",
+      "American Express",
+      "Alipay/Wechat",
+      "Cash",
+    ];
     var ramyun = 0;
     var bento = 0;
     var nuggets = 0;
@@ -270,6 +327,8 @@ export default {
       isModalActive,
       total,
       orderedAlready,
+      isModalDangerActive,
+      paymentMethods,
     };
   },
 };

@@ -22,7 +22,7 @@
 
   <div id="mealpage">
     <br>
-    <h1>Menu for {{new Date().toJSON().slice(0,10).replace(/-/g,'/')}}</h1>
+    <h1>Menu for {{currentDate}}</h1>
     <br>
     <div class="form_container">
       <form v-bind:key="k" v-for="(meal, k) in mealsData.filter((i)=>{return i.visible;})">
@@ -98,6 +98,7 @@
 
 <script>
 import {InformationCircleIcon, XIcon} from '@heroicons/vue/solid'
+import moment from 'moment'
 
 export default {
   name: "meals",
@@ -115,6 +116,9 @@ export default {
         t.visible = false;
       })
       this.mealsData[index].visible = true;
+    },
+    setTime() {
+      this.currentDate = moment(String(new Date())).format('MM/DD/YYYY');
     }
   },
 
@@ -297,6 +301,10 @@ export default {
     this.mealsData = this.mealsTempData;
   },
 
+  mounted() {
+    this.setTime();
+  },
+
   data() {
     return {
       popup: null,
@@ -305,6 +313,7 @@ export default {
       showBreakfast: false,
       showLunch: false,
       showDinner: false,
+      currentDate: null,
     }
   },
   components: {InformationCircleIcon, XIcon}
