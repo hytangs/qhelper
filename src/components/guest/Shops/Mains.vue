@@ -13,7 +13,7 @@
                         <h6 style="float: right">$3.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_ramyun()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -42,7 +42,7 @@
                         <h6 style="float: right">$7.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_bento()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -70,7 +70,7 @@
                         <h6 style="float: right">$5.50</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_nuggets()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -98,7 +98,7 @@
                         <h6 style="float: right">$8.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_lagsana()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -126,7 +126,7 @@
                         <h6 style="float: right">$6.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_lemak()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -154,7 +154,7 @@
                         <h6 style="float: right">$4.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_prata()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -189,7 +189,7 @@
                         <h6 style="float: right">$15.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_butter()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -218,7 +218,7 @@
                         <h6 style="float: right">$7.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_penang()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -246,7 +246,7 @@
                         <h6 style="float: right">$15.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_dimsum()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -274,7 +274,7 @@
                         <h6 style="float: right">$18.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_sushi()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -302,7 +302,7 @@
                         <h6 style="float: right">$18.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_fried()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -330,7 +330,7 @@
                         <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_mamuang()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
@@ -377,52 +377,113 @@ export default defineComponent( {
     },
     update_nuggets() {
         this.nuggets = this.nuggets + 1
-        //.log(this.nuggets)
+        //console.log(this.nuggets)
         this.$emit("update_nuggets", this.nuggets)
     },
     update_lagsana() {
         this.lagsana = this.lagsana + 1
-        //.log(this.lagsana)
+        //console.log(this.lagsana)
         this.$emit("update_lagsana", this.lagsana)
     },
     update_lemak() {
         this.lemak = this.lemak + 1
-        //.log(this.lemak)
+        //console.log(this.lemak)
         this.$emit("update_lemak", this.lemak)
     },
     update_prata() {
         this.prata = this.prata + 1
-        //.log(this.prata)
+        //console.log(this.prata)
         this.$emit("update_prata", this.prata)
     },
     update_butter() {
         this.butter = this.butter + 1
-        //.log(this.butter)
+        //console.log(this.butter)
         this.$emit("update_butter", this.butter)
     },
     update_penang() {
         this.penang = this.penang + 1
-        //.log(this.penang)
+        //console.log(this.penang)
         this.$emit("update_penang", this.penang)
     },
     update_dimsum() {
         this.dimsum = this.dimsum + 1
-        //.log(this.dimsum)
+        //console.log(this.dimsum)
         this.$emit("update_dimsum", this.dimsum)
     },
     update_sushi() {
         this.sushi = this.sushi + 1
-        //.log(this.sushi)
+        //console.log(this.sushi)
         this.$emit("update_sushi", this.sushi)
     },
     update_fried() {
         this.fried = this.fried + 1
-        //.log(this.fried)
+        //console.log(this.fried)
         this.$emit("update_fried", this.fried)
     },
     update_mamuang() {
         this.mamuang = this.mamuang + 1
-        //.log(this.mamuang)
+        //console.log(this.mamuang)
+        this.$emit("update_mamuang", this.mamuang)
+    },
+
+    remove_ramyun() {
+        this.ramyun = 0
+        //console.log(this.ramyun)
+        this.$emit("update_ramyun", this.ramyun)
+    },
+    remove_bento() {
+        this.bento = 0
+        //console.log(this.bento)
+        this.$emit("update_bento", this.bento)
+    },
+    remove_nuggets() {
+        this.nuggets = 0
+        //console.log(this.nuggets)
+        this.$emit("update_nuggets", this.nuggets)
+    },
+    remove_lagsana() {
+        this.lagsana = 0
+        //console.log(this.lagsana)
+        this.$emit("update_lagsana", this.lagsana)
+    },
+    remove_lemak() {
+        this.lemak = 0
+        //console.log(this.lemak)
+        this.$emit("update_lemak", this.lemak)
+    },
+    remove_prata() {
+        this.prata = 0
+        //console.log(this.prata)
+        this.$emit("update_prata", this.prata)
+    },
+    remove_butter() {
+        this.butter = 0
+        //console.log(this.butter)
+        this.$emit("update_butter", this.butter)
+    },
+    remove_penang() {
+        this.penang = 0
+        //console.log(this.penang)
+        this.$emit("update_penang", this.penang)
+    },
+    remove_dimsum() {
+        this.dimsum = 0
+        //console.log(this.dimsum)
+        this.$emit("update_dimsum", this.dimsum)
+    },
+    remove_sushi() {
+        this.sushi = 0
+        //console.log(this.sushi)
+        this.$emit("update_sushi", this.sushi)
+    },
+    remove_fried() {
+        this.fried = 0
+        //console.log(this.fried)
+        this.$emit("update_fried", this.fried)
+    },
+    remove_mamuang() {
+        this.mamuang = 0
+        //console.log(this.mamuang)
         this.$emit("update_mamuang", this.mamuang)
     },
   },
