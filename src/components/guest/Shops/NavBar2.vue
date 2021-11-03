@@ -1,19 +1,50 @@
 <template>
-<modal-box v-model="isModalActive" title="Cart">
-  <p v-if="this.ramyun > 0">Shin Ramyun ($3.00 each) --- Count: {{this.ramyun}}</p>
-  <p v-if="this.bento > 0">Chinese Style Bento ($7.00 each) --- Count: {{this.bento}}</p>
-  <p v-if="this.nuggets > 0">Nugget and Fries ($5.50 each) --- Count: {{this.nuggets}}</p>
-  <p v-if="this.lagsana > 0">Beef Lagsana ($8.00 each) --- Count: {{this.lagsana}}</p>
-  <p v-if="this.lemak > 0">Nasi Lemak ($6.00 each) --- Count: {{this.lemak}}</p>
-  <p v-if="this.prata > 0">Prata with Curry ($4.00 each) --- Count: {{this.prata}}</p>
-  <p v-if="this.butter > 0">Butter Chicken ($15.00 each) --- Count: {{this.butter}}</p>
-  <p v-if="this.penang > 0">Penang Asam Laksa ($7.00 each) --- Count: {{this.penang}}</p>
-  <p v-if="this.dimsum > 0">Dim Sum Set ($15.00 each) --- Count: {{this.dimsum}}</p>
-  <p v-if="this.sushi > 0">Japanese Sushi Platter ($18.00 each) --- Count: {{this.sushi}}</p>
-  <p v-if="this.fried > 0">Korean Fried Chicken ($18.00 each) --- Count: {{this.fried}}</p>
-  <p v-if="this.mamuang > 0">Som Tum Mamuang ($5.00 each) --- Count: {{this.mamuang}}</p>
-  <p v-if="this.total > 0">Total: ${{parseFloat(this.total).toFixed(2)}}</p>
-</modal-box>
+  <modal-box v-model="isModalActive" title="Cart">
+    <div v-if="orderedAlready == false">
+      <p v-if="this.ramyun > 0">
+        Shin Ramyun ($3.00 each) --- Count: {{ this.ramyun }}
+      </p>
+      <p v-if="this.bento > 0">
+        Chinese Style Bento ($7.00 each) --- Count: {{ this.bento }}
+      </p>
+      <p v-if="this.nuggets > 0">
+        Nugget and Fries ($5.50 each) --- Count: {{ this.nuggets }}
+      </p>
+      <p v-if="this.lagsana > 0">
+        Beef Lagsana ($8.00 each) --- Count: {{ this.lagsana }}
+      </p>
+      <p v-if="this.lemak > 0">
+        Nasi Lemak ($6.00 each) --- Count: {{ this.lemak }}
+      </p>
+      <p v-if="this.prata > 0">
+        Prata with Curry ($4.00 each) --- Count: {{ this.prata }}
+      </p>
+      <p v-if="this.butter > 0">
+        Butter Chicken ($15.00 each) --- Count: {{ this.butter }}
+      </p>
+      <p v-if="this.penang > 0">
+        Penang Asam Laksa ($7.00 each) --- Count: {{ this.penang }}
+      </p>
+      <p v-if="this.dimsum > 0">
+        Dim Sum Set ($15.00 each) --- Count: {{ this.dimsum }}
+      </p>
+      <p v-if="this.sushi > 0">
+        Japanese Sushi Platter ($18.00 each) --- Count: {{ this.sushi }}
+      </p>
+      <p v-if="this.fried > 0">
+        Korean Fried Chicken ($18.00 each) --- Count: {{ this.fried }}
+      </p>
+      <p v-if="this.mamuang > 0">
+        Som Tum Mamuang ($5.00 each) --- Count: {{ this.mamuang }}
+      </p>
+      <p v-if="this.total > 0">
+        Total: ${{ parseFloat(this.total).toFixed(2) }}
+      </p>
+    </div>
+    <div v-else>
+      <p>Have submitted shop orders today already!</p>
+    </div>
+  </modal-box>
   <div id="logged2">
     <div id="nav2">
       <a @click="changeShopSection(1)">Mains</a> |
@@ -37,47 +68,50 @@
           />
         </svg>
       </div>
-      <br>
+      <br />
       <div class="shopcart">
         <button
           class="view"
           type="button"
           data-toggle="modal"
           data-target="#cart"
-          @click="isModalActive = true, totalCost()"
+          @click="(isModalActive = true), totalCost()"
         >
           View my Cart
         </button>
         &nbsp;
-        <button class="clear-cart btn btn-danger" @click="savetofs()">Order Now</button>
+        <button class="clear-cart btn btn-danger" @click="savetofs()">
+          Order Now
+        </button>
       </div>
     </div>
-    <Mains 
-    @update_ramyun="Newramyun($event)"  
-    @update_bento="Newbento($event)" 
-    @update_nuggets="Newnuggets($event)" 
-    @update_lagsana="Newlagsana($event)" 
-    @update_lemak="Newlemak($event)" 
-    @update_prata="Newprata($event)" 
-    @update_butter="Newbutter($event)" 
-    @update_penang="Newpenang($event)" 
-    @update_dimsum="Newdimsum($event)" 
-    @update_sushi="Newsushi($event)" 
-    @update_fried="Newfried($event)" 
-    @update_mamuang="Newmamuang($event)"
-    @remove_ramyun="Newramyun($event)"  
-    @remove_bento="Newbento($event)" 
-    @remove_nuggets="Newnuggets($event)" 
-    @remove_lagsana="Newlagsana($event)" 
-    @remove_lemak="Newlemak($event)" 
-    @remove_prata="Newprata($event)" 
-    @remove_butter="Newbutter($event)" 
-    @remove_penang="Newpenang($event)" 
-    @remove_dimsum="Newdimsum($event)" 
-    @remove_sushi="Newsushi($event)" 
-    @remove_fried="Newfried($event)" 
-    @remove_mamuang="Newmamuang($event)" 
-    v-show="currentSection === 1" />
+    <Mains
+      @update_ramyun="Newramyun($event)"
+      @update_bento="Newbento($event)"
+      @update_nuggets="Newnuggets($event)"
+      @update_lagsana="Newlagsana($event)"
+      @update_lemak="Newlemak($event)"
+      @update_prata="Newprata($event)"
+      @update_butter="Newbutter($event)"
+      @update_penang="Newpenang($event)"
+      @update_dimsum="Newdimsum($event)"
+      @update_sushi="Newsushi($event)"
+      @update_fried="Newfried($event)"
+      @update_mamuang="Newmamuang($event)"
+      @remove_ramyun="Newramyun($event)"
+      @remove_bento="Newbento($event)"
+      @remove_nuggets="Newnuggets($event)"
+      @remove_lagsana="Newlagsana($event)"
+      @remove_lemak="Newlemak($event)"
+      @remove_prata="Newprata($event)"
+      @remove_butter="Newbutter($event)"
+      @remove_penang="Newpenang($event)"
+      @remove_dimsum="Newdimsum($event)"
+      @remove_sushi="Newsushi($event)"
+      @remove_fried="Newfried($event)"
+      @remove_mamuang="Newmamuang($event)"
+      v-show="currentSection === 1"
+    />
     <Snacks v-show="currentSection === 2" />
     <Drinks v-show="currentSection === 3" />
     <Supplies v-show="currentSection === 4" />
@@ -85,47 +119,55 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref } from "vue";
 import Mains from "./Mains";
 import Snacks from "./Snacks";
 import Drinks from "./Drinks";
 import Supplies from "./Supplies";
-import ModalBox from '../../plugins/ModalBox'
+import ModalBox from "../../plugins/ModalBox";
 
-import firebaseApp from '../../../firebase.js';
-import { getFirestore } from 'firebase/firestore';
-import { doc, setDoc } from 'firebase/firestore';
+import firebaseApp from "../../../firebase.js";
+import { getFirestore } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
   components: { Mains, Snacks, Drinks, Supplies, ModalBox },
 
   data() {
-
     return {
       currentSection: 1,
     };
   },
   methods: {
-
     async savetofs() {
-      try {
-            const docRef = await setDoc(doc(db, "ShopOrder", "0101"), {
-              Name: "John", Room: 1234, ItemsOrdered: "Ramyun", 
-              PaymentAmount: parseFloat(this.total).toFixed(2),
-              PaymentMethod: "Mastercard", OrderStatus: "Order Received", 
-              TimeOfPayment: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
-            })
-            console.log(docRef)
-            this.$emit("added")
-          } finally {
-            alert("Orders submitted successfully.")
-          }
+      if (this.orderedAlready == false) {
+        try {
+          const docRef = await setDoc(doc(db, "ShopOrder", "0101"), {
+            Name: "John",
+            Room: 1234,
+            ItemsOrdered: "Ramyun: " + String(this.ramyun),
+            PaymentAmount: parseFloat(this.total).toFixed(2),
+            PaymentMethod: "Mastercard",
+            OrderStatus: "Order Received",
+            TimeOfPayment: new Date()
+              .toJSON()
+              .slice(0, 10)
+              .replace(/-/g, "/"),
+          });
+          console.log(docRef);
+          this.orderedAlready = true;
+          this.clearAll();
+          this.$emit("added");
+        } finally {
+          alert("Orders submitted successfully.");
+        }
+      }
     },
 
     changeShopSection(id) {
       this.currentSection = id;
-      console.log(this.total)
+      console.log(this.total);
       // console.log(this.ramyun)
       // console.log(this.bento)
       // console.log(this.nuggets)
@@ -167,43 +209,69 @@ export default {
       this.mamuang = e;
     },
     totalCost() {
-      this.total = this.ramyun * 3.0 + this.bento * 7.0 + this.nuggets * 5.5 + this.lagsana * 8.0
-      + this.lemak * 6.0 + this.prata * 4.0 + this.butter * 15.0 + this.penang * 7.0 + this.dimsum * 15.0
-      + this.sushi * 18.0 + this.fried * 18.0 + this.mamuang * 5.0;
-    }
+      this.total =
+        this.ramyun * 3.0 +
+        this.bento * 7.0 +
+        this.nuggets * 5.5 +
+        this.lagsana * 8.0 +
+        this.lemak * 6.0 +
+        this.prata * 4.0 +
+        this.butter * 15.0 +
+        this.penang * 7.0 +
+        this.dimsum * 15.0 +
+        this.sushi * 18.0 +
+        this.fried * 18.0 +
+        this.mamuang * 5.0;
+    },
+    clearAll() {
+      this.ramyun = 0;
+      this.bento = 0;
+      this.nuggets = 0;
+      this.lagsana = 0;
+      this.lemak = 0;
+      this.prata = 0;
+      this.butter = 0;
+      this.penang = 0;
+      this.dimsum = 0;
+      this.sushi = 0;
+      this.fried = 0;
+      this.mamuang = 0;
+    },
   },
   setup() {
-    const isModalActive = ref(false)
-    var ramyun = 0
-      var bento = 0
-      var nuggets = 0
-      var lagsana = 0
-      var lemak = 0
-      var prata = 0
-      var butter = 0
-      var penang = 0
-      var dimsum = 0
-      var sushi = 0
-      var fried = 0
-      var mamuang = 0
-      var total = 0
-      return {
-          ramyun,
-          bento,
-          nuggets,
-          lagsana,
-          lemak,
-          prata,
-          butter,
-          penang,
-          dimsum,
-          sushi,
-          fried,
-          mamuang,
-          isModalActive,
-          total
-      }
-  }
+    const isModalActive = ref(false);
+    const orderedAlready = ref(false);
+    var ramyun = 0;
+    var bento = 0;
+    var nuggets = 0;
+    var lagsana = 0;
+    var lemak = 0;
+    var prata = 0;
+    var butter = 0;
+    var penang = 0;
+    var dimsum = 0;
+    var sushi = 0;
+    var fried = 0;
+    var mamuang = 0;
+    var total = 0;
+    return {
+      ramyun,
+      bento,
+      nuggets,
+      lagsana,
+      lemak,
+      prata,
+      butter,
+      penang,
+      dimsum,
+      sushi,
+      fried,
+      mamuang,
+      isModalActive,
+      total,
+      orderedAlready,
+    };
+  },
 };
 </script>
 
@@ -251,5 +319,4 @@ export default {
   border-radius: 8px;
   padding: 10px 24px;
 }
-
 </style>
