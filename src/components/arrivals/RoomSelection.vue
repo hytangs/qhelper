@@ -14,7 +14,12 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom1()"/>
+          <div v-if = "roomType=='Single'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom1()"/>
+          </div>
         </card-component>
 
         <card-component>
@@ -25,7 +30,12 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom2()"/>
+          <div v-if = "roomType=='Queens'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom2()"/>
+          </div>
         </card-component>
 
         <card-component>
@@ -36,7 +46,12 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom3()"/>
+          <div v-if = "roomType=='Kings'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom3()"/>
+          </div>
         </card-component>
 
         <card-component>
@@ -47,8 +62,14 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom4()"/>
+          <div v-if = "roomType=='Apartment'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom4()"/>
+          </div>
         </card-component>
+
         <div v-if = "roomType">
           <jb-buttons> 
               <jb-button type="submit" color="info" label="Confirm >" @click="savetofs(), passgenerate()"/>
