@@ -27,7 +27,7 @@
         </header>
         <div class="p-6">
             <slot/><HealthDeclare/>
-            <div class="flex items-center justify-start flex-wrap -mb-3">
+            <div class="declare flex items-center justify-start flex-wrap -mb-3">
                 <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3" type="submit" @click="TogglePopup()">
                     <span class="px-2">Declare</span>
                 </button>
@@ -52,4 +52,7 @@ export default {
 </script>
 
 <style scoped>
+.declare{
+    margin-top: -1rem;
+}
 </style>

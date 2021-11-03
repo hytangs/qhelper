@@ -21,25 +21,27 @@
   <br><br><br>
   
 <div class = "entertain">
-<NavBar/><br>
-
+<Home/><br>
 </div>
 </template>
 
 <script>
-import NavBar from './entertainments/NavBar'
+import Home from '../../components/guest/Home'
 
 export default {
-    name: "Entertainment",
+    name:"HomeAlt",
     components:{
-        NavBar
+        Home
     }
 }
 </script>
 
 <style scoped>
 .entertain{
-    width: 100%;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 3rem;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
@@ -138,3 +140,4 @@ header.sticky .title:hover::after {
   border-bottom: 2px solid goldenrod;
 }
 </style>
+

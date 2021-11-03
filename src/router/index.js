@@ -276,6 +276,22 @@ const routes = [
     name: 'entertainment',
     component: () => import('../components/guest/Entertainment')
    }, 
+   {
+    meta: {
+        title: 'Home'
+    },
+    path: '/home',
+    name: 'home',
+    component: () => import('../components/guest/HomeAlt')
+   }, 
+   {
+    meta: {
+        title: 'Landing'
+    },
+    path: '/landing',
+    name: 'landing',
+    component: () => import('../views/guest/GuestDashboard')
+   }, 
 
 ]
 

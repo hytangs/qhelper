@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a href = "#" class = "logo text-3xl"> QHELPER </a>
+    <a href = "#landing" class = "logo text-3xl"> QHELPER </a>
     <ul>
       <li><a class = "title" href = "#home">Home</a></li>
       <li><a class = "title" href = "#meals">Meals</a></li>
@@ -95,7 +95,7 @@
     </div>
     </div>
     </div>
-    
+  
 </template>
 
 <script>
@@ -104,7 +104,7 @@ import NavBarContact from './ContactFAQ/NavBarContact'
 export default {
   name: "Contact",
   components:{
-    NavBarContact
+    NavBarContact,
   }
 }
 </script>
