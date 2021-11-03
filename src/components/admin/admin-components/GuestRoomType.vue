@@ -11,7 +11,7 @@
         <th></th>
       </tr>
     </thead>
-    
+
     <tbody>
       <tr v-for="room in itemsPaginated" :key="room.id">
         <td data-label="Room Type"> {{room.type}} </td>
@@ -65,6 +65,8 @@ export default {
     const itemsPaginated = computed(
       () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
     )
+    console.log(items)
+    console.log(itemsPaginated)
 
     return {
         mdiPencilOutline,
@@ -89,12 +91,12 @@ export default {
   //       var vacancy = (yy.Vacancy)
   //       var occupied = (yy.Occupied)
 
-  //       var cell1 = row.insertCell(0); var cell2 = row.insertCell(1); 
+  //       var cell1 = row.insertCell(0); var cell2 = row.insertCell(1);
   //       var cell3 = row.insertCell(2); var cell4 = row.insertCell(3);
 
-  //       cell1.innerHTML = roomType; cell2.innerHTML = roomPrice; 
+  //       cell1.innerHTML = roomType; cell2.innerHTML = roomPrice;
   //       cell3.innerHTML = occupied.toString() + " / " + vacancy.toString;
-        
+
   //       var bu = document.createElement("button")
   //       bu.innerHTML = "Modify"
   //       bu.onclick = () => {
