@@ -14,7 +14,12 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom1()"/>
+          <div v-if = "roomType=='Single'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom1()"/>
+          </div>
         </card-component>
 
         <card-component>
@@ -25,7 +30,12 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom2()"/>
+          <div v-if = "roomType=='Queens'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom2()"/>
+          </div>
         </card-component>
 
         <card-component>
@@ -36,7 +46,12 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom3()"/>
+          <div v-if = "roomType=='Kings'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom3()"/>
+          </div>
         </card-component>
 
         <card-component>
@@ -47,12 +62,19 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <jb-button color="info" label="Select" v-on:click="selectRoom4()"/>
+          <div v-if = "roomType=='Apartment'">
+            <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else>
+            <jb-button color="info" label="Select" v-on:click="selectRoom4()"/>
+          </div>
         </card-component>
 
-        <jb-buttons>
-            <jb-button type="submit" color="info" label="Confirm >" @click="savetofs(), passgenerate()"/>
-        </jb-buttons>
+        <div v-if = "roomType">
+          <jb-buttons> 
+              <jb-button type="submit" color="info" label="Confirm >" @click="savetofs(), passgenerate()"/>
+          </jb-buttons>
+        </div>
       </div>
     </div>
   </div>
@@ -60,15 +82,15 @@
 </template>
 
 <script>
-// import firebaseApp from '../../firebase.js';
-// import { getFirestore } from 'firebase/firestore';
-// import { doc, setDoc } from 'firebase/firestore';
-// const db = getFirestore(firebaseApp);
+import firebaseApp from '../../firebase.js';
+import { getFirestore } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
+const db = getFirestore(firebaseApp);
+
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
-var roomType = false;
 
 export default {
     name: 'RoomSelection',
@@ -79,39 +101,75 @@ export default {
     JbButtons,
     },
 
-    props: {
-      name:String,
-      roomtype:String
+    data(){
+      return{
+        roomType : false,
+        // room1: "",
+        // room2: "",
+        // room3: "",
+        // room4: "",
+        // price1: "",
+        // price2: "",
+        // price3: "",
+        // price4: "",
+        // rooms: [],
+        // prices: []
+      }
     },
+
+    // mounted() {
+    //   async function display(){
+    //     let z = await getDocs(collection(db, "RoomMeta"))
+
+    //     z.forEach((docs) => {
+    //       let room = docs.data()
+    //       var type = room.type
+    //       var price = room.price
+
+    //       this.rooms.push(type)
+    //       this.prices.push(price)
+    //     })
+    //   }
+    //   display()
+    // },
 
     methods: {
       selectRoom1() {
-        roomType = "Single";
+        this.roomType = "Single";
       },
 
       selectRoom2() {
-        roomType = "Queens"
+        this.roomType = "Queens"
       },
 
       selectRoom3() {
-        roomType = "Kings"
+        this.roomType = "Kings"
       },
 
       selectRoom4() {
-        roomType = "Apartment"
+        this.roomType = "Apartment"
       },
 
       async savetofs() {
-        alert("You have selected "+ roomType + "!")
-
-        // save to fs 
+        var a = this.roomType
+        // var dict = this.$route.params.info
+        // dict["RoomType"] = a
+        alert("You have selected "+ a + "!")
+        try{
+          const docRef = await updateDoc(doc(db, "RegInfo", this.$route.params.email), {
+            RoomType: a})
+          console.log(docRef)
+          this.$emit("added")
+        }
+        catch(error) {
+          console.error("Error adding document: ", error);
+        }
       },
 
       passgenerate() {
-        // this.$router.push('/arrivals/passgeneration')
         this.$router.push({name: "PassGenerationPage", 
         path: '/arrivals/passgeneration', params: {
-          roomtype: roomType}})
+          roomtype: this.roomType}})
       }
   }
 }

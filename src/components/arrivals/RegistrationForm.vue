@@ -80,11 +80,12 @@ import { doc, setDoc } from 'firebase/firestore';
 const db = getFirestore(firebaseApp);
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
-//import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
+// import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
 import Field from '../plugins/Field'
 import Control from '../plugins/Control'
+import datequery from '../plugins/helpers/datequery'
 
 export default {
 
@@ -103,12 +104,19 @@ export default {
     JbButtons,
   },
 
+  data() {
+    return {
+      info:{},
+    }
+  },
+
   methods: {
       roomselect() {
         this.$router.push({name: "RoomSelectionPage", 
         path: '/arrivals/roomselection', params: {
           fname: document.getElementById("fname").value,
-          email: document.getElementById("email").value}})
+          email: document.getElementById("email").value,
+          info: this.info}})
       },
 
       // need to update based on the quarantine period policy
@@ -128,6 +136,36 @@ export default {
           return "1";
         } else {
           return "14";
+        }
+      },
+
+      checkPCR(country) {
+        var quarantinePeriod = this.checkQuarantine(country)
+        if (quarantinePeriod == 7) {
+          const today = datequery.methods.fetchTodayString()
+          const d7 = datequery.methods.addDays(7)
+          const arr = [today, d7]
+          // const arr = {0:d1, 1:d7}
+          return arr
+        } else if (quarantinePeriod == 14) {
+          const today = datequery.methods.fetchTodayString()
+          const d7 = datequery.methods.addDays(7)
+          const d14 = datequery.methods.addDays(14)
+          const arr = [today, d7, d14]
+          // const arr = {0:today, 1:d7, 2:d14}
+          return arr
+        } else if (quarantinePeriod == 10) {
+          const today = datequery.methods.fetchTodayString()
+          const d3 = datequery.methods.addDays(3)
+          const d10 = datequery.methods.addDays(10)
+          const arr = [today, d3, d10]
+          // const arr = {0:today, 1:d3, 2:d10}
+          return arr
+        } else {
+          const today = datequery.methods.fetchTodayString()
+          const arr = [today]
+          // const arr = {0:today}
+          return arr
         }
       },
 
@@ -226,11 +264,17 @@ export default {
             alert("An issue found: " + error + ".")
           }
         } else {
+          // this.info = {
+          //   Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
+          //   Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
+          //   Vaccine: vaccine, Passtype: passtype, Password: password,
+          // }
           try {
+            var pcr = this.checkPCR(cod)
             const docRef = await setDoc(doc(db, "RegInfo", email), {
               Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
               Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
-              Vaccine: vaccine, Passtype: passtype, Password: password,
+              Vaccine: vaccine, Passtype: passtype, Password: password, PCR: pcr,
             })
             console.log(docRef)
 

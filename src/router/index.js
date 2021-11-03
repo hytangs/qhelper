@@ -257,6 +257,7 @@ const routes = [
     },
     path: '/shop',
     name: 'shop',
+    props: true,
     component: () => import('../components/guest/Shop')
    },
 

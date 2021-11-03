@@ -1,25 +1,25 @@
 <template>
-<modal-box v-model="isModalActive" title="Modify room type">
-  <p>Modify the <b>Room Type</b></p>
-</modal-box>
+
 <table>
     <thead>
       <tr>
         <th>Room Type</th>
         <th>Rate</th>
         <th>Vacancy</th>
+        <th>Total</th>
         <th></th>
       </tr>
     </thead>
 
     <tbody>
-      <tr v-for="room in itemsPaginated" :key="room.id">
-        <td data-label="Room Type"> {{room.type}} </td>
-        <td data-label="Rate"> ${{room.rate}}</td>
-        <td data-label="Vacancy"> {{room.vacancy}} </td>
+      <tr v-for="room in store.state.roomTypeDefault" :key="room.roomPrice">
+        <td data-label="Room Type"> {{room.roomType}} </td>
+        <td data-label="Rate"> ${{room.roomPrice}}</td>
+        <td data-label="Vacancy"> {{room.roomVacancy}} </td>
+        <td data-label="Total Rooms"> {{room.roomTotal}}</td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
+            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small  />
           </jb-buttons>
         </td>
       </tr>
@@ -28,12 +28,13 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { mdiPencilOutline } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
-import ModalBox from '../../plugins/ModalBox'
+//import ModalBox from '../../plugins/ModalBox'
+import connector from "../../../connector";
 // import firebaseApp from '../firebase.js';
 // import {getFirestore} from "firebase/firestore"
 // import {collection, getDocs} from "firebase/firestore";
@@ -46,7 +47,7 @@ export default {
   components: {
     JbButtons,
     JbButton,
-    ModalBox
+    //ModalBox
   },
 
   setup() {
@@ -54,27 +55,21 @@ export default {
 
     const darkMode = computed(() => store.state.darkMode)
 
-    const items = computed(() => store.state.roomType)
-
-    const isModalActive = ref(false)
-
-    const perPage = ref(10)
-
-    const currentPage = ref(0)
-
-    const itemsPaginated = computed(
-      () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
-    )
-    console.log(items)
-    console.log(itemsPaginated)
-
     return {
         mdiPencilOutline,
-        isModalActive,
+        //isModalActive,
         darkMode,
-        itemsPaginated,
+        store
       }
   },
+
+  async created() {
+    const store = useStore()
+    let meta = await connector.methods.getRoomTypeInfo().then(x => x)
+    console.log(meta)
+    store.commit('alterroomtype' , meta)
+  }
+
 
   // methods: {
   //   async display() {

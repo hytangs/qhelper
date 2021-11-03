@@ -85,8 +85,6 @@ export default {
   setup () {
     const titleStack = ref(['Admin', 'Rooms'])
 
-    connector.methods.getRoomStatus()
-
     return {
       titleStack,
       mdiMonitorCellphone,
