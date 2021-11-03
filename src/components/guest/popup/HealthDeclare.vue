@@ -34,10 +34,8 @@
     <hr class="my-6 -mx-6 border-t border-gray-100 dark:border-gray-700">
         <div class="mb-6 last:mb-0">
         <label class="block font-bold mb-2">Remarks</label>
-        <div class="remark_container">
-            <input type="text" class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-gray-800 pl-10 remark">
+    <textarea class="remark px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-24 border bg-white dark:bg-gray-800" placeholder="Explain how we can help you" spellcheck="false"></textarea>
         </div>
-    </div>
     <hr class="my-6 -mx-6 border-t border-gray-100 dark:border-gray-700">
 </div>    
 </template>
