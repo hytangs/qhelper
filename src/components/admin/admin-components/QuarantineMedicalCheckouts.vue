@@ -1,12 +1,15 @@
 <template>
-<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Delete <b>Medical Checkouts</b></p>
+<modal-box v-model="isModalDangerActive1" large-title="Please Confirm" button="danger" has-cancel>
+  <p>Check In Guest</p>
+</modal-box>
+
+<modal-box v-model="isModalDangerActive2" large-title="Please Confirm" button="danger" has-cancel>
+  <p>Check Out Guest</p>
 </modal-box>
 
 <table>
     <thead>
       <tr>
-        <th>Patient ID</th>
         <th>Name</th>
         <th>Date</th>
         <th></th>
@@ -20,7 +23,8 @@
         <td data-label="Date"> DD-MM-YYYY </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, remove()" />
+            <jb-button color="success" :icon="mdiAccountMultiplePlus" small @click="isModalDangerActive1 = true, checkIn()" />
+            <jb-button color="danger" :icon="mdiAccountMultipleMinus" small @click="isModalDangerActive2 = true, checkOut()" />
           </jb-buttons>
         </td>
       </tr>
@@ -30,7 +34,7 @@
 
 <script>
 import { ref } from 'vue'
-import { mdiTrashCan } from '@mdi/js'
+import { mdiAccountMultiplePlus, mdiAccountMultipleMinus } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
@@ -45,16 +49,25 @@ export default {
   },
 
   setup() {
-    const isModalDangerActive = ref(false)
+    const isModalDangerActive1 = ref(false)
+
+    const isModalDangerActive2 = ref(false)
+
 
     return {
-      mdiTrashCan, 
-      isModalDangerActive
+      mdiAccountMultiplePlus, 
+      isModalDangerActive1,
+      isModalDangerActive2,
+      mdiAccountMultipleMinus,
     }
   },
 
   methods: {
-    remove() {
+    checkIn() {
+      // remove data
+    },
+
+    checkOut() {
       // remove data
     }
   }

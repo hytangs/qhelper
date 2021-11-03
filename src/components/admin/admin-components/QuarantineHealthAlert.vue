@@ -1,8 +1,4 @@
 <template>
-<modal-box v-model="isModalActive" title="Modify">
-  <p>Modify <b>Health Alert</b></p>
-</modal-box>
-
 <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
   <p>Delete <b>Health Alert</b></p>
 </modal-box>
@@ -10,21 +6,22 @@
 <table>
     <thead>
       <tr>
-        <th>Alert ID</th>
-        <th>Room Info</th>
-        <th>Reasons</th>
+        <th>Room Number</th>
+        <th>Symptoms</th>
+        <th>Temperature Declared</th>
+        <th>Date</th>
         <th></th>
       </tr>
     </thead>
     
     <tbody>
       <tr>
-        <td data-label="Alert ID"> ID </td>
-        <td data-label="Room Info"> Room Number </td>
-        <td data-label="Reasons"> Reasons </td>
+        <td data-label="Room Number"> Room Number </td>
+        <td data-label="Symptoms"> Symptoms </td>
+        <td data-label="Temperature Declared"> Temperature Declared </td>
+        <td data-label="Date"> Date </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, remove()" />
           </jb-buttons>
         </td>
@@ -35,7 +32,7 @@
 
 <script>
 import { ref } from 'vue'
-import { mdiPencilOutline, mdiTrashCan } from '@mdi/js'
+import { mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
@@ -50,14 +47,10 @@ export default {
   },
 
   setup() {
-    const isModalActive = ref(false)
-
     const isModalDangerActive = ref(false)
 
     return {
-      mdiPencilOutline,
       mdiTrashCan,
-      isModalActive,
       isModalDangerActive
     }
   },

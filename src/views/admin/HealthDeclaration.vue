@@ -11,27 +11,28 @@
 
     <br> <br>
 
-    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
-        <card-component class="mb-6" title="Active Health Alerts" has-table>
-            <QuarantineHealthAlert/>
-        </card-component>
-
-        <card-component class="mb-6" title="Quarantine Plan Settings" has-table>
-            <QuarantinePlan/>
-        </card-component>
-    </div>
+    <card-component class="mb-6" title="Active Health Alerts" has-table>
+        <QuarantineHealthAlert/>
+    </card-component>
 
     <br> <br>
 
-    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
-        <card-component class="mb-6" title="Medical Checkouts" has-table>
-            <QuarantineMedicalCheckouts/>
-        </card-component>
+    <card-component class="mb-6" title="Quarantine Plan Settings" has-table>
+        <QuarantinePlan/>
+    </card-component>
 
-        <card-component class="mb-6" title="Contact Guest" has-table>
-            <QuarantineContactGuest/>
-        </card-component>
-    </div>
+    <br> <br>
+
+    <card-component class="mb-6" title="Medical Checkouts" has-table>
+        <QuarantineMedicalCheckouts/>
+    </card-component>
+
+    <br> <br>
+
+    <card-component class="mb-6" title="Public Broadcast" has-table>
+        <GuestRoomBroadcast/>
+    </card-component>
+
   </main-section>
   <footer-bar/>
   <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
@@ -49,7 +50,7 @@ import CardComponent from "../../components/plugins/CardComponent"
 import QuarantineStatus from '../../../src/components/admin/admin-components/QuarantineStatus'
 import QuarantinePlan from '../../../src/components/admin/admin-components/QuarantinePlan'
 import QuarantineHealthAlert from '../../../src/components/admin/admin-components/QuarantineHealthAlert'
-import QuarantineContactGuest from '../../../src/components/admin/admin-components/QuarantineContactGuest'
+import GuestRoomBroadcast from '../../../src/components/admin/admin-components/GuestRoomBroadcast'
 import QuarantineMedicalCheckouts from '../../../src/components/admin/admin-components/QuarantineMedicalCheckouts'
 import {ref} from "vue";
 
@@ -65,7 +66,7 @@ export default {
     QuarantineStatus,
     QuarantinePlan,
     QuarantineHealthAlert,
-    QuarantineContactGuest,
+    GuestRoomBroadcast,
     QuarantineMedicalCheckouts,
     CardComponent,
   },
