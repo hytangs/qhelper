@@ -47,6 +47,40 @@ export default {
                 "occupiedrooms":occupiedrooms,
                 "vacantrooms":vacantrooms
             }
+        },
+        async getRoomMeta() {
+            const roomMeta = await getDocs(collection(db, "RoomMeta"));
+            let outputMeta = []
+            roomMeta.forEach((doc) => {
+                var x = doc.data();
+                var output = [];
+                for (var key in x) {
+                    if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
+                        output.push({
+                            roomNo: key,
+                            roomStatus: x[key]
+                        })
+                    }
+                }
+                outputMeta = outputMeta.concat(output)
+            });
+            console.log(outputMeta)
+        },
+        async assignRoom(type) {
+            const roomTypeToAssign = await doc(db, "RoomMeta", type);
+
+            var x = roomTypeToAssign.data();
+            var assigned;
+            for (var key in x) {
+                if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
+                    console.log(key + " -> " + x[key]);
+                    if (x[key] === '0') {
+                        assigned = key;
+                        break;
+                    }
+                }
+            }
+            console.log(assigned);
         }
     }
 }
