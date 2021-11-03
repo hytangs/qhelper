@@ -80,7 +80,7 @@ import { doc, setDoc } from 'firebase/firestore';
 const db = getFirestore(firebaseApp);
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
-//import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
+// import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
 import Field from '../plugins/Field'
@@ -103,12 +103,19 @@ export default {
     JbButtons,
   },
 
+  data() {
+    return {
+      info:{},
+    }
+  },
+
   methods: {
       roomselect() {
         this.$router.push({name: "RoomSelectionPage", 
         path: '/arrivals/roomselection', params: {
           fname: document.getElementById("fname").value,
-          email: document.getElementById("email").value}})
+          email: document.getElementById("email").value,
+          info: this.info}})
       },
 
       // need to update based on the quarantine period policy
@@ -226,6 +233,11 @@ export default {
             alert("An issue found: " + error + ".")
           }
         } else {
+          // this.info = {
+          //   Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
+          //   Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
+          //   Vaccine: vaccine, Passtype: passtype, Password: password,
+          // }
           try {
             const docRef = await setDoc(doc(db, "RegInfo", email), {
               Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
