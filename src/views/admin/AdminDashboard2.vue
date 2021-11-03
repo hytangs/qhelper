@@ -107,6 +107,10 @@
       </div>
     </card-component>
 
+    <card-component class="mb-6" title="Public Broadcast" has-table>
+        <GuestRoomBroadcast/>
+      </card-component>
+
   </main-section>
   <main-section v-else>
     <h1 class="text-2xl text-gray-700 hover:text-gray-900">
@@ -157,6 +161,7 @@ import Overlay from "../../../src/components/plugins/Overlay";
 import localsession from "../../store/localsession";
 //import InternalCommunication from "../../../src/components/admin/admin-components/InternalCommunication";
 import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
+import GuestRoomBroadcast from '../../../src/components/admin/admin-components/GuestRoomBroadcast';
 import connector from "../../connector";
 
 export default {
@@ -176,6 +181,7 @@ export default {
     // InternalCommunication,
     AssistanceRequest,
     PieChart,
+    GuestRoomBroadcast
   },
   setup() {
     const titleStack = ref(["Admin", "Dashboard"]);
