@@ -17,7 +17,7 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
@@ -46,7 +46,7 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
@@ -74,7 +74,7 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
@@ -102,11 +102,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_lagsana()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -130,11 +130,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_lemak()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -158,11 +158,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_prata()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -193,11 +193,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_butter()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -222,11 +222,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_penang()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -243,18 +243,18 @@
                     </div>    
                     <div style="margin:15px 30px 15px 30px " class="item_info">
                         <h5 style="float: left">Dim Sum Set</h5>
-                        <h6 style="float: right">$15</h6>
+                        <h6 style="float: right">$15.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
                             <button class="relative">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_dimsum()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -278,11 +278,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_sushi()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -306,11 +306,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_fried()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -334,11 +334,11 @@
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_mamuang()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -367,18 +367,63 @@ export default defineComponent( {
   methods: {
     update_ramyun() {
         this.ramyun = this.ramyun + 1
-        console.log(this.ramyun)
+        //console.log(this.ramyun)
         this.$emit("update_ramyun", this.ramyun)
     },
     update_bento() {
         this.bento = this.bento + 1
-        console.log(this.bento)
+        //console.log(this.bento)
         this.$emit("update_bento", this.bento)
     },
     update_nuggets() {
         this.nuggets = this.nuggets + 1
-        console.log(this.nuggets)
+        //.log(this.nuggets)
         this.$emit("update_nuggets", this.nuggets)
+    },
+    update_lagsana() {
+        this.lagsana = this.lagsana + 1
+        //.log(this.lagsana)
+        this.$emit("update_lagsana", this.lagsana)
+    },
+    update_lemak() {
+        this.lemak = this.lemak + 1
+        //.log(this.lemak)
+        this.$emit("update_lemak", this.lemak)
+    },
+    update_prata() {
+        this.prata = this.prata + 1
+        //.log(this.prata)
+        this.$emit("update_prata", this.prata)
+    },
+    update_butter() {
+        this.butter = this.butter + 1
+        //.log(this.butter)
+        this.$emit("update_butter", this.butter)
+    },
+    update_penang() {
+        this.penang = this.penang + 1
+        //.log(this.penang)
+        this.$emit("update_penang", this.penang)
+    },
+    update_dimsum() {
+        this.dimsum = this.dimsum + 1
+        //.log(this.dimsum)
+        this.$emit("update_dimsum", this.dimsum)
+    },
+    update_sushi() {
+        this.sushi = this.sushi + 1
+        //.log(this.sushi)
+        this.$emit("update_sushi", this.sushi)
+    },
+    update_fried() {
+        this.fried = this.fried + 1
+        //.log(this.fried)
+        this.$emit("update_fried", this.fried)
+    },
+    update_mamuang() {
+        this.mamuang = this.mamuang + 1
+        //.log(this.mamuang)
+        this.$emit("update_mamuang", this.mamuang)
     },
   },
 
@@ -386,10 +431,28 @@ export default defineComponent( {
       var ramyun = 0
       var bento = 0
       var nuggets = 0
+      var lagsana = 0
+      var lemak = 0
+      var prata = 0
+      var butter = 0
+      var penang = 0
+      var dimsum = 0
+      var sushi = 0
+      var fried = 0
+      var mamuang = 0
       return {
           ramyun,
           bento,
-          nuggets
+          nuggets,
+          lagsana,
+          lemak,
+          prata,
+          butter,
+          penang,
+          dimsum,
+          sushi,
+          fried,
+          mamuang
       }
   }
 } );
@@ -418,4 +481,9 @@ img {
 .shadow:hover{
     box-shadow: 0px 1px 15px grey;
 }
+
+button:hover{
+    box-shadow: 0px 1px 15px grey;
+}
+
 </style>

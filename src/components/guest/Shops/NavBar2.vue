@@ -1,4 +1,18 @@
 <template>
+<modal-box v-model="isModalActive" title="Cart">
+  <p v-if="this.ramyun > 0">Shin Ramyun ($3.80 each) --- Count: {{this.ramyun}}</p>
+  <p v-if="this.bento > 0">Chinese Style Bento ($7.00 each) --- Count: {{this.bento}}</p>
+  <p v-if="this.nuggets > 0">Nugget and Fries ($5.50 each) --- Count: {{this.nuggets}}</p>
+  <p v-if="this.lagnasa > 0">Beef Lagsana ($8.00 each) --- Count: {{this.lagnasa}}</p>
+  <p v-if="this.lemak > 0">Nasi Lemak ($6.00 each) --- Count: {{this.lemak}}</p>
+  <p v-if="this.prata > 0">Prata with Curry ($4.00 each) --- Count: {{this.prata}}</p>
+  <p v-if="this.butter > 0">Butter Chicken ($15.00 each) --- Count: {{this.butter}}</p>
+  <p v-if="this.penang > 0">Penang Asam Laksa ($7.00 each) --- Count: {{this.penang}}</p>
+  <p v-if="this.dimsum > 0">Dim Sum Set ($15.00 each) --- Count: {{this.dimsum}}</p>
+  <p v-if="this.sushi > 0">Japanese Sushi Platter ($18.00 each) --- Count: {{this.sushi}}</p>
+  <p v-if="this.fried > 0">Korean Fried Chicken ($18.00 each) --- Count: {{this.fried}}</p>
+  <p v-if="this.mamuang > 0">Som Tum Mamuang ($5.00 each) --- Count: {{this.mamuang}}</p>
+</modal-box>
   <div id="logged2">
     <div id="nav2">
       <a @click="changeShopSection(1)">Mains</a> |
@@ -29,16 +43,26 @@
           type="button"
           data-toggle="modal"
           data-target="#cart"
+          @click="isModalActive = true"
         >
           View my Cart
         </button>
         &nbsp;
-        <button class="clear-cart btn btn-danger">Clear Cart</button>
+        <button class="clear-cart btn btn-danger">Order Now</button>
       </div>
     </div>
     <Mains @update_ramyun="Newramyun($event)" 
     @update_bento="Newbento($event)" 
     @update_nuggets="Newnuggets($event)" 
+    @update_lagsana="Newlagsana($event)" 
+    @update_lemak="Newlemak($event)" 
+    @update_prata="Newprata($event)" 
+    @update_butter="Newbutter($event)" 
+    @update_penang="Newpenang($event)" 
+    @update_dimsum="Newdimsum($event)" 
+    @update_sushi="Newsushi($event)" 
+    @update_fried="Newfried($event)" 
+    @update_mamuang="Newmamuang($event)" 
     v-show="currentSection === 1" />
     <Snacks v-show="currentSection === 2" />
     <Drinks v-show="currentSection === 3" />
@@ -47,13 +71,15 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import Mains from "./Mains";
 import Snacks from "./Snacks";
 import Drinks from "./Drinks";
 import Supplies from "./Supplies";
+import ModalBox from '../../plugins/ModalBox'
 
 export default {
-  components: { Mains, Snacks, Drinks, Supplies },
+  components: { Mains, Snacks, Drinks, Supplies, ModalBox },
   data() {
     return {
       currentSection: 1,
@@ -62,9 +88,9 @@ export default {
   methods: {
     changeShopSection(id) {
       this.currentSection = id;
-      console.log(this.ramyun)
-      console.log(this.bento)
-      console.log(this.nuggets)
+      // console.log(this.ramyun)
+      // console.log(this.bento)
+      // console.log(this.nuggets)
     },
     Newramyun(e) {
       this.ramyun = e;
@@ -74,17 +100,64 @@ export default {
     },
     Newnuggets(e) {
       this.nuggets = e;
-    }
+    },
+    Newlagsana(e) {
+      this.lagsana = e;
+    },
+    Newlemak(e) {
+      this.lemak = e;
+    },
+    Newprata(e) {
+      this.prata = e;
+    },
+    Newbutter(e) {
+      this.butter = e;
+    },
+    Newpenang(e) {
+      this.penang = e;
+    },
+    Newdimsum(e) {
+      this.dimsum = e;
+    },
+    Newsushi(e) {
+      this.sushi = e;
+    },
+    Newfried(e) {
+      this.fried = e;
+    },
+    Newmamuang(e) {
+      this.mamuang = e;
+    },
   },
   setup() {
+    const isModalActive = ref(false)
     var ramyun = 0
-    var bento = 0
-    var nuggets = 0
-    return {
-      ramyun,
-      bento,
-      nuggets
-    }
+      var bento = 0
+      var nuggets = 0
+      var lagsana = 0
+      var lemak = 0
+      var prata = 0
+      var butter = 0
+      var penang = 0
+      var dimsum = 0
+      var sushi = 0
+      var fried = 0
+      var mamuang = 0
+      return {
+          ramyun,
+          bento,
+          nuggets,
+          lagsana,
+          lemak,
+          prata,
+          butter,
+          penang,
+          dimsum,
+          sushi,
+          fried,
+          mamuang,
+          isModalActive
+      }
   }
 };
 </script>
@@ -133,4 +206,5 @@ export default {
   border-radius: 8px;
   padding: 10px 24px;
 }
+
 </style>
