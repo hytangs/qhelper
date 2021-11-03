@@ -1,83 +1,109 @@
 <template>
-<modal-box v-model="isModalActive" title="Modify room status">
-  <p>Modify the <b>Room Status</b></p>
-</modal-box>
-<table>
+  <table>
     <thead>
       <tr>
         <th>Room Number</th>
-        <th>Status</th>
-        <th>Type</th>
-        <th>Check Out</th>
-        <th>Requests</th>
+        <th>Room Guest Name</th>
+        <th>Guest Status</th>
+        <th>Room Type</th>
+        <th>Checkout Date</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <template v-for="(col) in table" :key="col.RoomNumber">
+      <template v-for="(col) in itemsPaginated" :key="parseInt(col.roomNo)">
         <GuestEntry
-          :RoomNumber="col.RoomNumber"
-          :Status="col.Status"
-          :RoomType="col.RoomType"
-          :Checkout="col.Checkout"
-          :Requests="col.Requests">
+          :RoomNumber="col.roomNo"
+          :RoomStatus="col.roomStatus"
+          :RoomType="col.roomType"
+          :Checkout="col.roomCheckout"
+          :GuestName="col.roomGuestName"
+        >
         </GuestEntry>
       </template>
     </tbody>
-</table>
+  </table>
+  <div class="table-pagination">
+    <level>
+      <jb-buttons>
+        <jb-button
+            v-for="page in pagesList"
+            @click="currentPage = page"
+            :active="page === currentPage"
+            :label="page + 1"
+            :key="page"
+            :outline="darkMode"
+            small
+        />
+      </jb-buttons>
+      <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
+    </level>
+  </div>
 </template>
 
 <script>
-import { ref } from 'vue'
 import { mdiPencilOutline } from '@mdi/js'
-//import JbButtons from '../../plugins/JbButtons'
-//import JbButton from '../../plugins/JbButton'
-import ModalBox from '../../plugins/ModalBox'
 import GuestEntry from "./GuestEntry";
+import { useStore } from 'vuex';
+import Level from '../../plugins/Level'
+import JbButtons from '../../plugins/JbButtons'
+import JbButton from '../../plugins/JbButton'
+import connector from "../../../connector";
+import {computed, ref} from "vue";
 
 export default {
   name: "GuestRoomStatus.vue",
 
   components: {
     GuestEntry,
-    ModalBox
+    Level,
+    JbButtons,
+    JbButton
   },
 
   setup() {
-    const isModalActive = ref(false)
+    const items = computed(() => store.state.roomGuestDefault)
+
+    const perPage = ref(10)
+
+    const currentPage = ref(0)
+
+    const itemsPaginated = computed(
+        () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
+    )
+
+    const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+
+    const currentPageHuman = computed(() => currentPage.value + 1)
+
+    const pagesList = computed(() => {
+      const pagesList = []
+
+      for (let i = 0; i < numPages.value; i++) {
+        pagesList.push(i)
+      }
+
+      return pagesList
+    })
+
+    const store = useStore()
 
     return {
         mdiPencilOutline,
-        isModalActive
+        store,
+        itemsPaginated,
+        items,
+        currentPage,
+        currentPageHuman,
+        pagesList,
+        numPages
       }
   },
-
-  data() {
-    return {
-      table: [
-        {
-          RoomNumber: '1101',
-          Status: 'String',
-          RoomType: 'String',
-          Checkout: '00000000',
-          Requests: 'String'
-        },
-        {
-          RoomNumber: '1102',
-          Status: 'String',
-          RoomType: 'String',
-          Checkout: 'String',
-          Requests: 'wer'
-        },
-        {
-          RoomNumber: '1103',
-          Status: 'String',
-          RoomType: 'String',
-          Checkout: 'String',
-          Requests: 'sd'
-        }
-      ]
-    }
+  async created() {
+    const store = useStore()
+    let meta = await connector.methods.getRoomMeta().then(x => x)
+    console.log(meta)
+    store.commit('alterroomguest' , meta)
   }
 }
 </script>

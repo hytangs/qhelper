@@ -18,6 +18,19 @@ export default {
 
         getAdminZone() {
             return localStorage.adminzone;
+        },
+
+        getAdminName() {
+            let out;
+            try {
+                out = localStorage.adminuser;
+                if (out === 'null') {
+                    out = 'Unauthorized User'
+                }
+            } catch (x) {
+                out = 'Unauthorized User'
+            }
+            return out
         }
     }
 }

@@ -14,9 +14,6 @@
 
     <card-component class="mb-6" title="Room Types & Rates" has-table>
       <GuestRoomType/>
-      <jb-buttons type="justify-start lg:justify-end" no-wrap>
-        <jb-button color="info" label="Add New Room Types" v-on:click="isModalActive = true, addNewRoom()"/>
-      </jb-buttons>
     </card-component>
 
     <title-sub-bar :icon="mdiTableBorder" title="Guest Service"/>
@@ -84,6 +81,8 @@ export default {
   },
   setup () {
     const titleStack = ref(['Admin', 'Rooms'])
+
+    connector.methods.getRoomMeta()
 
     return {
       titleStack,
