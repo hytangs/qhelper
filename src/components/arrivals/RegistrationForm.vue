@@ -78,6 +78,7 @@ import firebaseApp from '../../firebase.js';
 import { getFirestore } from 'firebase/firestore';
 import { doc, setDoc } from 'firebase/firestore';
 const db = getFirestore(firebaseApp);
+import { useStore } from 'vuex'
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 // import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
@@ -86,6 +87,7 @@ import JbButtons from '../plugins/JbButtons'
 import Field from '../plugins/Field'
 import Control from '../plugins/Control'
 import datequery from '../plugins/helpers/datequery'
+
 
 export default {
 
@@ -257,6 +259,8 @@ export default {
           passed = false
         }
 
+        var pcr = this.checkPCR(cod)
+
         if (passed === false) {
           if (error.length > 1) {
             alert("Multiple issues found: " + error + ".")
@@ -264,13 +268,16 @@ export default {
             alert("An issue found: " + error + ".")
           }
         } else {
+          
           // this.info = {
           //   Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
           //   Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
           //   Vaccine: vaccine, Passtype: passtype, Password: password,
           // }
+          // const store = useStore()
+          // store.commit('alterGuest' , this.info)
+
           try {
-            var pcr = this.checkPCR(cod)
             const docRef = await setDoc(doc(db, "RegInfo", email), {
               Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
               Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
@@ -335,20 +342,6 @@ export default {
         "United States minor outlying islands", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City State",
         "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands",
         "Western Sahara", "Yemen", "Yugoslavia", "Zaire", "Zambia", "Zimbabwe"
-        // {id:1, label:'Brunei'},
-        // {id:2, label:'Germany'},
-        // {id:3, label:'HongKong'},
-        // {id:4, label:'Macao'},
-        // {id:5, label:'Mainland China'},
-        // {id:6, label:'Canada'},
-        // {id:7, label:'Denmark'},
-        // {id:8, label:'France'},
-        // {id:9, label:'Italy'},
-        // {id:10, label:'Netherlands'},
-        // {id:11, label:'Spain'},
-        // {id:12, label:'United Kingdom'},
-        // {id:13, label:'United States'},
-        // {id:14, label:'South Korea'},
       ]
 
       const vaccineOptions = [
@@ -362,14 +355,6 @@ export default {
         "Fully Vaccinated - Janssen",
         "Fully Vaccinated - Sinopharm",
         "Fully Vaccinated - Sinovac",
-        // {id:1, label:'Not Vaccinated'},
-        // {id:2, label:'Fully Vaccinated - Pfizer/BioNTech'},
-        // {id:3, label:'Fully Vaccinated - Moderna'},
-        // {id:4, label:'Fully Vaccinated - Astrazeneca'},
-        // {id:5, label:'Fully Vaccinated - Covishield'},
-        // {id:6, label:'Fully Vaccinated - Janssen'},
-        // {id:7, label:'Fully Vaccinated - Sinopharm'},
-        // {id:8, label:'Fully Vaccinated - Sinovac'},
       ]
 
       const passengerOptions = [
@@ -377,9 +362,6 @@ export default {
         "Singaporean",
         "Short Term Visitor",
         "Long Term Pass Holder",
-        // {id:1, label:'Singaporean'},
-        // {id:2, label:'Short Term Visitor'},
-        // {id:3, label:'Long Term Pass Holder'},
       ]
 
       const genderOptions = [
@@ -388,11 +370,8 @@ export default {
         "Miss",
         "Mrs",
         "Madam",
-        // {id:1, label:'Mr'},
-        // {id:2, label:'Miss'},
-        // {id:3, label:'Mrs'},
-        // {id:4, label:'Madam'},
       ]
+
       const form = ({
         gender:genderOptions[0],
         firstName:'',
@@ -410,9 +389,7 @@ export default {
         passengerType: passengerOptions[0],
       })
 
-      const submit = () => {
-        //
-      }
+      const store = useStore()
 
       return {
         countryOptions,
@@ -420,7 +397,7 @@ export default {
         passengerOptions,
         form,
         genderOptions,
-        submit
+        store
       }
 
   },

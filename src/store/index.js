@@ -61,6 +61,25 @@ export default createStore({
       symptoms: '0',
       temp: '0'
     }],
+
+    guestDefault: [{
+      email: 'email',
+      COD: 'country',
+      Contact: '0',
+      DOA: 'YYYYMMDD',
+      Flight: '000',
+      Fname: 'first',
+      Lname: 'last',
+      Passtype: 'pass',
+      Password: 'password',
+      Seat:'000',
+      Vaccine:'status',
+      identity:'identity',
+      roomType:'roomType',
+      roomNumber:'0000',
+      PCR:[]
+    }],
+    
   },
 
   mutations: {
@@ -104,6 +123,9 @@ export default createStore({
       state.healthAlertDefault = meta
     },
 
+    alterGuest(state, meta) {
+      state.healthAlertDefault = meta
+    },
   },
   actions: {
     asideMobileToggle ({ commit, state }, payload = null) {

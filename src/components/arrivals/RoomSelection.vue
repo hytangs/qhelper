@@ -86,91 +86,106 @@ import firebaseApp from '../../firebase.js';
 import { getFirestore } from 'firebase/firestore';
 import { doc, updateDoc } from 'firebase/firestore';
 const db = getFirestore(firebaseApp);
-
+import { useStore } from 'vuex'
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
 
 export default {
-    name: 'RoomSelection',
-    components: {
-    FullScreenSection,
-    CardComponent,
-    JbButton,
-    JbButtons,
+  name: 'RoomSelection',
+  components: {
+  FullScreenSection,
+  CardComponent,
+  JbButton,
+  JbButtons,
+  },
+
+  data(){
+    return{
+      roomType : false,
+      // room1: "",
+      // room2: "",
+      // room3: "",
+      // room4: "",
+      // price1: "",
+      // price2: "",
+      // price3: "",
+      // price4: "",
+      // rooms: [],
+      // prices: []
+    }
+  },
+
+  // mounted() {
+  //   async function display(){
+  //     let z = await getDocs(collection(db, "RoomMeta"))
+
+  //     z.forEach((docs) => {
+  //       let room = docs.data()
+  //       var type = room.type
+  //       var price = room.price
+
+  //       this.rooms.push(type)
+  //       this.prices.push(price)
+  //     })
+  //   }
+  //   display()
+  // },
+
+  methods: {
+    selectRoom1() {
+      this.roomType = "Single";
     },
 
-    data(){
-      return{
-        roomType : false,
-        // room1: "",
-        // room2: "",
-        // room3: "",
-        // room4: "",
-        // price1: "",
-        // price2: "",
-        // price3: "",
-        // price4: "",
-        // rooms: [],
-        // prices: []
+    selectRoom2() {
+      this.roomType = "Queens"
+    },
+
+    selectRoom3() {
+      this.roomType = "Kings"
+    },
+
+    selectRoom4() {
+      this.roomType = "Apartment"
+    },
+
+    async savetofs() {
+      var a = this.roomType
+      // var dict = this.$route.params.info
+      // dict["RoomType"] = a
+      // const store = useStore()
+      // store.commit('meta' , {RoomType:a, RoomNumber:b})
+
+      alert("You have selected "+ a + "!")
+      try{
+        const docRef = await updateDoc(doc(db, "RegInfo", this.$route.params.email), {
+          RoomType: a})
+        console.log(docRef)
+        this.$emit("added")
+
+      //   const docRef = await updateDoc(doc(db, "RegInfo", b), store.state.guestDefault)
+      //   console.log(docRef)
+      //   this.$emit("added")
+      }
+      catch(error) {
+        console.error("Error adding document: ", error);
       }
     },
 
-    // mounted() {
-    //   async function display(){
-    //     let z = await getDocs(collection(db, "RoomMeta"))
+    passgenerate() {
+      this.$router.push({name: "PassGenerationPage", 
+      path: '/arrivals/passgeneration', params: {
+        roomtype: this.roomType}})
+    }
+  },
 
-    //     z.forEach((docs) => {
-    //       let room = docs.data()
-    //       var type = room.type
-    //       var price = room.price
+  setup() {
+    const store = useStore()
 
-    //       this.rooms.push(type)
-    //       this.prices.push(price)
-    //     })
-    //   }
-    //   display()
-    // },
-
-    methods: {
-      selectRoom1() {
-        this.roomType = "Single";
-      },
-
-      selectRoom2() {
-        this.roomType = "Queens"
-      },
-
-      selectRoom3() {
-        this.roomType = "Kings"
-      },
-
-      selectRoom4() {
-        this.roomType = "Apartment"
-      },
-
-      async savetofs() {
-        var a = this.roomType
-        // var dict = this.$route.params.info
-        // dict["RoomType"] = a
-        alert("You have selected "+ a + "!")
-        try{
-          const docRef = await updateDoc(doc(db, "RegInfo", this.$route.params.email), {
-            RoomType: a})
-          console.log(docRef)
-          this.$emit("added")
-        }
-        catch(error) {
-          console.error("Error adding document: ", error);
-        }
-      },
-
-      passgenerate() {
-        this.$router.push({name: "PassGenerationPage", 
-        path: '/arrivals/passgeneration', params: {
-          roomtype: this.roomType}})
-      }
+    return {
+      store,
+    }
   }
 }
 </script>
