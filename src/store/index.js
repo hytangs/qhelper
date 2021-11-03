@@ -47,6 +47,12 @@ export default createStore({
       roomStatus: 'Occupied',
       roomCheckout: 'Undefined',
       roomType: 'Undefined'
+    }],
+
+    publicBroadcast: [{
+      contains: 'No message',
+      date: 'N/A',
+      sender: 'N/A'
     }]
   },
 
@@ -81,6 +87,10 @@ export default createStore({
 
     alterroomguest (state, meta) {
       state.roomGuestDefault = meta
+    },
+
+    alterbroadcast (state, meta) {
+      state.publicBroadcast = meta
     }
 
   },

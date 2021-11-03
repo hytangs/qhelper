@@ -45,7 +45,7 @@ import ModalBox from '../../components/plugins/ModalBox'
 import TitleBar from '../../../src/components/plugins/TitleBar'
 import HeroBar from '../../../src/components/plugins/HeroBar'
 import CardComponent from "../../components/plugins/CardComponent"
-import GuestRoomBroadcast from '../../../src/components/admin/admin-components/GuestRoomBroadcast'
+import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBroadcast'
 import GuestRoomRequest from '../../../src/components/admin/admin-components/GuestRoomRequest'
 import GuestRoomStatus from '../../../src/components/admin/admin-components/GuestRoomStatus'
 import GuestRoomType from '../../../src/components/admin/admin-components/GuestRoomType'

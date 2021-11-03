@@ -86,7 +86,6 @@ export default {
         },
         async assignRoom(type) {
             const roomTypeToAssign = await doc(db, "RoomMeta", type);
-
             var x = roomTypeToAssign.data();
             var assigned;
             for (var key in x) {
@@ -99,6 +98,20 @@ export default {
                 }
             }
             console.log(assigned);
+        },
+
+        async getBroadcast() {
+            const broadcastMeta = await getDocs(collection(db, "Notification"));
+            let outputMeta = []
+            broadcastMeta.forEach((doc) => {
+                var x = doc.data();
+                outputMeta.push({
+                    contains: x['contains'],
+                    date: x['date'],
+                    sender: x['sender']
+                })
+            })
+            return outputMeta
         }
     }
 }

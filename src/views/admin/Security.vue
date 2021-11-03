@@ -47,7 +47,7 @@ import PieChart from "../../../src/components/admin/admin-components/Charts/PieC
 import * as charts from "../../../src/components/admin/admin-components/Charts/charts"
 import CardComponent from "../../components/plugins/CardComponent"
 import CardWidget from "../../../src/components/plugins/CardWidget"
-import GuestRoomBroadcast from "../../components/admin/admin-components/GuestRoomBroadcast";
+import GuestRoomBroadcast from "../../components/admin/admin-components/PublicBroadcast";
 
 export default {
   name: "AdminTemplate",

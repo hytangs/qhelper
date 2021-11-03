@@ -6,13 +6,17 @@
     <thead>
       <tr>
         <th>Notification</th>
+        <th>Sender</th>
+        <th>Date</th>
         <th></th>
       </tr>
     </thead>
-    
+
     <tbody>
-      <tr>
-        <td data-label="Notification"> Long notification from broadcast. </td>
+      <tr v-for="message in store.state.publicBroadcast" :key="message.date">
+        <td data-label="Notification"> {{ message.contains }}</td>
+        <td data-label="Sender"> {{ message.sender }} </td>
+        <td data-label="Date"> {{ message.date }} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, remove()" />
@@ -29,6 +33,8 @@ import { mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
+import { useStore } from 'vuex'
+import connector from "../../../connector";
 
 export default {
   name: "GuestRoomBroadcast.vue",
@@ -42,10 +48,20 @@ export default {
   setup() {
     const isModalDangerActive = ref(false)
 
+    const store = useStore()
+
     return {
         mdiTrashCan,
-        isModalDangerActive
+        isModalDangerActive,
+        store
       }
+  },
+
+  async created() {
+    const store = useStore()
+    let meta = await connector.methods.getBroadcast().then(x => x)
+    console.log(meta)
+    store.commit('alterbroadcast' , meta)
   },
 
   methods: {

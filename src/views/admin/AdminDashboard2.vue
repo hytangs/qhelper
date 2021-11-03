@@ -161,7 +161,7 @@ import Overlay from "../../../src/components/plugins/Overlay";
 import localsession from "../../store/localsession";
 //import InternalCommunication from "../../../src/components/admin/admin-components/InternalCommunication";
 import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
-import GuestRoomBroadcast from '../../../src/components/admin/admin-components/GuestRoomBroadcast';
+import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBroadcast';
 import connector from "../../connector";
 
 export default {

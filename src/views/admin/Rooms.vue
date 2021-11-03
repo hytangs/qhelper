@@ -25,7 +25,7 @@
     <title-sub-bar :icon="mdiTableBorder" title="Public Broadcast"/>
 
     <card-component class="mb-6" title="Public Broadcast" has-table>
-      <GuestRoomBroadcast/>
+      <PublicBroadcast/>
     </card-component>
 
     <title-sub-bar :icon="mdiTableOff" title="Empty variation: template"/>
@@ -58,7 +58,7 @@ import Overlay from '../../../src/components/plugins/Overlay'
 import GuestRoomStatus from "../../components/admin/admin-components/GuestRoomStatus";
 import GuestRoomType from "../../components/admin/admin-components/GuestRoomType";
 import GuestRoomRequest from "../../components/admin/admin-components/GuestRoomRequest";
-import GuestRoomBroadcast from "../../components/admin/admin-components/GuestRoomBroadcast";
+import PublicBroadcast from "../../components/admin/admin-components/PublicBroadcast";
 import connector from "../../connector";
 
 export default {
@@ -77,7 +77,7 @@ export default {
     GuestRoomStatus,
     GuestRoomType,
     GuestRoomRequest,
-    GuestRoomBroadcast,
+    PublicBroadcast,
   },
   setup () {
     const titleStack = ref(['Admin', 'Rooms'])

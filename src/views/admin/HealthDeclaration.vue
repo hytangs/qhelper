@@ -50,7 +50,7 @@ import CardComponent from "../../components/plugins/CardComponent"
 import QuarantineStatus from '../../../src/components/admin/admin-components/QuarantineStatus'
 import QuarantinePlan from '../../../src/components/admin/admin-components/QuarantinePlan'
 import QuarantineHealthAlert from '../../../src/components/admin/admin-components/QuarantineHealthAlert'
-import GuestRoomBroadcast from '../../../src/components/admin/admin-components/GuestRoomBroadcast'
+import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBroadcast'
 import QuarantineMedicalCheckouts from '../../../src/components/admin/admin-components/QuarantineMedicalCheckouts'
 import {ref} from "vue";
 

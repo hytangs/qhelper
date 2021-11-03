@@ -16,7 +16,7 @@
 <script>
 import JbButton from '../../plugins/JbButton'
 import JbButtons from '../../plugins/JbButtons'
-import mdiPencilOutline from '@mdi/js'
+import {mdiPencilOutline} from '@mdi/js'
 
 export default {
   name: "GuestEntry",
