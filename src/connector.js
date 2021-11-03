@@ -86,6 +86,7 @@ export default {
         },
         async assignRoom(type) {
             const roomTypeToAssign = await doc(db, "RoomMeta", type);
+
             var x = roomTypeToAssign.data();
             var assigned;
             for (var key in x) {
@@ -112,6 +113,21 @@ export default {
                 })
             })
             return outputMeta
-        }
+        },
+
+        async getHealthAlert() {
+            const HealthOrder = await getDocs(collection(db, "HealthOrder"));
+            let outputOrder = []
+            HealthOrder.forEach((doc) => {
+                var x = doc.data();
+                outputOrder.push({
+                    guestName: x['Guest'],
+                    date: x['Date'],
+                    symptoms: x['Symptoms'],
+                    temp: x['Temperature']
+                })
+            })
+            return outputOrder
+        },
     }
 }

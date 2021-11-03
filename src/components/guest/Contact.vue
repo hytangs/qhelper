@@ -258,4 +258,8 @@ header.sticky .title:hover::after {
 .text{
   margin-bottom: 1rem;
 }
+
+.color{
+  color: white;
+}
 </style>

@@ -53,6 +53,7 @@ import QuarantineHealthAlert from '../../../src/components/admin/admin-component
 import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBroadcast'
 import QuarantineMedicalCheckouts from '../../../src/components/admin/admin-components/QuarantineMedicalCheckouts'
 import {ref} from "vue";
+import connector from "../../connector"
 
 export default {
   name: "AdminTemplate",
@@ -72,6 +73,8 @@ export default {
   },
   setup() {
     const titleStack = ref(['Admin', 'Health'])
+
+    connector.methods.getHealthAlert()
 
     return {
       titleStack,

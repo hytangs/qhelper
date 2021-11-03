@@ -1,12 +1,9 @@
 <template>
-<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Delete <b>Health Alert</b></p>
-</modal-box>
 
 <table>
     <thead>
       <tr>
-        <th>Room Number</th>
+        <th>Guest Name</th>
         <th>Symptoms</th>
         <th>Temperature Declared</th>
         <th>Date</th>
@@ -16,26 +13,39 @@
     
     <tbody>
       <tr>
-        <td data-label="Room Number"> Room Number </td>
+        <td data-label="Guest Name"> Guest Name </td>
         <td data-label="Symptoms"> Symptoms </td>
         <td data-label="Temperature Declared"> Temperature Declared </td>
         <td data-label="Date"> Date </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, remove()" />
+            <jb-button color="danger" :icon="mdiTrashCan" small @click="remove()" />
           </jb-buttons>
         </td>
       </tr>
+      <!-- <tr v-for="guest in store.state.healthAlertDefault" :key="guest.guestName">
+        <td data-label="Guest Name">{{guest.guestName}} </td>
+        <td data-label="Symptoms"> {{guest.symptoms}} </td>
+        <td data-label="Temperature Declared"> {{guest.temp}}</td>
+        <td data-label="Date"> {{guest.date}} </td>
+        <td class="actions-cell">
+          <jb-buttons type="justify-start lg:justify-end" no-wrap>
+            <jb-button color="danger" :icon="mdiTrashCan" small @click="remove()" />
+          </jb-buttons>
+        </td>
+      </tr> -->
     </tbody>
 </table>
 </template>
 
 <script>
-import { ref } from 'vue'
+// import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 import { mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
-import ModalBox from '../../plugins/ModalBox'
+// import connector from "../../../connector"
 
 export default {
   name: "QuarantineHealthAlert.vue",
@@ -43,17 +53,25 @@ export default {
   components: {
     JbButtons,
     JbButton,
-    ModalBox
   },
 
   setup() {
-    const isModalDangerActive = ref(false)
+    const store = useStore()
+
+    const darkMode = computed(() => store.state.darkMode)
 
     return {
       mdiTrashCan,
-      isModalDangerActive
+      darkMode
     }
   },
+
+  // async created() {
+  //   const store = useStore()
+  //   let healthOrder = await connector.methods.getHealthAlert().then(x => x)
+  //   console.log(healthOrder)
+  //   store.commit('alterHealthAlert' , healthOrder)
+  // }
 }
 </script>
 

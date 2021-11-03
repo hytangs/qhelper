@@ -53,6 +53,13 @@ export default createStore({
       contains: 'No message',
       date: 'N/A',
       sender: 'N/A'
+    }],
+
+    healthAlertDefault: [{
+      guestName: 'First Last',
+      date: 'Date',
+      symptoms: '0',
+      temp: '0'
     }]
   },
 
@@ -91,7 +98,11 @@ export default createStore({
 
     alterbroadcast (state, meta) {
       state.publicBroadcast = meta
-    }
+    },
+
+    alterHealthAlert (state, meta) {
+      state.healthAlertDefault = meta
+    },
 
   },
   actions: {

@@ -20,11 +20,10 @@
 
   <br><br><br><br>
 
-<div class = white_shop_area>
     <div class = "shop-page">
         <NavBar2/><br>
     </div>
-</div>
+
 </template>
 
 <script>
@@ -39,7 +38,7 @@ export default {
 </script>
 
 <style scoped>
-.white_shop_area{
+/*.white_shop_area{
   position:relative;
   display:flex;
   justify-content: space-around;
@@ -49,10 +48,12 @@ export default {
   width:100%;
   height: 100%;
   background-color:whitesmoke;
-}
+}*/
 
 .shop-page{
     width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
@@ -119,6 +120,40 @@ header.sticky .logo,
 header.sticky ul li a,
 header.sticky .exit,
 header.sticky .color {
+  color:white;
+}
+
+/* titles changing color when hovering */
+
+.title:hover {
+  color:goldenrod;
+}
+
+.title:hover::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  margin: -7px;
+  border-bottom: 2px solid goldenrod;
+}
+
+header.sticky ul li a:hover {
+  color: goldenrod;
+}
+
+header.sticky .title:hover::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  margin: -7px;
+  border-bottom: 2px solid goldenrod;
+}
+
+.color{
   color:white;
 }
 </style>
