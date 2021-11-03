@@ -97,6 +97,6 @@ export default {
 }
 
 .remark{
-  width: 50%;
+  
 }
 </style>
