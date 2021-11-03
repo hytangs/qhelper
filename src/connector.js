@@ -56,7 +56,6 @@ export default {
                 var output = [];
                 for (var key in x) {
                     if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
-                        console.log(key + " -> " + x[key]);
                         output.push({
                             roomNo: key,
                             roomStatus: x[key]
