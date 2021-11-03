@@ -9,7 +9,15 @@ import {
   mdiTable,
   mdiViewList,
   mdiTelevisionGuide,
-  mdiResponsive
+  mdiResponsive,
+  mdiBed,
+  mdiMedicalBag,
+  mdiFood,
+  mdiStore,
+  mdiCashMultiple,
+  mdiSecurity,
+  mdiQrcode
+
 } from '@mdi/js'
 
 export default [
@@ -27,38 +35,38 @@ export default [
     },
     {
       to: '/admin/rooms',
-      icon: mdiTable,
+      icon: mdiBed,
       label: 'Rooms',
     },
     {
       to: '/admin/health',
-      icon: mdiTable,
+      icon: mdiMedicalBag,
       label: 'Health',
     },
     {
       to: '/admin/foodselection',
-      icon: mdiDesktopMac,
-      label: 'Foods'
+      icon: mdiFood,
+      label: 'Food'
     },
     {
       to: '/admin/shops',
-      icon: mdiDesktopMac,
+      icon: mdiStore,
       label: 'Shops'
     },
     {
       to: '/admin/finance',
-      icon: mdiDesktopMac,
+      icon: mdiCashMultiple,
       label: 'Finance'
     },
     {
       to: '/admin/security',
-      icon: mdiDesktopMac,
+      icon: mdiSecurity,
       label: 'Security'
     },
     {
       to: '/admin/blank',
-      icon: mdiDesktopMac,
-      label: 'Template'
+      icon: mdiQrcode,
+      label: 'QR Pass'
     },
   ],
   'Links',
