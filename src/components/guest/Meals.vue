@@ -22,7 +22,7 @@
 
   <div id="mealpage">
     <br>
-    <h1>Menu for 31st October, 2021</h1>
+    <h1>Menu for {{new Date().toJSON().slice(0,10).replace(/-/g,'/')}}</h1>
     <br>
     <div class="form_container">
       <form v-bind:key="k" v-for="(meal, k) in mealsData.filter((i)=>{return i.visible;})">
