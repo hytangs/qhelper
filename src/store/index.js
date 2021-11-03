@@ -60,7 +60,7 @@ export default createStore({
       date: 'Date',
       symptoms: '0',
       temp: '0'
-    }]
+    }],
   },
 
   mutations: {
