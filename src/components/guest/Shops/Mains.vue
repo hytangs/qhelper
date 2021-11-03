@@ -21,7 +21,7 @@
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_ramyun()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -50,7 +50,7 @@
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_bento()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -78,7 +78,7 @@
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_nuggets()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -363,6 +363,35 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
 export default defineComponent( {
   components: { Splide, SplideSlide },
+  
+  methods: {
+    update_ramyun() {
+        this.ramyun = this.ramyun + 1
+        console.log(this.ramyun)
+        this.$emit("update_ramyun", this.ramyun)
+    },
+    update_bento() {
+        this.bento = this.bento + 1
+        console.log(this.bento)
+        this.$emit("update_bento", this.bento)
+    },
+    update_nuggets() {
+        this.nuggets = this.nuggets + 1
+        console.log(this.nuggets)
+        this.$emit("update_nuggets", this.nuggets)
+    },
+  },
+
+  setup() {
+      var ramyun = 0
+      var bento = 0
+      var nuggets = 0
+      return {
+          ramyun,
+          bento,
+          nuggets
+      }
+  }
 } );
 </script>
 
