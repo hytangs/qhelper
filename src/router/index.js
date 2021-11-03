@@ -284,16 +284,7 @@ const routes = [
     path: '/home',
     name: 'home',
     component: () => import('../components/guest/HomeAlt')
-   }, 
-   {
-    meta: {
-        title: 'Landing'
-    },
-    path: '/landing',
-    name: 'landing',
-    component: () => import('../views/guest/GuestDashboard')
-   }, 
-
+   },
 ]
 
 const router = createRouter({

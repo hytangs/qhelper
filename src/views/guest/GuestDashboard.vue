@@ -1,7 +1,7 @@
 <template>
-  <body>
+  <body ref ="top">
   <header>
-    <a href = "#landing" class = "logo text-3xl"> QHELPER </a>
+    <a @click="scrollMeTo('top')" class = "logo text-3xl"> QHELPER </a>
     <ul>
       <li><a class = "title" @click="scrollMeTo('home')">Home</a></li>
       <li><a class = "title" href = "#meals">Meals</a></li>
