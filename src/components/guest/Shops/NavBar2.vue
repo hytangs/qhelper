@@ -3,7 +3,7 @@
   <p v-if="this.ramyun > 0">Shin Ramyun ($3.80 each) --- Count: {{this.ramyun}}</p>
   <p v-if="this.bento > 0">Chinese Style Bento ($7.00 each) --- Count: {{this.bento}}</p>
   <p v-if="this.nuggets > 0">Nugget and Fries ($5.50 each) --- Count: {{this.nuggets}}</p>
-  <p v-if="this.lagnasa > 0">Beef Lagsana ($8.00 each) --- Count: {{this.lagnasa}}</p>
+  <p v-if="this.lagsana > 0">Beef Lagsana ($8.00 each) --- Count: {{this.lagsana}}</p>
   <p v-if="this.lemak > 0">Nasi Lemak ($6.00 each) --- Count: {{this.lemak}}</p>
   <p v-if="this.prata > 0">Prata with Curry ($4.00 each) --- Count: {{this.prata}}</p>
   <p v-if="this.butter > 0">Butter Chicken ($15.00 each) --- Count: {{this.butter}}</p>
