@@ -17,7 +17,7 @@
       </tr>
     </thead>
 
-    <tbody>
+    <!-- <tbody>
       <tr>
         <td data-label="Guest Name">Howell Hand</td>
         <td data-label="Room">0221</td>
@@ -78,15 +78,15 @@
           </jb-buttons>
         </td>
       </tr>
-    </tbody>
+    </tbody> -->
   </table>
 </template>
 
 <script>
 import { ref } from "vue";
 import { mdiPencilOutline } from "@mdi/js";
-import JbButtons from "../../plugins/JbButtons";
-import JbButton from "../../plugins/JbButton";
+//import JbButtons from "../../plugins/JbButtons";
+//import JbButton from "../../plugins/JbButton";
 import ModalBox from "../../plugins/ModalBox";
 
 import firebaseApp from "../../../firebase.js";
@@ -98,8 +98,8 @@ export default {
   name: "PaymentHistory",
 
   components: {
-    JbButtons,
-    JbButton,
+    //JbButtons,
+    //JbButton,
     ModalBox,
   },
 

@@ -1,6 +1,6 @@
 <template>
 <modal-box v-model="isModalActive" title="Cart">
-  <p v-if="this.ramyun > 0">Shin Ramyun ($3.80 each) --- Count: {{this.ramyun}}</p>
+  <p v-if="this.ramyun > 0">Shin Ramyun ($3.00 each) --- Count: {{this.ramyun}}</p>
   <p v-if="this.bento > 0">Chinese Style Bento ($7.00 each) --- Count: {{this.bento}}</p>
   <p v-if="this.nuggets > 0">Nugget and Fries ($5.50 each) --- Count: {{this.nuggets}}</p>
   <p v-if="this.lagsana > 0">Beef Lagsana ($8.00 each) --- Count: {{this.lagsana}}</p>
@@ -12,7 +12,7 @@
   <p v-if="this.sushi > 0">Japanese Sushi Platter ($18.00 each) --- Count: {{this.sushi}}</p>
   <p v-if="this.fried > 0">Korean Fried Chicken ($18.00 each) --- Count: {{this.fried}}</p>
   <p v-if="this.mamuang > 0">Som Tum Mamuang ($5.00 each) --- Count: {{this.mamuang}}</p>
-  <p v-if="this.total > 0">Total: ${{this.total}}</p>
+  <p v-if="this.total > 0">Total: ${{parseFloat(this.total).toFixed(2)}}</p>
 </modal-box>
   <div id="logged2">
     <div id="nav2">
@@ -49,7 +49,7 @@
           View my Cart
         </button>
         &nbsp;
-        <button class="clear-cart btn btn-danger">Order Now</button>
+        <button class="clear-cart btn btn-danger" @click="savetofs()">Order Now</button>
       </div>
     </div>
     <Mains 
@@ -92,6 +92,11 @@ import Drinks from "./Drinks";
 import Supplies from "./Supplies";
 import ModalBox from '../../plugins/ModalBox'
 
+import firebaseApp from '../../../firebase.js';
+import { getFirestore } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+const db = getFirestore(firebaseApp);
+
 export default {
   components: { Mains, Snacks, Drinks, Supplies, ModalBox },
 
@@ -102,6 +107,22 @@ export default {
     };
   },
   methods: {
+
+    async savetofs() {
+      try {
+            const docRef = await setDoc(doc(db, "ShopOrder", "0101"), {
+              Name: "John", Room: 1234, ItemsOrdered: "Ramyun", 
+              PaymentAmount: parseFloat(this.total).toFixed(2),
+              PaymentMethod: "Mastercard", OrderStatus: "Order Received", 
+              TimeOfPayment: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
+            })
+            console.log(docRef)
+            this.$emit("added")
+          } finally {
+            alert("Orders submitted successfully.")
+          }
+    },
+
     changeShopSection(id) {
       this.currentSection = id;
       console.log(this.total)
@@ -146,7 +167,7 @@ export default {
       this.mamuang = e;
     },
     totalCost() {
-      this.total = this.ramyun * 3.8 + this.bento * 7.0 + this.nuggets * 5.5 + this.lagsana * 8.0
+      this.total = this.ramyun * 3.0 + this.bento * 7.0 + this.nuggets * 5.5 + this.lagsana * 8.0
       + this.lemak * 6.0 + this.prata * 4.0 + this.butter * 15.0 + this.penang * 7.0 + this.dimsum * 15.0
       + this.sushi * 18.0 + this.fried * 18.0 + this.mamuang * 5.0;
     }
