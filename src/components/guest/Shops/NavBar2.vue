@@ -12,6 +12,7 @@
   <p v-if="this.sushi > 0">Japanese Sushi Platter ($18.00 each) --- Count: {{this.sushi}}</p>
   <p v-if="this.fried > 0">Korean Fried Chicken ($18.00 each) --- Count: {{this.fried}}</p>
   <p v-if="this.mamuang > 0">Som Tum Mamuang ($5.00 each) --- Count: {{this.mamuang}}</p>
+  <p v-if="this.total > 0">Total: ${{this.total}}</p>
 </modal-box>
   <div id="logged2">
     <div id="nav2">
@@ -43,7 +44,7 @@
           type="button"
           data-toggle="modal"
           data-target="#cart"
-          @click="isModalActive = true"
+          @click="isModalActive = true, totalCost()"
         >
           View my Cart
         </button>
@@ -51,7 +52,8 @@
         <button class="clear-cart btn btn-danger">Order Now</button>
       </div>
     </div>
-    <Mains @update_ramyun="Newramyun($event)" 
+    <Mains 
+    @update_ramyun="Newramyun($event)"  
     @update_bento="Newbento($event)" 
     @update_nuggets="Newnuggets($event)" 
     @update_lagsana="Newlagsana($event)" 
@@ -62,7 +64,19 @@
     @update_dimsum="Newdimsum($event)" 
     @update_sushi="Newsushi($event)" 
     @update_fried="Newfried($event)" 
-    @update_mamuang="Newmamuang($event)" 
+    @update_mamuang="Newmamuang($event)"
+    @remove_ramyun="Newramyun($event)"  
+    @remove_bento="Newbento($event)" 
+    @remove_nuggets="Newnuggets($event)" 
+    @remove_lagsana="Newlagsana($event)" 
+    @remove_lemak="Newlemak($event)" 
+    @remove_prata="Newprata($event)" 
+    @remove_butter="Newbutter($event)" 
+    @remove_penang="Newpenang($event)" 
+    @remove_dimsum="Newdimsum($event)" 
+    @remove_sushi="Newsushi($event)" 
+    @remove_fried="Newfried($event)" 
+    @remove_mamuang="Newmamuang($event)" 
     v-show="currentSection === 1" />
     <Snacks v-show="currentSection === 2" />
     <Drinks v-show="currentSection === 3" />
@@ -80,7 +94,9 @@ import ModalBox from '../../plugins/ModalBox'
 
 export default {
   components: { Mains, Snacks, Drinks, Supplies, ModalBox },
+
   data() {
+
     return {
       currentSection: 1,
     };
@@ -88,6 +104,7 @@ export default {
   methods: {
     changeShopSection(id) {
       this.currentSection = id;
+      console.log(this.total)
       // console.log(this.ramyun)
       // console.log(this.bento)
       // console.log(this.nuggets)
@@ -128,6 +145,11 @@ export default {
     Newmamuang(e) {
       this.mamuang = e;
     },
+    totalCost() {
+      this.total = this.ramyun * 3.8 + this.bento * 7.0 + this.nuggets * 5.5 + this.lagsana * 8.0
+      + this.lemak * 6.0 + this.prata * 4.0 + this.butter * 15.0 + this.penang * 7.0 + this.dimsum * 15.0
+      + this.sushi * 18.0 + this.fried * 18.0 + this.mamuang * 5.0;
+    }
   },
   setup() {
     const isModalActive = ref(false)
@@ -143,6 +165,7 @@ export default {
       var sushi = 0
       var fried = 0
       var mamuang = 0
+      var total = 0
       return {
           ramyun,
           bento,
@@ -156,7 +179,8 @@ export default {
           sushi,
           fried,
           mamuang,
-          isModalActive
+          isModalActive,
+          total
       }
   }
 };
