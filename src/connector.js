@@ -48,23 +48,24 @@ export default {
                 "vacantrooms":vacantrooms
             }
         },
-        async getRoomStatus() {
+        async getRoomMeta() {
             const roomMeta = await getDocs(collection(db, "RoomMeta"));
-
+            let outputMeta = []
             roomMeta.forEach((doc) => {
                 var x = doc.data();
-                var assigned;
+                var output = [];
                 for (var key in x) {
-                    if (key !== 'vacant' && key !== 'total' && key !== 'price') {
+                    if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
                         console.log(key + " -> " + x[key]);
-                        if (x[key] === '0') {
-                            assigned = key;
-                            break;
-                        }
+                        output.push({
+                            roomNo: key,
+                            roomStatus: x[key]
+                        })
                     }
                 }
-                console.log(assigned);
+                outputMeta = outputMeta.concat(output)
             });
+            console.log(outputMeta)
         },
         async assignRoom(type) {
             const roomTypeToAssign = await doc(db, "RoomMeta", type);
@@ -72,7 +73,7 @@ export default {
             var x = roomTypeToAssign.data();
             var assigned;
             for (var key in x) {
-                if (key !== 'vacant' && key !== 'total' && key !== 'price') {
+                if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
                     console.log(key + " -> " + x[key]);
                     if (x[key] === '0') {
                         assigned = key;

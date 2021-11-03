@@ -85,7 +85,7 @@ export default {
   setup () {
     const titleStack = ref(['Admin', 'Rooms'])
 
-    connector.methods.getRoomStatus()
+    connector.methods.getRoomMeta()
 
     return {
       titleStack,
