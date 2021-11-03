@@ -1,5 +1,6 @@
 <template>
   <div id="mealpage">
+    <br>
     <h1>Menu for 31st October, 2021</h1>
     <br>
     <div class="form_container">
@@ -30,15 +31,20 @@
                    :alt="item.desc" v-on:click="item.selected = !item.selected">
               <div class="mt-2">
                 <label class="flex items-center">
-                  <input :checked="item.selected" type="checkbox" class="form-checkbox h-6 w-6">
+                  <input :name="meal.time" checked="item.selected" type="radio" class="form-checkbox h-6 w-6">
                   <span class="text-lg text-gray-500">{{ item.name }}</span>
                 </label>
               </div>
-              <p class="font-black">{{ item.price }}{{ item.priceUnit }}</p>
+              <!--<p class="font-black">{{ item.price }}{{ item.priceUnit }}</p>-->
             </div>
           </div>
         </transition>
-
+        <div class="w-3/4 m-auto mb-4">
+          <p>Special Request</p>
+          <label class="block mt-3">
+            <input type="text" class="form-input mt-1 m-auto block w-1/2 rounded-md border-gray-300 h-14" placeholder="Special">
+          </label>
+        </div>
         <div class="submit">
           <button class="submission" type="button">Submit</button>
         </div>
@@ -56,7 +62,7 @@
           <a href="javascript:void(0)" class="absolute right-0 top-0 pr-5 pt-4" v-on:click="showHideModal()">
             <XIcon class="h-6 w-6 text-blue-900 sm:text-sm"></XIcon>
           </a>
-          <img class="w-1/4 rounded-lg"
+          <img class="w-auto rounded-lg"
                :src="popup.lgSrc"
                :alt="popup.alt">
           <div class="mt-3 text-left">
