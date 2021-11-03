@@ -31,7 +31,15 @@ export default createStore({
     /* Meta Admin Data */
     totalrooms: 0,
     vacantrooms: 0,
-    occupiedrooms: 0
+    occupiedrooms: 0,
+
+    /* JSON Default Storage */
+    roomTypeDefault: [{
+      roomType: 'Room Type Undefined',
+      roomVacancy: '0',
+      roomTotal: '0',
+      roomPrice: '0'
+    }]
   },
 
   mutations: {
@@ -57,6 +65,10 @@ export default createStore({
       state.totalrooms = meta.totalrooms
       state.vacantrooms = meta.vacantrooms
       state.occupiedrooms = meta.occupiedrooms
+    },
+
+    alterroomtype (state, meta) {
+      state.roomTypeDefault = meta
     }
   },
   actions: {

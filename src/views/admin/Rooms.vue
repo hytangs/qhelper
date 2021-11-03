@@ -85,8 +85,6 @@ export default {
   setup () {
     const titleStack = ref(['Admin', 'Rooms'])
 
-    connector.methods.getRoomMeta()
-
     return {
       titleStack,
       mdiMonitorCellphone,
