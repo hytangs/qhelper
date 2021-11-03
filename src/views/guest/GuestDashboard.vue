@@ -1,9 +1,9 @@
 <template>
   <body>
   <header>
-    <a href = "#" class = "logo text-3xl"> QHELPER </a>
+    <a href = "#landing" class = "logo text-3xl"> QHELPER </a>
     <ul>
-      <li><a class = "title" href = "#home">Home</a></li>
+      <li><a class = "title" @click="scrollMeTo('home')">Home</a></li>
       <li><a class = "title" href = "#meals">Meals</a></li>
       <li><a class = "title" href = "#shop">Shop</a></li>
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
@@ -31,7 +31,7 @@
     <span class="px-2 transition-colors lg:hidden">Log out</span></a>
   </header>
   <section class="banner"></section>
-  <div class = "home_area" id="home">
+  <div class = "home_area" ref="home">
     <div class = "white_home_area"><br><br><br><Home/></div>
   </div>
   <div class = "meal_page" id="meals">
@@ -56,7 +56,15 @@ export default {
     Home,
     Meals,
     Shop
+  },
+
+  methods: {
+    scrollMeTo(refName) {
+      var element = this.$refs[refName];
+      var top = element.offsetTop;
+      window.scrollTo(0, top);
   }
+},
 
   /*data() {
     return {
@@ -239,6 +247,7 @@ header.sticky .color {
 
 .white_home_area{ /* change the width of the white cards */
   width: 70%;
+  margin-top: 2rem;
 }
 
 .white_entertainment_area {
