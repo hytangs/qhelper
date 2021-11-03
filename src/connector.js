@@ -99,6 +99,21 @@ export default {
                 }
             }
             console.log(assigned);
-        }
+        },
+
+        async getHealthAlert() {
+            const HealthOrder = await getDocs(collection(db, "HealthOrder"));
+            let outputOrder = []
+            HealthOrder.forEach((doc) => {
+                var x = doc.data();
+                outputOrder.push({
+                    guestName: x['Guest'],
+                    date: x['Date'],
+                    symptoms: x['Symptoms'],
+                    temp: x['Temperature']
+                })
+            })
+            return outputOrder
+        },
     }
 }

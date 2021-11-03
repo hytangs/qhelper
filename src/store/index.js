@@ -47,6 +47,13 @@ export default createStore({
       roomStatus: 'Occupied',
       roomCheckout: 'Undefined',
       roomType: 'Undefined'
+    }],
+
+    healthAlertDefault: [{
+      guestName: 'First Last',
+      date: 'Date',
+      symptoms: '0',
+      temp: '0'
     }]
   },
 
@@ -81,7 +88,11 @@ export default createStore({
 
     alterroomguest (state, meta) {
       state.roomGuestDefault = meta
-    }
+    },
+
+    alterHealthAlert (state, meta) {
+      state.healthAlertDefault = meta
+    },
 
   },
   actions: {
