@@ -1,33 +1,10 @@
 <template>
-<modal-box v-model="isModalActive1" title="View">
-  <p>View the details of employee</p>
+<modal-box v-model="isModalActive1" title="Modify Staff Position">
+  <p>Modify Staff Position</p>
 </modal-box>
 
-<modal-box v-model="isModalActive2" title="Modify">
-  <p>Modify the details of employee</p>
-  <!-- <field>
-    <control placeholder="Name" v-model="new_name" />
-    <control placeholder="Staff ID" v-model="new_id" />
-    <control placeholder="Position" v-model="new_position" />
-  </field>
-  <field label="Grant Access" wrap-body>
-    <check-radio-picker
-      name="sample-checkbox"
-      v-model="customElementsForm.checkbox"
-      :options="{ A: 'A', B: 'B', C: 'C', D: 'D' }"
-    />
-  </field>
-  <field label="Deployed" wrap-body>
-    <check-radio-picker
-      name="sample-radio"
-      type="radio"
-      v-model="customElementsForm.radio"
-      :options="{ yes: 'Yes', no: 'No' }"
-    ></check-radio-picker>
-  </field>
-  <jb-buttons type="justify-left lg:justify-left" no-wrap>
-    <jb-button color="info" label="Confirm" v-on:click="updateStaff()"/>
-  </jb-buttons> -->
+<modal-box v-model="isModalActive2" large-title="Please Confirm" button="danger" has-cancel>
+  <p>Deployment modified</p>
 </modal-box>
 
 <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
@@ -38,12 +15,12 @@
     <thead>
       <tr>
         <th></th>
-        <th>Name</th>
-        <th>Staff ID</th>
+        <th>Staff Name</th>
+        <th>Account Name</th>
         <th>Position</th>
         <th>Grant Access</th>
         <th>Deployed</th>
-        <th>Tags</th>
+        <!-- <th>Tags</th> -->
         <th></th>
       </tr>
     </thead>
@@ -58,18 +35,18 @@
         <td data-label="Position"> {{staff.position}} </td>
         <td data-label="Grant Access"> {{staff.access}} </td>
         <td data-label="Deployed">{{staff.deployed}}</td>
-        <td data-label="Tags"> {{staff.tags}} </td>
+        <!-- <td data-label="Tags"> {{staff.tags}} </td> -->
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiEye" small @click="isModalActive1 = true" />
-            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive2 = true" />
+            <jb-button class="mr-3" color="light" :icon="mdiBadgeAccountHorizontal" small @click="isModalActive1 = true" />
+            <jb-button class="mr-3" color="light" :icon="mdiAccountCheck" small @click="isModalActive2 = true, modifyDeployment()" />
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, removeData()" />
           </jb-buttons>
         </td>
       </tr>
     </tbody>
 </table>
-<div class="table-pagination">
+<!-- <div class="table-pagination">
   <level>
     <jb-buttons>
       <jb-button
@@ -84,17 +61,17 @@
     </jb-buttons>
     <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
   </level>
-</div>
+</div> -->
 </template>
 
 <script>
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import { mdiEye, mdiPencilOutline, mdiTrashCan } from '@mdi/js'
+import { mdiBadgeAccountHorizontal, mdiAccountCheck, mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
-import Level from '../../plugins/Level'
+// import Level from '../../plugins/Level'
 import UserAvatar from '../../plugins/UserAvatar'
 
 export default {
@@ -104,7 +81,7 @@ export default {
     JbButtons,
     JbButton,
     ModalBox,
-    Level,
+    // Level,
     UserAvatar
   },
 
@@ -125,39 +102,39 @@ export default {
 
     const currentPage = ref(0)
 
-    const checkedRows = ref([])
+    // const checkedRows = ref([])
 
     const itemsPaginated = computed(
       () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
     )
 
-    const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+    // const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
 
-    const currentPageHuman = computed(() => currentPage.value + 1)
+    // const currentPageHuman = computed(() => currentPage.value + 1)
 
-    const pagesList = computed(() => {
-      const pagesList = []
+    // const pagesList = computed(() => {
+    //   const pagesList = []
 
-      for (let i = 0; i < numPages.value; i++) {
-        pagesList.push(i)
-      }
+    //   for (let i = 0; i < numPages.value; i++) {
+    //     pagesList.push(i)
+    //   }
 
-      return pagesList
-    })
+    //   return pagesList
+    // })
 
     return {
-        mdiEye,
-        mdiPencilOutline,
+        mdiBadgeAccountHorizontal,
+        mdiAccountCheck,
         mdiTrashCan,
         isModalActive1,
         isModalActive2,
         isModalDangerActive,
-        currentPage,
-        currentPageHuman,
-        numPages,
-        checkedRows,
+        // currentPage,
+        // currentPageHuman,
+        // numPages,
+        // checkedRows,
         itemsPaginated,
-        pagesList,
+        // pagesList,
         darkMode
       }
   },

@@ -62,7 +62,7 @@ import GuestRoomStatus from "../../components/admin/admin-components/GuestRoomSt
 import GuestRoomType from "../../components/admin/admin-components/GuestRoomType";
 import GuestRoomRequest from "../../components/admin/admin-components/GuestRoomRequest";
 import GuestRoomBroadcast from "../../components/admin/admin-components/GuestRoomBroadcast";
-import connector from "../../connector";
+//import connector from "../../connector";
 
 export default {
   name: 'Rooms',

@@ -5,23 +5,6 @@
 <hero-bar>HR Management</hero-bar>
 <main-section>
   <br>
-  <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-5 ">
-    <div class="col-span-2">
-      <field>
-        <control placeholder="Name / Staff ID" v-model="name" />
-      </field>
-    </div>
-    <div class="col-span-2">
-      <field>
-        <control :options="positionOptions" v-model="position" />
-      </field>
-    </div>
-    <div>
-      <jb-buttons type="justify-center lg:justify-center" no-wrap>
-        <jb-button color="info" label="Search" v-on:click="search()"/>
-      </jb-buttons>
-    </div>
-  </div>
   <card-component class="mb-6" has-table>
       <HRTable/>
   </card-component> 
@@ -32,14 +15,13 @@
 </main-section>
 
 <modal-box v-model="isModalActive" title="Add New Staff">
-  <p>Add <b>Staff</b></p>
+  <p>Staff Information</p>
   <field>
-    <control placeholder="Name" v-model="new_name" />
-    <control placeholder="Staff ID" v-model="new_id" />
-    <control placeholder="Position" v-model="new_position" />
+    <control placeholder="Staff Name" v-model="new_name" />
+    <control placeholder="Account Name" v-model="new_id" />
   </field>
-  <field label="Tags">
-    <control type="textarea" placeholder="Tags / Comments"/>
+  <field label="Position">
+    <control :options="positionOptions" v-model="new_position"/>
   </field>
   <jb-buttons type="justify-left lg:justify-left" no-wrap>
     <jb-button color="info" label="Confirm" v-on:click="addNewStaff()"/>
