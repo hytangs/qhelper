@@ -137,4 +137,8 @@ header.sticky .title:hover::after {
   margin: -7px;
   border-bottom: 2px solid goldenrod;
 }
+
+.color{
+  color:white;
+}
 </style>

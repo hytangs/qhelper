@@ -439,4 +439,38 @@ header.sticky .exit,
 header.sticky .color {
   color:white;
 }
+
+/* titles changing color when hovering */
+
+.title:hover {
+  color:goldenrod;
+}
+
+.title:hover::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  margin: -7px;
+  border-bottom: 2px solid goldenrod;
+}
+
+header.sticky ul li a:hover {
+  color: goldenrod;
+}
+
+header.sticky .title:hover::after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  margin: -7px;
+  border-bottom: 2px solid goldenrod;
+}
+
+.color{
+  color:white;
+}
 </style>

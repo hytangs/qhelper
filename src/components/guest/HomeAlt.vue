@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Home from '../../components/guest/Home'
+import Home from './Home'
 
 export default {
     name:"HomeAlt",
@@ -138,6 +138,10 @@ header.sticky .title:hover::after {
   bottom: 0;
   margin: -7px;
   border-bottom: 2px solid goldenrod;
+}
+
+.color{
+    color: white;
 }
 </style>
 
