@@ -25,13 +25,8 @@
       </div>
     </card-component>
     <br>
-    <card-component class="mb-6" title="Emergency Broadcast">
-      <field label="Broadcast">
-        <control type="textarea" placeholder="Emergency Message"/>
-      </field>
-      <jb-buttons type="justify-left lg:justify-left" no-wrap>
-        <jb-button color="info" label="Send" v-on:click="broadcast()"/>
-      </jb-buttons>
+    <card-component class="mb-6" title="Public Broadcast" has-table>
+      <GuestRoomBroadcast/>
     </card-component>
   </main-section>
   <footer-bar/>
@@ -52,10 +47,7 @@ import PieChart from "../../../src/components/admin/admin-components/Charts/PieC
 import * as charts from "../../../src/components/admin/admin-components/Charts/charts"
 import CardComponent from "../../components/plugins/CardComponent"
 import CardWidget from "../../../src/components/plugins/CardWidget"
-import Field from '../../components/plugins/Field'
-import Control from '../../components/plugins/Control'
-import JbButton from '../../components/plugins/JbButton'
-import JbButtons from '../../components/plugins/JbButtons'
+import GuestRoomBroadcast from "../../components/admin/admin-components/GuestRoomBroadcast";
 
 export default {
   name: "AdminTemplate",
@@ -69,10 +61,7 @@ export default {
     PieChart,
     CardComponent,
     CardWidget,
-    Field,
-    Control,
-    JbButton,
-    JbButtons
+    GuestRoomBroadcast,
   },
   setup() {
     const titleStack = ref(['Admin', 'Security'])
