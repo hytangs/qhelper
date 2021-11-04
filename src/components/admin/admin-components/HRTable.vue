@@ -42,7 +42,7 @@
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiBadgeAccountHorizontal" small @click="isModalActive1 = true" />
             <jb-button class="mr-3" color="light" :icon="mdiAccountCheck" small @click="isModalActive2 = true, modifyDeployment(staff.account, staff.deployed)" />
-            <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, removeData()" />
+            <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, removeData(staff.account)" />
           </jb-buttons>
         </td>
       </tr>
@@ -155,8 +155,8 @@ export default {
   },
 
   methods: {
-    async removeData() {
-      // remove feedback
+    async removeData(account) {
+      await connector.methods.removeStaff(account)
     },
 
     async modifyDeployment(staff, deploy) {

@@ -1,6 +1,6 @@
 
 import firebaseApp from "./firebase";
-import {getFirestore, doc, getDoc, collection, getDocs, updateDoc} from "firebase/firestore";
+import {getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc} from "firebase/firestore";
 import sha256 from "./components/plugins/helpers/sha256"
 import datequery from "./components/plugins/helpers/datequery";
 
@@ -192,6 +192,10 @@ export default {
                 })
             })
             return outputMeta
+        },
+
+        async removeStaff(accountName) {
+            await deleteDoc(doc(db, "AdminAccount", accountName));
         }
     }
 }
