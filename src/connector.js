@@ -148,6 +148,12 @@ export default {
             return assigned;
         },
 
+        async getRoomVacantMinusOne(type) {
+            const roomType = await getDoc(doc(db, "RoomMeta", type));
+            const x = roomType.data()['vacant'];
+            return String(parseInt(x) - 1)
+        },
+
         async getBroadcast() {
             const broadcastMeta = await getDocs(collection(db, "Notification"));
             let outputMeta = []

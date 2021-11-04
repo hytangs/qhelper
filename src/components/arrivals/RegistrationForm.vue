@@ -187,7 +187,7 @@ export default {
         if (email === '') {
           passed = false
           error.push("Please fill in an email address")
-        } else if (email.indexOf("a") === -1 || email.indexOf(".") === -1) {
+        } else if (email.indexOf("@") === -1 || email.indexOf(".") === -1) {
           passed = false
           error.push("Please fill in a valid email address")
         }
@@ -277,7 +277,7 @@ export default {
           alert("Based on the latest quarantine policy, your quarantine period will be " +
           this.checkQuarantine(cod) +" days.")
           this.roomselect()
-          
+
 
           // try {
           //   const docRef = await setDoc(doc(db, "RegInfo", email), {
