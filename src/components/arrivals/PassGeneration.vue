@@ -4,7 +4,7 @@
       <card-component>
         <div class="text-center py-24 lg:py-4 text-gray-500 dark:text-gray-400">
           <text class="text-2xl"><b>
-            {{ this.$route.params.gender }} {{this.$route.params.fname}} </b></text>
+            {{ this.$route.params.gender }} {{this.$route.params.fname}} {{this.$route.params.lname}} </b></text>
           <br />
           <text class="text-xl">
             Room: {{ this.$route.params.roomNumber }} <br />
@@ -13,7 +13,7 @@
           </text>
           <br />
           <div id="qrcode" class="center">
-            <QrcodeVue :value=this.exportQRValue :size="275" />
+            <QrcodeVue :value=sha256(this.exportQRValue) :size="275" />
           </div>
           <br />
           <text>
@@ -72,6 +72,7 @@ import JbButtons from "../plugins/JbButtons";
 import QrcodeVue from "qrcode.vue";
 import moment from "moment";
 import datequery from "../plugins/helpers/datequery";
+import sha256 from "../plugins/helpers/sha256";
 
 export default {
   name: "PassGeneration",
@@ -104,26 +105,25 @@ export default {
       this.currentDate = moment(String(new Date())).format("MM/DD/YYYY HH:mm:ss");
       this.currentTime = moment(String(new Date())).add(3, 'hours').format("MM/DD/YYYY HH:mm:ss");
     },
+    emitQR() {
+      this.exportQRValue = "{ QRREAD/" + String(this.$route.params.roomNumber) + "/"
+          + String(this.$route.params.fname) + "/"
+          + String(this.$route.params.lname) + "/"
+          + datequery.methods.fetchTodayString() + "/"
+          + "QHELPER/QR01 }";
+    }
   },
 
   mounted() {
     this.setTime();
-  },
-
-  setup() {
-    const exportQRValue = String(this.$route.params.roomNumber) + "/"
-        + String(this.$route.params.fname) + "/"
-        + String(this.$route.params.lname) + "/"
-        + datequery.methods.fetchTodayString() + "/"
-        + "QHELPER/MIRACLE"
-
-    return { exportQRValue }
+    this.emitQR();
   },
 
   data() {
     return {
       currentDate: null,
-      currentTime: null
+      currentTime: null,
+      exportQRValue: "{ QRREAD/UNDEFINED/QHELPER/QR01 }"
     }
   }
 };

@@ -111,6 +111,7 @@ export default {
         this.$router.push({name: "RoomSelectionPage",
         path: '/arrivals/roomselection', params: {
           fname: document.getElementById("fname").value,
+          lname: document.getElementById("lname").value,
           gender: document.getElementById("gender").value
           },})
       },
