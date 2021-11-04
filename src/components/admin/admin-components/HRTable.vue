@@ -17,24 +17,26 @@
         <th></th>
         <th>Staff Name</th>
         <th>Account Name</th>
-        <th>Position</th>
-        <th>Grant Access</th>
+        <th>Staff Position</th>
+        <th>Access Zones</th>
         <th>Deployed</th>
+        <th>Last Login</th>
         <!-- <th>Tags</th> -->
         <th></th>
       </tr>
     </thead>
-    
+
     <tbody>
-      <tr v-for="staff in itemsPaginated" :key="staff.id">
+      <tr v-for="staff in itemsPaginated" :key="staff.staffName">
         <td class="image-cell">
           <user-avatar :username="staff.name" class="image" />
         </td>
-        <td data-label="Name"> {{staff.name}} </td>
-        <td data-label="Staff ID">{{staff.id}} </td>
-        <td data-label="Position"> {{staff.position}} </td>
-        <td data-label="Grant Access"> {{staff.access}} </td>
+        <td data-label="Staff Name"> {{staff.staffName}} </td>
+        <td data-label="Account Name">{{staff.account}} </td>
+        <td data-label="Staff Position"> {{staff.staffRole}} </td>
+        <td data-label="Access Zones"> {{staff.staffZone}} </td>
         <td data-label="Deployed">{{staff.deployed}}</td>
+        <td data-label="Last Login">{{staff.lastLogin}}</td>
         <!-- <td data-label="Tags"> {{staff.tags}} </td> -->
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
@@ -73,6 +75,7 @@ import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
 // import Level from '../../plugins/Level'
 import UserAvatar from '../../plugins/UserAvatar'
+import connector from "../../../connector";
 
 export default {
   name: "HRTable.vue",
@@ -90,7 +93,7 @@ export default {
 
     const darkMode = computed(() => store.state.darkMode)
 
-    const items = computed(() => store.state.staff)
+    const items = computed(() => store.state.staffRoster)
 
     const isModalActive1 = ref(false)
 
@@ -139,13 +142,16 @@ export default {
       }
   },
 
+  async created() {
+    const store = useStore()
+    let meta = await connector.methods.getStaffRoster().then(x => x)
+    console.log(meta)
+    store.commit('alterStaffRoster' , meta)
+  },
+
   methods: {
     async removeData() {
       // remove feedback
-    },
-
-    async updateStaff() {
-      //update staff info
     }
   }
 }

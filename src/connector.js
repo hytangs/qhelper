@@ -129,5 +129,22 @@ export default {
             })
             return outputOrder
         },
+
+        async getStaffRoster() {
+            const staffRosterMeta = await getDocs(collection(db, "AdminAccount"));
+            let outputMeta = []
+            staffRosterMeta.forEach((doc) => {
+                var x = doc.data();
+                outputMeta.push({
+                    staffName: x['name'],
+                    account: x['account'],
+                    staffRole: x['role'],
+                    staffZone: x['zone'],
+                    deployed: x['deployed'],
+                    lastLogin: x['lastLogin']
+                })
+            })
+            return outputMeta
+        }
     }
 }

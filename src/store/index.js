@@ -79,7 +79,15 @@ export default createStore({
       roomNumber:'0000',
       PCR:[]
     }],
-    
+
+    staffRoster: [{
+      staffName: 'staff',
+      account: 'staff',
+      staffRole: 'role',
+      staffZone: '0',
+      deployed: '0',
+      lastLogin: 'Unknown'
+    }]
   },
 
   mutations: {
@@ -125,6 +133,10 @@ export default createStore({
 
     alterGuest(state, meta) {
       state.healthAlertDefault = meta
+    },
+
+    alterStaffRoster (state, meta) {
+      state.staffRoster = meta
     },
   },
   actions: {
