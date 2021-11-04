@@ -9,7 +9,7 @@ export default {
         },
 
         dateStringCompareCurrent(dateString) {
-            return dateString < this.fetchTodayString()
+            return dateString <= this.fetchTodayString()
         },
 
         addDays(days) {
