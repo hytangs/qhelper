@@ -4,7 +4,7 @@
 </modal-box>
 
 <modal-box v-model="isModalActive2" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Deployment modified</p>
+  <p>Deployment status modified</p>
 </modal-box>
 
 <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
@@ -29,7 +29,7 @@
     <tbody>
       <tr v-for="staff in itemsPaginated" :key="staff.staffName">
         <td class="image-cell">
-          <user-avatar :username="staff.name" class="image" />
+          <user-avatar :username="staff.staffName" class="image" />
         </td>
         <td data-label="Staff Name"> {{staff.staffName}} </td>
         <td data-label="Account Name">{{staff.account}} </td>
@@ -41,7 +41,7 @@
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiBadgeAccountHorizontal" small @click="isModalActive1 = true" />
-            <jb-button class="mr-3" color="light" :icon="mdiAccountCheck" small @click="isModalActive2 = true, modifyDeployment()" />
+            <jb-button class="mr-3" color="light" :icon="mdiAccountCheck" small @click="isModalActive2 = true, modifyDeployment(staff.account, staff.deployed)" />
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, removeData()" />
           </jb-buttons>
         </td>
@@ -152,6 +152,10 @@ export default {
   methods: {
     async removeData() {
       // remove feedback
+    },
+
+    async modifyDeployment(staff, deploy) {
+      await connector.methods.updateStaffDeployment(staff, deploy)
     }
   }
 }

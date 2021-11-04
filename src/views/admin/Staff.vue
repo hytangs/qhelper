@@ -7,7 +7,7 @@
   <br>
   <card-component class="mb-6" has-table>
       <HRTable/>
-  </card-component> 
+  </card-component>
   <br> <br>
   <jb-buttons type="justify-left lg:justify-left" no-wrap>
     <jb-button color="info" label="Add New Staff" v-on:click="isModalActive = true"/>
@@ -17,17 +17,17 @@
 <modal-box v-model="isModalActive" title="Add New Staff">
   <p>Staff Information</p>
   <field>
-    <control placeholder="Staff Name" v-model="new_name" id = "name"/>
-    <control placeholder="Account Name" v-model="new_id" id = "account"/>
+    <control placeholder="Account Name" v-model="new_name" id = "account"/>
+    <control placeholder="Staff Name" v-model="new_id" id = "name"/>
   </field>
   <field label="Position">
     <control :options="positionOptions" v-model="new_position" id = "position"/>
   </field>
-  <field label="Access">
-    <control placeholder="A,B,C" v-model="new_access" id = "access"/>
-  </field>
   <field label="Deployed">
     <control :options="deployOptions" v-model="new_deploy" id = "deployed"/>
+  </field>
+  <field label="Password Assignment">
+    <control placeholder="Password" v-model="new_pass" id = "password"/>
   </field>
   <jb-buttons type="justify-left lg:justify-left" no-wrap>
     <jb-button color="info" label="Confirm" v-on:click="addNewStaff()"/>
@@ -53,10 +53,12 @@ import ModalBox from '../../components/plugins/ModalBox'
 import JbButton from '../../components/plugins/JbButton'
 import JbButtons from '../../components/plugins/JbButtons'
 import HRTable from '../../../src/components/admin/admin-components/HRTable'
+import sha256 from "../../components/plugins/helpers/sha256";
 
 import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
+import localsession from "../../store/localsession";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -81,7 +83,7 @@ export default {
     const isModalActive = ref(false)
 
     const positionOptions = [
-      "Hotel Admin", "Quarantine Manager", "Guest Service Manager", 
+      "Hotel Admin", "Quarantine Manager", "Guest Service Manager",
       "Food & Logistic Manager", "Financial Manager", "Security Manager"
     ]
 
@@ -100,31 +102,77 @@ export default {
 
   methods: {
     async addNewStaff() {
-      alert("Adding new staff to firebase")
-      //add new staff to fs
+      //add new staff to firestore
       try {
+          var passed = true;
+
           var name = document.getElementById("name").value
+          if (name.length <= 5) {
+            passed = false;
+          }
+
           var account = document.getElementById("account").value
+          if (account.length <= 5) {
+            passed = false;
+          }
+
           var position = document.getElementById("position").value
-          var access = document.getElementById("access").value
+
+          var access = '0' // 0 => No access
+          if (position === 'Hotel Admin') {
+            access = '1'; // 1 => Master access
+          } else if (position === 'Quarantine Manager') {
+            access = '2';
+          } else if (position === 'Guest Service Manager') {
+            access = '3';
+          } else if (position === 'Food & Logistic Manager') {
+            access = '4';
+          } else if (position === 'Financial Manager') {
+            access = '5';
+          } else if (position === 'Security Manager') {
+            access = '6';
+          } else {
+            passed = false;
+          }
+
           var deployed = document.getElementById("deployed").value
-          const docRef = await setDoc(doc(db, "StaffAccount", account), {
-            Name: name,
-            Account: account,
-            Position: position,
-            GrantAccess: access,
-            Deployed: deployed
-          });
-          console.log(docRef);
-          this.$emit("added");
-        } finally {
-          alert("New Accounts created successfully.");
+          var deployRef;
+          if (deployed === "Yes") {
+            deployRef = '1';
+          } else if (deployed === 'No') {
+            deployRef = '0';
+          } else {
+            passed = false;
+          }
+
+          var password = document.getElementById("password").value
+          if (password.length <= 5 || password.length >= 13) {
+            passed = false;
+          }
+
+          if (passed) {
+            const docRef = await setDoc(doc(db, "AdminAccount", account), {
+              name: name,
+              account: account,
+              role: position,
+              zone: access,
+              deployed: deployRef,
+              lastLogin: 'No Record',
+              passwordhash: sha256(password),
+              created: localsession.methods.getAdminName()
+            });
+            console.log(docRef);
+            this.$emit("added");
+            alert("New staff account created successfully. Please remember the password.");
+          } else {
+            alert("Error in entering new staff credentials. Please try again.")
+          }
+
+        } catch (e) {
+          alert("Error in creating new staff account. Please try again.");
         }
     },
 
-    async search() {
-      //search for staff
-    }
   }
 }
 </script>
