@@ -15,7 +15,20 @@
       :icon="mdiAccountMultiple"
       has-table
     >
-      <food-selection-table checkable />
+      <!-- <food-selection-table checkable /> -->
+      <table id="breakfast">
+        <thead>
+          <tr>
+            <th>Guest Name</th>
+            <th>Room</th>
+            <th>Food Selection</th>
+            <th>Special Request</th>
+            <th>Order Status</th>
+            <th>Order Date</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
     </card-component>
 
     <!-- <title-sub-bar :icon="mdiTableBorder" title="Wrapped variation"/> -->
@@ -30,7 +43,20 @@
       :icon="mdiAccountMultiple"
       has-table
     >
-      <food-selection-table checkable />
+      <!-- <food-selection-table checkable /> -->
+      <table id="lunch">
+        <thead>
+          <tr>
+            <th>Guest Name</th>
+            <th>Room</th>
+            <th>Food Selection</th>
+            <th>Special Request</th>
+            <th>Order Status</th>
+            <th>Order Date</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
     </card-component>
 
     <!-- <title-sub-bar :icon="mdiTableOff" title="Empty variation"/> -->
@@ -46,7 +72,20 @@
       :icon="mdiAccountMultiple"
       has-table
     >
-      <food-selection-table checkable />
+      <!-- <food-selection-table checkable /> -->
+      <table id="dinner">
+        <thead>
+          <tr>
+            <th>Guest Name</th>
+            <th>Room</th>
+            <th>Food Selection</th>
+            <th>Special Request</th>
+            <th>Order Status</th>
+            <th>Order Date</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
     </card-component>
 
     <card-component
@@ -79,7 +118,7 @@
       </jb-buttons>
     </card-component>
   </main-section>
-  <footer-bar v-if="zone === '1' || zone === '4'"/>
+  <footer-bar v-if="zone === '1' || zone === '4'" />
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"
@@ -101,7 +140,7 @@ import {
 } from "@mdi/js";
 import MainSection from "../../components/plugins/MainSection";
 //import Notification from '../../components/plugins/Notification'
-import FoodSelectionTable from "../../components/plugins/FoodSelectionTable";
+//import FoodSelectionTable from "../../components/plugins/FoodSelectionTable";
 import CardComponent from "../../components/plugins/CardComponent";
 import TitleBar from "../../components/plugins/TitleBar";
 import HeroBar from "../../components/plugins/HeroBar";
@@ -128,7 +167,7 @@ export default {
     HeroBar,
     TitleBar,
     CardComponent,
-    FoodSelectionTable,
+    //FoodSelectionTable,
     //Notification,
     Overlay,
     FooterBar,
@@ -146,7 +185,7 @@ export default {
 
     const titleStack = ref(["Admin", "Foods"]);
 
-    const zone = localsession.methods.getAdminZone()
+    const zone = localsession.methods.getAdminZone();
 
     const FoodInfo = reactive({
       food: store.state.food,
@@ -158,14 +197,14 @@ export default {
     };
 
     const selectOptions = [
-      { id: 1, label: 'Breakfast' },
-      { id: 2, label: 'Lunch' },
-      { id: 3, label: 'Dinner' }
-    ]
+      { id: 1, label: "Breakfast" },
+      { id: 2, label: "Lunch" },
+      { id: 3, label: "Dinner" },
+    ];
 
     const form = reactive({
       meals: selectOptions[0],
-    })
+    });
 
     return {
       titleStack,
@@ -181,7 +220,7 @@ export default {
       FoodInfo,
       submitFoodInfo,
       form,
-      selectOptions
+      selectOptions,
     };
   },
 };

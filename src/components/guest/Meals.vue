@@ -192,7 +192,29 @@ export default {
             Selection: selection,
             Request: request,
             OrderStatus: "Order Received",
-            TimeOfPayment: moment(String(new Date())).format("MM/DD/YYYY"),
+            OrderDate: moment(String(new Date())).format("MM/DD/YYYY"),
+          });
+          console.log(docRef);
+        }
+        if (meal == "Lunch") {
+          const docRef = await setDoc(doc(db, "Lunch", room), {
+            Room: room,
+            Meal: meal,
+            Selection: selection,
+            Request: request,
+            OrderStatus: "Order Received",
+            OrderDate: moment(String(new Date())).format("MM/DD/YYYY"),
+          });
+          console.log(docRef);
+        }
+        if (meal == "Dinner") {
+          const docRef = await setDoc(doc(db, "Dinner", room), {
+            Room: room,
+            Meal: meal,
+            Selection: selection,
+            Request: request,
+            OrderStatus: "Order Received",
+            OrderDate: moment(String(new Date())).format("MM/DD/YYYY"),
           });
           console.log(docRef);
         }
