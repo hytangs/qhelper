@@ -4,14 +4,16 @@
       <card-component>
         <div class="text-center py-24 lg:py-4 text-gray-500 dark:text-gray-400">
           <text class="text-2xl"><b>
-            {{ this.$route.params.gender }} {{this.$route.params.fname}}<br />
-            Room {{ this.$route.params.roomNumber }} <br />
-            Check In Time: <br/>
-            {{this.currentDate}}<br /> </b
-          ></text>
+            {{ this.$route.params.gender }} {{this.$route.params.fname}} </b></text>
+          <br />
+          <text class="text-xl">
+            Room: {{ this.$route.params.roomNumber }} <br />
+            Check In Time:
+            {{this.currentDate}}<br />
+          </text>
           <br />
           <div id="qrcode" class="center">
-            <QrcodeVue :value="'https://example.com'" :size="275" />
+            <QrcodeVue :value=this.exportQRValue :size="275" />
           </div>
           <br />
           <text>
@@ -69,6 +71,7 @@ import JbButton from "../plugins/JbButton";
 import JbButtons from "../plugins/JbButtons";
 import QrcodeVue from "qrcode.vue";
 import moment from "moment";
+import datequery from "../plugins/helpers/datequery";
 
 export default {
   name: "PassGeneration",
@@ -90,6 +93,7 @@ export default {
 
   methods: {
     saveToPhotos() {
+      alert("You are not using a mobile phone now. Saving failed.")
       //save to photos
     },
 
@@ -104,6 +108,16 @@ export default {
 
   mounted() {
     this.setTime();
+  },
+
+  setup() {
+    const exportQRValue = String(this.$route.params.roomNumber) + "/"
+        + String(this.$route.params.fname) + "/"
+        + String(this.$route.params.lname) + "/"
+        + datequery.methods.fetchTodayString() + "/"
+        + "QHELPER/MIRACLE"
+
+    return { exportQRValue }
   },
 
   data() {

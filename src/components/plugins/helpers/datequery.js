@@ -15,8 +15,9 @@ export default {
         addDays(days) {
             var date = new Date();
             date = new Date(date.setDate(date.getDate() + (days-1)));
-            const result = date.toISOString().substring(0, 10);
-            return result
+            return date.toISOString().substring(0, 4)
+                + date.toISOString().substring(5, 7)
+                + date.toISOString().substring(8, 10)
         }
     }
 }

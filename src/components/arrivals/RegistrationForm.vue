@@ -20,7 +20,7 @@
       </field>
 
       <field label="Password">
-        <control placeholder="Enter a password with 6 - 12 digits" v-model="form.password" id = "password"/>
+        <control placeholder="Enter a password with 6 - 12 digits" v-model="form.password" type="password" id = "password"/>
       </field>
 
       <field label="Passport / Travel Document Number">
@@ -78,7 +78,7 @@
 // import { getFirestore } from 'firebase/firestore';
 // import { doc, setDoc } from 'firebase/firestore';
 // const db = getFirestore(firebaseApp);
-import { useStore } from 'vuex'
+import {useStore} from 'vuex'
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 // import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
@@ -87,7 +87,6 @@ import JbButtons from '../plugins/JbButtons'
 import Field from '../plugins/Field'
 import Control from '../plugins/Control'
 import datequery from '../plugins/helpers/datequery'
-
 
 
 export default {
@@ -112,52 +111,59 @@ export default {
         this.$router.push({name: "RoomSelectionPage",
         path: '/arrivals/roomselection', params: {
           fname: document.getElementById("fname").value,
+          gender: document.getElementById("gender").value
           },})
       },
 
+      checkTodayIsArrivalDate(arrive) {
+        return arrive === datequery.methods.fetchTodayString();
+      },
+
       // need to update based on the quarantine period policy
-      checkQuarantine(cod) {
+      checkQuarantine(cod, arrive) {
+        const arrivetoday = this.checkTodayIsArrivalDate(arrive)
         if (["Australia", "Austria", "Bahrain", "Belgium", "Bhutan", "Brunei", "Bulgaria",
         "Canada", "Croatia", "Cyprus", "Czech Republic", "Denmark" , "Fiji", "France" ,
         "Finland", "Germany", "Greece", "Iceland", "Ireland", "Italy", "Japan", "Liechtenstein",
         "Luxembourg", "Malta", "New Zealand", "Norway", "Poland", "Portugal", "the Republic of Korea",
         "Saudi Arabia", "Slovakia", "Spain", "Sweden", "Switzerland", "Turkey", "The Netherlands",
         "The United Kingdom", "The United States", "Vatican City"].includes(cod)) {
-          return "7";
+          return (arrivetoday) ? "7" : "6";
         } else if (["Cambodia", "Egypt", "Estonia", "Hungary", "Indonesia", "Israel", "Latvia", "Lithuania",
         "Malaysia", "Maldives", "Mongolia", "Qatar", "Rwanda", "Samoa", "Seychelles", "Slovenia", "South Africa",
         "Tonga", "UAE", "Vietnam"].includes(cod)) {
-          return "10";
-        } else if (["Hong Kong", "Macao", "Mainland China", "Taiwan"].includes(cod)) {
-          return "1";
+          return (arrivetoday) ? "10" : "9";
+        } else if (["Hong Kong", "Macao", "China", "Taiwan"].includes(cod)) {
+          return (arrivetoday) ? "1" : "0";
         } else {
-          return "14";
+          return (arrivetoday) ? "14" : "13";
         }
       },
 
-      checkPCR(country) {
-        var quarantinePeriod = this.checkQuarantine(country)
-        if (quarantinePeriod === 7) {
+      checkPCR(country, doa) {
+        var quarantinePeriod = this.checkQuarantine(country, doa)
+
+        if (quarantinePeriod === "7") {
+          const d2 = datequery.methods.addDays(2)
+          const d6 = datequery.methods.addDays(6)
+          return [d2, d6]
+        } if (quarantinePeriod === "6") {
           const today = datequery.methods.fetchTodayString()
+          const d5 = datequery.methods.addDays(5)
+          return [today, d5]
+        } else if (quarantinePeriod === "14" || quarantinePeriod === "13") {
+          const d2 = datequery.methods.addDays(2)
           const d7 = datequery.methods.addDays(7)
-          const arr = [today, d7]
-          return arr
-        } else if (quarantinePeriod === 14) {
-          const today = datequery.methods.fetchTodayString()
-          const d7 = datequery.methods.addDays(7)
-          const d14 = datequery.methods.addDays(14)
-          const arr = [today, d7, d14]
-          return arr
-        } else if (quarantinePeriod === 10) {
+          const d12 = datequery.methods.addDays(14)
+          return [d2, d7, d12]
+        } else if (quarantinePeriod === "10" || quarantinePeriod === "9") {
           const today = datequery.methods.fetchTodayString()
           const d3 = datequery.methods.addDays(3)
-          const d10 = datequery.methods.addDays(10)
-          const arr = [today, d3, d10]
-          return arr
+          const d9 = datequery.methods.addDays(8)
+          return [today, d3, d9]
         } else {
           const today = datequery.methods.fetchTodayString()
-          const arr = [today]
-          return arr
+          return [today]
         }
       },
 
@@ -217,6 +223,9 @@ export default {
         if (doa.length !== 8 || isNaN(parseInt(doa))) {
           passed = false
           error.push("Please fill in your correct date of arrival")
+        } else if (datequery.methods.dateStringCompareCurrent(doa) === false) {
+          passed = false
+          error.push("Please fill in a correct date")
         }
 
         var cod = document.getElementById("cod").value
@@ -256,46 +265,51 @@ export default {
             alert("An issue found: " + error + ".")
           }
         } else {
-          var pcr = this.checkPCR(cod)
+          if (this.checkQuarantine(cod, doa) === "0") {
+            alert("you are not required to complete quarantine now. Please contact staff for assistance.")
+            this.$router.push({ path: '/' })
+          } else {
+            var pcr = this.checkPCR(cod, doa)
 
-          this.$store.commit("changeFname", fname);
-          this.$store.commit("changeLname", lname);
-          this.$store.commit("changeEmail", email);
-          this.$store.commit("changeCOD", cod);
-          this.$store.commit("changeContact", contact);
-          this.$store.commit("changeDOA", doa);
-          this.$store.commit("changeFlight", flight);
-          this.$store.commit("changePasstype", passtype);
-          this.$store.commit("changePassword", password);
-          this.$store.commit("changeSeat", seat);
-          this.$store.commit("changeVaccine", vaccine);
-          this.$store.commit("changeIdentity", identity);
-          this.$store.commit("changePCR", pcr);
-          this.$store.commit("changeGender", gender);
+            this.$store.commit("changeFname", fname);
+            this.$store.commit("changeLname", lname);
+            this.$store.commit("changeEmail", email);
+            this.$store.commit("changeCOD", cod);
+            this.$store.commit("changeContact", contact);
+            this.$store.commit("changeDOA", doa);
+            this.$store.commit("changeFlight", flight);
+            this.$store.commit("changePasstype", passtype);
+            this.$store.commit("changePassword", password);
+            this.$store.commit("changeSeat", seat);
+            this.$store.commit("changeVaccine", vaccine);
+            this.$store.commit("changeIdentity", identity);
+            this.$store.commit("changePCR", pcr);
+            this.$store.commit("changeGender", gender);
 
-          alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
-          alert("Based on the latest quarantine policy, your quarantine period will be " +
-          this.checkQuarantine(cod) +" days.")
-          this.roomselect()
+            alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
+            alert("Based on the latest quarantine policy, your quarantine period will be " +
+                this.checkQuarantine(cod) + " days.")
+            this.roomselect()
 
 
-          // try {
-          //   const docRef = await setDoc(doc(db, "RegInfo", email), {
-          //     Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
-          //     Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
-          //     Vaccine: vaccine, Passtype: passtype, Password: password, PCR: pcr,
-          //   })
-          //   console.log(docRef)
+            // try {
+            //   const docRef = await setDoc(doc(db, "RegInfo", email), {
+            //     Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
+            //     Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
+            //     Vaccine: vaccine, Passtype: passtype, Password: password, PCR: pcr,
+            //   })
+            //   console.log(docRef)
 
-          //   this.$emit("added")
-          // } catch (error) {
-          //   console.error("Error adding document: ", error);
-          // } finally {
+            //   this.$emit("added")
+            // } catch (error) {
+            //   console.error("Error adding document: ", error);
+            // } finally {
             // alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
             // alert("Based on the latest quarantine policy, your quarantine period will be " +
             // this.checkQuarantine(cod) +" days.")
             // this.roomselect()
-          // }
+            // }
+          }
         }
       }
     },
@@ -354,7 +368,6 @@ export default {
         "Fully Vaccinated - Astrazeneca",
         "Fully Vaccinated - Covishield",
         "Fully Vaccinated - Janssen",
-        "Fully Vaccinated - Janssen",
         "Fully Vaccinated - Sinopharm",
         "Fully Vaccinated - Sinovac",
       ]
@@ -375,7 +388,7 @@ export default {
       ]
 
       const form = ({
-        gender:genderOptions[0],
+        gender: genderOptions[0],
         firstName:'',
         lastName:'',
         nric: '',
