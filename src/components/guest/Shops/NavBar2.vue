@@ -37,6 +37,44 @@
       <p v-if="this.mamuang > 0">
         Som Tum Mamuang ($5.00 each) --- Count: {{ this.mamuang }}
       </p>
+
+      <p v-if="this.puff > 0">
+        Curry Puff ($2.00 each) --- Count: {{ this.puff }}
+      </p>
+      <p v-if="this.sandwich > 0">
+        Chicken Ham Sandwich ($4.00 each) --- Count: {{ this.sandwich }}
+      </p>
+      <p v-if="this.onigiri > 0">
+        Tuna Onigiri ($3.50 each) --- Count: {{ this.onigiri }}
+      </p>
+      <p v-if="this.corndog > 0">
+        Corn Dog ($3.00 each) --- Count: {{ this.corndog }}
+      </p>
+      <p v-if="this.chips > 0">
+        Mini Lay's Classic Chips ($2.00 each) --- Count: {{ this.chips }}
+      </p>
+      <p v-if="this.haagen > 0">
+        Haagen Daz Kinako Cup ($4.00 each) --- Count: {{ this.haagen }}
+      </p>
+      <p v-if="this.truffle > 0">
+        Truffle Fries ($5.00 each) --- Count: {{ this.truffle }}
+      </p>
+      <p v-if="this.brownie > 0">
+        Fudgy Brownie ($4.00 each) --- Count: {{ this.brownie }}
+      </p>
+      <p v-if="this.macarons > 0">
+        Red Velvet Macarons ($3.00 each) --- Count: {{ this.macarons }}
+      </p>
+      <p v-if="this.cake > 0">
+        Carrot Cake ($6.00 each) --- Count: {{ this.cake }}
+      </p>
+      <p v-if="this.tutu > 0">
+        Peanut Tutu Kueh ($5.00 each) --- Count: {{ this.tutu }}
+      </p>
+      <p v-if="this.rice > 0">
+        Mango Sticky Rice ($6.00 each) --- Count: {{ this.rice }}
+      </p>
+
       <p v-if="this.total > 0">
         Total: ${{ parseFloat(this.total).toFixed(2) }}
       </p>
@@ -50,7 +88,7 @@
     large-title="Place Order"
     button="danger"
   >
-    <div v-if="this.total > 0 & orderedAlready == false">
+    <div v-if="(this.total > 0) & (orderedAlready == false)">
       <p>
         <b>Total: ${{ parseFloat(this.total).toFixed(2) }}</b>
       </p>
@@ -68,14 +106,10 @@
         />
       </field>
       <jb-buttons>
-        <jb-button
-          color="info"
-          label="Submit Order"
-          @click="savetofs()"
-        />
+        <jb-button color="info" label="Submit Order" @click="savetofs()" />
       </jb-buttons>
     </div>
-    <div v-if="this.total == 0 & orderedAlready == false">
+    <div v-if="(this.total == 0) & (orderedAlready == false)">
       <p>
         <b>No items ordered yet!</b>
       </p>
@@ -138,30 +172,55 @@
       @remove_mamuang="Newmamuang($event)"
       v-show="currentSection === 1"
     />
-    <Snacks v-show="currentSection === 2" />
+    <Snacks
+      @update_puff="Newpuff($event)"
+      @update_sandwich="Newsandwich($event)"
+      @update_onigiri="Newonigiri($event)"
+      @update_corndog="Newcorndog($event)"
+      @update_chips="Newchips($event)"
+      @update_haagen="Newhaagen($event)"
+      @update_truffle="Newtruffle($event)"
+      @update_brownie="Newbrownie($event)"
+      @update_macarons="Newmacarons($event)"
+      @update_cake="Newcake($event)"
+      @update_tutu="Newtutu($event)"
+      @update_rice="Newrice($event)"
+      @remove_puff="Newpuff($event)"
+      @remove_sandwich="Newsandwich($event)"
+      @remove_onigiri="Newonigiri($event)"
+      @remove_corndog="Newcorndog($event)"
+      @remove_chips="Newchips($event)"
+      @remove_haagen="Newhaagen($event)"
+      @remove_truffle="Newtruffle($event)"
+      @remove_brownie="Newbrownie($event)"
+      @remove_macarons="Newmacarons($event)"
+      @remove_cake="Newcake($event)"
+      @remove_tutu="Newtutu($event)"
+      @remove_rice="Newrice($event)"
+      v-show="currentSection === 2"
+    />
     <Drinks v-show="currentSection === 3" />
     <Supplies v-show="currentSection === 4" />
   </div>
 
-  <div class="shopcart" align = "right">
-        <button
-          class="view"
-          type="button"
-          data-toggle="modal"
-          data-target="#cart"
-          @click="(isModalActive = true), totalCost()"
-        >
-          View my Cart
-        </button>
-        &nbsp;
-        <button
-          class="clear-cart btn btn-danger"
-          @click="(isModalDangerActive = true), totalCost()"
-        >
-          Order Now
-        </button>
-      </div>
-
+  <div class="shopcart" align="right">
+    <button
+      class="view"
+      type="button"
+      data-toggle="modal"
+      data-target="#cart"
+      @click="(isModalActive = true), totalCost()"
+    >
+      View my Cart
+    </button>
+    &nbsp;
+    <button
+      class="clear-cart btn btn-danger"
+      @click="(isModalDangerActive = true), totalCost()"
+    >
+      Order Now
+    </button>
+  </div>
 </template>
 
 <script>
@@ -174,8 +233,8 @@ import Supplies from "./Supplies";
 import ModalBox from "../../plugins/ModalBox";
 import Field from "../../plugins/Field";
 import Control from "../../plugins/Control";
-import JbButton from '../../plugins/JbButton'
-import JbButtons from '../../plugins/JbButtons'
+import JbButton from "../../plugins/JbButton";
+import JbButtons from "../../plugins/JbButtons";
 
 import firebaseApp from "../../../firebase.js";
 import { getFirestore } from "firebase/firestore";
@@ -183,7 +242,17 @@ import { doc, setDoc } from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
-  components: { Mains, Snacks, Drinks, Supplies, ModalBox, Field, Control, JbButton, JbButtons},
+  components: {
+    Mains,
+    Snacks,
+    Drinks,
+    Supplies,
+    ModalBox,
+    Field,
+    Control,
+    JbButton,
+    JbButtons,
+  },
 
   data() {
     return {
@@ -194,9 +263,9 @@ export default {
     async savetofs() {
       if (this.orderedAlready == false) {
         try {
-          var name = document.getElementById("name").value
-          var room = document.getElementById("room").value
-          var paymentMethod = document.getElementById("paymentMethod").value
+          var name = document.getElementById("name").value;
+          var room = document.getElementById("room").value;
+          var paymentMethod = document.getElementById("paymentMethod").value;
           const docRef = await setDoc(doc(db, "ShopOrder", room), {
             Name: name,
             Room: room,
@@ -204,7 +273,7 @@ export default {
             PaymentAmount: parseFloat(this.total).toFixed(2),
             PaymentMethod: paymentMethod,
             OrderStatus: "Order Received",
-            TimeOfPayment: moment(String(new Date())).format('MM/DD/YYYY')
+            TimeOfPayment: moment(String(new Date())).format("MM/DD/YYYY"),
           });
           console.log(docRef);
           this.orderedAlready = true;
@@ -223,6 +292,7 @@ export default {
       // console.log(this.bento)
       // console.log(this.nuggets)
     },
+    // Main
     Newramyun(e) {
       this.ramyun = e;
     },
@@ -259,6 +329,44 @@ export default {
     Newmamuang(e) {
       this.mamuang = e;
     },
+    // Snacks
+    Newpuff(e) {
+      this.puff = e;
+    },
+    Newsandwich(e) {
+      this.sandwich = e;
+    },
+    Newonigiri(e) {
+      this.onigiri = e;
+    },
+    Newcorndog(e) {
+      this.corndog = e;
+    },
+    Newchips(e) {
+      this.chips = e;
+    },
+    Newhaagen(e) {
+      this.haagen = e;
+    },
+    Newtruffle(e) {
+      this.truffle = e;
+    },
+    Newbrownie(e) {
+      this.brownie = e;
+    },
+    Newmacarons(e) {
+      this.macarons = e;
+    },
+    Newcake(e) {
+      this.cake = e;
+    },
+    Newtutu(e) {
+      this.tutu = e;
+    },
+    Newrice(e) {
+      this.rice = e;
+    },
+    // total cost
     totalCost() {
       this.total =
         this.ramyun * 3.0 +
@@ -272,9 +380,24 @@ export default {
         this.dimsum * 15.0 +
         this.sushi * 18.0 +
         this.fried * 18.0 +
-        this.mamuang * 5.0;
+        this.mamuang * 5.0 +
+
+        this.puff * 2.0 +
+        this.sandwich * 4.0 +
+        this.onigiri * 3.5 +
+        this.corndog * 3.0 +
+        this.chips * 2.0 +
+        this.haagen * 4.0 +
+        this.truffle * 5.0 +
+        this.brownie * 4.0 +
+        this.macarons *3.0 +
+        this.cake * 6.0 +
+        this.tutu * 5.0 +
+        this.rice * 6.0;
     },
+    // clear all
     clearAll() {
+      // Main
       this.ramyun = 0;
       this.bento = 0;
       this.nuggets = 0;
@@ -287,46 +410,98 @@ export default {
       this.sushi = 0;
       this.fried = 0;
       this.mamuang = 0;
+      // Snacks
+      this.puff = 0;
+      this.sandwich = 0;
+      this.onigiri = 0;
+      this.corndog = 0;
+      this.chips = 0;
+      this.haagen = 0;
+      this.truffle = 0;
+      this.brownie = 0;
+      this.macarons = 0;
+      this.cake = 0;
+      this.tutu = 0;
+      this.rice = 0;
     },
+    //generate order
     generateOrder() {
+      // Main
       if (this.ramyun > 0) {
-        this.orderItems += "Ramyun: " + String(this.ramyun) + ", "
+        this.orderItems += "Ramyun: " + String(this.ramyun) + ", ";
       }
       if (this.bento > 0) {
-        this.orderItems += "Bento: " + String(this.bento) + ", "
+        this.orderItems += "Bento: " + String(this.bento) + ", ";
       }
       if (this.nuggets > 0) {
-        this.orderItems += "Nuggets: " + String(this.nuggets) + ", "
+        this.orderItems += "Nuggets: " + String(this.nuggets) + ", ";
       }
       if (this.lagsana > 0) {
-        this.orderItems += "Lagsana: " + String(this.lagsana) + ", "
+        this.orderItems += "Lagsana: " + String(this.lagsana) + ", ";
       }
       if (this.lemak > 0) {
-        this.orderItems += "Lemak: " + String(this.lemak) + ", "
+        this.orderItems += "Lemak: " + String(this.lemak) + ", ";
       }
       if (this.prata > 0) {
-        this.orderItems += "Prata: " + String(this.prata) + ", "
+        this.orderItems += "Prata: " + String(this.prata) + ", ";
       }
       if (this.butter > 0) {
-        this.orderItems += "Butter Chicken: " + String(this.butter) + ", "
+        this.orderItems += "Butter Chicken: " + String(this.butter) + ", ";
       }
       if (this.penang > 0) {
-        this.orderItems += "Penang: " + String(this.penang) + ", "
+        this.orderItems += "Penang: " + String(this.penang) + ", ";
       }
       if (this.dimsum > 0) {
-        this.orderItems += "Dim Sum: " + String(this.dimsum) + ", "
+        this.orderItems += "Dim Sum: " + String(this.dimsum) + ", ";
       }
       if (this.sushi > 0) {
-        this.orderItems += "Sushi: " + String(this.sushi) + ", "
+        this.orderItems += "Sushi: " + String(this.sushi) + ", ";
       }
       if (this.fried > 0) {
-        this.orderItems += "Fried Chicken: " + String(this.fried) + ", "
+        this.orderItems += "Fried Chicken: " + String(this.fried) + ", ";
       }
       if (this.mamuang > 0) {
-        this.orderItems += "Mamuang: " + String(this.mamuang) + ", "
+        this.orderItems += "Mamuang: " + String(this.mamuang) + ", ";
+      } 
+      // Snacks
+      if (this.puff > 0) {
+        this.orderItems += "Puff: " + String(this.puff) + ", ";
       }
-      return this.orderItems
-    }
+      if (this.sandwich > 0) {
+        this.orderItems += "Sandwich: " + String(this.sandwich) + ", ";
+      }
+      if (this.onigiri > 0) {
+        this.orderItems += "Tuna Onigiri: " + String(this.onigiri) + ", ";
+      }
+      if (this.corndog > 0) {
+        this.orderItems += "Corn Dog: " + String(this.corndog) + ", ";
+      }
+      if (this.chips > 0) {
+        this.orderItems += "Chips: " + String(this.chips) + ", ";
+      }
+      if (this.haagen > 0) {
+        this.orderItems += "Haggen Cup: " + String(this.haagen) + ", ";
+      }
+      if (this.truffle > 0) {
+        this.orderItems += "Truffle Fries: " + String(this.truffle) + ", ";
+      }
+      if (this.brownie > 0) {
+        this.orderItems += "Brownie: " + String(this.brownie) + ", ";
+      }
+      if (this.macarons > 0) {
+        this.orderItems += "Macarons: " + String(this.macarons) + ", ";
+      }
+      if (this.cake > 0) {
+        this.orderItems += "Cake: " + String(this.cake) + ", ";
+      }
+      if (this.tutu > 0) {
+        this.orderItems += "Tutu Kueh: " + String(this.tutu) + ", ";
+      }
+      if (this.rice > 0) {
+        this.orderItems += "Mango Rice: " + String(this.rice) + ", ";
+      } 
+      return this.orderItems;
+    },
   },
   setup() {
     const isModalActive = ref(false);
@@ -339,6 +514,7 @@ export default {
       "Alipay/Wechat",
       "Cash",
     ];
+    // Main
     var ramyun = 0;
     var bento = 0;
     var nuggets = 0;
@@ -351,6 +527,20 @@ export default {
     var sushi = 0;
     var fried = 0;
     var mamuang = 0;
+    // Snacks
+    var puff = 0;
+    var sandwich = 0;
+    var onigiri = 0;
+    var corndog = 0;
+    var chips = 0;
+    var haagen = 0;
+    var truffle = 0;
+    var brownie = 0;
+    var macarons = 0;
+    var cake = 0;
+    var tutu = 0;
+    var rice = 0;
+
     var total = 0;
     var orderItems = "";
     return {
@@ -366,12 +556,24 @@ export default {
       sushi,
       fried,
       mamuang,
+      puff,
+      sandwich,
+      onigiri,
+      corndog,
+      chips,
+      haagen,
+      truffle,
+      brownie,
+      macarons,
+      cake,
+      tutu,
+      rice,
       isModalActive,
       total,
       orderedAlready,
       isModalDangerActive,
       paymentMethods,
-      orderItems
+      orderItems,
     };
   },
 };

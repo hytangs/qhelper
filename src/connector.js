@@ -1,27 +1,43 @@
 
 import firebaseApp from "./firebase";
-import {getFirestore, doc, getDoc, collection, getDocs} from "firebase/firestore";
+import {getFirestore, doc, getDoc, collection, getDocs, updateDoc} from "firebase/firestore";
 import sha256 from "./components/plugins/helpers/sha256"
+import datequery from "./components/plugins/helpers/datequery";
 
 const db = getFirestore(firebaseApp);
 
 export default {
     methods: {
         // eslint-disable-next-line no-unused-vars
-        async checkPwd(inAccount, inPassword) {
+        async checkLogin(inAccount, inPassword) {
             const docRef = doc(db, "AdminAccount", String(inAccount));
             let docSnap = await getDoc(docRef);
-            console.log(sha256)
             inPassword = sha256(inPassword)
             if (docSnap.exists()) {
                 console.log("Document data:", docSnap.data().passwordhash);
-                return docSnap.data().passwordhash === inPassword;
+                if (docSnap.data().passwordhash === inPassword) {
+                    if (docSnap.data().deployed === "1") {
+                        return docSnap.data().name;
+                    } else {
+                        return "@Undeployed"
+                    }
+                } else {
+                    return "@Undefined"
+                }
             } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-                return false;
+                return "@Undefined";
             }
         },
+
+        async updateLoginDate(inAccount) {
+            const today = datequery.methods.fetchTodayString()
+            console.log(today)
+            const mappedAccount = doc(db, "AdminAccount", String(inAccount));
+            await updateDoc(mappedAccount, {
+                lastLogin: today
+            });
+        },
+
         async getZone(inAccount) {
             const docRef = doc(db, "AdminAccount", String(inAccount));
             let docSnap = await getDoc(docRef);
@@ -129,5 +145,22 @@ export default {
             })
             return outputOrder
         },
+
+        async getStaffRoster() {
+            const staffRosterMeta = await getDocs(collection(db, "AdminAccount"));
+            let outputMeta = []
+            staffRosterMeta.forEach((doc) => {
+                var x = doc.data();
+                outputMeta.push({
+                    staffName: x['name'],
+                    account: x['account'],
+                    staffRole: x['role'],
+                    staffZone: x['zone'],
+                    deployed: x['deployed'],
+                    lastLogin: x['lastLogin']
+                })
+            })
+            return outputMeta
+        }
     }
 }
