@@ -12,15 +12,15 @@
                         <h6 style="float: right">$2.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_puff()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_puff()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -41,15 +41,15 @@
                         <h6 style="float: right">$4.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_sandwich()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_sandwich()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -69,15 +69,15 @@
                         <h6 style="float: right">$3.50</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_onigiri()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_onigiri()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -97,15 +97,15 @@
                         <h6 style="float: right">$3.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_corndog()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_corndog()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -125,15 +125,15 @@
                         <h6 style="float: right">$2.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_chips()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_chips()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -153,15 +153,15 @@
                         <h6 style="float: right">$4.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_haagen()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_haagen()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -186,15 +186,15 @@
                         <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_truffle()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_truffle()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -215,15 +215,15 @@
                         <h6 style="float: right">$4.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_brownie()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_brownie()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -243,15 +243,15 @@
                         <h6 style="float: right">$3.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_macarons()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_macarons()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -271,15 +271,15 @@
                         <h6 style="float: right">$6.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_cake()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_cake()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -299,15 +299,15 @@
                         <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_tutu()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_tutu()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -327,15 +327,15 @@
                         <h6 style="float: right">$6.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_rice()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_rice()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -360,6 +360,160 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
 export default defineComponent( {
   components: { Splide, SplideSlide },
+
+  methods: {
+    update_puff() {
+      this.puff = this.puff + 1;
+      //console.log(this.puff)
+      this.$emit("update_puff", this.puff);
+    },
+    update_sandwich() {
+      this.sandwich = this.sandwich + 1;
+      //console.log(this.sandwich)
+      this.$emit("update_sandwich", this.sandwich);
+    },
+    update_onigiri() {
+      this.onigiri = this.onigiri + 1;
+      //console.log(this.onigiri)
+      this.$emit("update_onigiri", this.onigiri);
+    },
+    update_corndog() {
+      this.corndog = this.corndog + 1;
+      //console.log(this.corndog)
+      this.$emit("update_corndog", this.corndog);
+    },
+    update_chips() {
+      this.chips = this.chips + 1;
+      //console.log(this.chips)
+      this.$emit("update_chips", this.chips);
+    },
+    update_haagen() {
+      this.haagen = this.haagen + 1;
+      //console.log(this.haagen)
+      this.$emit("update_haagen", this.haagen);
+    },
+    update_truffle() {
+      this.truffle = this.truffle + 1;
+      //console.log(this.truffle)
+      this.$emit("update_truffle", this.truffle);
+    },
+    update_brownie() {
+      this.brownie = this.brownie + 1;
+      //console.log(this.brownie)
+      this.$emit("update_brownie", this.brownie);
+    },
+    update_macarons() {
+      this.macarons = this.macarons + 1;
+      //console.log(this.macarons)
+      this.$emit("update_macarons", this.macarons);
+    },
+    update_cake() {
+      this.cake = this.cake + 1;
+      //console.log(this.cake)
+      this.$emit("update_cake", this.cake);
+    },
+    update_tutu() {
+      this.tutu = this.tutu + 1;
+      //console.log(this.tutu)
+      this.$emit("update_tutu", this.tutu);
+    },
+    update_rice() {
+      this.rice = this.rice + 1;
+      //console.log(this.rice)
+      this.$emit("update_rice", this.rice);
+    },
+
+    remove_puff() {
+      this.puff = 0;
+      //console.log(this.puff)
+      this.$emit("update_puff", this.puff);
+    },
+    remove_sandwich() {
+      this.sandwich = 0;
+      //console.log(this.sandwich)
+      this.$emit("update_sandwich", this.sandwich);
+    },
+    remove_onigiri() {
+      this.onigiri = 0;
+      //console.log(this.onigiri)
+      this.$emit("update_onigiri", this.onigiri);
+    },
+    remove_corndog() {
+      this.corndog = 0;
+      //console.log(this.corndog)
+      this.$emit("update_corndog", this.corndog);
+    },
+    remove_chips() {
+      this.chips = 0;
+      //console.log(this.chips)
+      this.$emit("update_chips", this.chips);
+    },
+    remove_haagen() {
+      this.haagen = 0;
+      //console.log(this.haagen)
+      this.$emit("update_haagen", this.haagen);
+    },
+    remove_truffle() {
+      this.truffle = 0;
+      //console.log(this.truffle)
+      this.$emit("update_truffle", this.truffle);
+    },
+    remove_brownie() {
+      this.brownie = 0;
+      //console.log(this.brownie)
+      this.$emit("update_brownie", this.brownie);
+    },
+    remove_macarons() {
+      this.macarons = 0;
+      //console.log(this.macarons)
+      this.$emit("update_macarons", this.macarons);
+    },
+    remove_cake() {
+      this.cake = 0;
+      //console.log(this.cake)
+      this.$emit("update_cake", this.cake);
+    },
+    remove_tutu() {
+      this.tutu = 0;
+      //console.log(this.tutu)
+      this.$emit("update_tutu", this.tutu);
+    },
+    remove_rice() {
+      this.rice = 0;
+      //console.log(this.rice)
+      this.$emit("update_rice", this.rice);
+    },
+  },
+
+  setup() {
+    var puff = 0;
+    var sandwich = 0;
+    var onigiri = 0;
+    var corndog = 0;
+    var chips = 0;
+    var haagen = 0;
+    var truffle = 0;
+    var brownie = 0;
+    var macarons = 0;
+    var cake = 0;
+    var tutu = 0;
+    var rice = 0;
+    return {
+      puff,
+      sandwich,
+      onigiri,
+      corndog,
+      chips,
+      haagen,
+      truffle,
+      brownie,
+      macarons,
+      cake,
+      tutu,
+      rice,
+    };
+  },
+
 } );
 </script>
 
@@ -387,4 +541,9 @@ img {
 .shadow:hover{
     box-shadow: 0px 1px 15px grey;
 }
+
+button:hover{
+    box-shadow: 0px 1px 15px grey;
+}
+
 </style>
