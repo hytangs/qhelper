@@ -61,15 +61,17 @@ export default {
 
     const submit = async () => {
       // eslint-disable-next-line no-unused-vars
-      await connector.methods.checkPwd(form.login, form.pass).then(result => {
-        if (result === true) {
+      await connector.methods.checkLogin(form.login, form.pass).then(result => {
+        if (result === "@Undefined") {
+          alert("Account Username / Password error!")
+        } else if (result === "@Undeployed") {
+          alert("You are not deployed now. Please contact admin to grant access.")
+        } else {
           connector.methods.getZone(form.login).then(zone => {
-            LocalSession.methods.initializeAdminSession(form.login, form.pass, zone)
+            LocalSession.methods.initializeAdminSession(result, form.pass, zone)
             connector.methods.updateLoginDate(form.login)
             router.push('/admin/dashboard')
           })
-        } else {
-          alert("Account Username / Password error!")
         }
       })
     }

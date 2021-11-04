@@ -9,18 +9,23 @@ const db = getFirestore(firebaseApp);
 export default {
     methods: {
         // eslint-disable-next-line no-unused-vars
-        async checkPwd(inAccount, inPassword) {
+        async checkLogin(inAccount, inPassword) {
             const docRef = doc(db, "AdminAccount", String(inAccount));
             let docSnap = await getDoc(docRef);
-            console.log(sha256)
             inPassword = sha256(inPassword)
             if (docSnap.exists()) {
                 console.log("Document data:", docSnap.data().passwordhash);
-                return docSnap.data().passwordhash === inPassword;
+                if (docSnap.data().passwordhash === inPassword) {
+                    if (docSnap.data().deployed === "1") {
+                        return docSnap.data().name;
+                    } else {
+                        return "@Undeployed"
+                    }
+                } else {
+                    return "@Undefined"
+                }
             } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-                return false;
+                return "@Undefined";
             }
         },
 
