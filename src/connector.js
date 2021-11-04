@@ -14,7 +14,6 @@ export default {
             let docSnap = await getDoc(docRef);
             inPassword = sha256(inPassword)
             if (docSnap.exists()) {
-                console.log("Document data:", docSnap.data().passwordhash);
                 if (docSnap.data().passwordhash === inPassword) {
                     if (docSnap.data().deployed === "1") {
                         return docSnap.data().name;
@@ -29,10 +28,38 @@ export default {
             }
         },
 
+        async checkGuestLogin(inRoom, inPassword) {
+            const docRef = doc(db, "RegInfo", String(inRoom));
+            let docSnap = await getDoc(docRef);
+            inPassword = sha256(inPassword)
+            if (docSnap.exists()) {
+                if (docSnap.data().PasswordHash === inPassword) {
+                    return {
+                        guestfname: docSnap.data().Fname,
+                        guestlname: docSnap.data().Lname,
+                        guestPCR: docSnap.data().PCR,
+                    }
+                } else {
+                    return "@Undefined";
+                }
+            } else {
+                return "@Undefined";
+            }
+        },
+
         async updateLoginDate(inAccount) {
             const today = datequery.methods.fetchTodayString()
             console.log(today)
             const mappedAccount = doc(db, "AdminAccount", String(inAccount));
+            await updateDoc(mappedAccount, {
+                lastLogin: today
+            });
+        },
+
+        async updateLoginDateGuest(inAccount) {
+            const today = datequery.methods.fetchTodayString()
+            console.log(today)
+            const mappedAccount = doc(db, "RegInfo", String(inAccount));
             await updateDoc(mappedAccount, {
                 lastLogin: today
             });

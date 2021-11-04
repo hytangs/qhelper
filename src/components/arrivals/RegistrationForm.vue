@@ -141,9 +141,7 @@ export default {
         }
       },
 
-      checkPCR(country, doa) {
-        var quarantinePeriod = this.checkQuarantine(country, doa)
-
+      checkPCR(quarantinePeriod) {
         if (quarantinePeriod === "7") {
           const d2 = datequery.methods.addDays(2)
           const d6 = datequery.methods.addDays(6)
@@ -270,7 +268,8 @@ export default {
             alert("you are not required to complete quarantine now. Please contact staff for assistance.")
             this.$router.push({ path: '/' })
           } else {
-            var pcr = this.checkPCR(cod, doa)
+            var length = this.checkQuarantine(cod, doa);
+            var pcr = this.checkPCR(length)
 
             this.$store.commit("changeFname", fname);
             this.$store.commit("changeLname", lname);
@@ -286,10 +285,11 @@ export default {
             this.$store.commit("changeIdentity", identity);
             this.$store.commit("changePCR", pcr);
             this.$store.commit("changeGender", gender);
+            this.$store.commit("changeLength", length);
 
             alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
             alert("Based on the latest quarantine policy, your quarantine period will be " +
-                this.checkQuarantine(cod) + " days.")
+                this.checkQuarantine(cod, doa) + " days.")
             this.roomselect()
 
 

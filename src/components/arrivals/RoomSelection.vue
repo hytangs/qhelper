@@ -106,6 +106,7 @@ import JbButtons from '../plugins/JbButtons'
 import connector from '../../connector.js'
 import datequery from "../plugins/helpers/datequery";
 import sha256 from "../plugins/helpers/sha256";
+import {store} from "core-js/internals/reflect-metadata";
 
 export default {
   name: 'RoomSelection',
@@ -121,54 +122,34 @@ export default {
       roomType : false,
       room: false,
       roomNumber: false,
-      // room1: "",
-      // room2: "",
-      // room3: "",
-      // room4: "",
-      // price1: "",
-      // price2: "",
-      // price3: "",
-      // price4: "",
-      // rooms: [],
-      // prices: []
+      rate: 0
     }
   },
 
-  // mounted() {
-  //   async function display(){
-  //     let z = await getDocs(collection(db, "RoomMeta"))
-
-  //     z.forEach((docs) => {
-  //       let room = docs.data()
-  //       var type = room.type
-  //       var price = room.price
-
-  //       this.rooms.push(type)
-  //       this.prices.push(price)
-  //     })
-  //   }
-  //   display()
-  // },
 
   methods: {
     selectRoom1() {
       this.roomType = "Single Room"
       this.room = "Single"
+      this.rate = parseInt(store.state.roomMetaToGuest[0].singlerate) * parseInt(store.state.guestInfo.Length)
     },
 
     selectRoom2() {
       this.roomType = "Double Room"
       this.room= "Double"
+      this.rate = parseInt(store.state.roomMetaToGuest[0].doublerate) * parseInt(store.state.guestInfo.Length)
     },
 
     selectRoom3() {
       this.roomType = "Premium Double Room"
       this.room = "PremiumDouble"
+      this.rate = parseInt(store.state.roomMetaToGuest[0].premiumrate) * parseInt(store.state.guestInfo.Length)
     },
 
     selectRoom4() {
       this.roomType = "Premium Apartment"
       this.room = "Apartment"
+      this.rate = parseInt(store.state.roomMetaToGuest[0].apartmentrate) * parseInt(store.state.guestInfo.Length)
     },
 
     async savetofs() {
@@ -190,12 +171,33 @@ export default {
       var identity = this.$store.getters.identity
       var pcr = this.$store.getters.pcr
       var gender = this.$store.getters.gender
+      var Length = this.$store.getters.getLength
+
       try {
         const docRef = await setDoc(doc(db, "RegInfo", this.roomNumber), {
-          Lname: lname, Gender: gender, Fname: fname, identity: identity, Contact: contact,
-          Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
-          Vaccine: vaccine, Passtype: passtype, PasswordHash: sha256(password), PCR: pcr,
-          RoomType: this.roomType, RoomNumber: this.roomNumber,
+          Lname: lname,
+          Gender: gender,
+          Fname: fname,
+          identity: identity,
+          Contact: contact,
+          Email: email,
+          DOA: doa,
+          COD: cod,
+          Flight:
+          flight,
+          Seat: seat,
+          Vaccine: vaccine,
+          Passtype: passtype,
+          PasswordHash: sha256(password),
+          PCR: pcr,
+          RoomType: this.roomType,
+          RoomNumber: this.roomNumber,
+          lastMealSelection: "",
+          lastLogin: "No Record",
+          finance: this.rate,
+          checkout: String(datequery.methods.addDays(parseInt(Length))),
+          quarantineLength: Length,
+          mealOption: '000',
         })
         console.log(docRef)
         this.$emit("added")
@@ -213,7 +215,8 @@ export default {
             roomtype: this.roomType,
             roomNumber: this.roomNumber,
             gender: this.$route.params.gender,
-            fname: this.$route.params.fname
+            fname: this.$route.params.fname,
+            lname: this.$route.params.lname,
           }
         })
       } catch (error) {

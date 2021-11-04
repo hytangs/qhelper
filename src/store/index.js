@@ -78,7 +78,8 @@ export default createStore({
       RoomType:'roomType',
       RoomNumber:'0000',
       PCR:[],
-      Gender: 'Miss'
+      Gender: 'Miss',
+      Length: '14',
     }],
 
     staffRoster: [{
@@ -95,9 +96,9 @@ export default createStore({
       havedouble: '0',
       havepremium: '0',
       haveapartment: '0',
-      singlerate: '400',
-      doublerate: '500',
-      premiumrate: '600',
+      singlerate: '300',
+      doublerate: '400',
+      premiumrate: '450',
       apartmentrate: '800'
     }]
   },
@@ -215,6 +216,10 @@ export default createStore({
       state.guestInfo.Gender = payload
     },
 
+    changeLength(state, payload) {
+      state.guestInfo.Length = payload
+    },
+
     alterGuestRoomSelect (state, meta) {
       state.roomMetaToGuest = meta
     }
@@ -314,5 +319,7 @@ export default createStore({
     pcr: state => { return state.guestInfo.PCR },
 
     gender: state => { return state.guestInfo.Gender },
+
+    getLength: state => { return state.guestInfo.Length },
   }
 })

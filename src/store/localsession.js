@@ -31,6 +31,11 @@ export default {
                 out = 'Unauthorized User'
             }
             return out
+        },
+
+        initializeGuestSession(table) {
+            localStorage.guestuser = table.room;
+            localStorage.guestlastfoodselectdate = '';
         }
     }
 }
