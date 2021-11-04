@@ -9,7 +9,7 @@
           <div class="panel-inner">
             <div class="px-6 py-3 bg-white border-b text-left">
               <label class="inline-flex items-center">
-                <input type="radio" class="form-radio text-red-400" name="radio" @change="hideShow('creditCard')" checked>
+                <input type="radio" class="form-radio text-blue-500" name="radio" @change="hideShow('creditCard')" checked>
                 <span class="ml-2">Credit Card</span>
               </label>
             </div>
@@ -41,28 +41,32 @@
           <div class="panel-inner">
             <div class="px-6 py-3 bg-white border-b text-left">
               <label class="inline-flex items-center">
-                <input type="radio" class="form-radio text-red-400" name="radio" @change="hideShow('payNow')" checked>
+                <input type="radio" class="form-radio text-blue-500" name="radio" @change="hideShow('payNow')" checked>
                 <span class="ml-2">Pay Now</span>
               </label>
             </div>
             <div v-if="paymentOptions.payNow" class="px-6 py-3 bg-gray-100 text-gray-400">
-              <CreditCardIcon class="h-72 w-72 m-auto text-gray-400"/>
-              <p class="text-center">After "Clicking Complete order", You will be redirect to HitPay-PayNow QR Checkout to complete your
-                purchase securely </p>
+              <!--CreditCardIcon class="h-72 w-72 m-auto text-gray-400"/>-->
+              <div class="pay">
+                <img src = "../../../public/assets/paynow.jpg" alt="">
+              </div>
+              <p class="text-center">Press "Done" when payment is completed. </p>
             </div>
           </div> <!-- pannel inner end -->
           <!-- pannel inner -->
           <div class="panel-inner">
             <div class="px-6 py-3 bg-white border-b text-left">
               <label class="inline-flex items-center">
-                <input type="radio" class="form-radio text-red-400" name="radio" @change="hideShow('grabPay')" checked>
+                <input type="radio" class="form-radio text-blue-500" name="radio" @change="hideShow('grabPay')" checked>
                 <span class="ml-2">Grab</span>
               </label>
             </div>
             <div v-if="paymentOptions.grabPay" class="px-6 py-3 bg-gray-100 text-gray-400">
-              <CreditCardIcon class="h-72 w-72 m-auto text-gray-400"/>
-              <p class="text-center">After "Clicking Complete order", You will be redirect to GrabPay to complete your purchase
-                securely </p>
+              <!--CreditCardIcon class="h-72 w-72 m-auto text-gray-400"/>-->
+              <div class="pay">
+                <img src = "../../../public/assets/grabpay.jpg" alt="">
+              </div>
+              <p class="text-center">Press "Done" when payment is completed.</p>
             </div>
           </div> <!-- pannel inner end -->
         </div>
@@ -108,14 +112,14 @@
 </template>
 
 <script>
-import {LockClosedIcon, QuestionMarkCircleIcon, CreditCardIcon} from '@heroicons/vue/solid'
+import {LockClosedIcon, QuestionMarkCircleIcon} from '@heroicons/vue/solid'
 
 
 
 export default {
   name: "checkout",
 
-  components: {LockClosedIcon, QuestionMarkCircleIcon, CreditCardIcon},
+  components: {LockClosedIcon, QuestionMarkCircleIcon},
 
   methods: {
     hideShow(ref) {
@@ -142,4 +146,11 @@ export default {
 
 <style scoped>
 
+.pay{
+  width: 30%;
+  height: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-bottom: 1%;
+}
 </style>
