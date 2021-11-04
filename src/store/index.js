@@ -190,7 +190,7 @@ export default createStore({
     changeSeat(state, payload) {
       state.guestInfo.Seat = payload
     },
-    
+
     changeVaccine(state, payload) {
       state.guestInfo.Vaccine = payload
     },
@@ -214,6 +214,10 @@ export default createStore({
     changeGender(state, payload) {
       state.guestInfo.Gender = payload
     },
+
+    alterGuestRoomSelect (state, meta) {
+      state.roomMetaToGuest = meta
+    }
   },
   actions: {
     asideMobileToggle ({ commit, state }, payload = null) {
