@@ -30,7 +30,53 @@
     </span>
     <span class="px-2 transition-colors lg:hidden">Log out</span></a>
   </header>
-  <section class="banner"></section>
+  <!--<section class="banner"></section>-->
+  <div class="slider mb-5">
+    <div class="slides">
+      
+      <input type="radio" name="radio-btn" id="radio1">
+      <input type="radio" name="radio-btn" id="radio2">
+      <input type="radio" name="radio-btn" id="radio3">
+     
+     
+      <div class="slide first">
+        <img src="https://www.wallpaperkiss.com/wimg/b/181-1810457_big.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://wallpaperaccess.com/full/1253837.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="https://wallpaperaccess.com/full/3901057.jpg" alt="">
+      </div>
+      
+          <div class="navigation-manual">
+      <label for="radio1" class="manual-btn"></label>
+      <label for="radio2" class="manual-btn"></label>
+      <label for="radio3" class="manual-btn"></label>
+    </div>
+
+      <!--<div class="navigation-auto">
+        <div class="auto-btn1"></div>
+        <div class="auto-btn2"></div>
+        <div class="auto-btn3"></div>
+      </div>-->
+      
+    </div>
+   
+    <!--<div class="navigation-manual">
+      <label for="radio1" class="manual-btn"></label>
+      <label for="radio2" class="manual-btn"></label>
+      <label for="radio3" class="manual-btn"></label>
+    </div>-->
+      <div class="navigation-auto">
+        <div class="auto-btn1"></div>
+        <div class="auto-btn2"></div>
+        <div class="auto-btn3"></div>
+      </div>
+
+    
+  </div>
+
   <div class = "home_area" ref="home">
     <div class = "white_home_area"><br><br><br><Home/></div>
   </div>
@@ -65,6 +111,20 @@ export default {
       window.scrollTo(0, top);
   }
 },
+
+  mounted() {
+    setInterval( () =>{
+      document.getElementById('radio' + this.counter).checked = true;
+      this.counter++;
+      if (this.counter > 3) {
+        this.counter = 1;
+      }
+    }, 5000);
+  },
+
+  data() {
+    return {counter : 1};
+  },
 
   /*data() {
     return {
@@ -291,4 +351,104 @@ header.sticky .title:hover::after {
 .exit:hover{
   color: white;
 }
+
+.slider {
+  width: 100%;
+  /*height: 500px;*/
+  /*border-radius: 10px;*/
+  overflow: hidden;
+}
+
+.slides {
+  width: 500%;
+  /*height: 500px;*/
+  display: flex;
+}
+
+.slides input {
+  display: none;
+}
+
+.slide {
+  width: 20%;
+  transition: 4s;
+}
+
+.slide img {
+  width: 100%;
+  /*height: 500px;*/
+  height:100vh;
+}
+
+/*css for manual slide navigation*/
+
+.navigation-manual {
+  position: absolute;
+  width: 100%;
+  margin-top: 90vh;
+  display: flex;
+  justify-content: center;
+}
+
+.manual-btn {
+  border: 2px solid white; /* what we see the circle button border */
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.manual-btn:not(:last-child) {
+  margin-right: 40px;
+}
+
+.manual-btn:hover {
+  background: whitesmoke; /* what we see the hover colour */
+}
+
+#radio1:checked ~ .first {
+  margin-left: 0;
+}
+
+#radio2:checked ~ .first {
+  margin-left: -20%;
+}
+
+#radio3:checked ~ .first {
+  margin-left: -40%;
+}
+
+/*css for automatic navigation*/
+
+.navigation-auto {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+ 
+}
+
+.navigation-auto div {
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 10s;
+}
+
+.navigation-auto div:not(:last-child) {
+  margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+  background: black;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+  background: black;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+  background: black;
+}
+
 </style>

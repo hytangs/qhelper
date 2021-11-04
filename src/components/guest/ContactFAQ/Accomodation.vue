@@ -28,15 +28,15 @@ export default {
         [
           {
             clicked: false, title: "How to ask for repair services of the hotel facilities?",
-            desc: "The equals sign (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            desc: "Kindly contact the frontdesk and our staff will tend to your request within 30 minutes from the call time."
           },
           {
             clicked: false, title: "How to cancel or change the meal selection?",
-            desc: "The equals sign (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            desc: "Kindly contact the frontdesk at least 1 hour before the scheduled meal time if you wish to make any changes to your meal plan."
           },
           {
             clicked: false, title: "What is the WiFi password for my room?",
-            desc: "The equals sign The equals sign (British English, Unicode) (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            desc: "Your room WiFi password is 'QHELPER' + your room number."
           },
         ]
   },
