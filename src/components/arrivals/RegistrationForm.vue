@@ -89,6 +89,7 @@ import Control from '../plugins/Control'
 import datequery from '../plugins/helpers/datequery'
 
 
+
 export default {
 
   props: {
@@ -106,46 +107,12 @@ export default {
     JbButtons,
   },
 
-  // data() {
-  //   return {
-  //     info:{},
-  //   }
-  // },
-
   methods: {
       roomselect() {
         this.$router.push({name: "RoomSelectionPage", 
         path: '/arrivals/roomselection', params: {
           fname: document.getElementById("fname").value,
-          // email: document.getElementById("email").value,
-          // gender: document.getElementById("gender").value,
-          // lname: document.getElementById("lname").value,
-          // password: document.getElementById("password").value,
-          // identity: document.getElementById("identity").value,
-          // contact: document.getElementById("contact").value,
-          // doa: document.getElementById("doa").value,
-          // cod: document.getElementById("cod").value,
-          // flight: document.getElementById("flight").value,
-          // seat: document.getElementById("seat").value,
-          // vaccine: document.getElementById("vaccine").value,
-          // passtype: document.getElementById("passtype").value,
-          // pcr: this.checkPCR(document.getElementById("cod").value),
-          }, props: {
-            fname: document.getElementById("fname").value,
-            email: document.getElementById("email").value,
-            gender: document.getElementById("gender").value,
-            lname: document.getElementById("lname").value,
-            password: document.getElementById("password").value,
-            identity: document.getElementById("identity").value,
-            contact: document.getElementById("contact").value,
-            doa: document.getElementById("doa").value,
-            cod: document.getElementById("cod").value,
-            flight: document.getElementById("flight").value,
-            seat: document.getElementById("seat").value,
-            vaccine: document.getElementById("vaccine").value,
-            passtype: document.getElementById("passtype").value,
-            pcr: this.checkPCR(document.getElementById("cod").value),
-          }})
+          },})
       },
 
       // need to update based on the quarantine period policy
@@ -282,8 +249,6 @@ export default {
           passed = false
         }
 
-        // var pcr = this.checkPCR(cod)
-
         if (passed === false) {
           if (error.length > 1) {
             alert("Multiple issues found: " + error + ".")
@@ -291,14 +256,28 @@ export default {
             alert("An issue found: " + error + ".")
           }
         } else {
+          var pcr = this.checkPCR(cod)
+
+          this.$store.commit("changeFname", fname);
+          this.$store.commit("changeLname", lname);
+          this.$store.commit("changeEmail", email);
+          this.$store.commit("changeCOD", cod);
+          this.$store.commit("changeContact", contact);
+          this.$store.commit("changeDOA", doa);
+          this.$store.commit("changeFlight", flight);
+          this.$store.commit("changePasstype", passtype);
+          this.$store.commit("changePassword", password);
+          this.$store.commit("changeSeat", seat);
+          this.$store.commit("changeVaccine", vaccine);
+          this.$store.commit("changeIdentity", identity);
+          this.$store.commit("changePCR", pcr);
+          this.$store.commit("changeGender", gender);
+
+          alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
+          alert("Based on the latest quarantine policy, your quarantine period will be " +
+          this.checkQuarantine(cod) +" days.")
+          this.roomselect()
           
-          // this.info = {
-          //   Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
-          //   Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
-          //   Vaccine: vaccine, Passtype: passtype, Password: password,
-          // }
-          // const store = useStore()
-          // store.commit('alterGuest' , this.info)
 
           // try {
           //   const docRef = await setDoc(doc(db, "RegInfo", email), {
@@ -312,10 +291,10 @@ export default {
           // } catch (error) {
           //   console.error("Error adding document: ", error);
           // } finally {
-            alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
-            alert("Based on the latest quarantine policy, your quarantine period will be " +
-            this.checkQuarantine(cod) +" days.")
-            this.roomselect()
+            // alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
+            // alert("Based on the latest quarantine policy, your quarantine period will be " +
+            // this.checkQuarantine(cod) +" days.")
+            // this.roomselect()
           // }
         }
       }

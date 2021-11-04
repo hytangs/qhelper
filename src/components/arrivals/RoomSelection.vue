@@ -102,22 +102,22 @@ export default {
   JbButtons,
   },
 
-  props: {
-    fname: String,
-    email: String,
-    gender: String,
-    lname: String,
-    password: String,
-    identity: String,
-    contact: String,
-    doa: String,
-    cod: String,
-    flight: String,
-    seat: String,
-    vaccine: String,
-    passtype: String,
-    pcr: Array,
-  },
+  // props: {
+  //   fname: String,
+  //   email: String,
+  //   gender: String,
+  //   lname: String,
+  //   password: String,
+  //   identity: String,
+  //   contact: String,
+  //   doa: String,
+  //   cod: String,
+  //   flight: String,
+  //   seat: String,
+  //   vaccine: String,
+  //   passtype: String,
+  //   pcr: Array,
+  // },
 
   data(){
     return{
@@ -176,33 +176,34 @@ export default {
 
     async savetofs() {
       this.roomNumber = await connector.methods.assignRoom(this.room)
-      // const lname = this.$route.params.lname
-      // const gender = this.$route.params.gender
-      // const fname = this.$route.params.fname
-      // const identity = this.$route.params.identity
-      // const contact = this.$route.params.contact
-      // const email = this.$route.params.email
-      // const doa = this.$route.params.doa
-      // const cod = this.$route.params.cod
-      // const flight = this.$route.params.flight
-      // const seat = this.$route.params.seat
-      // const vaccine = this.$route.params.vaccine
-      // const passtype = this.$route.params.passtype
-      // const password = this.$route.params.password
-      // const pcr = this.$route.params.pcr
+
+      var lname = this.$store.getters.lname
+      var fname = this.$store.getters.fname
+      var email = this.$store.getters.email
+      var cod = this.$store.getters.cod
+      var contact = this.$store.getters.contact
+      var doa = this.$store.getters.doa
+      var flight = this.$store.getters.flight
+      var passtype = this.$store.getters.passtype
+      var password = this.$store.getters.password
+      var seat = this.$store.getters.seat
+      var vaccine = this.$store.getters.vaccine
+      var identity = this.$store.getters.identity
+      var pcr = this.$store.getters.pcr
+      var gender = this.$store.getters.gender
+
+      alert("You have selected "+ this.roomType + "!")
       try {
-        const docRef = await setDoc(doc(db, "RegInfo", this.$props.fname), {
-          Lname: this.$props.lname, Gender: this.$props.gender, Fname: this.$props.fname, identity: this.$props.identity, Contact: this.$props.contact,
-          Email: this.$props.email, DOA: this.$props.doa, COD: this.$props.cod, Flight: this.$props.flight, Seat: this.$props.seat,
-          Vaccine: this.$props.vaccine, Passtype: this.$props.passtype, Password: this.$props.password, PCR: this.$props.pcr,
+        const docRef = await setDoc(doc(db, "RegInfo", this.roomNumber), {
+          Lname: lname, Gender: gender, Fname: fname, identity: identity, Contact: contact,
+          Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
+          Vaccine: vaccine, Passtype: passtype, Password: password, PCR: pcr,
           RoomType: this.roomType, RoomNumber: this.roomNumber,
         })
         console.log(docRef)
         this.$emit("added")
       } catch (error) {
         console.error("Error adding document: ", error);
-      } finally {
-        alert("You have selected "+ this.roomType + "!")
       }
     },
 

@@ -62,8 +62,8 @@ export default createStore({
       temp: '0'
     }],
 
-    guestDefault: [{
-      email: 'email',
+    guestInfo: [{
+      Email: 'email',
       COD: 'country',
       Contact: '0',
       DOA: 'YYYYMMDD',
@@ -74,10 +74,11 @@ export default createStore({
       Password: 'password',
       Seat:'000',
       Vaccine:'status',
-      identity:'identity',
-      roomType:'roomType',
-      roomNumber:'0000',
-      PCR:[]
+      Identity:'identity',
+      RoomType:'roomType',
+      RoomNumber:'0000',
+      PCR:[],
+      Gender: 'Miss'
     }],
 
     staffRoster: [{
@@ -137,6 +138,70 @@ export default createStore({
 
     alterStaffRoster (state, meta) {
       state.staffRoster = meta
+    },
+
+    changeFname(state, payload) {
+      state.guestInfo.Fname = payload
+    },
+
+    changeLname(state, payload) {
+      state.guestInfo.Lname = payload
+    },
+
+    changeEmail(state, payload) {
+      state.guestInfo.Email = payload
+    },
+
+    changeCOD(state, payload) {
+      state.guestInfo.COD = payload
+    },
+
+    changeContact(state, payload) {
+      state.guestInfo.Contact = payload
+    },
+
+    changeDOA(state, payload) {
+      state.guestInfo.DOA = payload
+    },
+
+    changeFlight(state, payload) {
+      state.guestInfo.Flight = payload
+    },
+
+    changePasstype(state, payload) {
+      state.guestInfo.Passtype = payload
+    },
+
+    changePassword(state, payload) {
+      state.guestInfo.Password = payload
+    },
+
+    changeSeat(state, payload) {
+      state.guestInfo.Seat = payload
+    },
+    
+    changeVaccine(state, payload) {
+      state.guestInfo.Vaccine = payload
+    },
+
+    changeIdentity(state, payload) {
+      state.guestInfo.Identity = payload
+    },
+
+    changeRoomType(state, payload) {
+      state.guestInfo.RoomType = payload
+    },
+
+    changeRoomNumber(state, payload) {
+      state.guestInfo.RoomNumber = payload
+    },
+
+    changePCR(state, payload) {
+      state.guestInfo.PCR = payload
+    },
+
+    changeGender(state, payload) {
+      state.guestInfo.Gender = payload
     },
   },
   actions: {
@@ -200,5 +265,39 @@ export default createStore({
     }
   },
   modules: {
+  },
+
+  getters: {
+    email: state => { return state.guestInfo.Email },
+
+    cod: state => { return state.guestInfo.COD },
+
+    contact: state => { return state.guestInfo.Contact },
+
+    doa: state => { return state.guestInfo.DOA },
+
+    flight: state => { return state.guestInfo.Flight },
+
+    fname: state => { return state.guestInfo.Fname },
+
+    lname: state => { return state.guestInfo.Lname },
+
+    passtype: state => { return state.guestInfo.Passtype },
+
+    password: state => { return state.guestInfo.Password },
+
+    seat: state => { return state.guestInfo.Seat },
+
+    vaccine: state => { return state.guestInfo.Vaccine },
+
+    identity: state => { return state.guestInfo.Identity },
+
+    roomType: state => { return state.guestInfo.RoomType },
+
+    roomNumber: state => { return state.guestInfo.RoomNumber },
+
+    pcr: state => { return state.guestInfo.PCR },
+
+    gender: state => { return state.guestInfo.Gender },
   }
 })
