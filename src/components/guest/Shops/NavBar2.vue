@@ -112,6 +112,43 @@
         Milo Dinosaur ($5.00 each) --- Count: {{ this.milo }}
       </p>
 
+      <p v-if="this.razor > 0">
+        Electric Razor ($15.00 each) --- Count: {{ this.razor }}
+      </p>
+      <p v-if="this.kit > 0">
+        Laneige Skincare Travel Kit ($15.00 each) --- Count: {{ this.kit }}
+      </p>
+      <p v-if="this.humidifier > 0">
+        Mini Air Humidifier ($30.0 each) --- Count: {{ this.humidifier }}
+      </p>
+      <p v-if="this.candle > 0">
+        Yankee Candle (small) ($15.00 each) --- Count: {{ this.candle }}
+      </p>
+      <p v-if="this.spray > 0">
+        Febreze Fabric Spray ($4.00 each) --- Count: {{ this.spray }}
+      </p>
+      <p v-if="this.bottles > 0">
+        Thermal Bottles ($25.00 each) --- Count: {{ this.bottles }}
+      </p>
+      <p v-if="this.bathsalt > 0">
+        Himalayan Bath Salt ($12.00 each) --- Count: {{ this.bathsalt }}
+      </p>
+      <p v-if="this.diffuser > 0">
+        Aroma Diffuser ($35.00 each) --- Count: {{ this.diffuser }}
+      </p>
+      <p v-if="this.sanitiser > 0">
+        Hand Sanitiser ($7.00 each) --- Count: {{ this.sanitiser }}
+      </p>
+      <p v-if="this.lotion > 0">
+        Aveeno Body Lotion ($15.00 each) --- Count: {{ this.lotion }}
+      </p>
+      <p v-if="this.cleanser > 0">
+        Cetaphil Gentle Skin Cleanser ($13.00 each) --- Count: {{ this.cleanser }}
+      </p>
+      <p v-if="this.mask > 0">
+        Silk Sleep Mask ($35.00 each) --- Count: {{ this.mask }}
+      </p>
+
       <p v-if="this.total > 0">
         Total: ${{ parseFloat(this.total).toFixed(2) }}
       </p>
@@ -249,9 +286,47 @@
       @update_latte="Newlatte($event)"
       @update_coffee="Newcoffee($event)"
       @update_milo="Newmilo($event)"
+      @remove_tarik="Newtarik($event)"
+      @remove_cola="Newcola($event)"
+      @remove_soya="Newsoya($event)"
+      @remove_beer="Newbeer($event)"
+      @remove_sling="Newsling($event)"
+      @remove_milktea="Newmilktea($event)"
+      @remove_lasi="Newlasi($event)"
+      @remove_coconut="Newcoconut($event)"
+      @remove_oreo="Neworeo($event)"
+      @remove_latte="Newlatte($event)"
+      @remove_coffee="Newcoffee($event)"
+      @remove_milo="Newmilo($event)"
       v-show="currentSection === 3"
     />
-    <Supplies v-show="currentSection === 4" />
+    <Supplies
+      @update_razor="Newrazor($event)"
+      @update_kit="Newkit($event)"
+      @update_humidifier="Newhumidifier($event)"
+      @update_candle="Newcandle($event)"
+      @update_spray="Newspray($event)"
+      @update_bottles="Newbottles($event)"
+      @update_bathsalt="Newbathsalt($event)"
+      @update_diffuser="Newdiffuser($event)"
+      @update_sanitiser="Newsanitiser($event)"
+      @update_lotion="Newlotion($event)"
+      @update_cleanser="Newcleanser($event)"
+      @update_mask="Newmask($event)"
+      @remove_razor="Newrazor($event)"
+      @remove_kit="Newkit($event)"
+      @remove_humidifier="Newhumidifier($event)"
+      @remove_candle="Newcandle($event)"
+      @remove_spray="Newspray($event)"
+      @remove_bottles="Newbottles($event)"
+      @remove_bathsalt="Newbathsalt($event)"
+      @remove_diffuser="Newdiffuser($event)"
+      @remove_sanitiser="Newsanitiser($event)"
+      @remove_lotion="Newlotion($event)"
+      @remove_cleanser="Newcleanser($event)"
+      @remove_mask="Newmask($event)"
+      v-show="currentSection === 4"
+    />
   </div>
 
   <div class="shopcart" align="right">
@@ -454,6 +529,43 @@ export default {
     Newmilo(e) {
       this.milo = e;
     },
+    // Supplies
+    Newrazor(e) {
+      this.razor = e;
+    },
+    Newkit(e) {
+      this.kit = e;
+    },
+    Newhumidifier(e) {
+      this.humidifier = e;
+    },
+    Newcandle(e) {
+      this.candle = e;
+    },
+    Newspray(e) {
+      this.spray = e;
+    },
+    Newbottles(e) {
+      this.bottles = e;
+    },
+    Newbathsalt(e) {
+      this.bathsalt = e;
+    },
+    Newdiffuser(e) {
+      this.diffuser = e;
+    },
+    Newsanitiser(e) {
+      this.sanitiser = e;
+    },
+    Newlotion(e) {
+      this.lotion = e;
+    },
+    Newcleanser(e) {
+      this.cleanser = e;
+    },
+    Newmask(e) {
+      this.mask = e;
+    },
     // total cost
     totalCost() {
       this.total =
@@ -492,7 +604,19 @@ export default {
         this.oreo * 8.0 +
         this.latte * 7.0 +
         this.coffee * 6.0 +
-        this.milo * 5.0;
+        this.milo * 5.0 +
+        this.razor * 15.0 +
+        this.kit * 15.0 +
+        this.humidifier * 30.0 +
+        this.candle * 15.0 +
+        this.spray * 4.0 +
+        this.bottles * 25.0 +
+        this.bathsalt * 12.0 +
+        this.diffuser * 35.0 +
+        this.sanitiser * 7.0 +
+        this.lotion * 15.0 +
+        this.cleanser * 13.0 +
+        this.mask * 35.0;
     },
     // clear all
     clearAll() {
@@ -535,6 +659,19 @@ export default {
       this.latte = 0;
       this.coffee = 0;
       this.milo = 0;
+      // Supplies
+      this.razor = 0;
+      this.kit = 0;
+      this.humidifier = 0;
+      this.candle = 0;
+      this.spray = 0;
+      this.bottles = 0;
+      this.bathsalt = 0;
+      this.diffuser = 0;
+      this.sanitiser = 0;
+      this.lotion = 0;
+      this.cleanser = 0;
+      this.mask = 0;
     },
     //generate order
     generateOrder() {
@@ -649,6 +786,43 @@ export default {
       if (this.milo > 0) {
         this.orderItems += "Milo: " + String(this.milo) + ", ";
       }
+      // Supplies
+      if (this.razor > 0) {
+        this.orderItems += "Razor: " + String(this.razor) + ", ";
+      }
+      if (this.kit > 0) {
+        this.orderItems += "Skincare Travel Kit: " + String(this.kit) + ", ";
+      }
+      if (this.humidifier > 0) {
+        this.orderItems += "Air Humidifier: " + String(this.humidifier) + ", ";
+      }
+      if (this.candle > 0) {
+        this.orderItems += "Candle: " + String(this.candle) + ", ";
+      }
+      if (this.spray > 0) {
+        this.orderItems += "Spray: " + String(this.spray) + ", ";
+      }
+      if (this.bottles > 0) {
+        this.orderItems += "Bottles: " + String(this.bottles) + ", ";
+      }
+      if (this.bathsalt > 0) {
+        this.orderItems += "Bath Salt: " + String(this.bathsalt) + ", ";
+      }
+      if (this.diffuser > 0) {
+        this.orderItems += "Diffuser: " + String(this.diffuser) + ", ";
+      }
+      if (this.sanitiser > 0) {
+        this.orderItems += "Hand Sanitiser: " + String(this.sanitiser) + ", ";
+      }
+      if (this.lotion > 0) {
+        this.orderItems += "Body Lotion: " + String(this.lotion) + ", ";
+      }
+      if (this.cleanser > 0) {
+        this.orderItems += "Skin Cleanser: " + String(this.cleanser) + ", ";
+      }
+      if (this.mask > 0) {
+        this.orderItems += "Sleep Mask: " + String(this.mask) + ", ";
+      }
       return this.orderItems;
     },
   },
@@ -702,6 +876,19 @@ export default {
     var latte = 0;
     var coffee = 0;
     var milo = 0;
+    // Supplies
+    var razor = 0;
+    var kit = 0;
+    var humidifier = 0;
+    var candle = 0;
+    var spray = 0;
+    var bottles = 0;
+    var bathsalt = 0;
+    var diffuser = 0;
+    var sanitiser = 0;
+    var lotion = 0;
+    var cleanser = 0;
+    var mask = 0;
 
     var total = 0;
     var orderItems = "";
@@ -742,6 +929,18 @@ export default {
       latte,
       coffee,
       milo,
+      razor,
+      kit,
+      humidifier,
+      candle,
+      spray,
+      bottles,
+      bathsalt,
+      diffuser,
+      sanitiser,
+      lotion,
+      cleanser,
+      mask,
       isModalActive,
       total,
       orderedAlready,
