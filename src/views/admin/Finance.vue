@@ -2,8 +2,9 @@
   <nav-bar />
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Financial Data Summary</hero-bar>
-  <main-section>
+  <hero-bar v-if="zone === '1' || zone === '5'">Financial Data Summary</hero-bar>
+  <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
+  <main-section v-if="zone === '1' || zone === '5'">
     <title-sub-bar :icon="mdiChartPie" title="Sales Data overview" />
 
     <card-component
@@ -81,7 +82,7 @@
     </card-component>
 
   </main-section>
-  <footer-bar />
+  <footer-bar v-if="zone === '1' || zone === '5'"/>
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"
@@ -118,6 +119,7 @@ import AsideMenu from "../../../src/components/plugins/AsideMenu";
 import FooterBar from "../../../src/components/plugins/FooterBar";
 import Overlay from "../../../src/components/plugins/Overlay";
 import PaymentHistory from '../../../src/components/admin/admin-components/PaymentHistory'
+import localsession from "../../store/localsession";
 
 export default {
   name: "Home",
@@ -145,6 +147,8 @@ export default {
     const barchartData3 = ref(null);
     const piechartData = ref(null);
     const piechartData2 = ref(null);
+
+    const zone = localsession.methods.getAdminZone()
 
     const fillLineChartData = () => {
       linechartData.value = charts.sampleLineChartData();
@@ -213,6 +217,7 @@ export default {
       mdiGithub,
       mdiChartPie,
       menu,
+      zone
     };
   },
 };

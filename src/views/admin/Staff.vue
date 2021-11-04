@@ -2,8 +2,9 @@
 <nav-bar/>
 <aside-menu :menu="menu"/>
 <title-bar :title-stack="titleStack" />
-<hero-bar>HR Management</hero-bar>
-<main-section>
+<hero-bar v-if="zone === '1'">HR Management</hero-bar>
+<hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
+<main-section v-if="zone === '1'">
   <br>
   <card-component class="mb-6" has-table>
       <HRTable/>
@@ -34,7 +35,7 @@
   </jb-buttons>
 </modal-box>
 
-<footer-bar/>
+<footer-bar v-if="zone === '1'" />
 <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
@@ -80,6 +81,8 @@ export default {
   setup() {
     const titleStack = ref(['Admin', 'Staff'])
 
+    const zone = localsession.methods.getAdminZone()
+
     const isModalActive = ref(false)
 
     const positionOptions = [
@@ -96,7 +99,8 @@ export default {
       menu,
       positionOptions,
       isModalActive,
-      deployOptions
+      deployOptions,
+      zone
     }
   },
 

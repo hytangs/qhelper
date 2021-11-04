@@ -118,6 +118,7 @@ import Control from "../../components/plugins/Control";
 import FilePicker from "../../components/plugins/FilePicker";
 import JbButton from "../../components/plugins/JbButton";
 import JbButtons from "../../components/plugins/JbButtons";
+import localsession from "../../store/localsession";
 
 export default {
   name: "Tables",
@@ -142,7 +143,11 @@ export default {
   },
   setup() {
     const store = useStore();
+
     const titleStack = ref(["Admin", "Foods"]);
+
+    const zone = localsession.methods.getAdminZone()
+
     const FoodInfo = reactive({
       food: store.state.food,
       description: store.state.description,
@@ -164,6 +169,7 @@ export default {
 
     return {
       titleStack,
+      zone,
       mdiAccount,
       mdiMonitorCellphone,
       mdiAccountCircle,
