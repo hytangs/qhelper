@@ -33,20 +33,19 @@
   <!--<section class="banner"></section>-->
   <div class="slider mb-5">
     <div class="slides">
-      
       <input type="radio" name="radio-btn" id="radio1">
       <input type="radio" name="radio-btn" id="radio2">
       <input type="radio" name="radio-btn" id="radio3">
      
      
       <div class="slide first">
-        <img src="https://www.wallpaperkiss.com/wimg/b/181-1810457_big.jpg" alt="">
+        <img src="../../../public/assets/Welcome1.png" alt="">
       </div>
       <div class="slide">
-        <img src="https://wallpaperaccess.com/full/1253837.jpg" alt="">
+        <img src="../../../public/assets/Welcome2.png" alt="">
       </div>
       <div class="slide">
-        <img src="https://wallpaperaccess.com/full/3901057.jpg" alt="">
+        <img src="../../../public/assets/Welcome3.png" alt="">
       </div>
       
           <div class="navigation-manual">
@@ -450,5 +449,4 @@ header.sticky .title:hover::after {
 #radio3:checked ~ .navigation-auto .auto-btn3 {
   background: black;
 }
-
 </style>

@@ -165,4 +165,8 @@ header.sticky .title:hover::after {
   border-radius: 8px;
   padding: 10px 24px;
 }
+
+.color{
+  color:white;
+}
 </style>
