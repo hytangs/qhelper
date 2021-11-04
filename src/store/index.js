@@ -88,6 +88,17 @@ export default createStore({
       staffZone: '0',
       deployed: '0',
       lastLogin: 'Unknown'
+    }],
+
+    roomMetaToGuest: [{
+      havesingle: '0',
+      havedouble: '0',
+      havepremium: '0',
+      haveapartment: '0',
+      singlerate: '400',
+      doublerate: '500',
+      premiumrate: '600',
+      apartmentrate: '800'
     }]
   },
 

@@ -30,7 +30,7 @@ export default {
     small: Boolean,
     outline: Boolean,
     active: Boolean,
-    as: String
+    as: String,
   },
   setup (props) {
     const is = computed(() => {
