@@ -3,6 +3,7 @@
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
   <hero-bar v-if="zone === '1' || zone === '4'">Food Selection</hero-bar>
+  <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
   <main-section v-if="zone === '1' || zone === '4'">
     <!-- <notification color="info" :icon="mdiMonitorCellphone">
       <b>Responsive table.</b> Collapses on mobile
