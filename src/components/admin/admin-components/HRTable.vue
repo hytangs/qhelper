@@ -188,7 +188,16 @@ export default {
     },
 
     async modifyPosition() {
-      await connector.methods.modifyStaffPosition(this.staffAccount, this.new_position)
+      try {
+        if (this.new_position == "") {
+          alert("Please select the new position for staff!")
+        } else {
+          await connector.methods.modifyStaffPosition(this.staffAccount, this.new_position)
+          alert("Position of staff updated to " + this.new_position + " successfully!")
+        }
+      } catch (e) {
+        alert("Error in modifying staff's position. Please try again.");
+      }
     },
 
     rmbStaffAccount(account) {
