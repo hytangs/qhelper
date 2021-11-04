@@ -24,13 +24,24 @@
     <div class="text-center">
       <br><br>
       <h1 class="text-3xl text-blue-500 mb-6">Our Final Goodbye...</h1>
+      <br>
       <div v-if="showpay" class="payment-container">
         <Payment/>
       </div> 
       <button v-on:click="showpay = !showpay" v-if="showpay" class="donebtn">Done</button>
       <div v-if="!showpay" class="checkoutlist-container">
-        <Arrival/>
+        <div v-if="showlist">
+            <Arrival/>
+            <br>
+            <button v-on:click="showlist = !showlist" class="setbtn">We're All Set!</button>
+        </div> 
       </div>
+      <div id="finally" v-if="!showlist">
+          <br><br><br><br><br><br><br><br><br><br>
+          <h1>We hope that you have enjoyed your stay</h1>
+          <br>
+          <h1>Thank you and have a pleasant journey!</h1>
+        </div>
     </div><br><br>
     </div>
 </template>
@@ -48,6 +59,7 @@ export default {
   data() {
         return {
             showpay: true,
+            showlist:true,
         }
     }
 }
@@ -164,5 +176,22 @@ header.sticky .title:hover::after {
   color: white;
   border-radius: 8px;
   padding: 10px 24px;
+}
+
+.setbtn:hover {
+  background-color: rgb(136, 100, 9);
+}
+
+.setbtn {
+  background-color: darkgoldenrod;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 24px;
+}
+
+h1{
+    font-size: 50px;
+    text-align: center;
 }
 </style>
