@@ -167,11 +167,11 @@ header.sticky .title:hover::after {
 }
 
 .donebtn:hover {
-  background-color: rgb(136, 100, 9);
+  background-color: rgba(37, 99, 235);
 }
 
 .donebtn {
-  background-color: darkgoldenrod;
+  background-color: rgba(59, 130, 246);;
   text-align: center;
   color: white;
   border-radius: 8px;
@@ -179,11 +179,11 @@ header.sticky .title:hover::after {
 }
 
 .setbtn:hover {
-  background-color: rgb(136, 100, 9);
+  background-color: rgba(37, 99, 235);
 }
 
 .setbtn {
-  background-color: darkgoldenrod;
+  background-color: rgba(59, 130, 246);;
   text-align: center;
   color: white;
   border-radius: 8px;
