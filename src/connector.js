@@ -38,6 +38,13 @@ export default {
             });
         },
 
+        async updateStaffDeployment(inAccount, val) {
+            const mappedAccount = doc(db, "AdminAccount", String(inAccount));
+            await updateDoc(mappedAccount, {
+                deployed: String(1 - parseInt(val))
+            });
+        },
+
         async getZone(inAccount) {
             const docRef = doc(db, "AdminAccount", String(inAccount));
             let docSnap = await getDoc(docRef);
