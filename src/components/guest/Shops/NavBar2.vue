@@ -110,24 +110,6 @@
         </svg>
       </div>
       <br />
-      <div class="shopcart">
-        <button
-          class="view"
-          type="button"
-          data-toggle="modal"
-          data-target="#cart"
-          @click="(isModalActive = true), totalCost()"
-        >
-          View my Cart
-        </button>
-        &nbsp;
-        <button
-          class="clear-cart btn btn-danger"
-          @click="(isModalDangerActive = true), totalCost()"
-        >
-          Order Now
-        </button>
-      </div>
     </div>
     <Mains
       @update_ramyun="Newramyun($event)"
@@ -160,6 +142,26 @@
     <Drinks v-show="currentSection === 3" />
     <Supplies v-show="currentSection === 4" />
   </div>
+
+  <div class="shopcart" align = "right">
+        <button
+          class="view"
+          type="button"
+          data-toggle="modal"
+          data-target="#cart"
+          @click="(isModalActive = true), totalCost()"
+        >
+          View my Cart
+        </button>
+        &nbsp;
+        <button
+          class="clear-cart btn btn-danger"
+          @click="(isModalDangerActive = true), totalCost()"
+        >
+          Order Now
+        </button>
+      </div>
+
 </template>
 
 <script>
