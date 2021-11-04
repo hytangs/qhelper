@@ -3,7 +3,7 @@
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
   <hero-bar v-if="zone !== '0'">Dashboard</hero-bar>
-  <hero-bar v-else>Unauthorized</hero-bar>
+  <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
   <main-section v-if="zone !== '0'">
     <notification color="info" :icon="mdiAlertCircle">
       Please follow Personal Data Protection Act when using this system.
@@ -112,13 +112,7 @@
       </card-component>
 
   </main-section>
-  <main-section v-else>
-    <h1 class="text-2xl text-gray-700 hover:text-gray-900">
-      You don't have access to visit this page.<br />
-      Please contact web administrator for more info.
-    </h1>
-  </main-section>
-  <footer-bar />
+  <footer-bar v-if="zone !== '0'"/>
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"
@@ -209,11 +203,6 @@ export default {
     });
 
 
-    let meta = {
-      "totalrooms" : 4
-    }
-    console.log(meta)
-
     return {
       titleStack,
       darkMode,
@@ -231,7 +220,6 @@ export default {
       mdiTableAccount,
       menu,
       zone,
-      meta,
       store,
       piechartData,
       fillPieChartData,
