@@ -1,5 +1,5 @@
 <template>
-<full-screen-section bg="login"> 
+<full-screen-section bg="login">
   <div class="grid">
     <div class="row text-center py-20 lg:px-0 lg:max-w-2xl lg:mx-auto text-3xl text-dark">
       <h1>Hi {{this.$route.params.fname}}, Please select the room type according to your preference.</h1>
@@ -10,12 +10,15 @@
           <div class="text-center py-24 lg:py-10 text-dark">
             <strong>Single Room</strong>
             <img alt="Single photo" src="../../../public/assets/single.png"><br>
-            <strong>$300</strong>
+            <strong>${{ roomMeta.singlerate }}</strong>
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Single Room'">
+          <div v-if = "roomType==='Single Room'">
             <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else-if = "roomMeta.havesingle === '0'">
+            <jb-button label="Not Available" />
           </div>
           <div v-else>
             <jb-button color="info" label="Select" v-on:click="selectRoom1()"/>
@@ -26,12 +29,15 @@
           <div class="text-center py-24 lg:py-10 text-dark">
             <strong>Double Room</strong>
             <img alt="queen photo" src="../../../public/assets/queen.png"><br>
-            <strong>$400</strong>
+            <strong>${{ roomMeta.doublerate }}</strong>
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Double Room'">
+          <div v-if = "roomType==='Double Room'">
             <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else-if = "roomMeta.havedouble === '0'">
+            <jb-button label="Not Available" />
           </div>
           <div v-else>
             <jb-button color="info" label="Select" v-on:click="selectRoom2()"/>
@@ -42,12 +48,15 @@
           <div class="text-center py-24 lg:py-10 text-dark">
             <strong>Premium Double Room</strong>
             <img alt="king photo" src="../../../public/assets/king.png"><br>
-            <strong>$450</strong>
+            <strong>${{ roomMeta.premiumrate }}</strong>
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Premium Double Room'">
+          <div v-if = "roomType==='Premium Double Room'">
             <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else-if = "roomMeta.havepremium === '0'">
+            <jb-button label="Not Available" />
           </div>
           <div v-else>
             <jb-button color="info" label="Select" v-on:click="selectRoom3()"/>
@@ -58,12 +67,15 @@
           <div class="text-center py-24 lg:py-10 text-dark">
             <strong>Premium Apartment</strong>
             <img alt="apartment photo" src="../../../public/assets/apartment.png"><br>
-            <strong>$800</strong>
+            <strong>${{ roomMeta.apartmentrate }}</strong>
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Premium Apartment'">
+          <div v-if = "roomType === 'Premium Apartment'">
             <jb-button color="info" label="Selected"/>
+          </div>
+          <div v-else-if = "roomMeta.haveapartment === '0'">
+            <jb-button label="Not Available" />
           </div>
           <div v-else>
             <jb-button color="info" label="Select" v-on:click="selectRoom4()"/>
@@ -71,7 +83,7 @@
         </card-component>
 
         <div v-if = "roomType">
-          <jb-buttons> 
+          <jb-buttons>
               <jb-button type="submit" color="info" label="Confirm >" @click="savetofs(), passgenerate()"/>
           </jb-buttons>
         </div>
@@ -207,17 +219,19 @@ export default {
     },
 
     passgenerate() {
-      this.$router.push({name: "PassGenerationPage", 
+      this.$router.push({name: "PassGenerationPage",
       path: '/arrivals/passgeneration', params: {
         roomtype: this.roomType,
         roomNumber: this.roomNumber,
-        gender: this.$route.params.gender, 
+        gender: this.$route.params.gender,
         fname: this.$route.params.fname}})
     }
   },
 
   setup() {
     const store = useStore()
+
+    const roomMeta = store.state.roomMetaToGuest[0]
     // const lname = this.$route.params.lname
     // const gender = this.$route.params.gender
     // const fname = this.$route.params.fname
@@ -235,6 +249,7 @@ export default {
 
     return {
       store,
+      roomMeta
       // lname,
       // gender,
       // fname,

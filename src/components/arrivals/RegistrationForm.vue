@@ -114,7 +114,7 @@ export default {
 
   methods: {
       roomselect() {
-        this.$router.push({name: "RoomSelectionPage", 
+        this.$router.push({name: "RoomSelectionPage",
         path: '/arrivals/roomselection', params: {
           fname: document.getElementById("fname").value,
           // email: document.getElementById("email").value,
@@ -150,15 +150,15 @@ export default {
 
       // need to update based on the quarantine period policy
       checkQuarantine(cod) {
-        if (["Australia", "Austria", "Bahrain", "Belgium", "Bhutan", "Brunei", "Bulgaria", 
-        "Canada", "Croatia", "Cyprus", "Czech Republic", "Denmark" , "Fiji", "France" , 
-        "Finland", "Germany", "Greece", "Iceland", "Ireland", "Italy", "Japan", "Liechtenstein", 
-        "Luxembourg", "Malta", "New Zealand", "Norway", "Poland", "Portugal", "the Republic of Korea", 
-        "Saudi Arabia", "Slovakia", "Spain", "Sweden", "Switzerland", "Turkey", "The Netherlands", 
+        if (["Australia", "Austria", "Bahrain", "Belgium", "Bhutan", "Brunei", "Bulgaria",
+        "Canada", "Croatia", "Cyprus", "Czech Republic", "Denmark" , "Fiji", "France" ,
+        "Finland", "Germany", "Greece", "Iceland", "Ireland", "Italy", "Japan", "Liechtenstein",
+        "Luxembourg", "Malta", "New Zealand", "Norway", "Poland", "Portugal", "the Republic of Korea",
+        "Saudi Arabia", "Slovakia", "Spain", "Sweden", "Switzerland", "Turkey", "The Netherlands",
         "The United Kingdom", "The United States", "Vatican City"].includes(cod)) {
           return "7";
-        } else if (["Cambodia", "Egypt", "Estonia", "Hungary", "Indonesia", "Israel", "Latvia", "Lithuania", 
-        "Malaysia", "Maldives", "Mongolia", "Qatar", "Rwanda", "Samoa", "Seychelles", "Slovenia", "South Africa", 
+        } else if (["Cambodia", "Egypt", "Estonia", "Hungary", "Indonesia", "Israel", "Latvia", "Lithuania",
+        "Malaysia", "Maldives", "Mongolia", "Qatar", "Rwanda", "Samoa", "Seychelles", "Slovenia", "South Africa",
         "Tonga", "UAE", "Vietnam"].includes(cod)) {
           return "10";
         } else if (["Hong Kong", "Macao", "Mainland China", "Taiwan"].includes(cod)) {
@@ -170,18 +170,18 @@ export default {
 
       checkPCR(country) {
         var quarantinePeriod = this.checkQuarantine(country)
-        if (quarantinePeriod == 7) {
+        if (quarantinePeriod === 7) {
           const today = datequery.methods.fetchTodayString()
           const d7 = datequery.methods.addDays(7)
           const arr = [today, d7]
           return arr
-        } else if (quarantinePeriod == 14) {
+        } else if (quarantinePeriod === 14) {
           const today = datequery.methods.fetchTodayString()
           const d7 = datequery.methods.addDays(7)
           const d14 = datequery.methods.addDays(14)
           const arr = [today, d7, d14]
           return arr
-        } else if (quarantinePeriod == 10) {
+        } else if (quarantinePeriod === 10) {
           const today = datequery.methods.fetchTodayString()
           const d3 = datequery.methods.addDays(3)
           const d10 = datequery.methods.addDays(10)
@@ -291,7 +291,7 @@ export default {
             alert("An issue found: " + error + ".")
           }
         } else {
-          
+
           // this.info = {
           //   Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
           //   Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
