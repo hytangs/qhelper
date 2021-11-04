@@ -107,9 +107,9 @@ export default {
             })
             return outputMeta
         },
+        // eslint-disable-next-line no-unused-vars
         async assignRoom(type) {
-            const roomTypeToAssign = await doc(db, "RoomMeta", type);
-
+            const roomTypeToAssign = await getDoc(doc(db, "RoomMeta", type));
             var x = roomTypeToAssign.data();
             var assigned;
             for (var key in x) {
@@ -122,6 +122,7 @@ export default {
                 }
             }
             console.log(assigned);
+            return assigned;
         },
 
         async getBroadcast() {

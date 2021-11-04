@@ -3,12 +3,11 @@
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
       <card-component>
         <div class="text-center py-24 lg:py-4 text-gray-500 dark:text-gray-400">
-          <text class="text-2xl"
-            ><b
-              >{{ name }} <br />
-              Room {{ roomNo }} <br />
-              Check In Time: <br/>
-              {{this.currentDate}}<br /> </b
+          <text class="text-2xl"><b>
+            {{ this.$route.params.gender }} {{this.$route.params.fname}}<br />
+            Room {{ this.$route.params.roomNumber }} <br />
+            Check In Time: <br/>
+            {{this.currentDate}}<br /> </b
           ></text>
           <br />
           <div id="qrcode" class="center">

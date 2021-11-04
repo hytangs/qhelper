@@ -74,10 +74,10 @@
 </template>
 
 <script>
-import firebaseApp from '../../firebase.js';
-import { getFirestore } from 'firebase/firestore';
-import { doc, setDoc } from 'firebase/firestore';
-const db = getFirestore(firebaseApp);
+// import firebaseApp from '../../firebase.js';
+// import { getFirestore } from 'firebase/firestore';
+// import { doc, setDoc } from 'firebase/firestore';
+// const db = getFirestore(firebaseApp);
 import { useStore } from 'vuex'
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
@@ -106,19 +106,46 @@ export default {
     JbButtons,
   },
 
-  data() {
-    return {
-      info:{},
-    }
-  },
+  // data() {
+  //   return {
+  //     info:{},
+  //   }
+  // },
 
   methods: {
       roomselect() {
         this.$router.push({name: "RoomSelectionPage", 
         path: '/arrivals/roomselection', params: {
           fname: document.getElementById("fname").value,
-          email: document.getElementById("email").value,
-          info: this.info}})
+          // email: document.getElementById("email").value,
+          // gender: document.getElementById("gender").value,
+          // lname: document.getElementById("lname").value,
+          // password: document.getElementById("password").value,
+          // identity: document.getElementById("identity").value,
+          // contact: document.getElementById("contact").value,
+          // doa: document.getElementById("doa").value,
+          // cod: document.getElementById("cod").value,
+          // flight: document.getElementById("flight").value,
+          // seat: document.getElementById("seat").value,
+          // vaccine: document.getElementById("vaccine").value,
+          // passtype: document.getElementById("passtype").value,
+          // pcr: this.checkPCR(document.getElementById("cod").value),
+          }, props: {
+            fname: document.getElementById("fname").value,
+            email: document.getElementById("email").value,
+            gender: document.getElementById("gender").value,
+            lname: document.getElementById("lname").value,
+            password: document.getElementById("password").value,
+            identity: document.getElementById("identity").value,
+            contact: document.getElementById("contact").value,
+            doa: document.getElementById("doa").value,
+            cod: document.getElementById("cod").value,
+            flight: document.getElementById("flight").value,
+            seat: document.getElementById("seat").value,
+            vaccine: document.getElementById("vaccine").value,
+            passtype: document.getElementById("passtype").value,
+            pcr: this.checkPCR(document.getElementById("cod").value),
+          }})
       },
 
       // need to update based on the quarantine period policy
@@ -147,31 +174,27 @@ export default {
           const today = datequery.methods.fetchTodayString()
           const d7 = datequery.methods.addDays(7)
           const arr = [today, d7]
-          // const arr = {0:d1, 1:d7}
           return arr
         } else if (quarantinePeriod == 14) {
           const today = datequery.methods.fetchTodayString()
           const d7 = datequery.methods.addDays(7)
           const d14 = datequery.methods.addDays(14)
           const arr = [today, d7, d14]
-          // const arr = {0:today, 1:d7, 2:d14}
           return arr
         } else if (quarantinePeriod == 10) {
           const today = datequery.methods.fetchTodayString()
           const d3 = datequery.methods.addDays(3)
           const d10 = datequery.methods.addDays(10)
           const arr = [today, d3, d10]
-          // const arr = {0:today, 1:d3, 2:d10}
           return arr
         } else {
           const today = datequery.methods.fetchTodayString()
           const arr = [today]
-          // const arr = {0:today}
           return arr
         }
       },
 
-      async savetofs() {
+      savetofs() {
         var passed = true
         var error = []
 
@@ -259,7 +282,7 @@ export default {
           passed = false
         }
 
-        var pcr = this.checkPCR(cod)
+        // var pcr = this.checkPCR(cod)
 
         if (passed === false) {
           if (error.length > 1) {
@@ -277,23 +300,23 @@ export default {
           // const store = useStore()
           // store.commit('alterGuest' , this.info)
 
-          try {
-            const docRef = await setDoc(doc(db, "RegInfo", email), {
-              Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
-              Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
-              Vaccine: vaccine, Passtype: passtype, Password: password, PCR: pcr,
-            })
-            console.log(docRef)
+          // try {
+          //   const docRef = await setDoc(doc(db, "RegInfo", email), {
+          //     Gender: gender, Fname: fname, Lname: lname, identity: identity, Contact: contact,
+          //     Email: email, DOA: doa, COD: cod, Flight: flight, Seat: seat,
+          //     Vaccine: vaccine, Passtype: passtype, Password: password, PCR: pcr,
+          //   })
+          //   console.log(docRef)
 
-            this.$emit("added")
-          } catch (error) {
-            console.error("Error adding document: ", error);
-          } finally {
+          //   this.$emit("added")
+          // } catch (error) {
+          //   console.error("Error adding document: ", error);
+          // } finally {
             alert("Welcome " + gender + " " + fname + "! Form submitted successfully.")
             alert("Based on the latest quarantine policy, your quarantine period will be " +
             this.checkQuarantine(cod) +" days.")
             this.roomselect()
-          }
+          // }
         }
       }
     },

@@ -8,13 +8,13 @@
       <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 text-xl">
         <card-component>
           <div class="text-center py-24 lg:py-10 text-dark">
-            <strong>Smart Single Room</strong>
+            <strong>Single Room</strong>
             <img alt="Single photo" src="../../../public/assets/single.png"><br>
-            <strong>$200</strong>
+            <strong>$300</strong>
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Single'">
+          <div v-if = "roomType=='Single Room'">
             <jb-button color="info" label="Selected"/>
           </div>
           <div v-else>
@@ -24,13 +24,13 @@
 
         <card-component>
           <div class="text-center py-24 lg:py-10 text-dark">
-            <strong>Premium Queens Room</strong>
+            <strong>Double Room</strong>
             <img alt="queen photo" src="../../../public/assets/queen.png"><br>
-            <strong>$300</strong>
+            <strong>$400</strong>
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Queens'">
+          <div v-if = "roomType=='Double Room'">
             <jb-button color="info" label="Selected"/>
           </div>
           <div v-else>
@@ -40,13 +40,13 @@
 
         <card-component>
           <div class="text-center py-24 lg:py-10 text-dark">
-            <strong>Premium Kings Room</strong>
+            <strong>Premium Double Room</strong>
             <img alt="king photo" src="../../../public/assets/king.png"><br>
-            <strong>$400</strong>
+            <strong>$450</strong>
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Kings'">
+          <div v-if = "roomType=='Premium Double Room'">
             <jb-button color="info" label="Selected"/>
           </div>
           <div v-else>
@@ -62,7 +62,7 @@
             /Day <br>
             including meals &amp; GST. <br>
           </div>
-          <div v-if = "roomType=='Apartment'">
+          <div v-if = "roomType=='Premium Apartment'">
             <jb-button color="info" label="Selected"/>
           </div>
           <div v-else>
@@ -84,13 +84,14 @@
 <script>
 import firebaseApp from '../../firebase.js';
 import { getFirestore } from 'firebase/firestore';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 const db = getFirestore(firebaseApp);
 import { useStore } from 'vuex'
 import FullScreenSection from '../plugins/FullScreenSection'
 import CardComponent from '../plugins/CardComponent'
 import JbButton from '../plugins/JbButton'
 import JbButtons from '../plugins/JbButtons'
+import connector from '../../connector.js'
 
 export default {
   name: 'RoomSelection',
@@ -101,9 +102,28 @@ export default {
   JbButtons,
   },
 
+  props: {
+    fname: String,
+    email: String,
+    gender: String,
+    lname: String,
+    password: String,
+    identity: String,
+    contact: String,
+    doa: String,
+    cod: String,
+    flight: String,
+    seat: String,
+    vaccine: String,
+    passtype: String,
+    pcr: Array,
+  },
+
   data(){
     return{
       roomType : false,
+      room: false,
+      roomNumber: false,
       // room1: "",
       // room2: "",
       // room3: "",
@@ -135,56 +155,100 @@ export default {
 
   methods: {
     selectRoom1() {
-      this.roomType = "Single";
+      this.roomType = "Single Room"
+      this.room = "Single"
     },
 
     selectRoom2() {
-      this.roomType = "Queens"
+      this.roomType = "Double Room"
+      this.room= "Double"
     },
 
     selectRoom3() {
-      this.roomType = "Kings"
+      this.roomType = "Premium Double Room"
+      this.room = "PremiumDouble"
     },
 
     selectRoom4() {
-      this.roomType = "Apartment"
+      this.roomType = "Premium Apartment"
+      this.room = "Apartment"
     },
 
     async savetofs() {
-      var a = this.roomType
-      // var dict = this.$route.params.info
-      // dict["RoomType"] = a
-      // const store = useStore()
-      // store.commit('meta' , {RoomType:a, RoomNumber:b})
-
-      alert("You have selected "+ a + "!")
-      try{
-        const docRef = await updateDoc(doc(db, "RegInfo", this.$route.params.email), {
-          RoomType: a})
+      this.roomNumber = await connector.methods.assignRoom(this.room)
+      // const lname = this.$route.params.lname
+      // const gender = this.$route.params.gender
+      // const fname = this.$route.params.fname
+      // const identity = this.$route.params.identity
+      // const contact = this.$route.params.contact
+      // const email = this.$route.params.email
+      // const doa = this.$route.params.doa
+      // const cod = this.$route.params.cod
+      // const flight = this.$route.params.flight
+      // const seat = this.$route.params.seat
+      // const vaccine = this.$route.params.vaccine
+      // const passtype = this.$route.params.passtype
+      // const password = this.$route.params.password
+      // const pcr = this.$route.params.pcr
+      try {
+        const docRef = await setDoc(doc(db, "RegInfo", this.$props.fname), {
+          Lname: this.$props.lname, Gender: this.$props.gender, Fname: this.$props.fname, identity: this.$props.identity, Contact: this.$props.contact,
+          Email: this.$props.email, DOA: this.$props.doa, COD: this.$props.cod, Flight: this.$props.flight, Seat: this.$props.seat,
+          Vaccine: this.$props.vaccine, Passtype: this.$props.passtype, Password: this.$props.password, PCR: this.$props.pcr,
+          RoomType: this.roomType, RoomNumber: this.roomNumber,
+        })
         console.log(docRef)
         this.$emit("added")
-
-      //   const docRef = await updateDoc(doc(db, "RegInfo", b), store.state.guestDefault)
-      //   console.log(docRef)
-      //   this.$emit("added")
-      }
-      catch(error) {
+      } catch (error) {
         console.error("Error adding document: ", error);
+      } finally {
+        alert("You have selected "+ this.roomType + "!")
       }
     },
 
     passgenerate() {
       this.$router.push({name: "PassGenerationPage", 
       path: '/arrivals/passgeneration', params: {
-        roomtype: this.roomType}})
+        roomtype: this.roomType,
+        roomNumber: this.roomNumber,
+        gender: this.$route.params.gender, 
+        fname: this.$route.params.fname}})
     }
   },
 
   setup() {
     const store = useStore()
+    // const lname = this.$route.params.lname
+    // const gender = this.$route.params.gender
+    // const fname = this.$route.params.fname
+    // const identity = this.$route.params.identity
+    // const contact = this.$route.params.contact
+    // const email = this.$route.params.email
+    // const doa = this.$route.params.doa
+    // const cod = this.$route.params.cod
+    // const flight = this.$route.params.flight
+    // const seat = this.$route.params.seat
+    // const vaccine = this.$route.params.vaccine
+    // const passtype = this.$route.params.passtype
+    // const password = this.$route.params.password
+    // const pcr = this.$route.params.pcr
 
     return {
       store,
+      // lname,
+      // gender,
+      // fname,
+      // identity,
+      // contact,
+      // email,
+      // doa,
+      // cod,
+      // flight,
+      // seat,
+      // vaccine,
+      // passtype,
+      // password,
+      // pcr
     }
   }
 }
