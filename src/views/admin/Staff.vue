@@ -17,7 +17,7 @@
 
 <modal-box v-model="isModalActive" title="Add New Staff">
   <p>Staff Information</p>
-  <field>
+  <field label="Name" help="Minimum length: 5">
     <control placeholder="Account Name" v-model="new_name" id = "account"/>
     <control placeholder="Staff Name" v-model="new_id" id = "name"/>
   </field>
@@ -27,7 +27,7 @@
   <field label="Deployed">
     <control :options="deployOptions" v-model="new_deploy" id = "deployed"/>
   </field>
-  <field label="Password Assignment">
+  <field label="Password Assignment" help="Minimum length: 5; Maximum length: 13">
     <control placeholder="Password" v-model="new_pass" id = "password"/>
   </field>
   <jb-buttons type="justify-left lg:justify-left" no-wrap>
@@ -104,23 +104,34 @@ export default {
     }
   },
 
+  data() {
+    return{
+      new_name:"",
+      new_id: "",
+      new_position: "",
+      new_deploy: "",
+      new_pass: ""
+    }
+
+  },
+
   methods: {
     async addNewStaff() {
       //add new staff to firestore
       try {
           var passed = true;
 
-          var name = document.getElementById("name").value
+          var name = this.new_name
           if (name.length <= 5) {
             passed = false;
           }
 
-          var account = document.getElementById("account").value
+          var account = this.new_id
           if (account.length <= 5) {
             passed = false;
           }
 
-          var position = document.getElementById("position").value
+          var position = this.new_position
 
           var access = '0' // 0 => No access
           if (position === 'Hotel Admin') {
@@ -139,7 +150,7 @@ export default {
             passed = false;
           }
 
-          var deployed = document.getElementById("deployed").value
+          var deployed = this.new_deploy
           var deployRef;
           if (deployed === "Yes") {
             deployRef = '1';
@@ -149,7 +160,7 @@ export default {
             passed = false;
           }
 
-          var password = document.getElementById("password").value
+          var password = this.new_pass
           if (password.length <= 5 || password.length >= 13) {
             passed = false;
           }
@@ -171,7 +182,6 @@ export default {
           } else {
             alert("Error in entering new staff credentials. Please try again.")
           }
-
         } catch (e) {
           alert("Error in creating new staff account. Please try again.");
         }
