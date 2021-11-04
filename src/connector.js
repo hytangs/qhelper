@@ -107,6 +107,29 @@ export default {
             })
             return outputMeta
         },
+        async getRoomMetaGuest() {
+            let single = await getDoc(doc(db, "RoomMeta", "Single"))
+            single = single.data();
+            let double = await getDoc(doc(db, "RoomMeta", "Double"))
+            double = double.data();
+            let premium = await getDoc(doc(db, "RoomMeta", "PremiumDouble"))
+            premium = premium.data();
+            let apartment = await getDoc(doc(db, "RoomMeta", "Apartment"))
+            apartment = apartment.data();
+
+            let output = [{
+                havesingle: single['vacant'],
+                havedouble: double['vacant'],
+                havepremium: premium['vacant'],
+                haveapartment: apartment['vacant'],
+                singlerate: single['price'],
+                doublerate: double['price'],
+                premiumrate: premium['price'],
+                apartmentrate: apartment['price']
+            }]
+            return output
+        },
+
         // eslint-disable-next-line no-unused-vars
         async assignRoom(type) {
             const roomTypeToAssign = await getDoc(doc(db, "RoomMeta", type));

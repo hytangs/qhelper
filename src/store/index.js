@@ -149,6 +149,10 @@ export default createStore({
     alterStaffRoster (state, meta) {
       state.staffRoster = meta
     },
+
+    alterGuestRoomSelect (state, meta) {
+      state.roomMetaToGuest = meta
+    }
   },
   actions: {
     asideMobileToggle ({ commit, state }, payload = null) {

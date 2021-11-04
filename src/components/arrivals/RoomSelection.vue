@@ -265,7 +265,17 @@ export default {
       // password,
       // pcr
     }
-  }
+  },
+
+  async created() {
+    const store = useStore()
+    let meta = await connector.methods.getRoomMetaGuest().then(x => x)
+    console.log(meta)
+    store.commit('alterGuestRoomSelect' , meta)
+    alert("Please select the room type according to your preference.")
+  },
+
+
 }
 </script>
 
