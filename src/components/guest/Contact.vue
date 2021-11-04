@@ -6,7 +6,7 @@
       <li><a class = "title" href = "#meals">Meals</a></li>
       <li><a class = "title" href = "#shop">Shop</a></li>
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
-      <li><a class = "title" href = "#">Checkout</a></li>
+      <li><a class = "title" href = "#checkout">Checkout</a></li>
       <li><a class = "title" href = "#contact">Contact</a></li>
     </ul>
     <a class="color flex items-center flex-grow-0 flex-shrink-0 relative cursor-pointer hover:text-white text-dark dark:text-white dark:hover:text-gray-400 py-2 px-3 lg:w-16 lg:justify-center" href="/">
@@ -48,23 +48,23 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5" />
                 </svg>
                 <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                  <input type="radio" name="sample-checkbox" value="lorem">
+                  <input type="checkbox" name="sample-checkbox" value="lorem">
                   <span class="check"></span><span class="control-label">Very Bad</span>
                 </label>
                 <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                  <input type="radio" name="sample-checkbox" value="ipsum">
+                  <input type="checkbox" name="sample-checkbox" value="ipsum">
                   <span class="check"></span><span class="control-label">Bad</span>
                 </label>
                 <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                  <input type="radio" name="sample-checkbox" value="dolore">
+                  <input type="checkbox" name="sample-checkbox" value="dolore">
                   <span class="check"></span><span class="control-label">Acceptable</span>
                 </label>
                 <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                  <input type="radio" name="sample-checkbox" value="dolore">
+                  <input type="checkbox" name="sample-checkbox" value="dolore">
                   <span class="check"></span><span class="control-label">Good</span>
                 </label>
                 <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                  <input type="radio" name="sample-checkbox" value="dolore">
+                  <input type="checkbox" name="sample-checkbox" value="dolore">
                   <span class="check"></span><span class="control-label">Very Good</span>
                 </label>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 checkbox" fill="none" viewBox="0 0 24 24" stroke="currentColor">

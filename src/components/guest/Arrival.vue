@@ -1,5 +1,5 @@
 <template>
-<main class="w-3/5 p-8 mx-auto w-full">
+<main class="w-3/5 p-8 mx-auto">
             <section class="shadow row">
                 <div class="tabs">
                     <div class="border-b tab">
@@ -9,7 +9,7 @@
                             </div>
                             <input class="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck1">
                             <header class="flex justify-between items-center p-5 pl-8 pr-8 cursor-pointer select-none tab-label" for="chck1">
-                                <span class="text-grey-darkest font-thin text-xl">
+                                <span class="text-grey-darkest font-thick text-xl">
                                     Prepare for your Journey
                                 </span>
                                 <div class="rounded-full border border-grey w-7 h-7 flex items-center justify-center test">
@@ -45,7 +45,7 @@
                             </div>
                             <input class="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck2">
                             <header class="flex justify-between items-center p-5 pl-8 pr-8 cursor-pointer select-none tab-label" for="chck2">
-                                <span class="text-grey-darkest font-thin text-xl">
+                                <span class="text-grey-darkest font-thick text-xl">
                                     Getting to Airport
                                 </span>
                                 <div class="rounded-full border border-grey w-7 h-7 flex items-center justify-center test">
@@ -123,7 +123,7 @@
                             </div>
                             <input class="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck2">
                             <header class="flex justify-between items-center p-5 pl-8 pr-8 cursor-pointer select-none tab-label" for="chck2">
-                                <span class="text-grey-darkest font-thin text-xl">
+                                <span class="text-grey-darkest font-thick text-xl">
                                     Check-in
                                 </span>
                                 <div class="rounded-full border border-grey w-7 h-7 flex items-center justify-center test">
@@ -170,7 +170,7 @@
                             </div>
                             <input class="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck3">
                             <header class="flex justify-between items-center p-5 pl-8 pr-8 cursor-pointer select-none tab-label" for="chck3">
-                                <span class="text-grey-darkest font-thin text-xl">
+                                <span class="text-grey-darkest font-thick text-xl">
                                     Check for Prohibited Items
                                 </span>
                                 <div class="rounded-full border border-grey w-7 h-7 flex items-center justify-center test">
@@ -232,7 +232,7 @@
                             </div>
                             <input class="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck2">
                             <header class="flex justify-between items-center p-5 pl-8 pr-8 cursor-pointer select-none tab-label" for="chck2">
-                                <span class="text-grey-darkest font-thin text-xl">
+                                <span class="text-grey-darkest font-thick text-xl">
                                     Security Check
                                 </span>
                                 <div class="rounded-full border border-grey w-7 h-7 flex items-center justify-center test">
@@ -276,7 +276,7 @@
                             </div>
                             <input class="w-full absolute z-10 cursor-pointer opacity-0 h-5 top-6" type="checkbox" id="chck2">
                             <header class="flex justify-between items-center p-5 pl-8 pr-8 cursor-pointer select-none tab-label" for="chck2">
-                                <span class="text-grey-darkest font-thin text-xl">
+                                <span class="text-grey-darkest font-thick text-xl">
                                     Singapore Duty Free
                                 </span>
                                 <div class="rounded-full border border-grey w-7 h-7 flex items-center justify-center test">

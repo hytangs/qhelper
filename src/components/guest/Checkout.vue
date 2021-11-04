@@ -23,8 +23,12 @@
   <div id="checkout-page">
     <div class="text-center">
       <br><br>
-      <h1 class="text-3xl text-blue-500 mb-6">How Can We Help You?</h1>
-      <div class="checkoutlist-container">
+      <h1 class="text-3xl text-blue-500 mb-6">Our Final Goodbye...</h1>
+      <div v-if="showpay" class="payment-container">
+        <Payment/>
+      </div> 
+      <button v-on:click="showpay = !showpay" v-if="showpay" class="donebtn">Done</button>
+      <div v-if="!showpay" class="checkoutlist-container">
         <Arrival/>
       </div>
     </div><br><br>
@@ -33,12 +37,19 @@
 
 <script>
 import Arrival from './Arrival'
+import Payment from './Payment'
 
 export default {
   name: "checkout",
   components:{
     Arrival,
-  }
+    Payment
+  },
+  data() {
+        return {
+            showpay: true,
+        }
+    }
 }
 </script>
 
@@ -138,10 +149,20 @@ header.sticky .title:hover::after {
   margin: -7px;
   border-bottom: 2px solid goldenrod;
 }
-
 .checkoutlist-container {
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
+    width: 100%;
+    margin-left: 20%;
+}
+
+.donebtn:hover {
+  background-color: rgb(136, 100, 9);
+}
+
+.donebtn {
+  background-color: darkgoldenrod;
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 24px;
 }
 </style>
