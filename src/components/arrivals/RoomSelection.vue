@@ -114,23 +114,6 @@ export default {
   JbButtons,
   },
 
-  // props: {
-  //   fname: String,
-  //   email: String,
-  //   gender: String,
-  //   lname: String,
-  //   password: String,
-  //   identity: String,
-  //   contact: String,
-  //   doa: String,
-  //   cod: String,
-  //   flight: String,
-  //   seat: String,
-  //   vaccine: String,
-  //   passtype: String,
-  //   pcr: Array,
-  // },
-
   data(){
     return{
       roomType : false,
@@ -187,6 +170,7 @@ export default {
     },
 
     async savetofs() {
+      alert("You have selected "+ this.roomType + "!")
       this.roomNumber = await connector.methods.assignRoom(this.room)
 
       var lname = this.$store.getters.lname
@@ -203,8 +187,6 @@ export default {
       var identity = this.$store.getters.identity
       var pcr = this.$store.getters.pcr
       var gender = this.$store.getters.gender
-
-      alert("You have selected "+ this.roomType + "!")
       try {
         const docRef = await setDoc(doc(db, "RegInfo", this.roomNumber), {
           Lname: lname, Gender: gender, Fname: fname, identity: identity, Contact: contact,
@@ -233,38 +215,10 @@ export default {
     const store = useStore()
 
     const roomMeta = store.state.roomMetaToGuest[0]
-    // const lname = this.$route.params.lname
-    // const gender = this.$route.params.gender
-    // const fname = this.$route.params.fname
-    // const identity = this.$route.params.identity
-    // const contact = this.$route.params.contact
-    // const email = this.$route.params.email
-    // const doa = this.$route.params.doa
-    // const cod = this.$route.params.cod
-    // const flight = this.$route.params.flight
-    // const seat = this.$route.params.seat
-    // const vaccine = this.$route.params.vaccine
-    // const passtype = this.$route.params.passtype
-    // const password = this.$route.params.password
-    // const pcr = this.$route.params.pcr
 
     return {
       store,
       roomMeta
-      // lname,
-      // gender,
-      // fname,
-      // identity,
-      // contact,
-      // email,
-      // doa,
-      // cod,
-      // flight,
-      // seat,
-      // vaccine,
-      // passtype,
-      // password,
-      // pcr
     }
   }
 }
