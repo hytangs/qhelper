@@ -2,8 +2,9 @@
   <nav-bar />
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Food Selection - Order Details</hero-bar>
-  <main-section>
+  <hero-bar v-if="zone === '1' || zone === '4'">Food Selection</hero-bar>
+  <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
+  <main-section v-if="zone === '1' || zone === '4'">
     <!-- <notification color="info" :icon="mdiMonitorCellphone">
       <b>Responsive table.</b> Collapses on mobile
     </notification> -->
@@ -78,9 +79,7 @@
       </jb-buttons>
     </card-component>
   </main-section>
-
-  <bottom-other-pages-section />
-  <footer-bar />
+  <footer-bar v-if="zone === '1' || zone === '4'"/>
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"
@@ -119,6 +118,7 @@ import Control from "../../components/plugins/Control";
 import FilePicker from "../../components/plugins/FilePicker";
 import JbButton from "../../components/plugins/JbButton";
 import JbButtons from "../../components/plugins/JbButtons";
+import localsession from "../../store/localsession";
 
 export default {
   name: "Tables",
@@ -143,7 +143,11 @@ export default {
   },
   setup() {
     const store = useStore();
+
     const titleStack = ref(["Admin", "Foods"]);
+
+    const zone = localsession.methods.getAdminZone()
+
     const FoodInfo = reactive({
       food: store.state.food,
       description: store.state.description,
@@ -165,6 +169,7 @@ export default {
 
     return {
       titleStack,
+      zone,
       mdiAccount,
       mdiMonitorCellphone,
       mdiAccountCircle,

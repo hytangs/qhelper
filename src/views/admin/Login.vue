@@ -10,8 +10,6 @@
         <control v-model="form.pass" :icon="mdiAsterisk" type="password" name="password" autocomplete="current-password"/>
       </field>
 
-      <check-radio-picker name="remember" v-model="form.remember" :options="{ remember: 'Remember' }" />
-
       <divider />
 
       <jb-buttons>
@@ -27,7 +25,6 @@ import { useRouter } from 'vue-router'
 import { mdiAccount, mdiAsterisk } from '@mdi/js'
 import FullScreenSection from '../../../src/components/plugins/FullScreenSection'
 import CardComponent from '../../../src/components/plugins/CardComponent'
-import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
 import Field from '../../../src/components/plugins/Field'
 import Control from '../../../src/components/plugins/Control'
 import Divider from '../../../src/components/plugins/Divider.vue'
@@ -42,7 +39,6 @@ export default {
   components: {
     FullScreenSection,
     CardComponent,
-    CheckRadioPicker,
     Field,
     Control,
     Divider,
@@ -53,8 +49,7 @@ export default {
 
     const form = reactive({
       login: 'masteradmin',
-      pass: 'very-secret-password-fYjUw-',
-      remember: ['remember']
+      pass: '123456',
     })
 
     const router = useRouter()
