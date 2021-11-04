@@ -37,7 +37,7 @@
         <td data-label="Access Zones"> {{staff.staffZone}} </td>
         <td data-label="Deployed">{{staff.deployed}}</td>
         <td data-label="Last Login">{{staff.lastLogin}}</td>
-        <!-- <td data-label="Tags"> {{staff.tags}} </td> -->
+
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiBadgeAccountHorizontal" small @click="isModalActive1 = true" />
