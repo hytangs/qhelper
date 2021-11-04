@@ -75,6 +75,43 @@
         Mango Sticky Rice ($6.00 each) --- Count: {{ this.rice }}
       </p>
 
+      <p v-if="this.tarik > 0">
+        Teh Tarik ($3.00 each) --- Count: {{ this.tarik }}
+      </p>
+      <p v-if="this.cola > 0">
+        Coca Cola ($5.00 each) --- Count: {{ this.cola }}
+      </p>
+      <p v-if="this.soya > 0">
+        Soya Milk ($3.50 each) --- Count: {{ this.soya }}
+      </p>
+      <p v-if="this.beer > 0">
+        Corona Beer ($8.00 each) --- Count: {{ this.beer }}
+      </p>
+      <p v-if="this.sling > 0">
+        Singapore Sling ($10.00 each) --- Count: {{ this.sling }}
+      </p>
+      <p v-if="this.milktea > 0">
+        Milk Tea with Pearls ($5.00 each) --- Count: {{ this.milktea }}
+      </p>
+      <p v-if="this.lasi > 0">
+        Mango Lasi ($5.00 each) --- Count: {{ this.lasi }}
+      </p>
+      <p v-if="this.coconut > 0">
+        Coconut Shake ($8.00 each) --- Count: {{ this.coconut }}
+      </p>
+      <p v-if="this.oreo > 0">
+        Oreo Milkshake ($8.00 each) --- Count: {{ this.oreo }}
+      </p>
+      <p v-if="this.latte > 0">
+        Matcha Latte ($7.00 each) --- Count: {{ this.latte }}
+      </p>
+      <p v-if="this.coffee > 0">
+        Vietnamese Coffee ($6.00 each) --- Count: {{ this.coffee }}
+      </p>
+      <p v-if="this.milo > 0">
+        Milo Dinosaur ($5.00 each) --- Count: {{ this.milo }}
+      </p>
+
       <p v-if="this.total > 0">
         Total: ${{ parseFloat(this.total).toFixed(2) }}
       </p>
@@ -199,7 +236,21 @@
       @remove_rice="Newrice($event)"
       v-show="currentSection === 2"
     />
-    <Drinks v-show="currentSection === 3" />
+    <Drinks
+      @update_tarik="Newtarik($event)"
+      @update_cola="Newcola($event)"
+      @update_soya="Newsoya($event)"
+      @update_beer="Newbeer($event)"
+      @update_sling="Newsling($event)"
+      @update_milktea="Newmilktea($event)"
+      @update_lasi="Newlasi($event)"
+      @update_coconut="Newcoconut($event)"
+      @update_oreo="Neworeo($event)"
+      @update_latte="Newlatte($event)"
+      @update_coffee="Newcoffee($event)"
+      @update_milo="Newmilo($event)"
+      v-show="currentSection === 3"
+    />
     <Supplies v-show="currentSection === 4" />
   </div>
 
@@ -366,6 +417,43 @@ export default {
     Newrice(e) {
       this.rice = e;
     },
+    // Drinks
+    Newtarik(e) {
+      this.tarik = e;
+    },
+    Newcola(e) {
+      this.cola = e;
+    },
+    Newsoya(e) {
+      this.soya = e;
+    },
+    Newbeer(e) {
+      this.beer = e;
+    },
+    Newsling(e) {
+      this.sling = e;
+    },
+    Newmilktea(e) {
+      this.milktea = e;
+    },
+    Newlasi(e) {
+      this.lasi = e;
+    },
+    Newcoconut(e) {
+      this.coconut = e;
+    },
+    Neworeo(e) {
+      this.oreo = e;
+    },
+    Newlatte(e) {
+      this.latte = e;
+    },
+    Newcoffee(e) {
+      this.coffee = e;
+    },
+    Newmilo(e) {
+      this.milo = e;
+    },
     // total cost
     totalCost() {
       this.total =
@@ -381,7 +469,6 @@ export default {
         this.sushi * 18.0 +
         this.fried * 18.0 +
         this.mamuang * 5.0 +
-
         this.puff * 2.0 +
         this.sandwich * 4.0 +
         this.onigiri * 3.5 +
@@ -390,10 +477,22 @@ export default {
         this.haagen * 4.0 +
         this.truffle * 5.0 +
         this.brownie * 4.0 +
-        this.macarons *3.0 +
+        this.macarons * 3.0 +
         this.cake * 6.0 +
         this.tutu * 5.0 +
-        this.rice * 6.0;
+        this.rice * 6.0 +
+        this.tarik * 3.0 +
+        this.cola * 5.0 +
+        this.soya * 3.5 +
+        this.beer * 8.0 +
+        this.sling * 10 +
+        this.milktea * 5.0 +
+        this.lasi * 5.0 +
+        this.coconut * 8.0 +
+        this.oreo * 8.0 +
+        this.latte * 7.0 +
+        this.coffee * 6.0 +
+        this.milo * 5.0;
     },
     // clear all
     clearAll() {
@@ -423,6 +522,19 @@ export default {
       this.cake = 0;
       this.tutu = 0;
       this.rice = 0;
+      // Drinks
+      this.tarik = 0;
+      this.cola = 0;
+      this.soya = 0;
+      this.beer = 0;
+      this.sling = 0;
+      this.milktea = 0;
+      this.lasi = 0;
+      this.coconut = 0;
+      this.oreo = 0;
+      this.latte = 0;
+      this.coffee = 0;
+      this.milo = 0;
     },
     //generate order
     generateOrder() {
@@ -462,7 +574,7 @@ export default {
       }
       if (this.mamuang > 0) {
         this.orderItems += "Mamuang: " + String(this.mamuang) + ", ";
-      } 
+      }
       // Snacks
       if (this.puff > 0) {
         this.orderItems += "Puff: " + String(this.puff) + ", ";
@@ -499,7 +611,44 @@ export default {
       }
       if (this.rice > 0) {
         this.orderItems += "Mango Rice: " + String(this.rice) + ", ";
-      } 
+      }
+      // Drinks
+      if (this.tarik > 0) {
+        this.orderItems += "Tarik: " + String(this.tarik) + ", ";
+      }
+      if (this.cola > 0) {
+        this.orderItems += "Cola: " + String(this.cola) + ", ";
+      }
+      if (this.soya > 0) {
+        this.orderItems += "Soya Milk: " + String(this.soya) + ", ";
+      }
+      if (this.beer > 0) {
+        this.orderItems += "Beer: " + String(this.beer) + ", ";
+      }
+      if (this.sling > 0) {
+        this.orderItems += "Sling: " + String(this.sling) + ", ";
+      }
+      if (this.milktea > 0) {
+        this.orderItems += "Milktea: " + String(this.milktea) + ", ";
+      }
+      if (this.lasi > 0) {
+        this.orderItems += "Mango Lasi: " + String(this.lasi) + ", ";
+      }
+      if (this.coconut > 0) {
+        this.orderItems += "Coconut Shake: " + String(this.coconut) + ", ";
+      }
+      if (this.oreo > 0) {
+        this.orderItems += "Oreo Milkshake: " + String(this.oreo) + ", ";
+      }
+      if (this.latte > 0) {
+        this.orderItems += "Matcha Latte: " + String(this.latte) + ", ";
+      }
+      if (this.coffee > 0) {
+        this.orderItems += "Coffee: " + String(this.coffee) + ", ";
+      }
+      if (this.milo > 0) {
+        this.orderItems += "Milo: " + String(this.milo) + ", ";
+      }
       return this.orderItems;
     },
   },
@@ -540,6 +689,19 @@ export default {
     var cake = 0;
     var tutu = 0;
     var rice = 0;
+    // Drinks
+    var tarik = 0;
+    var cola = 0;
+    var soya = 0;
+    var beer = 0;
+    var sling = 0;
+    var milktea = 0;
+    var lasi = 0;
+    var coconut = 0;
+    var oreo = 0;
+    var latte = 0;
+    var coffee = 0;
+    var milo = 0;
 
     var total = 0;
     var orderItems = "";
@@ -568,6 +730,18 @@ export default {
       cake,
       tutu,
       rice,
+      tarik,
+      cola,
+      soya,
+      beer,
+      sling,
+      milktea,
+      lasi,
+      coconut,
+      oreo,
+      latte,
+      coffee,
+      milo,
       isModalActive,
       total,
       orderedAlready,

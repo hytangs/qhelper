@@ -12,15 +12,15 @@
                         <h6 style="float: right">$3.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_tarik()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_tarik()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -41,15 +41,15 @@
                         <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_cola()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_cola()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -69,15 +69,15 @@
                         <h6 style="float: right">$3.50</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_soya()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_soya()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -97,15 +97,15 @@
                         <h6 style="float: right">$8.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_beer()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_beer()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -125,15 +125,15 @@
                         <h6 style="float: right">$10.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_sling()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_sling()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -153,15 +153,15 @@
                         <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_milktea()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_milktea()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -186,15 +186,15 @@
                         <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_lasi()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_lasi()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -215,15 +215,15 @@
                         <h6 style="float: right">$8.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_coconut()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_coconut()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -243,15 +243,15 @@
                         <h6 style="float: right">$8.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_oreo()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_oreo()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -271,15 +271,15 @@
                         <h6 style="float: right">$7.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_latte()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_latte()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -299,15 +299,15 @@
                         <h6 style="float: right">$6.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_coffee()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_coffee()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -327,15 +327,15 @@
                         <h6 style="float: right">$5.00</h6>
                         <br><br>
                         <div class="flex-none w-full grid gap-3 text-center" style="grid-template-columns: 1fr 1fr auto;">
-                            <button class="relative">
+                            <button class="relative" @click = "remove_milo()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(0,0,0); border-color: rgb(0, 0, 0); transform-origin: 0% 100% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-white font-medium" style="opacity: 1;">
-                                        <span style="transform-origin: 50% 50% 0px;">Buy now</span>
+                                        <span style="transform-origin: 50% 50% 0px;">Remove</span>
                                     </span>
                                 </div>
                             </button>
-                            <button class="relative">
+                            <button class="relative" @click = "update_milo()">
                                 <div class="absolute bg-black inset-px" style="transform-origin: 0% 0% 0px; border-radius: 4.44444% / 16.6666%;"></div>
                                 <div class="relative text-sm border cursor-pointer" style="height: 38px; background-color: rgb(255, 255, 255); border-color: rgb(212, 212, 216); transform-origin: 50% 50% 0px; border-radius: 4.37956% / 15.7895%;">
                                     <span class="absolute inset-0 flex items-center justify-center text-black font-medium" style="opacity: 1;">
@@ -360,6 +360,159 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
 export default defineComponent( {
   components: { Splide, SplideSlide },
+
+  methods: {
+    update_tarik() {
+        this.tarik = this.tarik + 1
+        //console.log(this.tarik)
+        this.$emit("update_tarik", this.tarik)
+    },
+    update_cola() {
+        this.cola = this.cola + 1
+        //console.log(this.cola)
+        this.$emit("update_cola", this.cola)
+    },
+    update_soya() {
+        this.soya = this.soya + 1
+        //console.log(this.soya)
+        this.$emit("update_soya", this.soya)
+    },
+    update_beer() {
+        this.beer = this.beer + 1
+        //console.log(this.beer)
+        this.$emit("update_beer", this.beer)
+    },
+    update_sling() {
+        this.sling = this.sling + 1
+        //console.log(this.sling)
+        this.$emit("update_sling", this.sling)
+    },
+    update_milktea() {
+        this.milktea = this.milktea + 1
+        //console.log(this.milktea)
+        this.$emit("update_milktea", this.milktea)
+    },
+    update_lasi() {
+        this.lasi = this.lasi + 1
+        //console.log(this.lasi)
+        this.$emit("update_lasi", this.lasi)
+    },
+    update_coconut() {
+        this.coconut = this.coconut + 1
+        //console.log(this.penang)
+        this.$emit("update_coconut", this.coconut)
+    },
+    update_oreo() {
+        this.oreo = this.oreo + 1
+        //console.log(this.oreo)
+        this.$emit("update_oreo", this.oreo)
+    },
+    update_latte() {
+        this.latte = this.latte + 1
+        //console.log(this.latte)
+        this.$emit("update_latte", this.latte)
+    },
+    update_coffee() {
+        this.coffee = this.coffee + 1
+        //console.log(this.coffee)
+        this.$emit("update_coffee", this.coffee)
+    },
+    update_milo() {
+        this.milo = this.milo + 1
+        //console.log(this.milo)
+        this.$emit("update_milo", this.milo)
+    },
+
+    remove_tarik() {
+        this.tarik = 0
+        //console.log(this.tarik)
+        this.$emit("update_tarik", this.tarik)
+    },
+    remove_cola() {
+        this.cola = 0
+        //console.log(this.cola)
+        this.$emit("update_cola", this.cola)
+    },
+    remove_soya() {
+        this.soya = 0
+        //console.log(this.soya)
+        this.$emit("update_soya", this.soya)
+    },
+    remove_beer() {
+        this.beer = 0
+        //console.log(this.beer)
+        this.$emit("update_beer", this.beer)
+    },
+    remove_sling() {
+        this.sling = 0
+        //console.log(this.sling)
+        this.$emit("update_sling", this.sling)
+    },
+    remove_milktea() {
+        this.milktea = 0
+        //console.log(this.milktea)
+        this.$emit("update_milktea", this.milktea)
+    },
+    remove_lasi() {
+        this.lasi = 0
+        //console.log(this.lasi)
+        this.$emit("update_lasi", this.lasi)
+    },
+    remove_coconut() {
+        this.coconut = 0
+        //console.log(this.coconut)
+        this.$emit("update_coconut", this.coconut)
+    },
+    remove_oreo() {
+        this.oreo = 0
+        //console.log(this.oreo)
+        this.$emit("update_oreo", this.oreo)
+    },
+    remove_latte() {
+        this.latte = 0
+        //console.log(this.latte)
+        this.$emit("update_latte", this.latte)
+    },
+    remove_coffee() {
+        this.coffee = 0
+        //console.log(this.coffee)
+        this.$emit("update_coffee", this.coffee)
+    },
+    remove_milo() {
+        this.milo = 0
+        //console.log(this.milo)
+        this.$emit("update_milo", this.milo)
+    },
+  },
+
+  setup() {
+      var tarik = 0
+      var cola = 0
+      var soya = 0
+      var beer = 0
+      var sling = 0
+      var milktea = 0
+      var lasi = 0
+      var coconut = 0
+      var oreo = 0
+      var latte = 0
+      var coffee = 0
+      var milo = 0
+      return {
+          tarik,
+          cola,
+          soya,
+          beer,
+          sling,
+          milktea,
+          lasi,
+          coconut,
+          oreo,
+          latte,
+          coffee,
+          milo
+      }
+  }
 } );
 </script>
 
@@ -385,6 +538,10 @@ img {
 }
 
 .shadow:hover{
+    box-shadow: 0px 1px 15px grey;
+}
+
+button:hover{
     box-shadow: 0px 1px 15px grey;
 }
 </style>
