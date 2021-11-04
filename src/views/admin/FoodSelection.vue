@@ -2,8 +2,8 @@
   <nav-bar />
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Food Selection - Order Details</hero-bar>
-  <main-section>
+  <hero-bar v-if="zone === '1' || zone === '4'">Food Selection</hero-bar>
+  <main-section v-if="zone === '1' || zone === '4'">
     <!-- <notification color="info" :icon="mdiMonitorCellphone">
       <b>Responsive table.</b> Collapses on mobile
     </notification> -->
@@ -78,9 +78,7 @@
       </jb-buttons>
     </card-component>
   </main-section>
-
-  <bottom-other-pages-section />
-  <footer-bar />
+  <footer-bar v-if="zone === '1' || zone === '4'"/>
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"

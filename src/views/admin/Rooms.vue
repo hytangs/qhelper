@@ -2,8 +2,9 @@
   <nav-bar/>
   <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Rooms</hero-bar>
-  <main-section>
+  <hero-bar v-if="zone === '1' || zone === '3'">Rooms</hero-bar>
+  <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
+  <main-section v-if="zone === '1' || zone === '3'">
     <title-sub-bar :icon="mdiTableBorder" title="Room Status"/>
 
     <card-component class="mb-6" title="Clients" :icon="mdiAccountMultiple" has-table>
@@ -37,7 +38,7 @@
     <card-component empty/>
   </main-section>
 
-  <footer-bar/>
+  <footer-bar v-if="zone === '1' || zone === '3'"/>
   <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
@@ -60,6 +61,7 @@ import GuestRoomType from "../../components/admin/admin-components/GuestRoomType
 import GuestRoomRequest from "../../components/admin/admin-components/GuestRoomRequest";
 import PublicBroadcast from "../../components/admin/admin-components/PublicBroadcast";
 import connector from "../../connector";
+import localsession from "../../store/localsession";
 
 export default {
   name: 'Rooms',
@@ -82,6 +84,8 @@ export default {
   setup () {
     const titleStack = ref(['Admin', 'Rooms'])
 
+    const zone = localsession.methods.getAdminZone();
+
     connector.methods.getRoomMeta()
 
     return {
@@ -90,7 +94,8 @@ export default {
       mdiAccountMultiple,
       mdiTableBorder,
       mdiTableOff,
-      menu
+      menu,
+      zone
     }
   }
 }
