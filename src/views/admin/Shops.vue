@@ -2,8 +2,9 @@
   <nav-bar />
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Retail Shop Management</hero-bar>
-  <main-section>
+  <hero-bar v-if="zone === '1' || zone === '4'">Retail Shop Management</hero-bar>
+  <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
+  <main-section v-if="zone === '1' || zone === '4'">
     <notification color="info" :icon="mdiAlertCircle">
       There are <b>2</b> new orders received! <b>3</b> pending orders remaining!
       <template #right>
@@ -36,8 +37,7 @@
     </card-component>
   </main-section>
 
-  <bottom-other-pages-section />
-  <footer-bar />
+  <footer-bar v-if="zone === '1' || zone === '4'"/>
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"
@@ -73,6 +73,7 @@ import ShopOrders from '../../../src/components/admin/admin-components/ShopOrder
 import Inventory from '../../../src/components/admin/admin-components/Inventory';
 import Notification from "../../../src/components/plugins/Notification";
 import JbButton from "../../../src/components/plugins/JbButton";
+import localsession from "../../store/localsession";
 
 export default {
   name: "Tables",
@@ -96,6 +97,8 @@ export default {
 
     const titleStack = ref(["Admin", "Shops"]);
 
+    const zone = localsession.methods.getAdminZone()
+
     return {
       titleStack,
       mdiAccount,
@@ -108,6 +111,7 @@ export default {
       mdiAlertCircle,
       mdiTable,
       menu,
+      zone
     };
   },
 };

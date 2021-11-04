@@ -2,8 +2,9 @@
   <nav-bar/>
   <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Security</hero-bar>
-  <main-section>
+  <hero-bar v-if="zone === '1' || zone === '6'">Security</hero-bar>
+  <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
+  <main-section v-if="zone === '1' || zone === '6'">
     <br>
     <card-component class="mb-6" title="Invalid QR Code Overview">
       <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
@@ -29,7 +30,7 @@
       <GuestRoomBroadcast/>
     </card-component>
   </main-section>
-  <footer-bar/>
+  <footer-bar v-if="zone === '1' || zone === '6'"/>
   <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
 
@@ -48,6 +49,7 @@ import * as charts from "../../../src/components/admin/admin-components/Charts/c
 import CardComponent from "../../components/plugins/CardComponent"
 import CardWidget from "../../../src/components/plugins/CardWidget"
 import GuestRoomBroadcast from "../../components/admin/admin-components/PublicBroadcast";
+import localsession from "../../store/localsession";
 
 export default {
   name: "AdminTemplate",
@@ -66,6 +68,8 @@ export default {
   setup() {
     const titleStack = ref(['Admin', 'Security'])
 
+    const zone = localsession.methods.getAdminZone()
+
     const piechartData = ref(null);
 
     const fillPieChartData = () => {
@@ -81,6 +85,7 @@ export default {
       menu,
       mdiAlertCircle,
       piechartData,
+      zone
     }
   },
 
