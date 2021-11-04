@@ -1,20 +1,29 @@
 <template>
-<modal-box v-model="isModalActive1" title="Modify Staff Position">
-  <p>Modify Staff Position</p>
-</modal-box>
+  <modal-box v-model="isModalActive1" title="Modify Staff Position">
+    <p>Modify Staff Position</p>
+  </modal-box>
 
-<modal-box v-model="isModalActive2" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Deployment modified</p>
-</modal-box>
+  <modal-box
+    v-model="isModalActive2"
+    large-title="Please Confirm"
+    button="danger"
+    has-cancel
+  >
+    <p>Deployment modified</p>
+  </modal-box>
 
-<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Delete <b>Employee information</b></p>
-</modal-box>
+  <modal-box
+    v-model="isModalDangerActive"
+    large-title="Please Confirm"
+    button="danger"
+    has-cancel
+  >
+    <p>Delete <b>Employee information</b></p>
+  </modal-box>
 
-<table>
+  <table id = "staff">
     <thead>
       <tr>
-        <th></th>
         <th>Staff Name</th>
         <th>Account Name</th>
         <th>Position</th>
@@ -24,8 +33,8 @@
         <th></th>
       </tr>
     </thead>
-    
-    <tbody>
+
+    <!-- <tbody>
       <tr v-for="staff in itemsPaginated" :key="staff.id">
         <td class="image-cell">
           <user-avatar :username="staff.name" class="image" />
@@ -35,7 +44,7 @@
         <td data-label="Position"> {{staff.position}} </td>
         <td data-label="Grant Access"> {{staff.access}} </td>
         <td data-label="Deployed">{{staff.deployed}}</td>
-        <!-- <td data-label="Tags"> {{staff.tags}} </td> -->
+        <td data-label="Tags"> {{staff.tags}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiBadgeAccountHorizontal" small @click="isModalActive1 = true" />
@@ -44,9 +53,9 @@
           </jb-buttons>
         </td>
       </tr>
-    </tbody>
-</table>
-<!-- <div class="table-pagination">
+    </tbody> -->
+  </table>
+  <!-- <div class="table-pagination">
   <level>
     <jb-buttons>
       <jb-button
@@ -65,48 +74,130 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
-import { mdiBadgeAccountHorizontal, mdiAccountCheck, mdiTrashCan } from '@mdi/js'
-import JbButtons from '../../plugins/JbButtons'
-import JbButton from '../../plugins/JbButton'
-import ModalBox from '../../plugins/ModalBox'
+import { ref } from "vue";
+//import { useStore } from 'vuex'
+import {
+  mdiBadgeAccountHorizontal,
+  mdiAccountCheck,
+  mdiTrashCan,
+} from "@mdi/js";
+//import JbButtons from '../../plugins/JbButtons'
+//import JbButton from '../../plugins/JbButton'
+import ModalBox from "../../plugins/ModalBox";
 // import Level from '../../plugins/Level'
-import UserAvatar from '../../plugins/UserAvatar'
+//import UserAvatar from '../../plugins/UserAvatar'
+
+import firebaseApp from "../../../firebase.js";
+import { getFirestore } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+const db = getFirestore(firebaseApp);
 
 export default {
   name: "HRTable.vue",
 
   components: {
-    JbButtons,
-    JbButton,
+    //JbButtons,
+    //JbButton,
     ModalBox,
     // Level,
-    UserAvatar
+    //UserAvatar
+  },
+
+  mounted() {
+    async function display() {
+      let z = await getDocs(collection(db, "StaffAccount"));
+      let ind = 1;
+
+      z.forEach((docs) => {
+        let yy = docs.data();
+        var table = document.getElementById("staff");
+        var row = table.insertRow(ind);
+
+        var name = yy.Name;
+        var account = yy.Account;
+        var position = yy.Position;
+        var access = yy.GrantAccess;
+        var deployed = yy.Deployed;
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+
+        cell1.innerHTML = name;
+        cell2.innerHTML = account;
+        cell3.innerHTML = position;
+        cell4.innerHTML = access;
+        cell5.innerHTML = deployed;
+
+        var bu = document.createElement("button");
+        bu.className = "bwt";
+        bu.id = String(account);
+        bu.innerHTML = "Delete";
+        bu.onclick = function() {
+          deleteinstrument(account);
+        };
+        cell6.appendChild(bu);
+
+      });
+    }
+    display();
+    async function deleteinstrument(account) {
+      var x = account;
+      alert("You are going to delete " + x);
+      await deleteDoc(doc(db, "StaffAccount", x));
+      console.log("Document successfully deleted!", x);
+      let tb = document.getElementById("shop orders");
+      while (tb.rows.length > 1) {
+        tb.deleteRow(1);
+      }
+      display();
+    }
+    //update staff info if needed
+    // async function updateinstrument(room) {
+    //   var x = room;
+    //   alert("You are going to update the order status of Room " + x);
+    //   await updateDoc(doc(db, "ShopOrder", x), {
+    //     OrderStatus: "Order Delivered",
+    //   });
+    //   console.log("Document successfully updated!", x);
+    //   let tb = document.getElementById("shop orders");
+    //   while (tb.rows.length > 1) {
+    //     tb.deleteRow(1);
+    //   }
+    //   display();
+    // }
   },
 
   setup() {
-    const store = useStore()
+    // const store = useStore()
 
-    const darkMode = computed(() => store.state.darkMode)
+    // const darkMode = computed(() => store.state.darkMode)
 
-    const items = computed(() => store.state.staff)
+    // const items = computed(() => store.state.staff)
 
-    const isModalActive1 = ref(false)
+    const isModalActive1 = ref(false);
 
-    const isModalActive2 = ref(false)
+    const isModalActive2 = ref(false);
 
-    const isModalDangerActive = ref(false)
+    const isModalDangerActive = ref(false);
 
-    const perPage = ref(10)
+    // const perPage = ref(10)
 
-    const currentPage = ref(0)
+    // const currentPage = ref(0)
 
     // const checkedRows = ref([])
 
-    const itemsPaginated = computed(
-      () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
-    )
+    // const itemsPaginated = computed(
+    //   () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
+    // )
 
     // const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
 
@@ -123,20 +214,20 @@ export default {
     // })
 
     return {
-        mdiBadgeAccountHorizontal,
-        mdiAccountCheck,
-        mdiTrashCan,
-        isModalActive1,
-        isModalActive2,
-        isModalDangerActive,
-        // currentPage,
-        // currentPageHuman,
-        // numPages,
-        // checkedRows,
-        itemsPaginated,
-        // pagesList,
-        darkMode
-      }
+      mdiBadgeAccountHorizontal,
+      mdiAccountCheck,
+      mdiTrashCan,
+      isModalActive1,
+      isModalActive2,
+      isModalDangerActive,
+      // currentPage,
+      // currentPageHuman,
+      // numPages,
+      // checkedRows,
+      //itemsPaginated,
+      // pagesList,
+      //darkMode
+    };
   },
 
   methods: {
@@ -146,11 +237,9 @@ export default {
 
     async updateStaff() {
       //update staff info
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

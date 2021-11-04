@@ -23,6 +23,12 @@
   <field label="Position">
     <control :options="positionOptions" v-model="new_position"/>
   </field>
+  <field label="Access">
+    <control placeholder="A,B,C" v-model="new_access"/>
+  </field>
+  <field label="Deployed">
+    <control :options="deployOptions" v-model="new_deploy"/>
+  </field>
   <jb-buttons type="justify-left lg:justify-left" no-wrap>
     <jb-button color="info" label="Confirm" v-on:click="addNewStaff()"/>
   </jb-buttons>
@@ -75,11 +81,16 @@ export default {
       "Food & Logistic Manager", "Financial Manager", "Security Manager"
     ]
 
+    const deployOptions = [
+      "Yes", "No"
+    ]
+
     return {
       titleStack,
       menu,
       positionOptions,
-      isModalActive
+      isModalActive,
+      deployOptions
     }
   },
 
