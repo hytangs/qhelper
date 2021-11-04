@@ -209,11 +209,6 @@ export default {
     });
 
 
-    let meta = {
-      "totalrooms" : 4
-    }
-    console.log(meta)
-
     return {
       titleStack,
       darkMode,
@@ -231,7 +226,6 @@ export default {
       mdiTableAccount,
       menu,
       zone,
-      meta,
       store,
       piechartData,
       fillPieChartData,

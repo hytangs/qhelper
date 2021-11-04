@@ -2,8 +2,9 @@
   <nav-bar/>
   <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Quarantine Settings</hero-bar>
-  <main-section>
+  <hero-bar v-if="zone === '1' || zone === '2'">Quarantine Settings</hero-bar>
+  <hero-bar v-else>Unauthorized</hero-bar>
+  <main-section  v-if="zone === '1' || zone === '2'">
     <br>
     <card-component class="mb-6" title="Quarantine Status" has-table>
         <quarantine-status/>
@@ -34,6 +35,12 @@
     </card-component>
 
   </main-section>
+  <main-section v-else>
+    <h1 class="text-2xl text-gray-700 hover:text-gray-900">
+      You don't have access to visit this page.<br />
+      Please contact web administrator for more info.
+    </h1>
+  </main-section>
   <footer-bar/>
   <overlay v-show="isAsideLgActive" z-index="z-30" @overlay-click="overlayClick" />
 </template>
@@ -54,6 +61,7 @@ import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBr
 import QuarantineMedicalCheckouts from '../../../src/components/admin/admin-components/QuarantineMedicalCheckouts'
 import {ref} from "vue";
 import connector from "../../connector"
+import localsession from "../../store/localsession";
 
 export default {
   name: "AdminTemplate",
@@ -74,11 +82,14 @@ export default {
   setup() {
     const titleStack = ref(['Admin', 'Health'])
 
+    const zone = localsession.methods.getAdminZone();
+
     connector.methods.getHealthAlert()
 
     return {
       titleStack,
       menu,
+      zone
     }
   }
 }

@@ -3,11 +3,11 @@
   <p>Modify Staff Position</p>
 </modal-box>
 
-<modal-box v-model="isModalActive2" large-title="Please Confirm" button="danger" has-cancel>
+<modal-box v-model="isModalActive2" large-title="Please Confirm" button="danger">
   <p>Deployment status modified</p>
 </modal-box>
 
-<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
+<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger">
   <p>Delete <b>Employee information</b></p>
 </modal-box>
 
@@ -26,7 +26,7 @@
       </tr>
     </thead>
 
-    <tbody>
+    <tbody v-if='update' >
       <tr v-for="staff in itemsPaginated" :key="staff.staffName">
         <td class="image-cell">
           <user-avatar :username="staff.staffName" class="image" />
@@ -141,6 +141,11 @@ export default {
         darkMode
       }
   },
+  data() {
+    return {
+      update: true
+    }
+  },
 
   async created() {
     const store = useStore()
@@ -155,7 +160,12 @@ export default {
     },
 
     async modifyDeployment(staff, deploy) {
-      await connector.methods.updateStaffDeployment(staff, deploy)
+      await connector.methods.updateStaffDeployment(staff, deploy).then(() => {
+        this.update = false
+        this.$nextTick(() => {
+          this.update = true
+        })
+      })
     }
   }
 }
