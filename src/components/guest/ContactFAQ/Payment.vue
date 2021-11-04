@@ -28,15 +28,15 @@ export default {
         [
           {
             clicked: false, title: "How and when to make a payment for my stay?",
-            desc: "The equals sign (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            desc: "At the end of your quarantine period with us, kindly proceed to make payment for all expenditures under the checkout tab."
           },
           {
             clicked: false, title: "How to get the physical receipt of my payment?",
-            desc: "The equals sign (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            desc: "Guest can request for a physical receipt of your payment from our frontdesk staff upon checkout."
           },
           {
-            clicked: false, title: "How to check my payment history and details?",
-            desc: "The equals sign The equals sign (British English, Unicode) (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            clicked: false, title: "What payment method is accepted?",
+            desc: "QHelper currently supports 3 payment methods. They are Credit Cards, PayNow, and GrabPay respectively."
           },
         ]
   },

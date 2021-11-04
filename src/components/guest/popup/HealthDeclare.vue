@@ -13,11 +13,11 @@
         <div class="">
             <div class="flex justify-start flex-wrap -mb-3">
                 <label class="checkbox mr-6 mb-3 last:mr-0">
-                    <input type="checkbox" name="sample-checkbox" value="lorem">
+                    <input type="radio" name="sample-checkbox" value="lorem">
                     <span class="check"></span><span class="control-label">YES</span>
                 </label>
                 <label class="checkbox mr-6 mb-3 last:mr-0">
-                    <input type="checkbox" name="sample-checkbox" value="ipsum">
+                    <input type="radio" name="sample-checkbox" value="ipsum">
                     <span class="check"></span><span class="control-label">NO</span>
                 </label>
             </div>

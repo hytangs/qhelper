@@ -34,19 +34,19 @@
   <div class = "home_area" ref="home">
     <div class = "white_home_area"><br><br><br><Home/></div>
   </div>
-  <div class = "meal_page" id="meals">
+  <!--<div class = "meal_page" id="meals">
     <div class="white_shop_area"><Meals/></div>
   </div>
   <div class="shop_page" id="shops">
     <div class="white_shop_area"><Shop/></div>
-  </div>
+  </div>-->
   </body>
 </template>
 
 <script>
 import Home from '../../components/guest/Home'
-import Meals from '../../components/guest/Meals'
-import Shop from '../../components/guest/Shop'
+//import Meals from '../../components/guest/Meals'
+//import Shop from '../../components/guest/Shop'
 
 /*const date = new Date();*/
 
@@ -54,8 +54,8 @@ export default {
   name: "GuestDashboard",
   components: {
     Home,
-    Meals,
-    Shop
+    /*Meals,
+    Shop*/
   },
 
   methods: {
@@ -247,7 +247,7 @@ header.sticky .color {
 
 .white_home_area{ /* change the width of the white cards */
   width: 70%;
-  margin-top: 2rem;
+  
 }
 
 .white_entertainment_area {

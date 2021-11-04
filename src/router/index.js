@@ -285,6 +285,14 @@ const routes = [
     name: 'home',
     component: () => import('../components/guest/HomeAlt')
    },
+   {
+        meta: {
+            title: 'Checkout'
+        },
+        path: '/checkout',
+        name: 'checkout',
+        component: () => import('../components/guest/Checkout')
+    },
 ]
 
 const router = createRouter({

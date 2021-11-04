@@ -27,16 +27,16 @@ export default {
     this.qAndAs =
         [
           {
-            clicked: false, title: "Where to submit the photo of the temperature taking?",
-            desc: "The equals sign (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            clicked: false, title: "How often do we need to submit the Health Declaration Form?",
+            desc: "All guests are required to declare their health status once a day."
           },
           {
             clicked: false, title: "How to obtain a physical certificate of PCR test?",
-            desc: "The equals sign (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            desc: "Physical certificate of ones PCR test can be obtained upon request. Kindly contact the frontdesk and it will be delivered to you within 1 working day."
           },
           {
-            clicked: false, title: "How to take the anti-body test or transfer the oversea certificates to TraceTogether?",
-            desc: "The equals sign The equals sign (British English, Unicode) (British English, Unicode) or equal sign (American English), formerly known as the equality sign, is the mathematical symbol =, which is used to indicate equality in some well-defined sense."
+            clicked: false, title: "What is TraceTogether?",
+            desc: "TraceTogether is a digital system the Government of Singapore implemented to facilitate contact tracing efforts in response to the COVID-19 pandemic in Singapore. All guests entering Singapore are highly encouraged to download the app to ease your travel around Singapore."
           },
         ]
   },

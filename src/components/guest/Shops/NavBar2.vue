@@ -200,7 +200,7 @@ export default {
           const docRef = await setDoc(doc(db, "ShopOrder", room), {
             Name: name,
             Room: room,
-            ItemsOrdered: "Ramyun: " + String(this.ramyun),
+            ItemsOrdered: this.generateOrder(),
             PaymentAmount: parseFloat(this.total).toFixed(2),
             PaymentMethod: paymentMethod,
             OrderStatus: "Order Received",
@@ -288,6 +288,45 @@ export default {
       this.fried = 0;
       this.mamuang = 0;
     },
+    generateOrder() {
+      if (this.ramyun > 0) {
+        this.orderItems += "Ramyun: " + String(this.ramyun) + ", "
+      }
+      if (this.bento > 0) {
+        this.orderItems += "Bento: " + String(this.bento) + ", "
+      }
+      if (this.nuggets > 0) {
+        this.orderItems += "Nuggets: " + String(this.nuggets) + ", "
+      }
+      if (this.lagsana > 0) {
+        this.orderItems += "Lagsana: " + String(this.lagsana) + ", "
+      }
+      if (this.lemak > 0) {
+        this.orderItems += "Lemak: " + String(this.lemak) + ", "
+      }
+      if (this.prata > 0) {
+        this.orderItems += "Prata: " + String(this.prata) + ", "
+      }
+      if (this.butter > 0) {
+        this.orderItems += "Butter Chicken: " + String(this.butter) + ", "
+      }
+      if (this.penang > 0) {
+        this.orderItems += "Penang: " + String(this.penang) + ", "
+      }
+      if (this.dimsum > 0) {
+        this.orderItems += "Dim Sum: " + String(this.dimsum) + ", "
+      }
+      if (this.sushi > 0) {
+        this.orderItems += "Sushi: " + String(this.sushi) + ", "
+      }
+      if (this.fried > 0) {
+        this.orderItems += "Fried Chicken: " + String(this.fried) + ", "
+      }
+      if (this.mamuang > 0) {
+        this.orderItems += "Mamuang: " + String(this.mamuang) + ", "
+      }
+      return this.orderItems
+    }
   },
   setup() {
     const isModalActive = ref(false);
@@ -313,6 +352,7 @@ export default {
     var fried = 0;
     var mamuang = 0;
     var total = 0;
+    var orderItems = "";
     return {
       ramyun,
       bento,
@@ -331,6 +371,7 @@ export default {
       orderedAlready,
       isModalDangerActive,
       paymentMethods,
+      orderItems
     };
   },
 };
