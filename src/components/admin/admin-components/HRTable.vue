@@ -1,6 +1,11 @@
 <template>
 <modal-box v-model="isModalActive1" title="Modify Staff Position">
-  <p>Modify Staff Position</p>
+  <field label="New Position">
+    <control :options="positionOptions" v-model = "new_position" id = "position"/>
+  </field>
+  <jb-buttons type="justify-left lg:justify-left" no-wrap>
+    <jb-button color="info" label="Confirm" v-on:click="modifyPosition()"/>
+  </jb-buttons>
 </modal-box>
 
 <modal-box v-model="isModalActive2" large-title="Please Confirm" button="danger">
@@ -40,7 +45,7 @@
 
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiBadgeAccountHorizontal" small @click="isModalActive1 = true" />
+            <jb-button class="mr-3" color="light" :icon="mdiBadgeAccountHorizontal" small @click="isModalActive1 = true, rmbStaffAccount(staff.account)" />
             <jb-button class="mr-3" color="light" :icon="mdiAccountCheck" small @click="isModalActive2 = true, modifyDeployment(staff.account, staff.deployed)" />
             <jb-button color="danger" :icon="mdiTrashCan" small @click="isModalDangerActive = true, removeData(staff.account)" />
           </jb-buttons>
@@ -72,6 +77,8 @@ import { useStore } from 'vuex'
 import { mdiBadgeAccountHorizontal, mdiAccountCheck, mdiTrashCan } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
+import Control from '../../plugins/Control'
+import Field from '../../plugins/Field'
 import ModalBox from '../../plugins/ModalBox'
 // import Level from '../../plugins/Level'
 import UserAvatar from '../../plugins/UserAvatar'
@@ -85,7 +92,9 @@ export default {
     JbButton,
     ModalBox,
     // Level,
-    UserAvatar
+    UserAvatar,
+    Field,
+    Control
   },
 
   setup() {
@@ -94,6 +103,8 @@ export default {
     const darkMode = computed(() => store.state.darkMode)
 
     const items = computed(() => store.state.staffRoster)
+
+    // const isModalActive1 = ref(false)
 
     const isModalActive1 = ref(false)
 
@@ -125,6 +136,11 @@ export default {
     //   return pagesList
     // })
 
+    const positionOptions = [
+      "Hotel Admin", "Quarantine Manager", "Guest Service Manager",
+      "Food & Logistic Manager", "Financial Manager", "Security Manager"
+    ]
+
     return {
         mdiBadgeAccountHorizontal,
         mdiAccountCheck,
@@ -138,12 +154,15 @@ export default {
         // checkedRows,
         itemsPaginated,
         // pagesList,
-        darkMode
+        darkMode,
+        positionOptions
       }
   },
   data() {
     return {
-      update: true
+      update: true,
+      staffAccount: "",
+      new_position: "",
     }
   },
 
@@ -166,7 +185,15 @@ export default {
           this.update = true
         })
       })
-    }
+    },
+
+    async modifyPosition() {
+      await connector.methods.modifyStaffPosition(this.staffAccount, this.new_position)
+    },
+
+    rmbStaffAccount(account) {
+      this.staffAccount = account
+    },
   }
 }
 </script>

@@ -196,6 +196,30 @@ export default {
 
         async removeStaff(accountName) {
             await deleteDoc(doc(db, "AdminAccount", accountName));
-        }
+        },
+
+        async modifyStaffPosition(accountName, newPosition) {
+            const accountDoc = doc(db, "AdminAccount", accountName)
+
+            var access = '0'
+            if (newPosition === 'Hotel Admin') {
+                access = '1'; // 1 => Master access
+              } else if (newPosition === 'Quarantine Manager') {
+                access = '2';
+              } else if (newPosition === 'Guest Service Manager') {
+                access = '3';
+              } else if (newPosition === 'Food & Logistic Manager') {
+                access = '4';
+              } else if (newPosition === 'Financial Manager') {
+                access = '5';
+              } else {
+                access = '6';
+              }
+
+            await updateDoc(accountDoc, {
+                role: newPosition,
+                zone: access
+            })
+        },
     }
 }
