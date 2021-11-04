@@ -1,7 +1,8 @@
 
 import firebaseApp from "./firebase";
-import {getFirestore, doc, getDoc, collection, getDocs} from "firebase/firestore";
+import {getFirestore, doc, getDoc, collection, getDocs, updateDoc} from "firebase/firestore";
 import sha256 from "./components/plugins/helpers/sha256"
+import datequery from "./components/plugins/helpers/datequery";
 
 const db = getFirestore(firebaseApp);
 
@@ -22,6 +23,16 @@ export default {
                 return false;
             }
         },
+
+        async updateLoginDate(inAccount) {
+            const today = datequery.methods.fetchTodayString()
+            console.log(today)
+            const mappedAccount = doc(db, "AdminAccount", String(inAccount));
+            await updateDoc(mappedAccount, {
+                lastLogin: today
+            });
+        },
+
         async getZone(inAccount) {
             const docRef = doc(db, "AdminAccount", String(inAccount));
             let docSnap = await getDoc(docRef);

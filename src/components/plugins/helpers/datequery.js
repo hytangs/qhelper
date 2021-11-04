@@ -2,7 +2,9 @@ export default {
     methods: {
         fetchTodayString() {
             const today = new Date();
-            const todayString = today.toISOString().substring(0, 10);
+            const todayString = today.toISOString().substring(0, 4)
+                + today.toISOString().substring(5, 7)
+                + today.toISOString().substring(8, 10);
             return todayString
         },
 
