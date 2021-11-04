@@ -95,6 +95,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+body {
+  @apply pt-14 xl:pl-60;
+}
 </style>

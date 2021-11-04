@@ -181,3 +181,9 @@ export default {
   },
 };
 </script>
+
+<style>
+body {
+  @apply pt-14 xl:pl-60;
+}
+</style>
