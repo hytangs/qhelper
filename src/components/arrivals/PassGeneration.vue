@@ -13,7 +13,7 @@
           </text>
           <br />
           <div id="qrcode" class="center">
-            <QrcodeVue :value=sha256(this.exportQRValue) :size="275" />
+            <QrcodeVue :value=this.exportQRValue :size="275" />
           </div>
           <br />
           <text>
@@ -72,7 +72,6 @@ import JbButtons from "../plugins/JbButtons";
 import QrcodeVue from "qrcode.vue";
 import moment from "moment";
 import datequery from "../plugins/helpers/datequery";
-import sha256 from "../plugins/helpers/sha256";
 
 export default {
   name: "PassGeneration",
