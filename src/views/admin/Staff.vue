@@ -17,17 +17,17 @@
 <modal-box v-model="isModalActive" title="Add New Staff">
   <p>Staff Information</p>
   <field>
-    <control placeholder="Staff Name" v-model="new_name" />
-    <control placeholder="Account Name" v-model="new_id" />
+    <control placeholder="Staff Name" v-model="new_name" id = "name"/>
+    <control placeholder="Account Name" v-model="new_id" id = "account"/>
   </field>
   <field label="Position">
-    <control :options="positionOptions" v-model="new_position"/>
+    <control :options="positionOptions" v-model="new_position" id = "position"/>
   </field>
   <field label="Access">
-    <control placeholder="A,B,C" v-model="new_access"/>
+    <control placeholder="A,B,C" v-model="new_access" id = "access"/>
   </field>
   <field label="Deployed">
-    <control :options="deployOptions" v-model="new_deploy"/>
+    <control :options="deployOptions" v-model="new_deploy" id = "deployed"/>
   </field>
   <jb-buttons type="justify-left lg:justify-left" no-wrap>
     <jb-button color="info" label="Confirm" v-on:click="addNewStaff()"/>
@@ -54,6 +54,10 @@ import JbButton from '../../components/plugins/JbButton'
 import JbButtons from '../../components/plugins/JbButtons'
 import HRTable from '../../../src/components/admin/admin-components/HRTable'
 
+import firebaseApp from "../../firebase.js";
+import { getFirestore } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+const db = getFirestore(firebaseApp);
 
 export default {
   name: "AdminTemplate",
@@ -98,6 +102,24 @@ export default {
     async addNewStaff() {
       alert("Adding new staff to firebase")
       //add new staff to fs
+      try {
+          var name = document.getElementById("name").value
+          var account = document.getElementById("account").value
+          var position = document.getElementById("position").value
+          var access = document.getElementById("access").value
+          var deployed = document.getElementById("deployed").value
+          const docRef = await setDoc(doc(db, "StaffAccount", account), {
+            Name: name,
+            Account: account,
+            Position: position,
+            GrantAccess: access,
+            Deployed: deployed
+          });
+          console.log(docRef);
+          this.$emit("added");
+        } finally {
+          alert("New Accounts created successfully.");
+        }
     },
 
     async search() {
