@@ -185,8 +185,10 @@ export default {
           .value;
         var request = document.getElementById("request").value;
         var room = "1101";
+        var name = "Hello";
         if (meal == "Breakfast") {
           const docRef = await setDoc(doc(db, "Breakfast", room), {
+            Name: name,
             Room: room,
             Meal: meal,
             Selection: selection,
@@ -198,6 +200,7 @@ export default {
         }
         if (meal == "Lunch") {
           const docRef = await setDoc(doc(db, "Lunch", room), {
+            Name: name,
             Room: room,
             Meal: meal,
             Selection: selection,
@@ -209,6 +212,7 @@ export default {
         }
         if (meal == "Dinner") {
           const docRef = await setDoc(doc(db, "Dinner", room), {
+            Name: name,
             Room: room,
             Meal: meal,
             Selection: selection,
