@@ -193,7 +193,7 @@ export default {
 
     async modifyPosition() {
       try {
-        if (this.new_position == "") {
+        if (this.new_position === "") {
           alert("Please select the new position for staff!")
         } else {
           await connector.methods.modifyStaffPosition(this.staffAccount, this.new_position)
