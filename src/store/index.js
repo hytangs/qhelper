@@ -59,7 +59,7 @@ export default createStore({
       room: '0000',
       guestName: 'First Last',
       date: 'Date',
-      symptoms: '0',
+      symptoms: 'No',
       temp: '0'
     }],
 
