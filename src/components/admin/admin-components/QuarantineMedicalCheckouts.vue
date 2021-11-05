@@ -23,12 +23,28 @@
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button color="success" :icon="mdiAccountMultiplePlus" small @click="isModalDangerActive1 = true, checkIn()" />
-            <jb-button color="danger" :icon="mdiAccountMultipleMinus" small @click="isModalDangerActive2 = true, checkOut()" />
+            <jb-button color="danger" :icon="mdiAccountMultipleMinus" small @click="isModalDangerActive2 = true, checkOut(guest.room)" />
           </jb-buttons>
         </td>
       </tr>
     </tbody>
 </table>
+<!-- <div class="table-pagination">
+  <level>
+    <jb-buttons>
+      <jb-button
+        v-for="page in pagesList"
+        @click="currentPage = page"
+        :active="page === currentPage"
+        :label="page + 1"
+        :key="page"
+        :outline="darkMode"
+        small
+      />
+    </jb-buttons>
+    <small>Page {{ currentPageHuman }} of {{ numPages }}</small>
+  </level>
+</div> -->
 </template>
 
 <script>
@@ -106,8 +122,10 @@ export default {
       // remove data
     },
 
-    checkOut() {
-      // remove data
+    async checkOut(room) {
+      await connector.methods.quarantineCheckout(room)
+      let meta = await connector.methods.getHealthCheckOut().then(x => x)
+      this.$store.commit('alterHealthCheckOut', meta);
     }
   }
 }

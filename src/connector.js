@@ -302,12 +302,17 @@ export default {
                 if (roomNumber !== "Blocker") {
                     var x = doc.data();
                     outputMeta.push({
+                        room: roomNumber,
                         name: x['Fname'] + " " + x['Lname'],
                         date: x['checkout']
                     })
                 }
             })
             return outputMeta
+        },
+
+        async quarantineCheckout(roomNumber) {
+            await deleteDoc(doc(db, "HealthCheckout", roomNumber));
         }
     }
 }

@@ -112,6 +112,7 @@ export default createStore({
     }],
 
     healthCheckOutRoster: [{
+      room: '0000',
       name: 'name',
       date: 'YYYYMMDD',
     }]
