@@ -38,7 +38,7 @@
 
   <div id="mealpage">
     <br />
-    <h1>Menu for {{ currentDate }}</h1>
+    <h1 class="text-2xl">Menu for {{ currentDate }}</h1>
     <br />
     <div class="form_container">
       <form
@@ -52,26 +52,6 @@
           <information-circle-icon
             class="h-5 w-5 text-black sm:text-sm"
           ></information-circle-icon>
-          <button
-            v-on:click="showMeal(0)"
-            class="showbtn content-center text-black hover:text-blue-500"
-          >
-            Breakfast
-          </button>
-          |
-          <button
-            v-on:click="showMeal(1)"
-            class="showbtn content-center text-black hover:text-blue-500"
-          >
-            Lunch
-          </button>
-          |
-          <button
-            v-on:click="showMeal(2)"
-            class="showbtn content-center text-black hover:text-blue-500"
-          >
-            Dinner
-          </button>
         </div>
         <br /><br />
         <transition name="fade">
@@ -200,7 +180,7 @@ export default {
         var request = document.getElementById("request").value;
         var room = document.getElementById("room").value;
         var name = document.getElementById("name").value;
-        if (meal == "Breakfast") {
+        if (meal === "Breakfast") {
           const docRef = await setDoc(doc(db, "Breakfast", room), {
             Name: name,
             Room: room,
@@ -212,7 +192,7 @@ export default {
           });
           console.log(docRef);
         }
-        if (meal == "Lunch") {
+        if (meal === "Lunch") {
           const docRef = await setDoc(doc(db, "Lunch", room), {
             Name: name,
             Room: room,
@@ -224,7 +204,7 @@ export default {
           });
           console.log(docRef);
         }
-        if (meal == "Dinner") {
+        if (meal === "Dinner") {
           const docRef = await setDoc(doc(db, "Dinner", room), {
             Name: name,
             Room: room,
@@ -258,6 +238,7 @@ export default {
     },
     showMeal(index) {
       this.mealsData = this.mealsTempData;
+      console.log("Reload" + String(index))
       this.mealsData.forEach((t) => {
         t.visible = false;
       });
@@ -346,7 +327,7 @@ export default {
       {
         time: "Lunch",
         isLunch: true,
-        visible: false,
+        visible: true,
         items: [
           {
             name: "Pizza",
@@ -419,7 +400,7 @@ export default {
       {
         time: "Dinner",
         isDinner: true,
-        visible: false,
+        visible: true,
         items: [
           {
             name: "Hokkien Prawn Noodle",
