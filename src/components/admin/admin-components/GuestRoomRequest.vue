@@ -1,13 +1,24 @@
 <template>
-<modal-box v-model="isModalActive" title="Reply">
-  <p>Reply the <b>Request / Feedback</b></p>
-</modal-box>
+  <modal-box v-model="isModalActive" title="Reply">
+    <!-- <p>Reply the <b>Request / Feedback</b></p> -->
+    <field label="Message">
+      <control
+        placeholder="e.g. Thank you for your reply!"
+        id="message"
+      />
+    </field>
+  </modal-box>
 
-<modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Delete <b>Request / Feedback</b></p>
-</modal-box>
+  <modal-box
+    v-model="isModalDangerActive"
+    large-title="Please Confirm"
+    button="danger"
+    has-cancel
+  >
+    <p>Delete <b>Request / Feedback</b></p>
+  </modal-box>
 
-<table id="feedback">
+  <table id="feedback">
     <thead>
       <tr>
         <th>Room Number</th>
@@ -16,7 +27,7 @@
         <th></th>
       </tr>
     </thead>
-    
+
     <!-- <tbody>
       <tr>
         <td data-label="Room Number"> Room Number </td>
@@ -31,32 +42,43 @@
       </tr>
     </tbody> -->
 
-    <tbody v-if='update' >
+    <tbody v-if="update">
       <tr v-for="feedback in itemsPaginated" :key="feedback.room">
-        <td data-label="Room Number"> {{feedback.room}} </td>
-        <td data-label="Guest">{{feedback.name}} </td>
-        <td data-label="Requests / Feedback"> {{feedback.feedback}} </td>
+        <td data-label="Room Number">{{ feedback.room }}</td>
+        <td data-label="Guest">{{ feedback.name }}</td>
+        <td data-label="Requests / Feedback">{{ feedback.feedback }}</td>
 
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiChatProcessing" small 
-            @click="isModalActive = true, replyData(feedback.room)" />
-            <jb-button color="danger" :icon="mdiTrashCan" small 
-            @click="isModalDangerActive = true, removeData(feedback.room)" />
+            <jb-button
+              class="mr-3"
+              color="light"
+              :icon="mdiChatProcessing"
+              small
+              @click="(isModalActive = true), replyData(feedback.room)"
+            />
+            <jb-button
+              color="danger"
+              :icon="mdiTrashCan"
+              small
+              @click="(isModalDangerActive = true), removeData(feedback.room)"
+            />
           </jb-buttons>
         </td>
       </tr>
     </tbody>
-</table>
+  </table>
 </template>
 
 <script>
-import { computed, ref } from 'vue'
-import { useStore } from 'vuex'
-import { mdiChatProcessing, mdiTrashCan } from '@mdi/js'
-import JbButtons from '../../plugins/JbButtons'
-import JbButton from '../../plugins/JbButton'
-import ModalBox from '../../plugins/ModalBox'
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+import { mdiChatProcessing, mdiTrashCan } from "@mdi/js";
+import JbButtons from "../../plugins/JbButtons";
+import JbButton from "../../plugins/JbButton";
+import ModalBox from "../../plugins/ModalBox";
+import Field from '../../plugins/Field'
+import Control from '../../plugins/Control'
 
 // import firebaseApp from "../../../firebase.js";
 // import { getFirestore } from "firebase/firestore";
@@ -71,7 +93,9 @@ export default {
   components: {
     JbButtons,
     JbButton,
-    ModalBox
+    ModalBox,
+    Field,
+    Control,
   },
 
   // mounted() {
@@ -103,64 +127,68 @@ export default {
   // },
 
   setup() {
-    const store = useStore()
+    const store = useStore();
 
-    const darkMode = computed(() => store.state.darkMode)
+    const darkMode = computed(() => store.state.darkMode);
 
-    const items = computed(() => store.state.feedbackData)
+    const items = computed(() => store.state.feedbackData);
 
     // const isModalActive1 = ref(false)
 
-    const isModalActive = ref(false)
+    const isModalActive = ref(false);
 
-    const isModalDangerActive = ref(false)
+    const isModalDangerActive = ref(false);
 
-    const perPage = ref(10)
+    const perPage = ref(10);
 
-    const currentPage = ref(0)
+    const currentPage = ref(0);
 
     // const checkedRows = ref([])
 
-    const itemsPaginated = computed(
-      () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
-    )
+    const itemsPaginated = computed(() =>
+      items.value.slice(
+        perPage.value * currentPage.value,
+        perPage.value * (currentPage.value + 1)
+      )
+    );
 
     return {
-        mdiTrashCan,
-        mdiChatProcessing,
-        isModalActive,
-        isModalDangerActive,
-        // currentPage,
-        // currentPageHuman,
-        // numPages,
-        // checkedRows,
-        itemsPaginated,
-        // pagesList,
-        darkMode,
-      }
+      mdiTrashCan,
+      mdiChatProcessing,
+      isModalActive,
+      isModalDangerActive,
+      // currentPage,
+      // currentPageHuman,
+      // numPages,
+      // checkedRows,
+      itemsPaginated,
+      // pagesList,
+      darkMode,
+    };
   },
 
   async created() {
-    const store = useStore()
-    let meta = await connector.methods.getFeedback().then(x => x)
-    console.log(meta)
-    store.commit('alterFeedbackData' , meta)
+    const store = useStore();
+    let meta = await connector.methods.getFeedback().then((x) => x);
+    console.log(meta);
+    store.commit("alterFeedbackData", meta);
   },
 
   methods: {
-    async remove() {
-      // remove feedback
-    }
+    async removeData(room) {
+      await connector.methods.removeFeedback(room);
+      let meta = await connector.methods.getFeedback().then((x) => x);
+      this.$store.commit("alterFeedbackData", meta);
+      alert("Guest Feedback Removed.");
+    },
   },
 
   data() {
     return {
       update: true,
-    }
+    };
   },
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

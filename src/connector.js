@@ -285,6 +285,10 @@ export default {
             return outputMeta
         },
 
+        async removeFeedback(room) {
+            await deleteDoc(doc(db, "Feedback", room));
+        },
+
         async getQuarantineStatus() {
             const guestDoc = await getDocs(collection(db, "RegInfo"))
             let outputMeta = []
