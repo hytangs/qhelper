@@ -79,7 +79,7 @@
             <div
               v-bind:key="j"
               v-for="(item, j) in meal.items"
-              class="max-w-sm rounded overflow-hidden shadow-lg p-3 border bg-white border-gray-400 relative hover:bg-yellow-400"
+              class="max-w-sm rounded overflow-hidden shadow-lg p-3 border bg-white border-gray-400 relative shadow"
             >
               <a
                 href="javascript:void(0)"
