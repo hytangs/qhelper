@@ -35,6 +35,32 @@ export default {
             return out
         },
 
+        getGuestRoom() {
+            let out;
+            try {
+                out = localStorage.guestroom;
+                if (out === 'null') {
+                    out = 'Undefined'
+                }
+            } catch (x) {
+                out = 'Undefined'
+            }
+            return out
+        },
+
+        getGuestName() {
+            let out;
+            try {
+                out = localStorage.guestfname + " " + localStorage.guestlname;
+                if (out === 'null null') {
+                    out = 'Unauthorized Guest'
+                }
+            } catch (x) {
+                out = 'Unauthorized Guest'
+            }
+            return out
+        },
+
         initializeGuestSession(table) {
             localStorage.guestroom = table.guestroom;
             localStorage.guestfname = table.guestfname;
