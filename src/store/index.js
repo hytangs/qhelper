@@ -56,6 +56,7 @@ export default createStore({
     }],
 
     healthAlertDefault: [{
+      room: '0000',
       guestName: 'First Last',
       date: 'Date',
       symptoms: '0',

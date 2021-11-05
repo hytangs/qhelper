@@ -203,13 +203,18 @@ export default {
             const HealthOrder = await getDocs(collection(db, "HealthOrder"));
             let outputOrder = []
             HealthOrder.forEach((doc) => {
-                var x = doc.data();
-                outputOrder.push({
-                    guestName: x['Guest'],
-                    date: x['Date'],
-                    symptoms: x['Symptoms'],
-                    temp: x['Temperature']
-                })
+                var roomNumber = doc.id
+
+                if (roomNumber !== "Blocker") {
+                    var x = doc.data();
+                    outputOrder.push({
+                        room: roomNumber,
+                        guestName: x['Guest'],
+                        date: x['Date'],
+                        symptoms: x['Symptoms'],
+                        temp: x['Temperature']
+                    })
+                }
             })
             return outputOrder
         },
