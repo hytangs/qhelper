@@ -125,7 +125,7 @@
           <div class="absolute inset-0 bg-gray-900 opacity-75" />
         </div>
         <div
-          class="inline-block align-center bg-white h-1/2 w-1/3 p-16 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-32 sm:align-middle"
+          class="inline-block align-center bg-white h-3/5 w-1/3 p-12 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-32 sm:align-middle"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-headline"
@@ -138,6 +138,7 @@
             <XIcon class="h-6 w-6 text-blue-900 sm:text-sm"></XIcon>
           </a>
           <img class="w-auto rounded-lg" :src="popup.lgSrc" :alt="popup.alt" />
+          <br />
           <div class="mt-3 text-left">
             <h3 class="uppercase text-blue-900 font-extrabold text-2xl">
               {{ popup.name }}
