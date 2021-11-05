@@ -33,6 +33,8 @@ export default createStore({
     vacantrooms: 0,
     occupiedrooms: 0,
 
+    countstaff: 0,
+
     /* Room Default JSON Storage */
     roomTypeDefault: [{
       roomType: 'Room Type Undefined',
@@ -148,6 +150,10 @@ export default createStore({
       state.totalrooms = meta.totalrooms
       state.vacantrooms = meta.vacantrooms
       state.occupiedrooms = meta.occupiedrooms
+    },
+
+    countstaffaction (state, meta) {
+      state.countstaff = meta
     },
 
     alterroomtype (state, meta) {

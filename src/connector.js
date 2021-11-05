@@ -264,6 +264,13 @@ export default {
             return outputMeta
         },
 
+        async countStaff() {
+            const staffRosterMeta = await getDocs(collection(db, "AdminAccount"));
+            let outputMeta = 0
+            staffRosterMeta.forEach(() => outputMeta += 1);
+            return outputMeta;
+        },
+
         async removeStaff(accountName) {
             await deleteDoc(doc(db, "AdminAccount", accountName));
         },
