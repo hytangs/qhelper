@@ -2,9 +2,9 @@
   <nav-bar />
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
-  <hero-bar v-if="zone !== '0'">Dashboard</hero-bar>
+  <hero-bar v-if="zone > '0'">Dashboard</hero-bar>
   <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
-  <main-section v-if="zone !== '0'">
+  <main-section v-if="zone > '0'">
     <notification color="info" :icon="mdiAlertCircle">
       Please follow Personal Data Protection Act when using this system.
       <template #right>
@@ -112,7 +112,7 @@
       </card-component>
 
   </main-section>
-  <footer-bar v-if="zone !== '0'"/>
+  <footer-bar v-if="zone > '0'"/>
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"

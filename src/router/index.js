@@ -140,7 +140,7 @@ const routes = [
   },
   {
     meta: {
-      title: 'Blank Page'
+      title: 'QR Pass'
     },
     path: '/admin/qrpass',
     name: 'QR Pass',
