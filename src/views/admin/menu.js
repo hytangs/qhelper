@@ -2,14 +2,7 @@ import {
   mdiAccountCircle,
   mdiDesktopMac,
   mdiCommaBox,
-  mdiLock,
-  mdiAlertCircle,
   mdiMonitorClean,
-  mdiSquareEditOutline,
-  mdiTable,
-  mdiViewList,
-  mdiTelevisionGuide,
-  mdiResponsive,
   mdiBed,
   mdiMedicalBag,
   mdiFood,
@@ -64,7 +57,7 @@ export default [
       label: 'Security'
     },
     {
-      to: '/admin/blank',
+      to: '/admin/qrpass',
       icon: mdiQrcode,
       label: 'QR Pass'
     },
@@ -84,62 +77,4 @@ export default [
       target: '_blank'
     }
   ],
-  'Template',
-  [
-    {
-      to: '/admin',
-      label: 'Home',
-      icon: mdiTable,
-      updateMark: true
-    },
-    {
-      to: '/admin/tables',
-      label: 'Tables',
-      icon: mdiTable,
-      updateMark: true
-    },
-    {
-      to: '/admin/forms',
-      label: 'Forms',
-      icon: mdiSquareEditOutline
-    },
-    {
-      to: '/admin/ui',
-      label: 'UI',
-      icon: mdiTelevisionGuide
-    },
-    {
-      to: '/admin/responsive',
-      label: 'Responsive',
-      icon: mdiResponsive
-    },
-    {
-      to: '/admin/profile',
-      label: 'Profile',
-      icon: mdiAccountCircle
-    },
-    {
-      to: '/admin/login',
-      label: 'Login',
-      icon: mdiLock
-    },
-    {
-      to: '/admin/error',
-      label: 'Error',
-      icon: mdiAlertCircle
-    },
-    {
-      label: 'Submenus',
-      subLabel: 'Submenus Example',
-      icon: mdiViewList,
-      menu: [
-        {
-          label: 'Sub-item One'
-        },
-        {
-          label: 'Sub-item Two'
-        }
-      ]
-    }
-  ]
 ]

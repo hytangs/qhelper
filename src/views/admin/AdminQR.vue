@@ -2,7 +2,7 @@
   <nav-bar/>
   <aside-menu :menu="menu"/>
   <title-bar :title-stack="titleStack" />
-  <hero-bar>Blank Page</hero-bar>
+  <hero-bar>QR Pass for Admin</hero-bar>
   <main-section>
     <br> <br> <h1 class="text-2xl">Blank Page for construction</h1> <br> <br>
   </main-section>
@@ -21,7 +21,7 @@ import HeroBar from '../../../src/components/plugins/HeroBar'
 import {ref} from "vue";
 
 export default {
-  name: "AdminTemplate",
+  name: "AdminQR",
   components: {
     Overlay,
     FooterBar,
@@ -31,7 +31,7 @@ export default {
     HeroBar
   },
   setup() {
-    const titleStack = ref(['Admin', 'Blank Page'])
+    const titleStack = ref(['Admin', 'QR Pass'])
 
     return {
       titleStack,
@@ -40,3 +40,10 @@ export default {
   }
 }
 </script>
+
+
+<style>
+body {
+  @apply pt-14 xl:pl-60;
+}
+</style>
