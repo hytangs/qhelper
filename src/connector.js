@@ -318,6 +318,10 @@ export default {
 
         async quarantineCheckout(roomNumber) {
             await deleteDoc(doc(db, "HealthCheckout", roomNumber));
-        }
+        },
+
+        async removeHealthAlert(roomNumber) {
+            await deleteDoc(doc(db, "HealthOrder", roomNumber));
+        },
     }
 }
