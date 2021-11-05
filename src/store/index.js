@@ -109,6 +109,11 @@ export default createStore({
       pcr: [],
       quarantinePlan: '0',
       country: 'country'
+    }],
+
+    healthCheckOutRoster: [{
+      name: 'name',
+      date: 'YYYYMMDD',
     }]
   },
 
@@ -163,6 +168,10 @@ export default createStore({
 
     alterQuarantineRoster(state, meta){
       state.quarantineRoster = meta
+    },
+
+    alterHealthCheckOut(state, meta) {
+      state.healthCheckOutRoster = meta
     },
 
     changeFname(state, payload) {

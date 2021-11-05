@@ -281,6 +281,10 @@ export default {
         },
 
         async healthCheckOut(roomNumber) {
+            const today = datequery.methods.fetchTodayString()
+            await updateDoc(doc(db, "RegInfo", roomNumber), {
+                checkout: today
+            })
             const guestDoc = await getDoc(doc(db, "RegInfo", roomNumber))
             var x = guestDoc.data()
             const docRef = await setDoc(doc(db, "HealthCheckout", roomNumber), x)
@@ -288,5 +292,22 @@ export default {
             const docRef2 = await deleteDoc(doc(db, "RegInfo", roomNumber));
             console.log(docRef2);
         },
+
+        async getHealthCheckOut() {
+            const guestDoc = await getDocs(collection(db, "HealthCheckout"))
+            let outputMeta = []
+            guestDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+                
+                if (roomNumber !== "Blocker") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        name: x['Fname'] + " " + x['Lname'],
+                        date: x['checkout']
+                    })
+                }
+            })
+            return outputMeta
+        }
     }
 }
