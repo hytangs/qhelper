@@ -63,6 +63,12 @@ export default createStore({
       temp: '0'
     }],
 
+    feedbackData: [{
+      Name: 'Name',
+      Room: 'Room',
+      Feedback: 'Feedback'
+    }],
+
     guestInfo: [{
       Email: 'email',
       COD: 'country',
@@ -174,6 +180,10 @@ export default createStore({
 
     alterHealthCheckOut(state, meta) {
       state.healthCheckOutRoster = meta
+    },
+
+    alterFeedbackData(state, meta) {
+      state.feedbackData = meta
     },
 
     changeFname(state, payload) {

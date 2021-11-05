@@ -270,6 +270,21 @@ export default {
             })
         },
 
+        async getFeedback() {
+            const feedbackData = await getDocs(collection(db, "Feedback"));
+            let outputMeta = []
+            feedbackData.forEach((doc) => {
+                var x = doc.data();
+                console.log("hi")
+                outputMeta.push({
+                    name: x['Name'],
+                    room: x['Room'],
+                    feedback: x['Feedback'],
+                })
+            })
+            return outputMeta
+        },
+
         async getQuarantineStatus() {
             const guestDoc = await getDocs(collection(db, "RegInfo"))
             let outputMeta = []
