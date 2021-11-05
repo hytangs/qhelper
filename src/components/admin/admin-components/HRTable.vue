@@ -176,6 +176,8 @@ export default {
   methods: {
     async removeData(account) {
       await connector.methods.removeStaff(account)
+      let meta = await connector.methods.getStaffRoster().then(x => x)
+      this.$store.commit('alterStaffRoster', meta);
     },
 
     async modifyDeployment(staff, deploy) {
@@ -185,6 +187,8 @@ export default {
           this.update = true
         })
       })
+      let meta = await connector.methods.getStaffRoster().then(x => x)
+      this.$store.commit('alterStaffRoster', meta);
     },
 
     async modifyPosition() {

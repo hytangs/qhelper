@@ -106,7 +106,6 @@ import JbButtons from '../plugins/JbButtons'
 import connector from '../../connector.js'
 import datequery from "../plugins/helpers/datequery";
 import sha256 from "../plugins/helpers/sha256";
-import {store} from "core-js/internals/reflect-metadata";
 
 export default {
   name: 'RoomSelection',
@@ -131,25 +130,31 @@ export default {
     selectRoom1() {
       this.roomType = "Single Room"
       this.room = "Single"
-      this.rate = parseInt(store.state.roomMetaToGuest[0].singlerate) * parseInt(store.state.guestInfo.Length)
+      this.rate = parseInt(this.$store.state.roomMetaToGuest[0].singlerate) * parseInt(this.$store.state.guestInfo.Length)
+      console.log(this.$store.state.roomMetaToGuest[0].singlerate)
+      console.log(this.rate)
+      console.log(this.$store.state.guestInfo.Length)
     },
 
     selectRoom2() {
       this.roomType = "Double Room"
       this.room= "Double"
-      this.rate = parseInt(store.state.roomMetaToGuest[0].doublerate) * parseInt(store.state.guestInfo.Length)
+      this.rate = parseInt(this.$store.state.roomMetaToGuest[0].doublerate) * parseInt(this.$store.state.guestInfo.Length)
+      console.log(this.rate)
     },
 
     selectRoom3() {
       this.roomType = "Premium Double Room"
       this.room = "PremiumDouble"
-      this.rate = parseInt(store.state.roomMetaToGuest[0].premiumrate) * parseInt(store.state.guestInfo.Length)
+      this.rate = parseInt(this.$store.state.roomMetaToGuest[0].premiumrate) * parseInt(this.$store.state.guestInfo.Length)
+      console.log(this.rate)
     },
 
     selectRoom4() {
       this.roomType = "Premium Apartment"
       this.room = "Apartment"
-      this.rate = parseInt(store.state.roomMetaToGuest[0].apartmentrate) * parseInt(store.state.guestInfo.Length)
+      this.rate = parseInt(this.$store.state.roomMetaToGuest[0].apartmentrate) * parseInt(this.$store.state.guestInfo.Length)
+      console.log(this.rate)
     },
 
     async savetofs() {
