@@ -18,6 +18,11 @@ export default {
             return date.toISOString().substring(0, 4)
                 + date.toISOString().substring(5, 7)
                 + date.toISOString().substring(8, 10)
+        },
+
+        addDaysOutput(days) {
+            var date = new Date();
+            return new Date(date.setDate(date.getDate() + (days - 1))).toISOString().substring(0, 10);
         }
     }
 }

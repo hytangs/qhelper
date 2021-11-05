@@ -38,7 +38,9 @@
 
   <div id="mealpage">
     <br />
-    <h1 class="text-2xl">Menu for {{ currentDate }}</h1>
+    <p class="text-3xl hover:text-gray-700"><b>Regular Menu for {{ currentDate }}</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900"><b>Instructions: </b>Select individually for each meals and click submit to order: )</h2>
     <br />
     <div class="form_container">
       <form
@@ -160,6 +162,7 @@ import Control from "../plugins/Control";
 import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
+import datequery from "../plugins/helpers/datequery";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -246,7 +249,8 @@ export default {
       this.mealsData[index].visible = true;
     },
     setTime() {
-      this.currentDate = moment(String(new Date())).format("MM/DD/YYYY");
+      //this.currentDate = moment(String(new Date())).format("MM/DD/YYYY");
+      this.currentDate = datequery.methods.addDaysOutput(2);
     },
   },
 
