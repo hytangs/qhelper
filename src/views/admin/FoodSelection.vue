@@ -161,7 +161,13 @@ import localsession from "../../store/localsession";
 
 import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
-import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -217,7 +223,7 @@ export default {
         cell4.innerHTML = request;
         cell5.innerHTML = status;
         cell6.innerHTML = date;
-        
+
         var bu = document.createElement("button");
         bu.className = "bwt";
         bu.id = String(room);
@@ -236,9 +242,9 @@ export default {
           updateinstrument_b(room);
         };
         cell8.appendChild(bu2);
-
       });
-
+    }
+    async function display2() {
       let y = await getDocs(collection(db, "Lunch"));
       let inc = 1;
 
@@ -269,7 +275,7 @@ export default {
         cell4.innerHTML = request;
         cell5.innerHTML = status;
         cell6.innerHTML = date;
-        
+
         var bu = document.createElement("button");
         bu.className = "bwt";
         bu.id = String(room);
@@ -288,9 +294,10 @@ export default {
           updateinstrument_l(room);
         };
         cell8.appendChild(bu2);
-
       });
+    }
 
+    async function display3() {
       let x = await getDocs(collection(db, "Dinner"));
       let inb = 1;
 
@@ -321,7 +328,7 @@ export default {
         cell4.innerHTML = request;
         cell5.innerHTML = status;
         cell6.innerHTML = date;
-        
+
         var bu = document.createElement("button");
         bu.className = "bwt";
         bu.id = String(room);
@@ -340,7 +347,6 @@ export default {
           updateinstrument_d(room);
         };
         cell8.appendChild(bu2);
-
       });
     }
 
@@ -358,7 +364,9 @@ export default {
     async function updateinstrument_b(room) {
       var x = room;
       alert("You are going to update the order status of Room " + x);
-      await updateDoc(doc(db, "Breakfast", x), {OrderStatus: "Order Delivered"})
+      await updateDoc(doc(db, "Breakfast", x), {
+        OrderStatus: "Order Delivered",
+      });
       console.log("Document successfully updated!", x);
       let tb = document.getElementById("breakfast");
       while (tb.rows.length > 1) {
@@ -376,18 +384,18 @@ export default {
       while (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
-      display();
+      display2();
     }
     async function updateinstrument_l(room) {
       var x = room;
       alert("You are going to update the order status of Room " + x);
-      await updateDoc(doc(db, "Lunch", x), {OrderStatus: "Order Delivered"})
+      await updateDoc(doc(db, "Lunch", x), { OrderStatus: "Order Delivered" });
       console.log("Document successfully updated!", x);
       let tb = document.getElementById("lunch");
       while (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
-      display();
+      display2();
     }
 
     async function deleteinstrument_d(room) {
@@ -399,21 +407,23 @@ export default {
       while (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
-      display();
+      display3();
     }
     async function updateinstrument_d(room) {
       var x = room;
       alert("You are going to update the order status of Room " + x);
-      await updateDoc(doc(db, "Dinner", x), {OrderStatus: "Order Delivered"})
+      await updateDoc(doc(db, "Dinner", x), { OrderStatus: "Order Delivered" });
       console.log("Document successfully updated!", x);
       let tb = document.getElementById("dinner");
       while (tb.rows.length > 1) {
         tb.deleteRow(1);
       }
-      display();
+      display3();
     }
 
     display();
+    display2();
+    display3();
   },
   setup() {
     const store = useStore();

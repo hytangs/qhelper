@@ -109,17 +109,22 @@
             </div>
           </div>
         </transition>
-        <div class="w-3/4 m-auto mb-4">
-          <p>Special Request</p>
-          <label class="block mt-3">
+        <field class="w-1/2 m-auto mb-4" label="Special Request" align="center">
+          <!-- <p>Special Request</p> -->
+          <!-- <label>
             <input
               type="text"
               class="form-input mt-1 m-auto block w-1/2 rounded-md border-gray-300 h-14"
               placeholder="Special"
               id="request"
             />
-          </label>
-        </div>
+          </label> -->
+           <control placeholder="Special" id="request" />
+        </field>
+        <field class="w-1/2 m-auto mb-4" label="Your Name and Room Number">
+          <control placeholder="Name" id="name" />
+          <control placeholder="Room Number" id="room" />
+        </field>
         <div class="submit">
           <button class="submission" type="button" @click="savetofs()">
             Submit
@@ -168,6 +173,8 @@
 <script>
 import { InformationCircleIcon, XIcon } from "@heroicons/vue/solid";
 import moment from "moment";
+import Field from "../plugins/Field";
+import Control from "../plugins/Control";
 
 import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
@@ -177,6 +184,13 @@ const db = getFirestore(firebaseApp);
 export default {
   name: "meals",
 
+  components: {
+    Field,
+    Control,
+    InformationCircleIcon,
+    XIcon,
+  },
+
   methods: {
     async savetofs() {
       try {
@@ -184,8 +198,8 @@ export default {
         var selection = document.querySelector('input[id="selected"]:checked')
           .value;
         var request = document.getElementById("request").value;
-        var room = "1101";
-        var name = "Hello";
+        var room = document.getElementById("room").value;
+        var name = document.getElementById("name").value;
         if (meal == "Breakfast") {
           const docRef = await setDoc(doc(db, "Breakfast", room), {
             Name: name,
@@ -495,7 +509,6 @@ export default {
       selectItem: [],
     };
   },
-  components: { InformationCircleIcon, XIcon },
 };
 </script>
 
