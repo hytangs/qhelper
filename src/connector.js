@@ -1,6 +1,6 @@
 
 import firebaseApp from "./firebase";
-import {getFirestore, doc, getDoc, collection, getDocs, updateDoc} from "firebase/firestore";
+import {getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc} from "firebase/firestore";
 import sha256 from "./components/plugins/helpers/sha256"
 import datequery from "./components/plugins/helpers/datequery";
 
@@ -14,7 +14,6 @@ export default {
             let docSnap = await getDoc(docRef);
             inPassword = sha256(inPassword)
             if (docSnap.exists()) {
-                console.log("Document data:", docSnap.data().passwordhash);
                 if (docSnap.data().passwordhash === inPassword) {
                     if (docSnap.data().deployed === "1") {
                         return docSnap.data().name;
@@ -29,10 +28,38 @@ export default {
             }
         },
 
+        async checkGuestLogin(inRoom, inPassword) {
+            const docRef = doc(db, "RegInfo", String(inRoom));
+            let docSnap = await getDoc(docRef);
+            inPassword = sha256(inPassword)
+            if (docSnap.exists()) {
+                if (docSnap.data().PasswordHash === inPassword) {
+                    return {
+                        guestfname: docSnap.data().Fname,
+                        guestlname: docSnap.data().Lname,
+                        guestPCR: docSnap.data().PCR,
+                    }
+                } else {
+                    return "@Undefined";
+                }
+            } else {
+                return "@Undefined";
+            }
+        },
+
         async updateLoginDate(inAccount) {
             const today = datequery.methods.fetchTodayString()
             console.log(today)
             const mappedAccount = doc(db, "AdminAccount", String(inAccount));
+            await updateDoc(mappedAccount, {
+                lastLogin: today
+            });
+        },
+
+        async updateLoginDateGuest(inAccount) {
+            const today = datequery.methods.fetchTodayString()
+            console.log(today)
+            const mappedAccount = doc(db, "RegInfo", String(inAccount));
             await updateDoc(mappedAccount, {
                 lastLogin: today
             });
@@ -107,6 +134,29 @@ export default {
             })
             return outputMeta
         },
+        async getRoomMetaGuest() {
+            let single = await getDoc(doc(db, "RoomMeta", "Single"))
+            single = single.data();
+            let double = await getDoc(doc(db, "RoomMeta", "Double"))
+            double = double.data();
+            let premium = await getDoc(doc(db, "RoomMeta", "PremiumDouble"))
+            premium = premium.data();
+            let apartment = await getDoc(doc(db, "RoomMeta", "Apartment"))
+            apartment = apartment.data();
+
+            let output = [{
+                havesingle: single['vacant'],
+                havedouble: double['vacant'],
+                havepremium: premium['vacant'],
+                haveapartment: apartment['vacant'],
+                singlerate: single['price'],
+                doublerate: double['price'],
+                premiumrate: premium['price'],
+                apartmentrate: apartment['price']
+            }]
+            return output
+        },
+
         // eslint-disable-next-line no-unused-vars
         async assignRoom(type) {
             const roomTypeToAssign = await getDoc(doc(db, "RoomMeta", type));
@@ -123,6 +173,12 @@ export default {
             }
             console.log(assigned);
             return assigned;
+        },
+
+        async getRoomVacantMinusOne(type) {
+            const roomType = await getDoc(doc(db, "RoomMeta", type));
+            const x = roomType.data()['vacant'];
+            return String(parseInt(x) - 1)
         },
 
         async getBroadcast() {
@@ -169,6 +225,34 @@ export default {
                 })
             })
             return outputMeta
-        }
+        },
+
+        async removeStaff(accountName) {
+            await deleteDoc(doc(db, "AdminAccount", accountName));
+        },
+
+        async modifyStaffPosition(accountName, newPosition) {
+            const accountDoc = doc(db, "AdminAccount", accountName)
+
+            var access = '0'
+            if (newPosition === 'Hotel Admin') {
+                access = '1'; // 1 => Master access
+              } else if (newPosition === 'Quarantine Manager') {
+                access = '2';
+              } else if (newPosition === 'Guest Service Manager') {
+                access = '3';
+              } else if (newPosition === 'Food & Logistic Manager') {
+                access = '4';
+              } else if (newPosition === 'Financial Manager') {
+                access = '5';
+              } else {
+                access = '6';
+              }
+
+            await updateDoc(accountDoc, {
+                role: newPosition,
+                zone: access
+            })
+        },
     }
 }

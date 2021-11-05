@@ -3,14 +3,12 @@
     <card-component  :class="cardClass" :rounded="cardRounded" @submit.prevent="submit" form>
       <h1 class="text-2xl">QHelper <b>Daily Assist</b></h1> <br>
       <field label="Room Number" help="Please enter your room number.">
-        <control v-model="form.roomnum" :icon="mdiAccount" name="login" autocomplete="username"/>
+        <control v-model="form.roomnum" :icon="mdiAccount" name="login" autocomplete="Room Number"/>
       </field>
 
-      <field label="Identification" help="Please enter the last four digits of your travel document.">
+      <field label="Identification" help="Please enter your password.">
         <control v-model="form.idcheck" :icon="mdiAsterisk" type="password" name="password" autocomplete="current-password"/>
       </field>
-
-      <check-radio-picker name="remember" v-model="form.remember" :options="{ remember: 'Remember' }" />
 
       <divider />
 
@@ -27,12 +25,13 @@ import { useRouter } from 'vue-router'
 import { mdiAccount, mdiAsterisk } from '@mdi/js'
 import FullScreenSection from '../../../src/components/plugins/FullScreenSection'
 import CardComponent from '../../../src/components/plugins/CardComponent'
-import CheckRadioPicker from '../../../src/components/plugins/CheckRadioPicker'
 import Field from '../../../src/components/plugins/Field'
 import Control from '../../../src/components/plugins/Control'
 import Divider from '../../../src/components/plugins/Divider.vue'
 import JbButton from '../../../src/components/plugins/JbButton'
 import JbButtons from '../../../src/components/plugins/JbButtons'
+import connector from "../../connector";
+//import LocalSession from "../../store/localsession";
 
 
 export default {
@@ -40,7 +39,6 @@ export default {
   components: {
     FullScreenSection,
     CardComponent,
-    CheckRadioPicker,
     Field,
     Control,
     Divider,
@@ -50,22 +48,30 @@ export default {
   setup () {
 
     const form = reactive({
-      roomnum: '1102',
-      idcheck: '3902',
-      remember: ['remember']
+      roomnum: '1001',
+      idcheck: '123456'
     })
 
     const router = useRouter()
 
-    const submit = () => {
-      router.push('/guest/dashboard')
+    const submit = async () => {
+      // eslint-disable-next-line no-unused-vars
+      await connector.methods.checkGuestLogin(form.roomnum, form.idcheck).then(result => {
+        if (result === "@Undefined") {
+          alert("Account Username / Password error!")
+        } else {
+          //LocalSession.methods.initializeGuestSession(result, form.idcheck, zone)
+            connector.methods.updateLoginDateGuest(form.roomnum)
+            router.push('/guest/dashboard')
+        }
+      })
     }
 
     return {
       form,
       submit,
       mdiAccount,
-      mdiAsterisk
+      mdiAsterisk,
     }
   }
 }
