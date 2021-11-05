@@ -193,6 +193,7 @@ export default {
           RoomType: this.roomType,
           RoomNumber: this.roomNumber,
           lastMealSelection: "",
+          lastHealthDeclaration: "",
           lastLogin: "No Record",
           finance: this.rate,
           checkout: String(datequery.methods.addDays(parseInt(Length))),

@@ -5,7 +5,9 @@ export default {
             localStorage.adminpass = null;
             localStorage.adminadmitted = false;
             localStorage.adminzone = 0;
-            localStorage.guestuser = null;
+            localStorage.guestroom = null;
+            localStorage.guestfname = null;
+            localStorage.guestlname = null;
             localStorage.guestlastfoodselectdate = '';
         },
 
@@ -34,8 +36,13 @@ export default {
         },
 
         initializeGuestSession(table) {
-            localStorage.guestuser = table.room;
-            localStorage.guestlastfoodselectdate = '';
+            localStorage.guestroom = table.guestroom;
+            localStorage.guestfname = table.guestfname;
+            localStorage.guestlname = table.guestlname;
+            localStorage.guestlastfoodselectdate = table.guestlastfoodselectdate;
+            localStorage.guestlasthealthdeclaration = table.guestlasthealthdeclaration;
+            localStorage.guestnextpcr = table.guestnextpcr;
+            localStorage.guestfinance = table.guestfinance;
         }
     }
 }

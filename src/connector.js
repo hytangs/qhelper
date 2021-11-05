@@ -35,9 +35,13 @@ export default {
             if (docSnap.exists()) {
                 if (docSnap.data().PasswordHash === inPassword) {
                     return {
+                        guestroom: inRoom,
                         guestfname: docSnap.data().Fname,
                         guestlname: docSnap.data().Lname,
-                        guestPCR: docSnap.data().PCR,
+                        guestlastfoodselectdate: docSnap.data().lastMealSelection,
+                        guestlasthealthdeclaration: docSnap.data().lastHealthDeclaration,
+                        guestnextpcr: docSnap.data().PCR[0],
+                        guestfinance: docSnap.data().finance
                     }
                 } else {
                     return "@Undefined";

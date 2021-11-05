@@ -31,7 +31,7 @@ import Divider from '../../../src/components/plugins/Divider.vue'
 import JbButton from '../../../src/components/plugins/JbButton'
 import JbButtons from '../../../src/components/plugins/JbButtons'
 import connector from "../../connector";
-//import LocalSession from "../../store/localsession";
+import LocalSession from "../../store/localsession";
 
 
 export default {
@@ -58,9 +58,9 @@ export default {
       // eslint-disable-next-line no-unused-vars
       await connector.methods.checkGuestLogin(form.roomnum, form.idcheck).then(result => {
         if (result === "@Undefined") {
-          alert("Account Username / Password error!")
+          alert("Room number / Password error!")
         } else {
-          //LocalSession.methods.initializeGuestSession(result, form.idcheck, zone)
+          LocalSession.methods.initializeGuestSession(result)
             connector.methods.updateLoginDateGuest(form.roomnum)
             router.push('/guest/dashboard')
         }
