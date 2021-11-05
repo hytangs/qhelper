@@ -36,7 +36,7 @@
 
   <br /><br /><br /><br />
 
-  <div id="contact-page">
+  <div id="contact-page" v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
     <div class="text-center">
       <br /><br />
       <h1 class="text-3xl text-blue-500 mb-6">How Can We Help You?</h1>
@@ -184,6 +184,12 @@
         </section>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <br />
+    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
   </div>
 </template>
 

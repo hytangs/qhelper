@@ -36,11 +36,13 @@
 
   <br /><br /><br /><br />
 
-  <div id="mealpage">
+  <div id="mealpage" v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
     <br />
     <p class="text-3xl hover:text-gray-700"><b>Regular Menu for {{ currentDate }}</b></p>
     <br />
     <h2 class="text-xl text-gray-700 hover:text-gray-900"><b>Instructions: </b>Select individually for each meals and click submit to order: )</h2>
+    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you need to change your meal selection, simply submit an order again.</h2>
+    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you forget to select your meal, we will provide you a default meal.</h2>
     <br />
     <div class="form_container">
       <form
@@ -104,8 +106,8 @@
            <control placeholder="Special" id="request" />
         </field>
         <field class="w-1/2 m-auto mb-4" label="Your Name and Room Number">
-          <control placeholder="Name" id="name" />
-          <control placeholder="Room Number" id="room" />
+          <text class="text-xl" id="room">{{ this.guestroom }}</text>
+          <text class="text-xl" id="name">{{ this.guestname }}</text>
         </field>
         <div class="submit">
           <button class="submission" type="button" @click="savetofs()">
@@ -151,6 +153,12 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    <br />
+    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
+  </div>
 </template>
 
 <script>
@@ -163,6 +171,7 @@ import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 import datequery from "../plugins/helpers/datequery";
+import localsession from "../../store/localsession";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -182,12 +191,11 @@ export default {
         var selection = document.querySelector('input[id="selected"]:checked')
           .value;
         var request = document.getElementById("request").value;
-        var room = document.getElementById("room").value;
-        var name = document.getElementById("name").value;
+        var room = this.guestroom;
         if (meal === "Breakfast") {
           const docRef = await setDoc(doc(db, "Breakfast", room), {
-            Name: name,
-            Room: room,
+            Name: this.guestname,
+            Room: this.guestroom,
             Meal: meal,
             Selection: selection,
             Request: request,
@@ -198,8 +206,8 @@ export default {
         }
         if (meal === "Lunch") {
           const docRef = await setDoc(doc(db, "Lunch", room), {
-            Name: name,
-            Room: room,
+            Name: this.guestname,
+            Room: this.guestroom,
             Meal: meal,
             Selection: selection,
             Request: request,
@@ -210,8 +218,8 @@ export default {
         }
         if (meal === "Dinner") {
           const docRef = await setDoc(doc(db, "Dinner", room), {
-            Name: name,
-            Room: room,
+            Name: this.guestname,
+            Room: this.guestroom,
             Meal: meal,
             Selection: selection,
             Request: request,
@@ -493,6 +501,8 @@ export default {
       showDinner: false,
       currentDate: null,
       selectItem: [],
+      guestroom: localsession.methods.getGuestRoom(),
+      guestname: localsession.methods.getGuestName(),
     };
   },
 };
