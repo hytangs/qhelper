@@ -28,7 +28,7 @@
         <path d="M16,17V14H9V10H16V7L21,12L16,17M14,2A2,2 0 0,1 16,4V6H14V4H5V20H14V18H16V20A2,2 0 0,1 14,22H5A2,2 0 0,1 3,20V4A2,2 0 0,1 5,2H14Z" data-v-42f089b8=""></path>
       </svg>
     </span>
-    <span class="px-2 transition-colors lg:hidden">Log out</span></a>
+    <span class="px-2 transition-colors lg:hidden" >Log out</span></a>
   </header>
   <!--<section class="banner"></section>-->
   <div class="slider mb-5">
@@ -36,8 +36,8 @@
       <input type="radio" name="radio-btn" id="radio1">
       <input type="radio" name="radio-btn" id="radio2">
       <input type="radio" name="radio-btn" id="radio3">
-     
-     
+
+
       <div class="slide first">
         <img src="../../../public/assets/Welcome1.png" alt="">
       </div>
@@ -47,7 +47,7 @@
       <div class="slide">
         <img src="../../../public/assets/Welcome3.png" alt="">
       </div>
-      
+
           <div class="navigation-manual">
       <label for="radio1" class="manual-btn"></label>
       <label for="radio2" class="manual-btn"></label>
@@ -59,9 +59,9 @@
         <div class="auto-btn2"></div>
         <div class="auto-btn3"></div>
       </div>-->
-      
+
     </div>
-   
+
     <!--<div class="navigation-manual">
       <label for="radio1" class="manual-btn"></label>
       <label for="radio2" class="manual-btn"></label>
@@ -73,7 +73,7 @@
         <div class="auto-btn3"></div>
       </div>
 
-    
+
   </div>
 
   <div class = "home_area" ref="home">
@@ -306,7 +306,7 @@ header.sticky .color {
 
 .white_home_area{ /* change the width of the white cards */
   width: 70%;
-  
+
 }
 
 .white_entertainment_area {
@@ -424,7 +424,7 @@ header.sticky .title:hover::after {
   display: flex;
   width: 100%;
   justify-content: center;
- 
+
 }
 
 .navigation-auto div {

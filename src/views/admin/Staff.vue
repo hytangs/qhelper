@@ -60,6 +60,7 @@ import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
 import localsession from "../../store/localsession";
+import connector from "../../connector";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -105,8 +106,8 @@ export default {
   },
 
   data() {
-    return{
-      new_name:"",
+    return {
+      new_name: "",
       new_id: "",
       new_position: "",
       new_deploy: "",
@@ -119,76 +120,79 @@ export default {
     async addNewStaff() {
       //add new staff to firestore
       try {
-          var passed = true;
+        var passed = true;
 
-          var name = this.new_name
-          if (name.length <= 5) {
-            passed = false;
-          }
-
-          var account = this.new_id
-          if (account.length <= 5) {
-            passed = false;
-          }
-
-          var position = this.new_position
-
-          var access = '0' // 0 => No access
-          if (position === 'Hotel Admin') {
-            access = '1'; // 1 => Master access
-          } else if (position === 'Quarantine Manager') {
-            access = '2';
-          } else if (position === 'Guest Service Manager') {
-            access = '3';
-          } else if (position === 'Food & Logistic Manager') {
-            access = '4';
-          } else if (position === 'Financial Manager') {
-            access = '5';
-          } else if (position === 'Security Manager') {
-            access = '6';
-          } else {
-            passed = false;
-          }
-
-          var deployed = this.new_deploy
-          var deployRef;
-          if (deployed === "Yes") {
-            deployRef = '1';
-          } else if (deployed === 'No') {
-            deployRef = '0';
-          } else {
-            passed = false;
-          }
-
-          var password = this.new_pass
-          if (password.length <= 5 || password.length >= 13) {
-            passed = false;
-          }
-
-          if (passed) {
-            const docRef = await setDoc(doc(db, "AdminAccount", account), {
-              name: name,
-              account: account,
-              role: position,
-              zone: access,
-              deployed: deployRef,
-              lastLogin: 'No Record',
-              passwordhash: sha256(password),
-              created: localsession.methods.getAdminName()
-            });
-            console.log(docRef);
-            this.$emit("added");
-            alert("New staff account created successfully. Please remember the password.");
-          } else {
-            alert("Error in entering new staff credentials. Please try again.")
-          }
-        } catch (e) {
-          alert("Error in creating new staff account. Please try again.");
+        var name = this.new_name
+        if (name.length <= 5) {
+          passed = false;
         }
-    },
 
-  }
+        var account = this.new_id
+        if (account.length <= 5) {
+          passed = false;
+        }
+
+        var position = this.new_position
+
+        var access = '0' // 0 => No access
+        if (position === 'Hotel Admin') {
+          access = '1'; // 1 => Master access
+        } else if (position === 'Quarantine Manager') {
+          access = '2';
+        } else if (position === 'Guest Service Manager') {
+          access = '3';
+        } else if (position === 'Food & Logistic Manager') {
+          access = '4';
+        } else if (position === 'Financial Manager') {
+          access = '5';
+        } else if (position === 'Security Manager') {
+          access = '6';
+        } else {
+          passed = false;
+        }
+
+        var deployed = this.new_deploy
+        var deployRef;
+        if (deployed === "Yes") {
+          deployRef = '1';
+        } else if (deployed === 'No') {
+          deployRef = '0';
+        } else {
+          passed = false;
+        }
+
+        var password = this.new_pass
+        if (password.length <= 5 || password.length >= 13) {
+          passed = false;
+        }
+
+        if (passed) {
+          const docRef = await setDoc(doc(db, "AdminAccount", account), {
+            name: name,
+            account: account,
+            role: position,
+            zone: access,
+            deployed: deployRef,
+            lastLogin: 'No Record',
+            passwordhash: sha256(password),
+            created: localsession.methods.getAdminName()
+          });
+          console.log(docRef);
+          this.$emit("added");
+          alert("New staff account created successfully. Please remember the password.");
+        } else {
+          alert("Error in entering new staff credentials. Please try again.")
+        }
+      } catch (e) {
+        alert("Error in creating new staff account. Please try again.");
+      } finally {
+        let meta = await connector.methods.getStaffRoster().then(x => x)
+        this.$store.commit('alterStaffRoster', meta);
+      }
+    },
+  },
 }
+
 </script>
 
 <style>

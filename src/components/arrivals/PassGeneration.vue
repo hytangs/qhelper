@@ -44,8 +44,15 @@
             <li>1. Do not leave the room.</li>
             <li>2. No visitors allowed.</li>
             <li>3. Complete health declaration once a day.</li>
+            <li>4. Select your choice of meal daily. </li>
+            <li>5. Make payment before check out.</li>
           </ul>
-          <br /><br />
+          <br />
+          <text class="text-xl">
+            Scan your QR Code at gantry<br /> to enter quarantine rooms zone.
+          </text>
+          <br />
+          <br />
           <jb-buttons>
             <jb-button
               color="info"
@@ -93,7 +100,7 @@ export default {
 
   methods: {
     saveToPhotos() {
-      alert("You are not using a mobile phone now. Saving failed.")
+      alert("You are not using a mobile phone now. Please make a screenshot instead.")
       //save to photos
     },
 

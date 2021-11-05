@@ -22,17 +22,17 @@
     </thead>
     
     <tbody>
-      <tr>
-        <td data-label="Room Info"> Room Number </td>
-        <td data-label="Start Date"> DD-MM-YYYY </td>
-        <td data-label="End Date"> DD-MM-YYYY </td>
-        <td data-label="Next PCR Test"> DD-MM-YYYY </td>
-        <td data-label="Quarantine Plan"> Quarantine Plan </td>
-        <td data-label="Departure Country"> Country of Departure </td>
+      <tr v-for="guest in itemsPaginated" :key="guest.room">
+        <td data-label="Room Info"> {{guest.room}} </td>
+        <td data-label="Start Date"> {{guest.start}} </td>
+        <td data-label="End Date"> {{guest.end}} </td>
+        <td data-label="Next PCR Test"> {{guest.pcr}} </td>
+        <td data-label="Quarantine Plan"> {{guest.quarantinePlan}} </td>
+        <td data-label="Departure Country"> {{guest.country}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
-            <jb-button color="danger" :icon="mdiAccountCancel" small @click="isModalDangerActive = true" />
+            <jb-button color="danger" :icon="mdiAccountCancel" small @click="isModalDangerActive = true, healthCheckOut(guest.room)" />
           </jb-buttons>
         </td>
       </tr>
@@ -41,11 +41,13 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useStore } from 'vuex'
 import { mdiPencilOutline, mdiAccountCancel } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
 import ModalBox from '../../plugins/ModalBox'
+import connector from "../../../connector"
 
 export default {
   name: "QuarantineStatus.vue",
@@ -61,13 +63,61 @@ export default {
 
     const isModalDangerActive = ref(false)
 
+    const store = useStore()
+
+    const darkMode = computed(() => store.state.darkMode)
+
+    const items = computed(() => store.state.quarantineRoster)
+
+    const perPage = ref(10)
+
+    const currentPage = ref(0)
+
+    // const checkedRows = ref([])
+
+    const itemsPaginated = computed(
+      () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
+    )
+
+    // const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+
+    // const currentPageHuman = computed(() => currentPage.value + 1)
+
+    // const pagesList = computed(() => {
+    //   const pagesList = []
+
+    //   for (let i = 0; i < numPages.value; i++) {
+    //     pagesList.push(i)
+    //   }
+
+    //   return pagesList
+    // })
+
     return {
       mdiPencilOutline, 
       mdiAccountCancel,
       isModalActive,
-      isModalDangerActive
+      isModalDangerActive,
+      darkMode,
+      itemsPaginated
     }
   },
+
+  async created() {
+    const store = useStore()
+    let meta = await connector.methods.getQuarantineStatus().then(x => x)
+    console.log(meta)
+    store.commit('alterQuarantineRoster' , meta)
+  },
+
+  methods: {
+    async healthCheckOut(roomNo) {
+      await connector.methods.healthCheckOut(roomNo)
+      let meta = await connector.methods.getQuarantineStatus().then(x => x)
+      this.$store.commit('alterQuarantineRoster', meta);
+    }
+  }
+
 }
 </script>
 

@@ -56,9 +56,10 @@ export default createStore({
     }],
 
     healthAlertDefault: [{
+      room: '0000',
       guestName: 'First Last',
       date: 'Date',
-      symptoms: '0',
+      symptoms: 'No',
       temp: '0'
     }],
 
@@ -100,6 +101,21 @@ export default createStore({
       doublerate: '400',
       premiumrate: '450',
       apartmentrate: '800'
+    }],
+
+    quarantineRoster: [{
+      room: '0000',
+      start: 'YYYYMMDD',
+      end: 'YYYYMMDD',
+      pcr: [],
+      quarantinePlan: '0',
+      country: 'country'
+    }],
+
+    healthCheckOutRoster: [{
+      room: '0000',
+      name: 'name',
+      date: 'YYYYMMDD',
     }]
   },
 
@@ -150,6 +166,14 @@ export default createStore({
 
     alterStaffRoster (state, meta) {
       state.staffRoster = meta
+    },
+
+    alterQuarantineRoster(state, meta){
+      state.quarantineRoster = meta
+    },
+
+    alterHealthCheckOut(state, meta) {
+      state.healthCheckOutRoster = meta
     },
 
     changeFname(state, payload) {

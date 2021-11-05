@@ -162,33 +162,33 @@
     large-title="Place Order"
     button="danger"
   >
-    <div v-if="(this.total > 0) & (orderedAlready == false)">
+    <div v-if="(this.total > 0) & (orderedAlready === false)">
       <p>
         <b>Total: ${{ parseFloat(this.total).toFixed(2) }}</b>
       </p>
-      <field label="Name">
-        <control placeholder="Your Name" id="name" />
+      <field label="Room Number">
+        <text class="text-xl" id="room">{{ this.guestroom }}</text>
       </field>
-      <field label="Room">
-        <control placeholder="Your Room Number" id="room" />
+      <field label="Guest Name">
+        <text class="text-xl" id="name">{{ this.guestname }}</text>
       </field>
-      <field label="PaymentMethod">
+      <field label="Delivery Method">
         <control
           placeholder="--Choose Below--"
-          :options="paymentMethods"
-          id="paymentMethod"
+          :options="deliveryMethods"
+          id="deliveryMethod"
         />
       </field>
       <jb-buttons>
         <jb-button color="info" label="Submit Order" @click="savetofs()" />
       </jb-buttons>
     </div>
-    <div v-if="(this.total == 0) & (orderedAlready == false)">
+    <div v-if="(this.total === 0) & (orderedAlready === false)">
       <p>
         <b>No items ordered yet!</b>
       </p>
     </div>
-    <div v-if="orderedAlready == true">
+    <div v-if="orderedAlready === true">
       <p>
         <b>Have submitted shop orders today already!</b>
       </p>
@@ -364,8 +364,10 @@ import JbButtons from "../../plugins/JbButtons";
 
 import firebaseApp from "../../../firebase.js";
 import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, increment } from "firebase/firestore";
+import localsession from "../../../store/localsession";
 const db = getFirestore(firebaseApp);
+
 
 export default {
   components: {
@@ -377,36 +379,46 @@ export default {
     Field,
     Control,
     JbButton,
-    JbButtons,
+    JbButtons
   },
 
   data() {
     return {
       currentSection: 1,
+      guestroom: localsession.methods.getGuestRoom(),
+      guestname: localsession.methods.getGuestName(),
     };
   },
   methods: {
     async savetofs() {
-      if (this.orderedAlready == false) {
+      if (this.orderedAlready === false) {
         try {
-          var name = document.getElementById("name").value;
-          var room = document.getElementById("room").value;
-          var paymentMethod = document.getElementById("paymentMethod").value;
-          const docRef = await setDoc(doc(db, "ShopOrder", room), {
-            Name: name,
-            Room: room,
+          var deliveryMethod = document.getElementById("deliveryMethod").value;
+          const docRef = await setDoc(doc(db, "ShopOrder", this.guestroom), {
+            Name: this.guestname,
+            Room: this.guestroom,
             ItemsOrdered: this.generateOrder(),
             PaymentAmount: parseFloat(this.total).toFixed(2),
-            PaymentMethod: paymentMethod,
+            DeliveryMethod: deliveryMethod,
             OrderStatus: "Order Received",
-            TimeOfPayment: moment(String(new Date())).format("MM/DD/YYYY"),
+            TimeOfOrder: moment(String(new Date())).format("MM/DD/YYYY"),
           });
           console.log(docRef);
+          this.$emit("added");
+
+          const docRef2 = await updateDoc(doc(db, "RegInfo", this.guestroom), {
+            finance: increment(parseInt(this.total)),
+          })
+          console.log(docRef2);
+          this.$emit("added");
           this.orderedAlready = true;
           this.clearAll();
-          this.$emit("added");
+          alert("Orders submitted successfully. Thank you!");
+        } catch (e) {
+          console.log(e)
+          alert("Order failed to submit. Please try again.")
         } finally {
-          alert("Orders submitted successfully.");
+          //pass
         }
       }
     },
@@ -827,15 +839,15 @@ export default {
     },
   },
   setup() {
+
     const isModalActive = ref(false);
     const isModalDangerActive = ref(false);
     const orderedAlready = ref(false);
-    const paymentMethods = [
-      "VISA",
-      "Mastercard",
-      "American Express",
-      "Alipay/Wechat",
-      "Cash",
+    const deliveryMethods = [
+      "Immediate - By Next Meal",
+      "Tomorrow Lunch Time",
+      "Tomorrow Dinner Time",
+      "Specific Time - We will contact you",
     ];
     // Main
     var ramyun = 0;
@@ -945,7 +957,7 @@ export default {
       total,
       orderedAlready,
       isModalDangerActive,
-      paymentMethods,
+      deliveryMethods,
       orderItems,
     };
   },

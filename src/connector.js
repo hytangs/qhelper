@@ -1,6 +1,6 @@
 
 import firebaseApp from "./firebase";
-import {getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc} from "firebase/firestore";
+import {getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc, setDoc} from "firebase/firestore";
 import sha256 from "./components/plugins/helpers/sha256"
 import datequery from "./components/plugins/helpers/datequery";
 
@@ -35,9 +35,13 @@ export default {
             if (docSnap.exists()) {
                 if (docSnap.data().PasswordHash === inPassword) {
                     return {
+                        guestroom: inRoom,
                         guestfname: docSnap.data().Fname,
                         guestlname: docSnap.data().Lname,
-                        guestPCR: docSnap.data().PCR,
+                        guestlastfoodselectdate: docSnap.data().lastMealSelection,
+                        guestlasthealthdeclaration: docSnap.data().lastHealthDeclaration,
+                        guestnextpcr: docSnap.data().PCR[0],
+                        guestfinance: docSnap.data().finance
                     }
                 } else {
                     return "@Undefined";
@@ -199,13 +203,24 @@ export default {
             const HealthOrder = await getDocs(collection(db, "HealthOrder"));
             let outputOrder = []
             HealthOrder.forEach((doc) => {
-                var x = doc.data();
-                outputOrder.push({
-                    guestName: x['Guest'],
-                    date: x['Date'],
-                    symptoms: x['Symptoms'],
-                    temp: x['Temperature']
-                })
+                var roomNumber = doc.id
+
+                if (roomNumber !== "Blocker") {
+                    var x = doc.data();
+
+                    var symptom = "No"
+                    if ( x['Symptoms'] === "1") {
+                        symptom = "Yes"
+                    }
+
+                    outputOrder.push({
+                        room: roomNumber,
+                        guestName: x['Guest'],
+                        date: x['Date'],
+                        symptoms: symptom,
+                        temp: x['Temperature']
+                    })
+                }
             })
             return outputOrder
         },
@@ -253,6 +268,66 @@ export default {
                 role: newPosition,
                 zone: access
             })
+        },
+
+        async getQuarantineStatus() {
+            const guestDoc = await getDocs(collection(db, "RegInfo"))
+            let outputMeta = []
+            guestDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+                
+                if (roomNumber !== "block") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        room: roomNumber,
+                        start: x['DOA'],
+                        end: x['checkout'],
+                        pcr: x['PCR'],
+                        quarantinePlan: x['quarantineLength'],
+                        country: x['COD']
+                    })
+                }
+            })
+            return outputMeta
+        },
+
+        async healthCheckOut(roomNumber) {
+            const today = datequery.methods.fetchTodayString()
+            await updateDoc(doc(db, "RegInfo", roomNumber), {
+                checkout: today
+            })
+            const guestDoc = await getDoc(doc(db, "RegInfo", roomNumber))
+            var x = guestDoc.data()
+            const docRef = await setDoc(doc(db, "HealthCheckout", roomNumber), x)
+            console.log(docRef);
+            const docRef2 = await deleteDoc(doc(db, "RegInfo", roomNumber));
+            console.log(docRef2);
+        },
+
+        async getHealthCheckOut() {
+            const guestDoc = await getDocs(collection(db, "HealthCheckout"))
+            let outputMeta = []
+            guestDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+                
+                if (roomNumber !== "Blocker") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        room: roomNumber,
+                        name: x['Fname'] + " " + x['Lname'],
+                        date: x['checkout']
+                    })
+                }
+            })
+            return outputMeta
+        },
+
+        async quarantineCheckout(roomNumber) {
+            await deleteDoc(doc(db, "HealthCheckout", roomNumber));
+        },
+
+        async removeHealthAlert(roomNumber) {
+            await deleteDoc(doc(db, "HealthOrder", roomNumber));
         },
     }
 }

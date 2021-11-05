@@ -10,9 +10,9 @@
         <th>Room</th>
         <th>Items Ordered</th>
         <th>Payment Amount</th>
-        <th>Payment Method</th>
+        <th>Delivery Method</th>
         <th>Order Status</th>
-        <th>Time of Payment</th>
+        <th>Time of Order</th>
         <th></th>
       </tr>
     </thead>
@@ -109,6 +109,7 @@ export default {
       let ind = 1;
 
       z.forEach((docs) => {
+        console.log(docs)
         let yy = docs.data();
         var table = document.getElementById("shop orders");
         var row = table.insertRow(ind);
@@ -117,9 +118,9 @@ export default {
         var room = yy.Room;
         var itemsOrdered = yy.ItemsOrdered;
         var paymentAmount = yy.PaymentAmount;
-        var paymentMethod = yy.PaymentMethod;
+        var deliveryMethod = yy.DeliveryMethod;
         var orderStatus = yy.OrderStatus;
-        var timeOfPayment = yy.TimeOfPayment;
+        var timeOfOrder = yy.TimeOfOrder;
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -135,10 +136,10 @@ export default {
         cell2.innerHTML = room;
         cell3.innerHTML = itemsOrdered;
         cell4.innerHTML = paymentAmount;
-        cell5.innerHTML = paymentMethod;
+        cell5.innerHTML = deliveryMethod;
         cell6.innerHTML = orderStatus;
-        cell7.innerHTML = timeOfPayment;
-        
+        cell7.innerHTML = timeOfOrder;
+
         var bu = document.createElement("button");
         bu.className = "bwt";
         bu.id = String(room);

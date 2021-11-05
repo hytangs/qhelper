@@ -5,7 +5,9 @@ export default {
             localStorage.adminpass = null;
             localStorage.adminadmitted = false;
             localStorage.adminzone = 0;
-            localStorage.guestuser = null;
+            localStorage.guestroom = null;
+            localStorage.guestfname = null;
+            localStorage.guestlname = null;
             localStorage.guestlastfoodselectdate = '';
         },
 
@@ -33,9 +35,40 @@ export default {
             return out
         },
 
+        getGuestRoom() {
+            let out;
+            try {
+                out = localStorage.guestroom;
+                if (out === 'null') {
+                    out = 'Undefined'
+                }
+            } catch (x) {
+                out = 'Undefined'
+            }
+            return out
+        },
+
+        getGuestName() {
+            let out;
+            try {
+                out = localStorage.guestfname + " " + localStorage.guestlname;
+                if (out === 'null null') {
+                    out = 'Unauthorized Guest'
+                }
+            } catch (x) {
+                out = 'Unauthorized Guest'
+            }
+            return out
+        },
+
         initializeGuestSession(table) {
-            localStorage.guestuser = table.room;
-            localStorage.guestlastfoodselectdate = '';
+            localStorage.guestroom = table.guestroom;
+            localStorage.guestfname = table.guestfname;
+            localStorage.guestlname = table.guestlname;
+            localStorage.guestlastfoodselectdate = table.guestlastfoodselectdate;
+            localStorage.guestlasthealthdeclaration = table.guestlasthealthdeclaration;
+            localStorage.guestnextpcr = table.guestnextpcr;
+            localStorage.guestfinance = table.guestfinance;
         }
     }
 }

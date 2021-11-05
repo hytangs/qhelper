@@ -11,142 +11,90 @@
       </tr>
     </thead>
     
-    <!-- <tbody>
-      <tr>
-        <td data-label="Guest Name"> Guest Name </td>
-        <td data-label="Symptoms"> Symptoms </td>
-        <td data-label="Temperature Declared"> Temperature Declared </td>
-        <td data-label="Date"> Date </td>
-        <td class="actions-cell">
-          <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="danger" :icon="mdiTrashCan" small @click="remove()" />
-          </jb-buttons>
-        </td>
-      </tr>
-      <tr v-for="guest in store.state.healthAlertDefault" :key="guest.guestName">
+    <tbody>
+      <tr v-for="guest in itemsPaginated" :key="guest.room">
         <td data-label="Guest Name">{{guest.guestName}} </td>
         <td data-label="Symptoms"> {{guest.symptoms}} </td>
         <td data-label="Temperature Declared"> {{guest.temp}}</td>
         <td data-label="Date"> {{guest.date}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="danger" :icon="mdiTrashCan" small @click="remove()" />
+            <jb-button color="danger" :icon="mdiTrashCan" small @click="remove(guest.room)" />
           </jb-buttons>
         </td>
       </tr>
-    </tbody> -->
+    </tbody>
 </table>
 </template>
 
 <script>
-// import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
-import { computed } from 'vue'
 import { mdiTrashCan } from '@mdi/js'
-// import JbButtons from '../../plugins/JbButtons'
-// import JbButton from '../../plugins/JbButton'
-// import connector from "../../../connector"
-
-import firebaseApp from "../../../firebase.js";
-import { getFirestore } from "firebase/firestore";
-import { collection, doc, deleteDoc, getDocs } from "firebase/firestore";
-const db = getFirestore(firebaseApp);
+import JbButtons from '../../plugins/JbButtons'
+import JbButton from '../../plugins/JbButton'
+import connector from "../../../connector";
 
 export default {
   name: "QuarantineHealthAlert.vue",
 
   components: {
-    // JbButtons,
-    // JbButton,
+    JbButtons,
+    JbButton,
   },
-
-  mounted() {
-    async function display() {
-      let z = await getDocs(collection(db, "HealthOrder"));
-      let ind = 1
-
-      z.forEach((docs) => {
-        let yy = docs.data()
-        let roomNumber = docs.id
-
-        var table = document.getElementById("health alert")
-        var row = table.insertRow(ind)
-
-        var guestName = yy.Guest
-        var date = yy.Date
-        // var doctor = yy.SeeDoctor
-        var symptoms = yy.Symptoms
-        var temp = yy.Temperature
-
-        // if (doctor == "1") {
-        //   doctor = "True"
-        // } else {
-        //   doctor = "False"
-        // }
-
-        if (symptoms == "1") {
-          symptoms = "True"
-        } else {
-          symptoms = "False"
-        }
-
-        var cell1 = row.insertCell(0); 
-        var cell2 = row.insertCell(1); 
-        var cell3 = row.insertCell(2); 
-        var cell4 = row.insertCell(3); 
-        var cell5 = row.insertCell(4);
-
-        cell1.innerHTML = guestName; 
-        cell2.innerHTML = symptoms
-        cell3.innerHTML = temp
-        cell4.innerHTML = date
-
-        var bu = document.createElement("button")
-        // bu.className = "bwt px-1 p-1inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded"
-        bu.id = String(roomNumber)
-        // bu.icon = document.createElement("icon")
-        // bu.icon.className = "mdi mdi-24px rounded-max text-white d-flex p-2 lh-24 my-1 mr-2 mdi-mdiTrashCan" ;
-        bu.innerHTML = "Delete"
-        bu.onclick = function() {
-          deleteinstrument(roomNumber)
-        }
-        cell5.appendChild(bu)
-      });
-    }
-
-    display();
-
-    async function deleteinstrument(roomNumber) {
-      var x = roomNumber
-      alert("You are going to delete Health Alert!")
-      await deleteDoc(doc(db, "HealthOrder", x))
-      console.log("Document successfully deleted!")
-      let tb = document.getElementById("health alert")
-      while (tb.rows.length > 1) {
-        tb.deleteRow(1)
-      }
-      display();
-    }
-  },
-
 
   setup() {
     const store = useStore()
 
     const darkMode = computed(() => store.state.darkMode)
 
+    const items = computed(() => store.state.healthAlertDefault)
+
+    const perPage = ref(10)
+
+    const currentPage = ref(0)
+
+    // const checkedRows = ref([])
+
+    const itemsPaginated = computed(
+      () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
+    )
+
+    // const numPages = computed(() => Math.ceil(items.value.length / perPage.value))
+
+    // const currentPageHuman = computed(() => currentPage.value + 1)
+
+    // const pagesList = computed(() => {
+    //   const pagesList = []
+
+    //   for (let i = 0; i < numPages.value; i++) {
+    //     pagesList.push(i)
+    //   }
+
+    //   return pagesList
+    // })
+
     return {
       mdiTrashCan,
-      darkMode
+      darkMode,
+      itemsPaginated
     }
   },
 
-  // async created() {
-  //   const store = useStore()
-  //   let healthOrder = await connector.methods.getHealthAlert().then(x => x)
-  //   console.log(healthOrder)
-  //   store.commit('alterHealthAlert' , healthOrder)
-  // }
+  async created() {
+    const store = useStore()
+    let healthOrder = await connector.methods.getHealthAlert().then(x => x)
+    console.log(healthOrder)
+    store.commit('alterHealthAlert' , healthOrder)
+  },
+
+  methods: {
+    async remove(roomNumber) {
+      await connector.methods.removeHealthAlert(roomNumber)
+      let meta = await connector.methods.getHealthAlert().then(x => x)
+      this.$store.commit('alterHealthAlert', meta);
+    }
+  }
 }
 </script>
 
