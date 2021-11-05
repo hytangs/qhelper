@@ -1,6 +1,6 @@
 
 import firebaseApp from "./firebase";
-import {getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc} from "firebase/firestore";
+import {getFirestore, doc, getDoc, collection, getDocs, updateDoc, deleteDoc, setDoc} from "firebase/firestore";
 import sha256 from "./components/plugins/helpers/sha256"
 import datequery from "./components/plugins/helpers/datequery";
 
@@ -257,6 +257,36 @@ export default {
                 role: newPosition,
                 zone: access
             })
+        },
+
+        async getQuarantineStatus() {
+            const guestDoc = await getDocs(collection(db, "RegInfo"))
+            let outputMeta = []
+            guestDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+                
+                if (roomNumber !== "block") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        room: roomNumber,
+                        start: x['DOA'],
+                        end: x['checkout'],
+                        pcr: x['PCR'],
+                        quarantinePlan: x['quarantineLength'],
+                        country: x['COD']
+                    })
+                }
+            })
+            return outputMeta
+        },
+
+        async healthCheckOut(roomNumber) {
+            const guestDoc = await getDoc(doc(db, "RegInfo", roomNumber))
+            var x = guestDoc.data()
+            const docRef = await setDoc(doc(db, "HealthCheckout", roomNumber), x)
+            console.log(docRef);
+            const docRef2 = await deleteDoc(doc(db, "RegInfo", roomNumber));
+            console.log(docRef2);
         },
     }
 }

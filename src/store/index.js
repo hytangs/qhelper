@@ -100,6 +100,15 @@ export default createStore({
       doublerate: '400',
       premiumrate: '450',
       apartmentrate: '800'
+    }],
+
+    quarantineRoster: [{
+      room: '0000',
+      start: 'YYYYMMDD',
+      end: 'YYYYMMDD',
+      pcr: [],
+      quarantinePlan: '0',
+      country: 'country'
     }]
   },
 
@@ -150,6 +159,10 @@ export default createStore({
 
     alterStaffRoster (state, meta) {
       state.staffRoster = meta
+    },
+
+    alterQuarantineRoster(state, meta){
+      state.quarantineRoster = meta
     },
 
     changeFname(state, payload) {
