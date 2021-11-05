@@ -103,19 +103,41 @@ export default {
             }
         },
         async getRoomMeta() {
+
+            const regMeta = await getDocs(collection(db, "RegInfo"));
+            let regDict = {}
+            regMeta.forEach((doc) => {
+                var x = doc.data();
+                regDict[x.RoomNumber] = x.Fname + "/" + x.Lname;
+            })
+            console.log(regDict)
+
             const roomMeta = await getDocs(collection(db, "RoomMeta"));
             let outputMeta = []
             roomMeta.forEach((doc) => {
                 var x = doc.data();
                 var output = [];
+
                 for (var key in x) {
                     if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
+                        var roomStatus = x[key];
+                        var roomGuest;
+                        var checkout;
+                        if (roomStatus !== "0") {
+                            roomStatus = "Occupied"
+                            checkout = x[key]
+                            roomGuest = regDict[key]
+                        } else {
+                            roomStatus = "Free"
+                            roomGuest = 'Not Applicable'
+                            checkout = 'Not Applicable'
+                        }
                         output.push({
                             roomNo: key,
-                            roomStatus: x[key],
+                            roomStatus: roomStatus,
                             roomType: x['name'],
-                            roomGuestName: 'Not yet ready',
-                            roomCheckout: 'N/A'
+                            roomGuestName: roomGuest,
+                            roomCheckout: checkout
                         })
                     }
                 }
@@ -294,7 +316,7 @@ export default {
             let outputMeta = []
             guestDoc.forEach((doc) => {
                 var roomNumber = doc.id;
-                
+
                 if (roomNumber !== "block") {
                     var x = doc.data();
                     outputMeta.push({
@@ -328,7 +350,7 @@ export default {
             let outputMeta = []
             guestDoc.forEach((doc) => {
                 var roomNumber = doc.id;
-                
+
                 if (roomNumber !== "Blocker") {
                     var x = doc.data();
                     outputMeta.push({
