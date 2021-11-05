@@ -69,48 +69,52 @@ export default {
         let yy = docs.data()
         let roomNumber = docs.id
 
-        var table = document.getElementById("health alert")
-        var row = table.insertRow(ind)
+        if (roomNumber !== "Blocker") {
+          var table = document.getElementById("health alert")
+          var row = table.insertRow(ind)
 
-        var guestName = yy.Guest
-        var date = yy.Date
-        // var doctor = yy.SeeDoctor
-        var symptoms = yy.Symptoms
-        var temp = yy.Temperature
+          var guestName = yy.Guest
+          var date = yy.Date
+          // var doctor = yy.SeeDoctor
+          var symptoms = yy.Symptoms
+          var temp = yy.Temperature
 
-        // if (doctor == "1") {
-        //   doctor = "True"
-        // } else {
-        //   doctor = "False"
-        // }
+          // if (doctor == "1") {
+          //   doctor = "True"
+          // } else {
+          //   doctor = "False"
+          // }
 
-        if (symptoms == "1") {
-          symptoms = "True"
-        } else {
-          symptoms = "False"
+          if (symptoms == "1") {
+            symptoms = "True"
+          } else {
+            symptoms = "False"
+          }
+
+          var cell1 = row.insertCell(0); 
+          var cell2 = row.insertCell(1); 
+          var cell3 = row.insertCell(2); 
+          var cell4 = row.insertCell(3); 
+          var cell5 = row.insertCell(4);
+
+          cell1.innerHTML = guestName; 
+          cell2.innerHTML = symptoms
+          cell3.innerHTML = temp
+          cell4.innerHTML = date
+
+          var bu = document.createElement("button")
+          bu.className = "bwt px-1 p-1inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded"
+          // bu.className = "rounded-0 flex-shrink-0 border-top border-bottom-0 border-left-0 border-right-0 d-flex align-items-center text-left py-2 mb-0 btn px-3"
+          bu.id = String(roomNumber)
+          bu.icon = document.createElement("icon")
+          // bu.icon.className = "mdi mdi-24px rounded-max text-white d-flex p-2 lh-24 my-1 mr-2 mdi-mdiTrashCan" ;
+          // bu.icon.className = "mdi mdi-24px rounded-max text-white d-flex p-2 lh-24 my-1 mr-2 bg-secondary mdi-mdiTrashCan"
+          bu.innerHTML = "Delete"
+          bu.onclick = function() {
+            deleteinstrument(roomNumber)
+          }
+          cell5.appendChild(bu)
         }
-
-        var cell1 = row.insertCell(0); 
-        var cell2 = row.insertCell(1); 
-        var cell3 = row.insertCell(2); 
-        var cell4 = row.insertCell(3); 
-        var cell5 = row.insertCell(4);
-
-        cell1.innerHTML = guestName; 
-        cell2.innerHTML = symptoms
-        cell3.innerHTML = temp
-        cell4.innerHTML = date
-
-        var bu = document.createElement("button")
-        // bu.className = "bwt px-1 p-1inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded"
-        bu.id = String(roomNumber)
-        // bu.icon = document.createElement("icon")
-        // bu.icon.className = "mdi mdi-24px rounded-max text-white d-flex p-2 lh-24 my-1 mr-2 mdi-mdiTrashCan" ;
-        bu.innerHTML = "Delete"
-        bu.onclick = function() {
-          deleteinstrument(roomNumber)
-        }
-        cell5.appendChild(bu)
       });
     }
 
