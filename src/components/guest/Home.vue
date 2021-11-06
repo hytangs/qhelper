@@ -37,6 +37,7 @@
         </div>
         <div class="subcards">
           <!--Health Status to be located here-->
+
         </div>
       </div>
       <div
@@ -141,4 +142,5 @@ export default {
   width: 99%;
   text-align: left;
 }
+
 </style>
