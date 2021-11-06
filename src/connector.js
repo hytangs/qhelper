@@ -212,11 +212,13 @@ export default {
             let outputMeta = []
             broadcastMeta.forEach((doc) => {
                 var x = doc.data();
-                outputMeta.push({
-                    contains: x['contains'],
-                    date: x['date'],
-                    sender: x['sender']
-                })
+                if (x['identification'] !== 'block') {
+                    outputMeta.push({
+                        contains: x['contains'],
+                        date: x['date'],
+                        sender: x['sender']
+                    })
+                }
             })
             return outputMeta
         },
