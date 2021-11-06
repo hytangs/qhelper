@@ -15,7 +15,7 @@
       <div id="announcement">
         <div id="btn-container">
         <button id="healthbtn" @click="() => TogglePopup('buttonTrigger')">
-          <b>Health Declaration Form</b>
+          <b>Click for Health Declaration Form</b>
         </button>
         </div>
         <!--Announcements to be located here-->
@@ -149,7 +149,14 @@ export default {
 }
 
 #healthbtn:hover {
-  color: goldenrod;
-  text-decoration: underline;
+  background-color: rgba(37, 99, 235);
+}
+
+#healthbtn {
+  background-color: rgb(59,130,246);
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 24px;
 }
 </style>
