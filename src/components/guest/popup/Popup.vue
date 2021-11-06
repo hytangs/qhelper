@@ -61,7 +61,7 @@
             <hr class="my-6 -mx-6 border-t border-gray-100 dark:border-gray-700">
           </div>
           <div class="declare flex items-center justify-start flex-wrap -mb-3">
-            <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3" type="submit" @click="submitcheck()">
+            <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3" type="submit" @click="TogglePopup(),submitcheck()">
               <span class="px-2">Declare</span>
             </button>
             <!--<button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-500 hover:text-white text-blue-500 border-blue-600 mr-3 last:mr-0 mb-3" type="reset">
@@ -148,7 +148,6 @@ export default {
         });
 
         alert("Health status declared today! Please continue to monitor your health and report tomorrow!")
-        this.TogglePopup()
 
       } else {
         await updateDoc(doc(db, "RegInfo", localsession.methods.getGuestRoom()), {
@@ -165,7 +164,6 @@ export default {
         });
 
         alert("We have recorded your health declaration. Our healthcare professionals will attend to you very soon.")
-        this.TogglePopup()
       }
     }
   },
