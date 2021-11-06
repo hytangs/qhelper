@@ -22,7 +22,7 @@
         <td data-label="Date"> {{guest.date}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="success" :icon="mdiAccountMultiplePlus" small @click="isModalDangerActive1 = true, checkIn()" />
+            <jb-button color="success" :icon="mdiAccountMultiplePlus" small @click="isModalDangerActive1 = true, checkIn(guest.room)" />
             <jb-button color="danger" :icon="mdiAccountMultipleMinus" small @click="isModalDangerActive2 = true, checkOut(guest.room)" />
           </jb-buttons>
         </td>
@@ -118,8 +118,10 @@ export default {
   },
 
   methods: {
-    checkIn() {
-      // remove data
+    async checkIn(roomNumber) {
+      await connector.methods.healthCheckin(roomNumber)
+      let meta = await connector.methods.getHealthCheckOut().then(x => x)
+      this.$store.commit('alterHealthCheckOut', meta);
     },
 
     async checkOut(room) {

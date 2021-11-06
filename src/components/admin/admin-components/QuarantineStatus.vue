@@ -5,7 +5,7 @@
 </modal-box>
 
 <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Clear <b>Quarantine Status</b> for room</p>
+  <p>Guest has undergone Health Check Out!</p>
 </modal-box>
 
 <table>

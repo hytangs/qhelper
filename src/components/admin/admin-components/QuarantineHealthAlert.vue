@@ -7,8 +7,8 @@
         <th>Guest Name</th>
         <th>Symptoms</th>
         <th>Temperature</th>
-        <th>Request</th>
         <th>Date</th>
+        <th>Request</th>
         <th></th>
       </tr>
     </thead>

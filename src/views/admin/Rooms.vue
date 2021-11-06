@@ -39,7 +39,7 @@
 import { ref } from 'vue'
 import { mdiMonitorCellphone, mdiAccountMultiple, mdiTableBorder, mdiTableOff } from '@mdi/js'
 import MainSection from '../../components/plugins/MainSection'
-import Notification from '../../components/plugins/Notification'
+// import Notification from '../../components/plugins/Notification'
 import CardComponent from '../../components/plugins/CardComponent'
 import TitleBar from '../../components/plugins/TitleBar'
 import HeroBar from '../../components/plugins/HeroBar'
@@ -64,7 +64,7 @@ export default {
     HeroBar,
     TitleBar,
     CardComponent,
-    Notification,
+    // Notification,
     Overlay,
     FooterBar,
     AsideMenu,
