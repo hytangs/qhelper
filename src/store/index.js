@@ -54,7 +54,8 @@ export default createStore({
     publicBroadcast: [{
       contains: 'No message',
       date: 'N/A',
-      sender: 'N/A'
+      sender: 'N/A',
+      id: '-1'
     }],
 
     healthAlertDefault: [{

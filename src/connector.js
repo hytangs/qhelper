@@ -216,7 +216,8 @@ export default {
                     outputMeta.push({
                         contains: x['contains'],
                         date: x['date'],
-                        sender: x['sender']
+                        sender: x['sender'],
+                        id: x['id']
                     })
                 }
             })
