@@ -3,7 +3,7 @@
     <div class="w-1/2 my-8 mx-auto">
       <h1 class="text-3xl text-gray-500">Payment</h1>
       <p class="text-gray-400">All transaction are secure and encrypted</p>
-      <p class="text-gray-400">Your Total Cost is: $XX</p>
+      <p class="text-gray-400">Your Total Cost is: {{ this.finance }}</p>
       <div class="panel mt-8">
         <div class="rounded border border-gray-300">
           <!-- pannel inner -->
@@ -47,7 +47,7 @@
               </label>
             </div>
             <div v-if="paymentOptions.payNow" class="px-6 py-3 bg-gray-100 text-gray-400">
-              <CreditCardIcon class="h-72 w-72 m-auto text-gray-400"/> 
+              <CreditCardIcon class="h-72 w-72 m-auto text-gray-400"/>
               <p class="text-center">After "Clicking Complete order", You will be redirect to HitPay-PayNow QR Checkout to complete your
                 purchase securely </p>
             </div>
@@ -110,6 +110,7 @@
 
 <script>
 import {LockClosedIcon, QuestionMarkCircleIcon, CreditCardIcon} from '@heroicons/vue/solid'
+import localsession from "../../store/localsession";
 
 
 
@@ -135,7 +136,8 @@ export default {
         creditCard: false,
         payNow: false,
         grabPay: false
-      }
+      },
+      finance: localsession.methods.getGuestFinance()
     }
   }
 }

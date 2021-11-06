@@ -20,21 +20,21 @@
 
   <br><br><br><br>
 
-  <div id="checkout-page">
+  <div id="checkout-page" v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
     <div class="text-center">
       <br><br>
       <h1 class="text-3xl text-blue-500 mb-6">Our Final Goodbye...</h1>
       <br>
       <div v-if="showpay" class="payment-container">
         <Payment/>
-      </div> 
+      </div>
       <button v-on:click="showpay = !showpay" v-if="showpay" class="donebtn">Done</button>
       <div v-if="!showpay" class="checkoutlist-container">
         <div v-if="showlist">
             <Arrival/>
             <br>
             <button v-on:click="showlist = !showlist" class="setbtn">We're All Set!</button>
-        </div> 
+        </div>
       </div>
       <div id="finally" v-if="!showlist">
           <br><br><br><br><br><br><br><br><br><br>
@@ -44,11 +44,18 @@
         </div>
     </div><br><br>
     </div>
+  <div v-else>
+    <br />
+    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
+  </div>
 </template>
 
 <script>
 import Arrival from './Arrival'
 import Payment from './Payment'
+import localsession from "../../store/localsession";
 
 export default {
   name: "checkout",
@@ -60,6 +67,7 @@ export default {
         return {
             showpay: true,
             showlist:true,
+            guestroom: localsession.methods.getGuestRoom(),
         }
     }
 }
