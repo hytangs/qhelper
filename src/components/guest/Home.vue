@@ -1,24 +1,24 @@
 <template>
   <div id="home">
+
     <div
-      class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+      class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded h-auto shadow bottomgap a"
     >
       <div class="p-6">
         <table id="announce">
           <thead>
             <tr>
-              <th>Announcement</th>
+              <th>Announcements</th>
+              <!--Announcements to be located here-->
             </tr>
           </thead>
         </table>
-      </div>
-      <div id="announcement">
+        <br>
         <button @click="() => TogglePopup('buttonTrigger')">
-          <b> &nbsp;&nbsp; Health Declaration Form</b>
+          <b> &nbsp;&nbsp; Show / Hide Health Declaration Form</b>
         </button>
-        <!--Announcements to be located here-->
-
       </div>
+      <br />
     </div>
 
     <Popup
