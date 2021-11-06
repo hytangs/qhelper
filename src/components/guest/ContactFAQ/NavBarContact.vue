@@ -3,11 +3,13 @@
       <div id="nav2">
         <a @click="changeShopSection(1)">Health Related</a> |
         <a @click="changeShopSection(2)">Accomodation</a> |
-        <a @click="changeShopSection(3)">Payment Issues</a>
+        <a @click="changeShopSection(3)">Payment Issues</a> |
+        <a @click="changeShopSection(4)">Contact Information</a>
       </div>
         <Health v-show="currentSection === 1"/>
         <Accomodation v-show="currentSection === 2"/>
         <Payment v-show="currentSection === 3"/>
+        <Service v-show="currentSection === 4"/>
     </div>
 </template>
 
@@ -15,8 +17,9 @@
 import Health from "./Health";
 import Accomodation from "./Accomodation";
 import Payment from "./Payment";
+import Service from "./Service";
 export default {
-  components: {Health, Accomodation, Payment},
+  components: {Health, Accomodation, Payment, Service},
   data() {
     return {
       currentSection : 1
