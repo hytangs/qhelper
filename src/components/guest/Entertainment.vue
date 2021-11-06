@@ -18,22 +18,36 @@
     <span class="px-2 transition-colors lg:hidden">Log out</span></a>
   </header>
 
-  <br><br><br>
-  
-<div class = "entertain">
-<NavBar/><br>
+  <br><br><br><br>
 
-</div>
+  <div class = "entertain" v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
+    <NavBar/><br>
+
+  </div>
+
+  <div v-else>
+    <br />
+    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
+  </div>
+
 </template>
 
 <script>
 import NavBar from './entertainments/NavBar'
+import localsession from "../../store/localsession";
 
 export default {
     name: "Entertainment",
     components:{
         NavBar
-    }
+    },
+  data() {
+      return {
+        guestroom: localsession.methods.getGuestRoom()
+      }
+  }
 }
 </script>
 

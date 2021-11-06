@@ -45,9 +45,7 @@
         <nav-bar-item @click.prevent="toggleLightDark" has-divider is-desktop-icon-only>
           <nav-bar-item-label :icon="mdiThemeLightDark" label="Light/Dark" is-desktop-icon-only />
         </nav-bar-item>
-        <nav-bar-item href="https://github.com/hytangs/qhelper" has-divider is-desktop-icon-only>
-          <nav-bar-item-label :icon="mdiGithub" label="GitHub" is-desktop-icon-only />
-        </nav-bar-item>
+
         <nav-bar-item @click="localsession.methods.initializeStorage()" href='/' is-desktop-icon-only>
           <nav-bar-item-label :icon="mdiLogout" label="Log out" is-desktop-icon-only />
         </nav-bar-item>

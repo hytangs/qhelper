@@ -33,6 +33,8 @@ export default createStore({
     vacantrooms: 0,
     occupiedrooms: 0,
 
+    countstaff: 0,
+
     /* Room Default JSON Storage */
     roomTypeDefault: [{
       roomType: 'Room Type Undefined',
@@ -61,6 +63,12 @@ export default createStore({
       date: 'Date',
       symptoms: 'No',
       temp: '0'
+    }],
+
+    feedbackData: [{
+      Name: 'Name',
+      Room: 'Room',
+      Feedback: 'Feedback'
     }],
 
     guestInfo: [{
@@ -144,6 +152,10 @@ export default createStore({
       state.occupiedrooms = meta.occupiedrooms
     },
 
+    countstaffaction (state, meta) {
+      state.countstaff = meta
+    },
+
     alterroomtype (state, meta) {
       state.roomTypeDefault = meta
     },
@@ -174,6 +186,10 @@ export default createStore({
 
     alterHealthCheckOut(state, meta) {
       state.healthCheckOutRoster = meta
+    },
+
+    alterFeedbackData(state, meta) {
+      state.feedbackData = meta
     },
 
     changeFname(state, payload) {

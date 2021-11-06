@@ -29,13 +29,6 @@
       <PublicBroadcast/>
     </card-component>
 
-    <title-sub-bar :icon="mdiTableOff" title="Empty variation: template"/>
-
-    <notification color="danger" :icon="mdiTableOff">
-      <b>Empty table.</b> When there's nothing to show
-    </notification>
-
-    <card-component empty/>
   </main-section>
 
   <footer-bar v-if="zone === '1' || zone === '3'"/>

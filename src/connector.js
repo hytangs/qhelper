@@ -103,19 +103,41 @@ export default {
             }
         },
         async getRoomMeta() {
+
+            const regMeta = await getDocs(collection(db, "RegInfo"));
+            let regDict = {}
+            regMeta.forEach((doc) => {
+                var x = doc.data();
+                regDict[x.RoomNumber] = x.Fname + "/" + x.Lname;
+            })
+            console.log(regDict)
+
             const roomMeta = await getDocs(collection(db, "RoomMeta"));
             let outputMeta = []
             roomMeta.forEach((doc) => {
                 var x = doc.data();
                 var output = [];
+
                 for (var key in x) {
                     if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
+                        var roomStatus = x[key];
+                        var roomGuest;
+                        var checkout;
+                        if (roomStatus !== "0") {
+                            roomStatus = "Occupied"
+                            checkout = x[key]
+                            roomGuest = regDict[key]
+                        } else {
+                            roomStatus = "Free"
+                            roomGuest = 'Not Applicable'
+                            checkout = 'Not Applicable'
+                        }
                         output.push({
                             roomNo: key,
-                            roomStatus: x[key],
+                            roomStatus: roomStatus,
                             roomType: x['name'],
-                            roomGuestName: 'Not yet ready',
-                            roomCheckout: 'N/A'
+                            roomGuestName: roomGuest,
+                            roomCheckout: checkout
                         })
                     }
                 }
@@ -190,11 +212,13 @@ export default {
             let outputMeta = []
             broadcastMeta.forEach((doc) => {
                 var x = doc.data();
-                outputMeta.push({
-                    contains: x['contains'],
-                    date: x['date'],
-                    sender: x['sender']
-                })
+                if (x['identification'] !== 'block') {
+                    outputMeta.push({
+                        contains: x['contains'],
+                        date: x['date'],
+                        sender: x['sender']
+                    })
+                }
             })
             return outputMeta
         },
@@ -242,6 +266,13 @@ export default {
             return outputMeta
         },
 
+        async countStaff() {
+            const staffRosterMeta = await getDocs(collection(db, "AdminAccount"));
+            let outputMeta = 0
+            staffRosterMeta.forEach(() => outputMeta += 1);
+            return outputMeta;
+        },
+
         async removeStaff(accountName) {
             await deleteDoc(doc(db, "AdminAccount", accountName));
         },
@@ -270,12 +301,31 @@ export default {
             })
         },
 
+        async getFeedback() {
+            const feedbackData = await getDocs(collection(db, "Feedback"));
+            let outputMeta = []
+            feedbackData.forEach((doc) => {
+                var x = doc.data();
+                console.log("hi")
+                outputMeta.push({
+                    name: x['Name'],
+                    room: x['Room'],
+                    feedback: x['Feedback'],
+                })
+            })
+            return outputMeta
+        },
+
+        async removeFeedback(room) {
+            await deleteDoc(doc(db, "Feedback", room));
+        },
+
         async getQuarantineStatus() {
             const guestDoc = await getDocs(collection(db, "RegInfo"))
             let outputMeta = []
             guestDoc.forEach((doc) => {
                 var roomNumber = doc.id;
-                
+
                 if (roomNumber !== "block") {
                     var x = doc.data();
                     outputMeta.push({
@@ -309,7 +359,7 @@ export default {
             let outputMeta = []
             guestDoc.forEach((doc) => {
                 var roomNumber = doc.id;
-                
+
                 if (roomNumber !== "Blocker") {
                     var x = doc.data();
                     outputMeta.push({

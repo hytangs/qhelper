@@ -36,9 +36,13 @@
 
   <br /><br /><br /><br />
 
-  <div id="mealpage">
+  <div id="mealpage" v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
     <br />
-    <h1 class="text-2xl">Menu for {{ currentDate }}</h1>
+    <p class="text-3xl hover:text-gray-700"><b>Regular Menu for {{ currentDate }}</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900"><b>Instructions: </b>Select individually for each meals and click submit to order: )</h2>
+    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you need to change your meal selection, simply submit an order again.</h2>
+    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you forget to select your meal, we will provide you a default meal.</h2>
     <br />
     <div class="form_container">
       <form
@@ -102,8 +106,8 @@
            <control placeholder="Special" id="request" />
         </field>
         <field class="w-1/2 m-auto mb-4" label="Your Name and Room Number">
-          <control placeholder="Name" id="name" />
-          <control placeholder="Room Number" id="room" />
+          <text class="text-xl" id="room">{{ this.guestroom }}</text>
+          <text class="text-xl" id="name">{{ this.guestname }}</text>
         </field>
         <div class="submit">
           <button class="submission" type="button" @click="savetofs()">
@@ -125,7 +129,7 @@
           <div class="absolute inset-0 bg-gray-900 opacity-75" />
         </div>
         <div
-          class="inline-block align-center bg-white p-16 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-32 sm:align-middle sm:max-w-3xl sm:w-full relative"
+          class="inline-block align-center bg-white h-3/5 w-1/3 p-12 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-32 sm:align-middle"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-headline"
@@ -138,6 +142,7 @@
             <XIcon class="h-6 w-6 text-blue-900 sm:text-sm"></XIcon>
           </a>
           <img class="w-auto rounded-lg" :src="popup.lgSrc" :alt="popup.alt" />
+          <br />
           <div class="mt-3 text-left">
             <h3 class="uppercase text-blue-900 font-extrabold text-2xl">
               {{ popup.name }}
@@ -147,6 +152,12 @@
         </div>
       </div>
     </div>
+  </div>
+  <div v-else>
+    <br />
+    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
   </div>
 </template>
 
@@ -159,6 +170,8 @@ import Control from "../plugins/Control";
 import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore";
+import datequery from "../plugins/helpers/datequery";
+import localsession from "../../store/localsession";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -178,12 +191,11 @@ export default {
         var selection = document.querySelector('input[id="selected"]:checked')
           .value;
         var request = document.getElementById("request").value;
-        var room = document.getElementById("room").value;
-        var name = document.getElementById("name").value;
+        var room = this.guestroom;
         if (meal === "Breakfast") {
           const docRef = await setDoc(doc(db, "Breakfast", room), {
-            Name: name,
-            Room: room,
+            Name: this.guestname,
+            Room: this.guestroom,
             Meal: meal,
             Selection: selection,
             Request: request,
@@ -194,8 +206,8 @@ export default {
         }
         if (meal === "Lunch") {
           const docRef = await setDoc(doc(db, "Lunch", room), {
-            Name: name,
-            Room: room,
+            Name: this.guestname,
+            Room: this.guestroom,
             Meal: meal,
             Selection: selection,
             Request: request,
@@ -206,8 +218,8 @@ export default {
         }
         if (meal === "Dinner") {
           const docRef = await setDoc(doc(db, "Dinner", room), {
-            Name: name,
-            Room: room,
+            Name: this.guestname,
+            Room: this.guestroom,
             Meal: meal,
             Selection: selection,
             Request: request,
@@ -245,7 +257,8 @@ export default {
       this.mealsData[index].visible = true;
     },
     setTime() {
-      this.currentDate = moment(String(new Date())).format("MM/DD/YYYY");
+      //this.currentDate = moment(String(new Date())).format("MM/DD/YYYY");
+      this.currentDate = datequery.methods.addDaysOutput(2);
     },
   },
 
@@ -258,7 +271,7 @@ export default {
         items: [
           {
             name: "English Breakfast",
-            desc: "Food",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 8,
             priceUnit: " SGD",
             selected: false,
@@ -269,7 +282,7 @@ export default {
           },
           {
             name: "Cereal Milk",
-            desc: "",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 3,
             priceUnit: " SGD",
             selected: false,
@@ -280,7 +293,7 @@ export default {
           },
           {
             name: "French Toast",
-            desc: "",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 9,
             priceUnit: " SGD",
             selected: false,
@@ -291,7 +304,7 @@ export default {
           },
           {
             name: "Pancakes",
-            desc: "",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 7,
             priceUnit: " SGD",
             selected: false,
@@ -302,7 +315,7 @@ export default {
           },
           {
             name: "Japchae",
-            desc: "",
+            desc: "Served fresh by Chia's Asian Fusion.",
             price: 5,
             priceUnit: " SGD",
             selected: false,
@@ -313,7 +326,7 @@ export default {
           },
           {
             name: "Congee",
-            desc: "",
+            desc: "Served fresh by Chia's Asian Fusion.",
             price: 4,
             priceUnit: " SGD",
             selected: false,
@@ -330,8 +343,8 @@ export default {
         visible: true,
         items: [
           {
-            name: "Pizza",
-            desc: "",
+            name: "Pizza Au Magret",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 8,
             priceUnit: " SGD",
             selected: false,
@@ -341,8 +354,8 @@ export default {
               "https://media.istockphoto.com/photos/tasty-pepperoni-pizza-and-cooking-ingredients-tomatoes-basil-on-black-picture-id1083487948?k=20&m=1083487948&s=612x612&w=0&h=ROZ5t1K4Kjt5FQteVxTyzv_iqFcX8aqpl7YuA1Slm7w=",
           },
           {
-            name: "Grilled Cheese",
-            desc: "",
+            name: "Signature Grilled Cheese",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 5,
             priceUnit: " SGD",
             selected: false,
@@ -353,7 +366,7 @@ export default {
           },
           {
             name: "Spaghetti with Meatballs",
-            desc: "",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 8,
             priceUnit: " SGD",
             selected: false,
@@ -364,7 +377,7 @@ export default {
           },
           {
             name: "Tom Yum Soup with White Rice",
-            desc: "",
+            desc: "Served fresh by Chia's Asian Fusion.",
             price: 6,
             priceUnit: " SGD",
             selected: false,
@@ -375,7 +388,7 @@ export default {
           },
           {
             name: "Hainanese Chicken Rice",
-            desc: "",
+            desc: "Served fresh by Chia's Asian Fusion.",
             price: 7,
             priceUnit: " SGD",
             selected: false,
@@ -386,7 +399,7 @@ export default {
           },
           {
             name: "Quinoa Salad Bowl",
-            desc: "",
+            desc: "Served fresh by The Green Concept.",
             price: 8,
             priceUnit: " SGD",
             selected: false,
@@ -404,7 +417,7 @@ export default {
         items: [
           {
             name: "Hokkien Prawn Noodle",
-            desc: "",
+            desc: "Served fresh by Chia's Asian Fusion.",
             price: 7,
             priceUnit: " SGD",
             selected: false,
@@ -415,7 +428,7 @@ export default {
           },
           {
             name: "Impossible Burger",
-            desc: "",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 9,
             priceUnit: " SGD",
             selected: false,
@@ -426,7 +439,7 @@ export default {
           },
           {
             name: "Japanese Ramen",
-            desc: "",
+            desc: "Served fresh by Chia's Asian Fusion.",
             price: 8,
             priceUnit: " SGD",
             selected: false,
@@ -437,7 +450,7 @@ export default {
           },
           {
             name: "Egg Fried Rice",
-            desc: "",
+            desc: "Served fresh by Chia's Asian Fusion.",
             price: 5,
             priceUnit: " SGD",
             selected: false,
@@ -448,7 +461,7 @@ export default {
           },
           {
             name: "Falafel Pita Pocket",
-            desc: "",
+            desc: "Served fresh by The Green Concept.",
             price: 8,
             priceUnit: " SGD",
             selected: false,
@@ -459,7 +472,7 @@ export default {
           },
           {
             name: "Beef Burrito",
-            desc: "",
+            desc: "Served fresh by The Ivy Market Grill.",
             price: 7,
             priceUnit: " SGD",
             selected: false,
@@ -488,6 +501,8 @@ export default {
       showDinner: false,
       currentDate: null,
       selectItem: [],
+      guestroom: localsession.methods.getGuestRoom(),
+      guestname: localsession.methods.getGuestName(),
     };
   },
 };

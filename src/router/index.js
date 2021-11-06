@@ -74,16 +74,6 @@ const routes = [
     component: () => import('../views/admin/AdminDashboard2')
   },
   {
-    // Document title tag
-    // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
-    meta: {
-      title: 'Dashboard'
-    },
-    path: '/admin',
-    name: 'home',
-    component: () => import('../views/admin/Home')
-  },
-  {
     meta: {
       title: 'FoodSelection'
     },
@@ -141,46 +131,6 @@ const routes = [
   },
   {
     meta: {
-      title: 'Tables'
-    },
-    path: '/admin/tables',
-    name: 'tables',
-    component: () => import('../views/admin/Tables')
-  },
-  {
-    meta: {
-      title: 'Forms'
-    },
-    path: '/admin/forms',
-    name: 'forms',
-    component: () => import('../views/admin/Forms')
-  },
-  {
-    meta: {
-      title: 'Profile'
-    },
-    path: '/admin/profile',
-    name: 'profile',
-    component: () => import('../views/admin/Profile')
-  },
-  {
-    meta: {
-      title: 'Ui'
-    },
-    path: '/admin/ui',
-    name: 'ui',
-    component: () => import('../views/admin/Ui')
-  },
-  {
-    meta: {
-      title: 'Responsive layout'
-    },
-    path: '/admin/responsive',
-    name: 'responsive',
-    component: () => import('../views/admin/Responsive')
-  },
-  {
-    meta: {
       title: 'Login',
       fullScreen: true
     },
@@ -190,11 +140,11 @@ const routes = [
   },
   {
     meta: {
-      title: 'Blank Page'
+      title: 'QR Pass'
     },
-    path: '/admin/blank',
-    name: 'blank',
-    component: () => import('../views/admin/AdminTemplate')
+    path: '/admin/qrpass',
+    name: 'QR Pass',
+    component: () => import('../views/admin/AdminQR')
   },
   {
     meta: {
@@ -276,7 +226,7 @@ const routes = [
     path: '/entertainment',
     name: 'entertainment',
     component: () => import('../components/guest/Entertainment')
-   }, 
+   },
    {
     meta: {
         title: 'Home'

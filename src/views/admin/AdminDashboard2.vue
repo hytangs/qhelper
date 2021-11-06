@@ -2,9 +2,9 @@
   <nav-bar />
   <aside-menu :menu="menu" />
   <title-bar :title-stack="titleStack" />
-  <hero-bar v-if="zone !== '0'">Dashboard</hero-bar>
+  <hero-bar v-if="zone > '0'">Dashboard</hero-bar>
   <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
-  <main-section v-if="zone !== '0'">
+  <main-section v-if="zone > '0'">
     <notification color="info" :icon="mdiAlertCircle">
       Please follow Personal Data Protection Act when using this system.
       <template #right>
@@ -26,54 +26,53 @@
     >
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
         <card-widget
-          trend="8%"
-          trend-type="down"
+          trend=" updated "
+          trend-type="up"
           color="text-green-500"
-          :icon="mdiAccountMultiple"
+          :icon="mdiBed"
           :number=store.state.totalrooms
           label="Total Rooms"
         />
         <card-widget
-          trend=" "
+          trend=" updated "
           trend-type="up"
           color="text-green-500"
-          :icon="mdiBed"
+          :icon="mdiAccountMultiple"
           :number=store.state.occupiedrooms
           label="Occupied Rooms"
         />
         <card-widget
-          trend="3%"
-          trend-type="down"
+          trend=" updated "
+          trend-type="up"
           color="text-green-500"
           :icon="mdiBedEmpty"
           :number=store.state.vacantrooms
           label="Vacant Rooms"
         />
         <card-widget
-          trend="2%"
+          trend=" updated "
           trend-type="up"
           color="text-green-500"
           :icon="mdiAccountMultiple"
-          :number="30"
+          :number=store.state.countstaff
           label="Current Employees"
         />
         <card-widget
-          trend="12%"
+          trend=" updated "
           trend-type="up"
-          color="text-blue-500"
+          color="text-green-500"
           :icon="mdiCartOutline"
           :number="17820"
           prefix="$"
-          label="Sales"
+          label="Finance"
         />
         <card-widget
-          trend="High"
-          trend-type="alert"
-          color="text-red-500"
-          :icon="mdiChartTimelineVariant"
-          :number="25.6"
-          suffix="%"
-          label="Performance"
+          trend=" updated "
+          trend-type="up"
+          color="text-green-500"
+          :icon="mdiCalendar"
+          :number=datetoday
+          label="Date"
         />
       </div>
     </card-component>
@@ -112,7 +111,7 @@
       </card-component>
 
   </main-section>
-  <footer-bar v-if="zone !== '0'"/>
+  <footer-bar v-if="zone > '0'"/>
   <overlay
     v-show="isAsideLgActive"
     z-index="z-30"
@@ -127,7 +126,7 @@ import { useStore } from "vuex";
 import {
   mdiAccountMultiple,
   mdiCartOutline,
-  mdiChartTimelineVariant,
+  mdiCalendar,
   mdiFinance,
   mdiMonitorCellphone,
   mdiReload,
@@ -157,6 +156,7 @@ import localsession from "../../store/localsession";
 import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
 import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBroadcast';
 import connector from "../../connector";
+import datequery from "../../components/plugins/helpers/datequery";
 
 export default {
   name: "AdminDashboard",
@@ -197,6 +197,8 @@ export default {
       piechartData2.value = charts.samplePieChartData2();
     };
 
+    const datetoday = datequery.methods.addDaysOutput(1);
+
     onMounted(() => {
       fillPieChartData(),
       fillPieChartData2();
@@ -208,7 +210,7 @@ export default {
       darkMode,
       mdiAccountMultiple,
       mdiCartOutline,
-      mdiChartTimelineVariant,
+      mdiCalendar,
       mdiFinance,
       mdiMonitorCellphone,
       mdiReload,
@@ -225,6 +227,7 @@ export default {
       fillPieChartData,
       piechartData2,
       fillPieChartData2,
+      datetoday
     };
   },
 
@@ -232,6 +235,9 @@ export default {
     const store = useStore()
     let meta = await connector.methods.getMetaTuple().then(x => x)
     store.commit('meta' , {meta})
+
+    let countstaff = await connector.methods.countStaff()
+    store.commit('countstaffaction', countstaff)
   }
 };
 </script>
