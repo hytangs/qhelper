@@ -19,34 +19,19 @@
   </header>
 
   <br><br><br>
-
-  <div class = "entertain"  v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
-    <Home/>
-    <br>
-  </div>
-
-  <div v-else>
-    <br />
-    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
-    <br />
-    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
-  </div>
-
+  
+<div class = "entertain">
+<Home/><br>
+</div>
 </template>
 
 <script>
 import Home from './Home'
-import localsession from "../../store/localsession";
 
 export default {
     name:"HomeAlt",
     components:{
         Home
-    },
-    data() {
-      return {
-        guestroom: localsession.methods.getGuestRoom()
-      }
     }
 }
 </script>

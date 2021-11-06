@@ -63,7 +63,7 @@
             <div
               v-bind:key="j"
               v-for="(item, j) in meal.items"
-              class="max-w-sm rounded overflow-hidden shadow-lg p-3 border bg-white border-gray-400 relative hover:bg-yellow-400"
+              class="max-w-sm rounded overflow-hidden shadow-lg p-3 border bg-white border-gray-400 relative shadow"
             >
               <a
                 href="javascript:void(0)"
@@ -533,11 +533,11 @@ export default {
 }
 
 .submission:hover {
-  background-color: rgb(136, 100, 9);
+  background-color: rgba(37, 99, 235);
 }
 
 .submission {
-  background-color: darkgoldenrod;
+  background-color: rgba(59, 130, 246);
   text-align: center;
   color: white;
   border-radius: 8px;
@@ -673,5 +673,9 @@ header.sticky .title:hover::after {
 
 .color {
   color: white;
+}
+
+.shadow:hover {
+  box-shadow: 0px 1px 15px grey;
 }
 </style>

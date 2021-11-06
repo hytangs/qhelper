@@ -14,10 +14,15 @@
             </tr>
           </thead>
         </table>
-        <br>
-        <button @click="() => TogglePopup('buttonTrigger')">
-          <b> &nbsp;&nbsp; Show / Hide Health Declaration Form</b>
+      </div>
+      <div id="announcement">
+        <div id="btn-container">
+        <button id="healthbtn" @click="() => TogglePopup('buttonTrigger')">
+          <b>Click for Health Declaration Form</b>
         </button>
+        </div>
+        <!--Announcements to be located here-->
+
       </div>
       <br />
     </div>
@@ -188,4 +193,19 @@ export default {
   text-align: left;
 }
 
+#btn-container {
+  margin-left: 15px;
+}
+
+#healthbtn:hover {
+  background-color: rgba(37, 99, 235);
+}
+
+#healthbtn {
+  background-color: rgb(59,130,246);
+  text-align: center;
+  color: white;
+  border-radius: 8px;
+  padding: 10px 24px;
+}
 </style>
