@@ -147,6 +147,7 @@ export default {
 
         let meta = await connector.methods.getBroadcast().then(x => x)
         this.$store.commit('alterbroadcast' , meta)
+        alert("New message recorded.")
       }
     }
   }
