@@ -14,7 +14,6 @@
             </tr>
           </thead>
         </table>
-<<<<<<< HEAD
       </div>
       <div id="announcement">
         <div id="btn-container">
@@ -24,12 +23,6 @@
         </div>
         <!--Announcements to be located here-->
 
-=======
-        <br>
-        <button @click="() => TogglePopup('buttonTrigger')">
-          <b> &nbsp;&nbsp; Show / Hide Health Declaration Form</b>
-        </button>
->>>>>>> 85c690545bb057d81bf73de10be95356c17fe0bf
       </div>
       <br />
     </div>
