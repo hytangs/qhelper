@@ -54,15 +54,17 @@ export default createStore({
     publicBroadcast: [{
       contains: 'No message',
       date: 'N/A',
-      sender: 'N/A'
+      sender: 'N/A',
+      id: '-1'
     }],
 
     healthAlertDefault: [{
       room: '0000',
       guestName: 'First Last',
       date: 'Date',
-      symptoms: 'No',
-      temp: '0'
+      symptoms: 'no',
+      temp: '0',
+      request: '',
     }],
 
     feedbackData: [{

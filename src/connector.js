@@ -216,7 +216,8 @@ export default {
                     outputMeta.push({
                         contains: x['contains'],
                         date: x['date'],
-                        sender: x['sender']
+                        sender: x['sender'],
+                        id: x['id']
                     })
                 }
             })
@@ -232,17 +233,13 @@ export default {
                 if (roomNumber !== "Blocker") {
                     var x = doc.data();
 
-                    var symptom = "No"
-                    if ( x['Symptoms'] === "1") {
-                        symptom = "Yes"
-                    }
-
                     outputOrder.push({
                         room: roomNumber,
                         guestName: x['Guest'],
                         date: x['Date'],
-                        symptoms: symptom,
-                        temp: x['Temperature']
+                        symptoms: x['Symptoms'],
+                        temp: x['Temperature'],
+                        request: x['Request'],
                     })
                 }
             })
@@ -344,14 +341,35 @@ export default {
         async healthCheckOut(roomNumber) {
             const today = datequery.methods.fetchTodayString()
             await updateDoc(doc(db, "RegInfo", roomNumber), {
-                checkout: today
+                healthCheckout: today
             })
             const guestDoc = await getDoc(doc(db, "RegInfo", roomNumber))
             var x = guestDoc.data()
-            const docRef = await setDoc(doc(db, "HealthCheckout", roomNumber), x)
-            console.log(docRef);
+            // add guest info to HealthCheckout
+            await setDoc(doc(db, "HealthCheckout", roomNumber), x)
+
+            var roomType = x["RoomType"]
+            if (roomType === "Double Room") {
+                roomType = "Double"
+            } else if (roomType === "Single Room") {
+                roomType = "Single"
+            } else if (roomType === "Premium Double Room") {
+                roomType = "PremiumDouble"
+            } else {
+                roomType = "Apartment"
+            }
+
+            const roomDoc = await getDoc(doc(db, "RoomMeta", roomType))
+            var y = roomDoc.data().vacant
+            // update checkout day for room
+            await updateDoc(doc(db, "RoomMeta", roomType), {
+                [roomNumber]: '0',
+                vacant: String(parseInt(y) + 1)
+            })
+
+            // delete guest info from guest list
             const docRef2 = await deleteDoc(doc(db, "RegInfo", roomNumber));
-            console.log(docRef2);
+            console.log(docRef2)
         },
 
         async getHealthCheckOut() {
@@ -365,7 +383,7 @@ export default {
                     outputMeta.push({
                         room: roomNumber,
                         name: x['Fname'] + " " + x['Lname'],
-                        date: x['checkout']
+                        date: x['healthCheckout']
                     })
                 }
             })
@@ -379,5 +397,43 @@ export default {
         async removeHealthAlert(roomNumber) {
             await deleteDoc(doc(db, "HealthOrder", roomNumber));
         },
+
+        async healthCheckin(roomNumber) {
+            const guestDoc = await getDoc(doc(db, "HealthCheckout", roomNumber))
+            var x = guestDoc.data()
+
+            var roomType = x["RoomType"]
+            if (roomType === "Double Room") {
+                roomType = "Double"
+            } else if (roomType === "Single Room") {
+                roomType = "Single"
+            } else if (roomType === "Premium Double Room") {
+                roomType = "PremiumDouble"
+            } else {
+                roomType = "Apartment"
+            }
+
+            // assign new room to guest
+            const newRoom = await this.assignRoom(roomType)
+
+            // update room info in RoomMeta
+            const roomDoc = await getDoc(doc(db, "RoomMeta", roomType))
+            var y = roomDoc.data().vacant
+            await updateDoc(doc(db, "RoomMeta", roomType), {
+                [roomNumber]:  datequery.methods.fetchTodayString(),
+                vacant: String(parseInt(y) - 1)
+            })
+
+            // add guest back to guest info
+            await setDoc(doc(db, "RegInfo", newRoom), x)
+
+            // update roomNumber of guest
+            await updateDoc(doc(db, "RegInfo", newRoom), {
+                RoomNumber: newRoom,
+            })
+
+            // delete guest from health check out
+            await deleteDoc(doc(db, "HealthCheckout", roomNumber));
+        }
     }
 }

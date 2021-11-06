@@ -5,10 +5,16 @@
   <hero-bar v-if="zone === '1' || zone === '5'">Financial Data Summary</hero-bar>
   <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
   <main-section v-if="zone === '1' || zone === '5'">
+    <title-sub-bar :icon="mdiChartPie" title="Payment History" />
+
+    <card-component :icon="mdiAccountMultiple" class="mb-6" title="Guest Payment Details" has-table>
+      <PaymentHistory/>
+    </card-component>
+
     <title-sub-bar :icon="mdiChartPie" title="Sales Data overview" />
 
     <card-component
-      title="Sales Data of Meals, Retail and Housing"
+      title="Sales Data of Meals, Retail and Housing (Static Demo Only: Extendable Functionality)"
       :icon="mdiFinance"
       :header-icon="mdiReload"
       class="mb-6"
@@ -20,7 +26,7 @@
     </card-component>
 
     <card-component
-      title="Average Daily Occupancy Rate"
+      title="Average Daily Occupancy Rate (Static Demo Only: Extendable Functionality)"
       :icon="mdiFinance"
       :header-icon="mdiReload"
       class="mb-6"
@@ -32,7 +38,7 @@
     </card-component>
 
     <card-component
-      title="Booking Summary"
+      title="Booking Summary (Static Demo Only: Extendable Functionality)"
       :icon="mdiFinance"
       :header-icon="mdiReload"
       class="mb-6"
@@ -54,7 +60,7 @@
     </card-component>
 
     <card-component
-      title="Occupancy and Revenue per Room of Different Room Types"
+      title="Occupancy and Revenue per Room of Different Room Types (Static Demo Only: Extendable Functionality)"
       :icon="mdiFinance"
       :header-icon="mdiReload"
       class="mb-6"
@@ -75,10 +81,6 @@
         </card-component>
       </div>
 
-    </card-component>
-
-    <card-component :icon="mdiAccountMultiple" class="mb-6" title="Guest Payment History" has-table>
-      <PaymentHistory/>
     </card-component>
 
   </main-section>

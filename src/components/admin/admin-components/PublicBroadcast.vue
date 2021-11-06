@@ -108,11 +108,10 @@ export default {
 
   methods: {
     async remove(id) {
-      await deleteDoc(doc(db, "Notifications", id));
+      await deleteDoc(doc(db, "Notification", id));
 
-      const store = useStore()
       let meta = await connector.methods.getBroadcast().then(x => x)
-      store.commit('alterbroadcast' , meta)
+      this.$store.commit('alterbroadcast' , meta)
     },
 
     async addnewmessage() {
@@ -146,9 +145,9 @@ export default {
         console.log(docRef3);
         this.$emit("added");
 
-        const store = useStore()
         let meta = await connector.methods.getBroadcast().then(x => x)
-        store.commit('alterbroadcast' , meta)
+        this.$store.commit('alterbroadcast' , meta)
+        alert("New message recorded.")
       }
     }
   }

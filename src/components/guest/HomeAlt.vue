@@ -6,7 +6,7 @@
       <li><a class = "title" href = "#meals">Meals</a></li>
       <li><a class = "title" href = "#shop">Shop</a></li>
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
-      <li><a class = "title" href = "#">Checkout</a></li>
+      <li><a class = "title" href = "#checkout">Checkout</a></li>
       <li><a class = "title" href = "#contact">Contact</a></li>
     </ul>
     <a class="color flex items-center flex-grow-0 flex-shrink-0 relative cursor-pointer hover:text-white text-dark dark:text-white dark:hover:text-gray-400 py-2 px-3 lg:w-16 lg:justify-center" href="/">
@@ -19,19 +19,34 @@
   </header>
 
   <br><br><br>
-  
-<div class = "entertain">
-<Home/><br>
-</div>
+
+  <div class = "entertain"  v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
+    <Home/>
+    <br>
+  </div>
+
+  <div v-else>
+    <br />
+    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
+  </div>
+
 </template>
 
 <script>
 import Home from './Home'
+import localsession from "../../store/localsession";
 
 export default {
     name:"HomeAlt",
     components:{
         Home
+    },
+    data() {
+      return {
+        guestroom: localsession.methods.getGuestRoom()
+      }
     }
 }
 </script>

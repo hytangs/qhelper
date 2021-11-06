@@ -1,16 +1,20 @@
 <template>
+  <div v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
   <div id="home">
+
     <div
-      class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+      class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded h-auto shadow bottomgap a"
     >
       <div class="p-6">
         <table id="announce">
           <thead>
             <tr>
-              <th>Announcement</th>
+              <th>Announcements</th>
+              <!--Announcements to be located here-->
             </tr>
           </thead>
         </table>
+<<<<<<< HEAD
       </div>
       <div id="announcement">
         <div id="btn-container">
@@ -20,7 +24,14 @@
         </div>
         <!--Announcements to be located here-->
 
+=======
+        <br>
+        <button @click="() => TogglePopup('buttonTrigger')">
+          <b> &nbsp;&nbsp; Show / Hide Health Declaration Form</b>
+        </button>
+>>>>>>> 85c690545bb057d81bf73de10be95356c17fe0bf
       </div>
+      <br />
     </div>
 
     <Popup
@@ -30,38 +41,69 @@
     </Popup
     ><br />
 
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3  bottomgap h-1/2">
       <div
-        class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow"
+          class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
       >
         <div class="p-6">
-          <h4>Health Status</h4>
+          <h4 class="text-xl">Health Status</h4>
         </div>
-        <div class="subcards">
-          <!--Health Status to be located here-->
-        </div>
-      </div>
-      <div
-        class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow"
-      >
-        <div class="p-6">
-          <h4>Remaining Quarantine Time</h4>
-        </div>
-        <div class="subcards">
+        <div class="subcards2">
           <!--Quarantine Time to be located here-->
+          <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.finance }}</b></h1>
+          <br/>
+          <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
         </div>
       </div>
-      <div
-        class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow"
-      >
-        <div class="p-6">
-          <h4>Next PCR Test Date</h4>
+
+        <div
+            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+        >
+          <div class="p-6">
+            <h4 class="text-xl">Current Bills</h4>
+          </div>
+          <div class="subcards2">
+            <!--Quarantine Time to be located here-->
+            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.finance }}</b></h1>
+            <br/>
+            <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
+          </div>
         </div>
-        <div class="subcards">
-          <!--Next PCR Test Date to be located here-->
+
+        <div
+            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+        >
+          <div class="p-6">
+            <h4 class="text-xl">Next Test</h4>
+          </div>
+          <div class="subcards2">
+            <!--Quarantine Time to be located here-->
+            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.finance }}</b></h1>
+            <br/>
+            <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <div
+        class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+    >
+
+      <div class="p-6">
+        <p class="text-lg text-gray-900">&nbsp;&nbsp; © <b>QHelper COVID-19 Quarantine Assistance System</b>
+          by NUS BT3103 Group 10. Please visit our <a href="https://github.com/hytangs/qhelper" target="_blank" class="text-blue-500">Github Repository</a>.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+  <div v-else>
+    <br />
+    <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
+    <br />
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
   </div>
 </template>
 
@@ -72,6 +114,7 @@ import Popup from "./popup/Popup";
 import firebaseApp from "../../firebase.js";
 import { getFirestore } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
+import localsession from "../../store/localsession";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -79,25 +122,31 @@ export default {
   components: {
     Popup,
   },
+
   mounted() {
     async function display() {
       let z = await getDocs(collection(db, "Notification"));
       let ind = 1;
 
       z.forEach((docs) => {
+
         let yy = docs.data();
-        var table = document.getElementById("announce");
-        var row = table.insertRow(ind);
 
-        var msg = yy.contains;
+        if (yy['identification'] !== 'block') {
+          var table = document.getElementById("announce");
+          var row = table.insertRow(ind);
 
-        var cell1 = row.insertCell(0);
+          var msg = yy.contains;
 
-        cell1.innerHTML = msg;
+          var cell1 = row.insertCell(0);
+
+          cell1.innerHTML = msg;
+        }
       });
     }
     display();
   },
+
   setup() {
     const popupTriggers = ref({
       buttonTrigger: true,
@@ -112,6 +161,13 @@ export default {
       TogglePopup,
     };
   },
+
+  data() {
+    return {
+      finance : localsession.methods.getGuestFinance(),
+      guestroom: localsession.methods.getGuestRoom(),
+    }
+  }
 };
 </script>
 >

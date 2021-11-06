@@ -1,10 +1,10 @@
 <template>
-<modal-box v-model="isModalDangerActive1" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Check In Guest</p>
+<modal-box v-model="isModalDangerActive1" large-title="Action Completed" button="danger">
+  <p>Check In for Returning Guests</p>
 </modal-box>
 
-<modal-box v-model="isModalDangerActive2" large-title="Please Confirm" button="danger" has-cancel>
-  <p>Check Out Guest</p>
+<modal-box v-model="isModalDangerActive2" large-title="Action Completed" button="danger">
+  <p>Check Out for Guest Hospitalization</p>
 </modal-box>
 
 <table>
@@ -15,14 +15,14 @@
         <th></th>
       </tr>
     </thead>
-    
+
     <tbody>
       <tr v-for="guest in itemsPaginated" :key="guest.room">
         <td data-label="Name"> {{guest.name}} </td>
         <td data-label="Date"> {{guest.date}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button color="success" :icon="mdiAccountMultiplePlus" small @click="isModalDangerActive1 = true, checkIn()" />
+            <jb-button color="success" :icon="mdiAccountMultiplePlus" small @click="isModalDangerActive1 = true, checkIn(guest.room)" />
             <jb-button color="danger" :icon="mdiAccountMultipleMinus" small @click="isModalDangerActive2 = true, checkOut(guest.room)" />
           </jb-buttons>
         </td>
@@ -101,7 +101,7 @@ export default {
     // })
 
     return {
-      mdiAccountMultiplePlus, 
+      mdiAccountMultiplePlus,
       isModalDangerActive1,
       isModalDangerActive2,
       mdiAccountMultipleMinus,
@@ -118,8 +118,10 @@ export default {
   },
 
   methods: {
-    checkIn() {
-      // remove data
+    async checkIn(roomNumber) {
+      await connector.methods.healthCheckin(roomNumber)
+      let meta = await connector.methods.getHealthCheckOut().then(x => x)
+      this.$store.commit('alterHealthCheckOut', meta);
     },
 
     async checkOut(room) {

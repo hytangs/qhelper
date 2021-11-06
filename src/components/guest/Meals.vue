@@ -103,14 +103,14 @@
               id="request"
             />
           </label> -->
-           <control placeholder="Special" id="request" />
+           <control :name="meal.time" placeholder="Special" :id="meal.time" />
         </field>
         <field class="w-1/2 m-auto mb-4" label="Your Name and Room Number">
           <text class="text-xl" id="room">{{ this.guestroom }}</text>
           <text class="text-xl" id="name">{{ this.guestname }}</text>
         </field>
         <div class="submit">
-          <button class="submission" type="button" @click="savetofs()">
+          <button class="submission" type="button" @click="savetofs(), show()">
             Submit
           </button>
         </div>
@@ -187,10 +187,10 @@ export default {
   methods: {
     async savetofs() {
       try {
-        var meal = document.getElementById("selected").name;
+        var meal = document.querySelector('input[id="selected"]:checked').name;
         var selection = document.querySelector('input[id="selected"]:checked')
           .value;
-        var request = document.getElementById("request").value;
+        //var request = document.getElementById("Lunch").value;
         var room = this.guestroom;
         if (meal === "Breakfast") {
           const docRef = await setDoc(doc(db, "Breakfast", room), {
@@ -198,7 +198,7 @@ export default {
             Room: this.guestroom,
             Meal: meal,
             Selection: selection,
-            Request: request,
+            Request: document.getElementById("Breakfast").value,
             OrderStatus: "Order Received",
             OrderDate: moment(String(new Date())).format("MM/DD/YYYY"),
           });
@@ -210,7 +210,7 @@ export default {
             Room: this.guestroom,
             Meal: meal,
             Selection: selection,
-            Request: request,
+            Request: document.getElementById("Lunch").value,
             OrderStatus: "Order Received",
             OrderDate: moment(String(new Date())).format("MM/DD/YYYY"),
           });
@@ -222,7 +222,7 @@ export default {
             Room: this.guestroom,
             Meal: meal,
             Selection: selection,
-            Request: request,
+            Request: document.getElementById("Dinner").value,
             OrderStatus: "Order Received",
             OrderDate: moment(String(new Date())).format("MM/DD/YYYY"),
           });
@@ -234,13 +234,15 @@ export default {
       }
     },
     show() {
-      console.log(document.getElementById("selected").name);
+      //console.log(document.getElementById("selected").time);
       //console.log(document.getElementById("selected").checked)
-      console.log(
-        this.mealsData[0].items.filter((i) => {
-          return i.selected;
-        })
-      );
+      // console.log(
+      //   this.mealsData[0].items.filter((i) => {
+      //     return i.selected;
+      //   })
+      // );
+      console.log(document.getElementById("Lunch"));
+      console.log(document.querySelector('input[id="selected"]:checked').name);
       console.log(document.querySelector('input[id="selected"]:checked').value);
     },
 

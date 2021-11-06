@@ -201,6 +201,9 @@ export default {
         }
       } catch (e) {
         alert("Error in modifying staff's position. Please try again.");
+      } finally {
+        let meta = await connector.methods.getStaffRoster().then(x => x)
+        this.$store.commit('alterStaffRoster', meta);
       }
     },
 
