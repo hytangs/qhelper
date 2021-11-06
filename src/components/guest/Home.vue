@@ -52,7 +52,7 @@
           </div>
           <div class="subcards2">
             <!--Quarantine Time to be located here-->
-            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.finance }}</b></h1>
+            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.remaining }}</b></h1>
             <br/>
             <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
           </div>
@@ -152,8 +152,9 @@ export default {
 
   data() {
     return {
-      finance : localsession.methods.getGuestFinance(),
+      finance: localsession.methods.getGuestFinance(),
       guestroom: localsession.methods.getGuestRoom(),
+      remaining: localsession.methods.getGuestRemaining()
     }
   }
 };

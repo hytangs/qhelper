@@ -69,10 +69,20 @@ export default {
             localStorage.guestlasthealthdeclaration = table.guestlasthealthdeclaration;
             localStorage.guestnextpcr = table.guestnextpcr;
             localStorage.guestfinance = table.guestfinance;
+            localStorage.guestremaining = table.guestremaining;
+            localStorage.guestcheckout = table.guestcheckout;
         },
 
         getGuestFinance() {
             return localStorage.guestfinance;
+        },
+
+        getGuestRemaining() {
+            return localStorage.guestremaining;
+        },
+
+        getGuestLastHealthDeclare() {
+            return localStorage.guestlasthealthdeclaration;
         }
     }
 }

@@ -32,16 +32,40 @@ export default {
             const docRef = doc(db, "RegInfo", String(inRoom));
             let docSnap = await getDoc(docRef);
             inPassword = sha256(inPassword)
+
             if (docSnap.exists()) {
                 if (docSnap.data().PasswordHash === inPassword) {
+                    const pcr = docSnap.data().PCR;
+                    const today = datequery.methods.fetchTodayString();
+                    let pcr_out = "No Test Needed";
+                    for (const x in pcr) {
+                        if (x >= today) {
+                            pcr_out = x;
+                            break;
+                        }
+                    }
+
+                    const checkout =docSnap.data().checkout;
+                    var i = 0;
+                    var j = "Overstay"
+                    while (i < 15) {
+                        if (datequery.methods.addDays(i) === checkout) {
+                            j = String(i);
+                            break;
+                        }
+                        i++;
+                    }
+
                     return {
                         guestroom: inRoom,
                         guestfname: docSnap.data().Fname,
                         guestlname: docSnap.data().Lname,
                         guestlastfoodselectdate: docSnap.data().lastMealSelection,
                         guestlasthealthdeclaration: docSnap.data().lastHealthDeclaration,
-                        guestnextpcr: docSnap.data().PCR[0],
-                        guestfinance: docSnap.data().finance
+                        guestnextpcr: pcr_out,
+                        guestfinance: docSnap.data().finance,
+                        guestcheckout: checkout,
+                        guestremaining: j,
                     }
                 } else {
                     return "@Undefined";
