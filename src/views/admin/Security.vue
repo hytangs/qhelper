@@ -6,7 +6,7 @@
   <hero-bar v-else>Unauthorized - Please contact web administrator.</hero-bar>
   <main-section v-if="zone === '1' || zone === '6'">
     <br>
-    <card-component class="mb-6" title="Invalid QR Code Overview">
+    <card-component class="mb-6" title="Invalid QR Code Overview (Static Demo Only: Hardware Required)">
       <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
         <div class="col-span-1">
           <card-widget
