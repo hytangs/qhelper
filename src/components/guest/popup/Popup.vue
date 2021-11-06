@@ -17,13 +17,7 @@
                     </svg>
                 </span> Health Declaration Form
             </p>
-            <a href="#" class="flex items-center py-3 px-4 justify-center ring-blue-700 focus:ring" aria-label="more options">
-                <span class="inline-flex justify-center items-center w-6 h-6" data-v-3ca1866b="">
-                    <svg viewBox="0 0 24 24" width="16" height="16" class="inline-block" data-v-3ca1866b="">
-                          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </span>
-            </a>
+
         </header>
         <div class="p-6">
           <slot/>
@@ -67,7 +61,7 @@
             <hr class="my-6 -mx-6 border-t border-gray-100 dark:border-gray-700">
           </div>
           <div class="declare flex items-center justify-start flex-wrap -mb-3">
-            <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3" type="submit" @click="submitcheck(), TogglePopup()">
+            <button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3" type="submit" @click="submitcheck()">
               <span class="px-2">Declare</span>
             </button>
             <!--<button class="inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-500 hover:text-white text-blue-500 border-blue-600 mr-3 last:mr-0 mb-3" type="reset">
@@ -154,6 +148,8 @@ export default {
         });
 
         alert("Health status declared today! Please continue to monitor your health and report tomorrow!")
+        this.TogglePopup()
+
       } else {
         await updateDoc(doc(db, "RegInfo", localsession.methods.getGuestRoom()), {
           lastHealthDeclaration: datequery.methods.fetchTodayString(),
@@ -169,6 +165,7 @@ export default {
         });
 
         alert("We have recorded your health declaration. Our healthcare professionals will attend to you very soon.")
+        this.TogglePopup()
       }
     }
   },
