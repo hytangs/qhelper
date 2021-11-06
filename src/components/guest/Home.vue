@@ -13,9 +13,11 @@
         </table>
       </div>
       <div id="announcement">
-        <button @click="() => TogglePopup('buttonTrigger')">
-          <b> &nbsp;&nbsp; Health Declaration Form</b>
+        <div id="btn-container">
+        <button id="healthbtn" @click="() => TogglePopup('buttonTrigger')">
+          <b>Health Declaration Form</b>
         </button>
+        </div>
         <!--Announcements to be located here-->
 
       </div>
@@ -140,5 +142,14 @@ export default {
   grid-template-rows: repeat(2, minmax(0, 1fr));
   width: 99%;
   text-align: left;
+}
+
+#btn-container {
+  margin-left: 15px;
+}
+
+#healthbtn:hover {
+  color: goldenrod;
+  text-decoration: underline;
 }
 </style>
