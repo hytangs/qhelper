@@ -80,6 +80,13 @@
 
 <script>
 //import HealthDeclare from './HealthDeclare.vue'
+import firebaseApp from "../../../firebase.js";
+import { getFirestore } from "firebase/firestore";
+import { setDoc, doc, updateDoc } from "firebase/firestore";
+import localsession from "../../../store/localsession";
+import datequery from "../../plugins/helpers/datequery";
+const db = getFirestore(firebaseApp);
+
 const date = new Date();
 
 export default {
@@ -117,34 +124,51 @@ export default {
     },
 
     async submitcheck() {
-      var alert = false;
+      var alerted = false;
       var incorrect = false;
 
       var request = document.getElementById("submit_request").value;
       if (request.length > 0) {
-        alert = true;
+        alerted = true;
       }
 
       var temperature = document.getElementById("submit_temp").value;
       if (temperature.length < 2) {
         incorrect = true;
       } else if (parseFloat(temperature) > 37.3 || parseFloat(temperature) < 35.6) {
-        alert = true;
+        alerted = true;
       }
 
       var symptoms = this.submit_symptoms
       if (symptoms === '') {
         incorrect = true;
       } else if (symptoms === 'yes') {
-        alert = true;
+        alerted = true;
       }
 
       if (incorrect === true) {
         alert("The health declaration you filled in is not complete!")
-      } else if (alert === false) {
-        alert("Health Declaration submitted! Your health status is passed today. Please continue to monitor your health and report tomorrow!")
+      } else if (alerted === false) {
+        await updateDoc(doc(db, "RegInfo", localsession.methods.getGuestRoom()), {
+          lastHealthDeclaration: datequery.methods.fetchTodayString(),
+        });
+
+        alert("Health status declared today! Please continue to monitor your health and report tomorrow!")
       } else {
-        alert("You are in grave danger!")
+        await updateDoc(doc(db, "RegInfo", localsession.methods.getGuestRoom()), {
+          lastHealthDeclaration: datequery.methods.fetchTodayString(),
+        });
+
+        await setDoc(doc(db, "HealthOrder", localsession.methods.getGuestRoom()), {
+          Guest: localsession.methods.getGuestName(),
+          Room: localsession.methods.getGuestRoom(),
+          Date: datequery.methods.fetchTodayString(),
+          Symptoms: symptoms,
+          Request: request,
+          Temperature: temperature,
+        });
+
+        alert("We have recorded your health declaration. Our healthcare professionals will attend to you very soon.")
       }
     }
   },

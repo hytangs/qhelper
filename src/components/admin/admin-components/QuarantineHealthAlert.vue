@@ -3,20 +3,24 @@
 <table id='health alert'>
     <thead>
       <tr>
+        <th>Room</th>
         <th>Guest Name</th>
         <th>Symptoms</th>
-        <th>Temperature Declared</th>
+        <th>Temperature</th>
+        <th>Request</th>
         <th>Date</th>
         <th></th>
       </tr>
     </thead>
-    
+
     <tbody>
       <tr v-for="guest in itemsPaginated" :key="guest.room">
+        <td data-label="Guest Name">{{guest.room}} </td>
         <td data-label="Guest Name">{{guest.guestName}} </td>
         <td data-label="Symptoms"> {{guest.symptoms}} </td>
-        <td data-label="Temperature Declared"> {{guest.temp}}</td>
+        <td data-label="Temperature"> {{guest.temp}}</td>
         <td data-label="Date"> {{guest.date}} </td>
+        <td data-label="Request"> {{guest.request}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
             <jb-button color="danger" :icon="mdiTrashCan" small @click="remove(guest.room)" />

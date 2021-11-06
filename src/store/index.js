@@ -62,8 +62,9 @@ export default createStore({
       room: '0000',
       guestName: 'First Last',
       date: 'Date',
-      symptoms: 'No',
-      temp: '0'
+      symptoms: 'no',
+      temp: '0',
+      request: '',
     }],
 
     feedbackData: [{

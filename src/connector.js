@@ -233,17 +233,13 @@ export default {
                 if (roomNumber !== "Blocker") {
                     var x = doc.data();
 
-                    var symptom = "No"
-                    if ( x['Symptoms'] === "1") {
-                        symptom = "Yes"
-                    }
-
                     outputOrder.push({
                         room: roomNumber,
                         guestName: x['Guest'],
                         date: x['Date'],
-                        symptoms: symptom,
-                        temp: x['Temperature']
+                        symptoms: x['Symptoms'],
+                        temp: x['Temperature'],
+                        request: x['Request'],
                     })
                 }
             })
