@@ -7,7 +7,7 @@
     "npm": "8.0.0"
   },
   "scripts": {
-    "start": "concurrently \"npm run serve\" \"cd ../server && npm start\"",
+    "start": "npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:gh-pages": "DEPLOY_ENV=GH_PAGES vue-cli-service build --report",
