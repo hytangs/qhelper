@@ -1,53 +1,48 @@
 <template>
   <div v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
-  <div id="home">
+    <div id="home">
 
-    <div
-      class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded h-auto shadow bottomgap a"
-    >
-      <div class="p-6">
-        <table id="announce">
-          <thead>
+      <div
+          class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded h-auto shadow bottomgap a"
+      >
+        <div class="p-6">
+          <table id="announce">
+            <thead>
             <tr>
               <th>Announcements</th>
               <!--Announcements to be located here-->
             </tr>
-          </thead>
-        </table>
-      </div>
-      <div id="announcement">
-        <div id="btn-container">
-        <button id="healthbtn" @click="() => TogglePopup('buttonTrigger')">
-          <b>Click for Health Declaration Form</b>
-        </button>
+            </thead>
+          </table>
+          <br>
+          <button class="hover:text-blue-800" @click="() => TogglePopup('buttonTrigger')">
+            <b> &nbsp;&nbsp; Show / Hide Health Declaration Form</b>
+          </button>
         </div>
-        <!--Announcements to be located here-->
-
+        <br />
       </div>
-      <br />
-    </div>
 
-    <Popup
-      v-if="popupTriggers.buttonTrigger"
-      :TogglePopup="() => TogglePopup('buttonTrigger')"
-    >
-    </Popup
-    ><br />
-
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3  bottomgap h-1/2">
-      <div
-          class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+      <Popup
+          v-if="popupTriggers.buttonTrigger"
+          :TogglePopup="() => TogglePopup('buttonTrigger')"
       >
-        <div class="p-6">
-          <h4 class="text-xl">Health Status</h4>
+      </Popup
+      ><br />
+
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3  bottomgap h-1/2">
+        <div
+            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+        >
+          <div class="p-6">
+            <h4 class="text-xl">Health Status</h4>
+          </div>
+          <div class="subcards2">
+            <!--Quarantine Time to be located here-->
+            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.finance }}</b></h1>
+            <br/>
+            <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
+          </div>
         </div>
-        <div class="subcards2">
-          <!--Quarantine Time to be located here-->
-          <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.finance }}</b></h1>
-          <br/>
-          <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
-        </div>
-      </div>
 
         <div
             class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
@@ -84,7 +79,7 @@
     >
 
       <div class="p-6">
-        <p class="text-lg text-gray-900">&nbsp;&nbsp; © <b>QHelper COVID-19 Quarantine Assistance System</b>
+        <p class="text-gray-900">&nbsp;&nbsp; © <b>QHelper COVID-19 Quarantine Assistance System</b>
           by NUS BT3103 Group 10. Please visit our <a href="https://github.com/hytangs/qhelper" target="_blank" class="text-blue-500">Github Repository</a>.
         </p>
 
@@ -181,10 +176,10 @@ export default {
   margin-bottom: 2rem;
 }
 
-.subcards {
+.subcards2 {
   width: 100%;
-  height: 20vh;
-  margin-bottom: 1rem;
+  height: 12vh;
+  margin-bottom: 0.5rem;
 }
 
 #home {
@@ -193,19 +188,4 @@ export default {
   text-align: left;
 }
 
-#btn-container {
-  margin-left: 15px;
-}
-
-#healthbtn:hover {
-  background-color: rgba(37, 99, 235);
-}
-
-#healthbtn {
-  background-color: rgb(59,130,246);
-  text-align: center;
-  color: white;
-  border-radius: 8px;
-  padding: 10px 24px;
-}
 </style>
