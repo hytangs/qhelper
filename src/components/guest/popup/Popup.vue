@@ -147,6 +147,9 @@ export default {
           lastHealthDeclaration: datequery.methods.fetchTodayString(),
         });
 
+        localsession.methods.setDeclareHealthToday();
+        this.$store.commit('alterHealthPass', "Declared Today")
+
         alert("Health status declared today! Please continue to monitor your health and report tomorrow!")
 
       } else {
@@ -164,6 +167,7 @@ export default {
         });
 
         localsession.methods.setDeclareHealthToday();
+        this.$store.commit('alterHealthPass', "Declared Today")
 
         alert("We have recorded your health declaration. Our healthcare professionals will attend to you very soon.")
       }

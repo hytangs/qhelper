@@ -164,6 +164,8 @@ export default createStore({
       status: 'received',
       date: 'YYYYMMDD',
     }],
+
+    healthpass: 'Please Declare',
   },
 
   mutations: {
@@ -317,6 +319,10 @@ export default createStore({
 
     alterGuestRoomSelect (state, meta) {
       state.roomMetaToGuest = meta
+    },
+
+    alterHealthPass (state, meta) {
+      state.healthpass = meta
     }
   },
   actions: {

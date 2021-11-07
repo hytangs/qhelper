@@ -19,11 +19,11 @@
           </div>
           <div class="subcards2">
             <!--Quarantine Time to be located here-->
-            <h1 class="text-3xl text-red-700 hover:text-red-500" v-if="this.healthpass === 'Please Declare'"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.healthpass }}</b></h1>
-            <h1 class="text-3xl text-green-700 hover:text-green-500" v-else-if="this.healthpass === 'Declared Today'"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.healthpass }}</b></h1>
-            <h1 class="text-3xl text-gray-700 hover:text-gray-500" v-else><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.healthpass }}</b></h1>
+            <h1 class="text-3xl text-red-700 hover:text-red-500" v-if="this.$store.state.healthpass === 'Please Declare'"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.$store.state.healthpass }}</b></h1>
+            <h1 class="text-3xl text-green-700 hover:text-green-500" v-else-if="this.$store.state.healthpass === 'Declared Today'"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.$store.state.healthpass }}</b></h1>
+            <h1 class="text-3xl text-gray-700 hover:text-gray-500" v-else><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.$store.state.healthpass }}</b></h1>
             <br/>
-            <p>&nbsp;&nbsp; Monitor your health daily.</p>
+            <p>&nbsp;&nbsp; &nbsp;&nbsp; Always monitor your health daily.</p>
           </div>
         </div>
 
@@ -37,7 +37,7 @@
             <!--Quarantine Time to be located here-->
             <h1 class="text-3xl text-green-700 hover:text-green-500"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.remaining }} Days</b></h1>
             <br/>
-            <p>&nbsp;&nbsp;Enjoy your remaining 'staycation'. </p>
+            <p>&nbsp;&nbsp; &nbsp;&nbsp; Enjoy your remaining 'staycation'. </p>
           </div>
         </div>
 
@@ -51,7 +51,7 @@
             <!--Quarantine Time to be located here-->
             <h1 class="text-3xl text-green-700 hover:text-green-500">&nbsp; &nbsp; &nbsp; &nbsp;<b> {{ this.pcrtest }}</b></h1>
             <br/>
-            <p>&nbsp;&nbsp;PCR test will be in your room.</p>
+            <p>&nbsp;&nbsp; &nbsp;&nbsp; PCR test will be done in your room.</p>
           </div>
         </div>
       </div>
@@ -114,6 +114,8 @@ import { getFirestore } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 import localsession from "../../store/localsession";
 import datequery from "../plugins/helpers/datequery";
+import { useStore } from "vuex";
+
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -147,6 +149,8 @@ export default {
   },
 
   setup() {
+    const store = useStore()
+
     const popupTriggers = ref({
       buttonTrigger: true,
     });
@@ -158,6 +162,7 @@ export default {
       Popup,
       popupTriggers,
       TogglePopup,
+      store
     };
   },
 
@@ -169,13 +174,14 @@ export default {
     if (input_lhd < today) {
        healthpass ="Please Declare";
     }
+    this.$store.commit('alterHealthPass', healthpass)
 
     return {
       finance: localsession.methods.getGuestFinance(),
       guestroom: localsession.methods.getGuestRoom(),
       guestname: localsession.methods.getGuestName(),
       remaining: localsession.methods.getGuestRemaining(),
-      healthpass: healthpass,
+      healthpass: this.$store.state.healthpass,
       pcrtest: localsession.methods.getGuestPCR(),
     }
   }
