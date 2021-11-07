@@ -83,6 +83,14 @@ export default {
 
         getGuestLastHealthDeclare() {
             return localStorage.guestlasthealthdeclaration;
+        },
+
+        getGuestCheckout() {
+            return localStorage.guestcheckout;
+        },
+
+        getGuestPCR() {
+            return localStorage.guestnextpcr;
         }
     }
 }

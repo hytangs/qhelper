@@ -18,11 +18,11 @@
 
     <br> <br>
 
-    <card-component class="mb-6" title="Quarantine Plan Settings" has-table>
+    <!-- <card-component class="mb-6" title="Quarantine Plan Settings" has-table>
         <QuarantinePlan/>
     </card-component>
 
-    <br> <br>
+    <br> <br> -->
 
     <card-component class="mb-6" title="Medical Checkouts" has-table>
         <QuarantineMedicalCheckouts/>
@@ -50,7 +50,7 @@ import TitleBar from '../../../src/components/plugins/TitleBar'
 import HeroBar from '../../../src/components/plugins/HeroBar'
 import CardComponent from "../../components/plugins/CardComponent"
 import QuarantineStatus from '../../../src/components/admin/admin-components/QuarantineStatus'
-import QuarantinePlan from '../../../src/components/admin/admin-components/QuarantinePlan'
+// import QuarantinePlan from '../../../src/components/admin/admin-components/QuarantinePlan'
 import QuarantineHealthAlert from '../../../src/components/admin/admin-components/QuarantineHealthAlert'
 import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBroadcast'
 import QuarantineMedicalCheckouts from '../../../src/components/admin/admin-components/QuarantineMedicalCheckouts'
@@ -68,7 +68,7 @@ export default {
     TitleBar,
     HeroBar,
     QuarantineStatus,
-    QuarantinePlan,
+    // QuarantinePlan,
     QuarantineHealthAlert,
     GuestRoomBroadcast,
     QuarantineMedicalCheckouts,

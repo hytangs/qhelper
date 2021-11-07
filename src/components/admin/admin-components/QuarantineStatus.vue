@@ -1,8 +1,8 @@
 <template>
 
-<modal-box v-model="isModalActive" title="Modift">
+<!-- <modal-box v-model="isModalActive" title="Modift">
   <p>Modify the <b>Quarantine Status</b> for room</p>
-</modal-box>
+</modal-box> -->
 
 <modal-box v-model="isModalDangerActive" large-title="Please Confirm" button="danger" has-cancel>
   <p>Guest has undergone Health Check Out!</p>
@@ -31,7 +31,7 @@
         <td data-label="Departure Country"> {{guest.country}} </td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" />
+            <!-- <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true" /> -->
             <jb-button color="danger" :icon="mdiAccountCancel" small @click="isModalDangerActive = true, healthCheckOut(guest.room)" />
           </jb-buttons>
         </td>

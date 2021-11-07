@@ -126,7 +126,44 @@ export default createStore({
       room: '0000',
       name: 'name',
       date: 'YYYYMMDD',
-    }]
+    }],
+
+    shopOrderRoster: [{
+      room: '0000',
+      name: 'name',
+      order: 'order',
+      amount: '$X',
+      delivery: 'delivery',
+      status: 'received',
+      time: 'YYYYMMDD',
+    }],
+
+    breakfastRoster: [{
+      room: '0000',
+      name: 'name',
+      selection: 'selection',
+      request: '',
+      status: 'received',
+      date: 'YYYYMMDD',
+    }],
+
+    lunchRoster: [{
+      room: '0000',
+      name: 'name',
+      selection: 'selection',
+      request: '',
+      status: 'received',
+      date: 'YYYYMMDD',
+    }],
+
+    dinnerRoster: [{
+      room: '0000',
+      name: 'name',
+      selection: 'selection',
+      request: '',
+      status: 'received',
+      date: 'YYYYMMDD',
+    }],
   },
 
   mutations: {
@@ -188,6 +225,22 @@ export default createStore({
 
     alterHealthCheckOut(state, meta) {
       state.healthCheckOutRoster = meta
+    },
+
+    alterBreakfastRoster(state, meta) {
+      state.breakfastRoster = meta
+    },
+
+    alterLunchRoster(state, meta) {
+      state.lunchRoster = meta
+    },
+
+    alterDinnerRoster(state, meta) {
+      state.dinnerRoster = meta
+    },
+
+    alterShopOrders(state, meta) {
+      state.shopOrderRoster = meta
     },
 
     alterFeedbackData(state, meta) {

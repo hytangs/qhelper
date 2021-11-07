@@ -16,7 +16,7 @@
         <th></th>
       </tr>
     </thead>
-    
+
     <tbody>
       <!-- <tr>
         <td data-label="Guest Name"> Howell Hand </td>
@@ -75,7 +75,7 @@ export default {
     const isModalActive = ref(false)
 
     return {
-      mdiPencilOutline, 
+      mdiPencilOutline,
       isModalActive,
     }
   },
@@ -91,7 +91,7 @@ export default {
         var row = table.insertRow(ind);
 
         var payid = yy.id;
-        var name = yy.GuestLname + " " + yy.GuestFname;
+        var name = yy.GuestName;
         var room = yy.RoomNumber;
         var paymentAmount = yy.Payment;
         var paymentMethod = yy.Method;
@@ -111,9 +111,9 @@ export default {
         cell2.innerHTML = name;
         cell3.innerHTML = room;
         cell4.innerHTML = paymentAmount;
-        cell5.innerHTML = paymentMethod;  
+        cell5.innerHTML = paymentMethod;
         cell6.innerHTML = checkout;
-        
+
         // var bu = document.createElement("button");
         // bu.className = "bwt";
         // bu.id = String(room);
