@@ -12,7 +12,7 @@
               <label class="inline-flex items-center">
                 <input
                   type="radio"
-                  class="form-radio text-red-400"
+                  class="form-radio text-blue-500"
                   id="creditcard"
                   name="radio"
                   @change="hideShow('creditCard')"
@@ -67,7 +67,7 @@
               <label class="inline-flex items-center">
                 <input
                   type="radio"
-                  class="form-radio text-red-400"
+                  class="form-radio text-blue-500"
                   id="paynow"
                   name="radio"
                   @change="hideShow('payNow')"
@@ -94,7 +94,7 @@
               <label class="inline-flex items-center">
                 <input
                   type="radio"
-                  class="form-radio text-red-400"
+                  class="form-radio text-blue-500"
                   id="grab"
                   name="radio"
                   @change="hideShow('grabPay')"
