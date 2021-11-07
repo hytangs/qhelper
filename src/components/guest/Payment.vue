@@ -236,6 +236,7 @@ export default {
         Payment: String(this.finance),
         PaymentMethod: paymentMethod,
         Date: datequery.methods.fetchTodayString(),
+        id: String(id)
       });
 
       console.log(docRef);
@@ -283,7 +284,7 @@ img{
   margin-left: 20%;
   margin-right: 20%;
   height: 60%;
-  
+
 }
 .pay{
   margin-left: 30%;

@@ -253,7 +253,7 @@ export default {
           error.push("Please choose your vaccination history")
         }
         var passtype = document.getElementById("passtype").value
-        if (passtype === '') {
+        if (passtype === '' || passtype === " - Choose Below - ") {
           passed = false
         }
 

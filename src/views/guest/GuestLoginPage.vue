@@ -48,8 +48,8 @@ export default {
   setup () {
 
     const form = reactive({
-      roomnum: '1001',
-      idcheck: '123456'
+      roomnum: '',
+      idcheck: ''
     })
 
     const router = useRouter()

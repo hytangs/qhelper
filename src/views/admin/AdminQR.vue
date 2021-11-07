@@ -7,7 +7,13 @@
   <main-section v-if="zone > '0'">
     <br> <br>
     <card-component id="qrcode" class="left-50">
-
+    <div v-if="darkMode">
+      <h2 class="text-black-900 text-2xl hover:text-white-800"> Admin Pass for <b>{{this.adminname }}</b> </h2>
+      <br />
+      <br />
+      <p class="text-xl text-white-900 hover:text-white-700"> Notice: This page is only supported in Light Mode for better QR scanning purposes.</p>
+    </div>
+    <div v-else>
       <h2 class="text-black-900 text-2xl hover:text-blue-800"> Admin Pass for <b>{{this.adminname }}</b> </h2>
       <br />
 
@@ -20,6 +26,7 @@
       <p class="text-xl text-gray-900 hover:text-gray-700"> Zones authorized: <b>  {{this.zone}} </b> </p>
       <p class="text-xl text-gray-900 hover:text-gray-700"> Strictly for staff: <b>{{this.adminname}}</b>'s use only! </p>
       <p class="text-lg text-gray-900 hover:text-gray-700"> Entries will be recorded. Invalid entries will be tracked and may be prosecuted. </p>
+    </div>
     </card-component>
     <br> <br>
   </main-section>

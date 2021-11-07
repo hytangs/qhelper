@@ -33,7 +33,7 @@
           </div>
 
           <template #dropdown>
-            <nav-bar-item>
+            <nav-bar-item @click="settings()">
               <nav-bar-item-label :icon="mdiCogOutline" label="Settings"/>
             </nav-bar-item>
             <nav-bar-item href="https://outlook.com">
@@ -82,7 +82,7 @@ import NavBarMenu from './NavBarMenu'
 import NavBarMenuDivider from './NavBarMenuDivider'
 import UserAvatar from './UserAvatar'
 import Icon from './Icon'
-//import NavBarSearch from './NavBarSearch'
+
 
 export default {
   name: 'NavBar',
@@ -95,6 +95,13 @@ export default {
     NavBarMenuDivider,
     Icon
   },
+
+  methods: {
+    settings() {
+      alert("Currently, settings of staff accounts are in RESTRICTED mode. Please contact web administrator for more details.")
+    },
+  },
+
   setup () {
     const store = useStore()
 
