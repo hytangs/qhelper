@@ -80,11 +80,15 @@
               v-if="paymentOptions.payNow"
               class="px-6 py-3 bg-gray-100 text-gray-400"
             >
-              <CreditCardIcon class="h-72 w-72 m-auto text-gray-400" />
+              <!--<CreditCardIcon class="h-72 w-72 m-auto text-gray-400" />
               <p class="text-center">
                 After "Clicking Complete order", You will be redirect to
                 HitPay-PayNow QR Checkout to complete your purchase securely
-              </p>
+              </p>-->
+             <div class="pay">
+                <img src = "../../../public/assets/paynow.jpg" alt="">
+              </div>
+              <p class="text-center">Press "Submit your Payment" when transaction is completed. </p>
             </div>
           </div>
           <!-- pannel inner end -->
@@ -107,11 +111,15 @@
               v-if="paymentOptions.grabPay"
               class="px-6 py-3 bg-gray-100 text-gray-400"
             >
-              <CreditCardIcon class="h-72 w-72 m-auto text-gray-400" />
+              <!--<CreditCardIcon class="h-72 w-72 m-auto text-gray-400" />
               <p class="text-center">
                 After "Clicking Complete order", You will be redirect to GrabPay
                 to complete your purchase securely
-              </p>
+              </p>-->
+              <div class="pay">
+                <img src = "../../../public/assets/grabpay.jpg" alt="">
+              </div>
+              <p class="text-center">Press "Submit your Payment" when transaction is completed.</p>
             </div>
           </div>
           <!-- pannel inner end -->
@@ -188,7 +196,7 @@
 import {
   LockClosedIcon,
   QuestionMarkCircleIcon,
-  CreditCardIcon,
+
 } from "@heroicons/vue/solid";
 import localsession from "../../store/localsession";
 
@@ -201,7 +209,7 @@ const db = getFirestore(firebaseApp);
 export default {
   name: "checkout",
 
-  components: { LockClosedIcon, QuestionMarkCircleIcon, CreditCardIcon },
+  components: { LockClosedIcon, QuestionMarkCircleIcon },
 
   methods: {
     hideShow(ref) {
@@ -269,5 +277,17 @@ export default {
   color: white;
   border-radius: 8px;
   padding: 10px 24px;
+}
+img{
+  width:60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  height: 60%;
+  
+}
+.pay{
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 1%;
 }
 </style>
