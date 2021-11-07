@@ -36,11 +36,12 @@ export default {
             if (docSnap.exists()) {
                 if (docSnap.data().PasswordHash === inPassword) {
                     const pcr = docSnap.data().PCR;
-                    const today = datequery.methods.fetchTodayString();
+                    let today = datequery.methods.fetchTodayString();
                     let pcr_out = "No Test Needed";
-                    for (const x in pcr) {
+                    for (const x of pcr) {
                         if (x >= today) {
                             pcr_out = x;
+                            pcr_out = pcr_out.substring(0, 4) + "-" + pcr_out.substring(4, 6) + "-" + pcr_out.substring(6, 8)
                             break;
                         }
                     }

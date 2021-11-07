@@ -1,3 +1,5 @@
+import datequery from "../components/plugins/helpers/datequery";
+
 export default {
     methods: {
         initializeStorage() {
@@ -91,6 +93,10 @@ export default {
 
         getGuestPCR() {
             return localStorage.guestnextpcr;
+        },
+
+        setDeclareHealthToday() {
+            localStorage.guestlasthealthdeclaration = datequery.methods.fetchTodayString()
         }
     }
 }

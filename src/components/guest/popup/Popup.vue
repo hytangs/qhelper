@@ -163,6 +163,8 @@ export default {
           Temperature: temperature,
         });
 
+        localsession.methods.setDeclareHealthToday();
+
         alert("We have recorded your health declaration. Our healthcare professionals will attend to you very soon.")
       }
     }

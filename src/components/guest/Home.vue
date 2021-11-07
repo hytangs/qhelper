@@ -1,7 +1,60 @@
 <template>
   <div v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
+
     <div id="home">
 
+      <div
+          class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded h-auto shadow bottomgap a"
+      >
+        <div class="p-6">
+          <h1 class="text-xl text-black hover:text-gray-600"><b>&nbsp;&nbsp; &nbsp;&nbsp; Welcome {{this.guestname}} at room {{ this.guestroom }} to QHelper!</b></h1>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3  bottomgap h-1/2">
+        <div
+            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+        >
+          <div class="p-6">
+            <h4 class="text-xl">Health Status</h4>
+          </div>
+          <div class="subcards2">
+            <!--Quarantine Time to be located here-->
+            <h1 class="text-3xl text-red-700 hover:text-red-500" v-if="this.healthpass === 'Please Declare'"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.healthpass }}</b></h1>
+            <h1 class="text-3xl text-green-700 hover:text-green-500" v-else-if="this.healthpass === 'Declared Today'"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.healthpass }}</b></h1>
+            <h1 class="text-3xl text-gray-700 hover:text-gray-500" v-else><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.healthpass }}</b></h1>
+            <br/>
+            <p>&nbsp;&nbsp; Monitor your health daily.</p>
+          </div>
+        </div>
+
+        <div
+            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+        >
+          <div class="p-6">
+            <h4 class="text-xl ">Days Remain</h4>
+          </div>
+          <div class="subcards2">
+            <!--Quarantine Time to be located here-->
+            <h1 class="text-3xl text-green-700 hover:text-green-500"><b>&nbsp;&nbsp; &nbsp;&nbsp; {{ this.remaining }} Days</b></h1>
+            <br/>
+            <p>&nbsp;&nbsp;Enjoy your remaining 'staycation'. </p>
+          </div>
+        </div>
+
+        <div
+            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
+        >
+          <div class="p-6">
+            <h4 class="text-xl">Next Test Date</h4>
+          </div>
+          <div class="subcards2">
+            <!--Quarantine Time to be located here-->
+            <h1 class="text-3xl text-green-700 hover:text-green-500">&nbsp; &nbsp; &nbsp; &nbsp;<b> {{ this.pcrtest }}</b></h1>
+            <br/>
+            <p>&nbsp;&nbsp;PCR test will be in your room.</p>
+          </div>
+        </div>
+      </div>
       <div
           class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded h-auto shadow bottomgap a"
       >
@@ -29,49 +82,6 @@
       </Popup
       ><br />
 
-      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3  bottomgap h-1/2">
-        <div
-            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
-        >
-          <div class="p-6">
-            <h4 class="text-xl">Health Status</h4>
-          </div>
-          <div class="subcards2">
-            <!--Quarantine Time to be located here-->
-            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.finance }}</b></h1>
-            <br/>
-            <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
-          </div>
-        </div>
-
-        <div
-            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
-        >
-          <div class="p-6">
-            <h4 class="text-xl">Current Bills</h4>
-          </div>
-          <div class="subcards2">
-            <!--Quarantine Time to be located here-->
-            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.remaining }}</b></h1>
-            <br/>
-            <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
-          </div>
-        </div>
-
-        <div
-            class="bg-white border border-gray-100 dark:bg-gray-900 dark:border-gray-900 md:rounded shadow bottomgap a"
-        >
-          <div class="p-6">
-            <h4 class="text-xl">Next Test</h4>
-          </div>
-          <div class="subcards2">
-            <!--Quarantine Time to be located here-->
-            <h1 class="text-4xl">&nbsp;<b>  {{ this.pcrtest }}</b></h1>
-            <br/>
-            <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div
@@ -159,9 +169,11 @@ export default {
     if (input_lhd < today) {
        healthpass ="Please Declare";
     }
+
     return {
       finance: localsession.methods.getGuestFinance(),
       guestroom: localsession.methods.getGuestRoom(),
+      guestname: localsession.methods.getGuestName(),
       remaining: localsession.methods.getGuestRemaining(),
       healthpass: healthpass,
       pcrtest: localsession.methods.getGuestPCR(),
