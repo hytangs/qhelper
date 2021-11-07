@@ -182,6 +182,7 @@ window.addEventListener("scroll", function(){
 
 body{
   min-height: 200vh;
+  background-color: whitesmoke;
 }
 
 header{
