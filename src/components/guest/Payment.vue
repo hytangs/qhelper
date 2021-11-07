@@ -191,11 +191,11 @@ import {
   CreditCardIcon,
 } from "@heroicons/vue/solid";
 import localsession from "../../store/localsession";
-import moment from "moment";
 
 import firebaseApp from "../../firebase.js";
-import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore";
+import { getFirestore, updateDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, increment } from "firebase/firestore";
+import datequery from "../plugins/helpers/datequery";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -213,25 +213,33 @@ export default {
     },
 
     async savetofs() {
-      try {
-        var paymentMethod = document.querySelector(
-          'input[name="radio"]:checked'
-        ).id;
-        //var request = document.getElementById("Lunch").value;
-        var room = this.roomNumber;
-        const docRef = await setDoc(doc(db, "Payment", room), {
-          GuestName: this.guestname,
-          GuestRoom: room,
-          PaymentAmount: this.finance,
-          PaymentMethod: paymentMethod,
-          CheckoutDate: moment(String(new Date())).format("MM/DD/YYYY"),
-          TimeOfPayment: moment(String(new Date())).format("MM/DD/YYYY"),
-        });
-        console.log(docRef);
-        this.$emit("added");
-      } finally {
-        alert("Orders submitted successfully.");
-      }
+      const id_pack = await getDoc(doc(db, "PaymentRecord", "block"));
+      const id_data = id_pack.data();
+      const id = id_data['identification']
+
+      var paymentMethod = document.querySelector('input[name="radio"]:checked').id;
+
+      //var request = document.getElementById("Lunch").value;
+      var room = this.roomNumber;
+
+      const docRef = await setDoc(doc(db, "PaymentRecord", String(id)), {
+        GuestName: this.guestname,
+        GuestRoom: room,
+        Payment: String(this.finance),
+        PaymentMethod: paymentMethod,
+        Date: datequery.methods.fetchTodayString(),
+      });
+
+      console.log(docRef);
+      this.$emit("added");
+
+      const docRef2 = await updateDoc(doc(db, "PaymentRecord", "block"), {
+        identification: increment(1)
+      });
+      console.log(docRef2);
+
+      alert("Payment Success!");
+
     },
   },
 
