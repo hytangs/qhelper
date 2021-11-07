@@ -220,8 +220,8 @@ export default {
         //var request = document.getElementById("Lunch").value;
         var room = this.roomNumber;
         const docRef = await setDoc(doc(db, "Payment", room), {
-          Name: this.guestname,
-          Room: room,
+          GuestName: this.guestname,
+          GuestRoom: room,
           PaymentAmount: this.finance,
           PaymentMethod: paymentMethod,
           CheckoutDate: moment(String(new Date())).format("MM/DD/YYYY"),

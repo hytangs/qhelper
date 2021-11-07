@@ -5,7 +5,7 @@
           <div class="border border-b-0 bg-white px-10 py-3">
             <button @click="qna.clicked=!qna.clicked" class="text-black-500 hover:text-black focus:outline-none text"
                     type="button">
-              {{ qna.title }} 
+              {{ qna.title }}
             </button>
             <svg style="float:right" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -127,7 +127,7 @@ export default {
                             </div>
                         </div>
                     </div>
-                        </div>
+                </div>
             </section>
         </main>
 </template>
@@ -137,25 +137,25 @@ export default {
     .tab {
         overflow: hidden;
     }
-    
+
     .tab-content {
         max-height: 0;
         transition: all 0.5s;
     }
-    
+
     input:checked + .tab-label .test {
         background-color: #000;
     }
-    
+
     input:checked + .tab-label .test svg {
             transform: rotate(180deg);
             stroke: #fff;
     }
-        
+
     input:checked + .tab-label::after {
         transform: rotate(90deg);
     }
-    
+
     input:checked ~ .tab-content {
         max-height: 150vh;
     }
@@ -193,7 +193,7 @@ export default {
     .link {
         text-decoration: underline;
     }
-    
+
     .ticks {
         margin-top: 13.5px;
         margin-left: 20px;
