@@ -6,13 +6,13 @@
 <table id = "payment">
     <thead>
       <tr>
+        <th>Payment ID</th>
         <th>Guest Name</th>
-        <th>Room</th>
+        <th>Room Number</th>
         <th>Payment Amount</th>
         <th>Payment Method</th>
         <!-- <th>Duration of Stay</th> -->
         <th>Checkout Date</th>
-        <th>Time of Payment</th>
         <th></th>
       </tr>
     </thead>
@@ -59,7 +59,7 @@ import { mdiPencilOutline } from '@mdi/js'
 import ModalBox from '../../plugins/ModalBox'
 import firebaseApp from "../../../firebase.js";
 import { getFirestore } from "firebase/firestore";
-import { collection, getDocs, doc, deleteDoc} from "firebase/firestore";
+import { collection, getDocs} from "firebase/firestore";
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -82,7 +82,7 @@ export default {
 
   mounted() {
     async function display() {
-      let z = await getDocs(collection(db, "Payment"));
+      let z = await getDocs(collection(db, "PaymentRecord"));
       let ind = 1;
 
       z.forEach((docs) => {
@@ -90,13 +90,13 @@ export default {
         var table = document.getElementById("payment");
         var row = table.insertRow(ind);
 
-        var name = yy.Name;
-        var room = yy.Room;
-        var paymentAmount = yy.PaymentAmount;
-        var paymentMethod = yy.PaymentMethod;
+        var payid = yy.id;
+        var name = yy.GuestLname + " " + yy.GuestFname;
+        var room = yy.RoomNumber;
+        var paymentAmount = yy.Payment;
+        var paymentMethod = yy.Method;
         //var duration = yy.DurationOfStay;
-        var checkout = yy.CheckoutDate;
-        var timeOfPayment = yy.TimeOfPayment;
+        var checkout = yy.Date;
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -104,25 +104,24 @@ export default {
         var cell4 = row.insertCell(3);
         var cell5 = row.insertCell(4);
         var cell6 = row.insertCell(5);
-        var cell7 = row.insertCell(6);
+        //var cell7 = row.insertCell(6);
         //var cell8 = row.insertCell(7);
 
-        cell1.innerHTML = name;
-        cell2.innerHTML = room;
-        cell3.innerHTML = paymentAmount;
-        cell4.innerHTML = paymentMethod;
-        //cell5.innerHTML = duration;
-        cell5.innerHTML = checkout;
-        cell6.innerHTML = timeOfPayment;
+        cell1.innerHTML = payid;
+        cell2.innerHTML = name;
+        cell3.innerHTML = room;
+        cell4.innerHTML = paymentAmount;
+        cell5.innerHTML = paymentMethod;  
+        cell6.innerHTML = checkout;
         
-        var bu = document.createElement("button");
-        bu.className = "bwt";
-        bu.id = String(room);
-        bu.innerHTML = "Delete";
-        bu.onclick = function() {
-          deleteinstrument(room);
-        };
-        cell7.appendChild(bu);
+        // var bu = document.createElement("button");
+        // bu.className = "bwt";
+        // bu.id = String(room);
+        // bu.innerHTML = "Delete";
+        // bu.onclick = function() {
+        //   deleteinstrument(room);
+        // };
+        // cell7.appendChild(bu);
 
         // var bu2 = document.createElement("button");
         // bu2.className = "bwt";
@@ -136,16 +135,16 @@ export default {
       });
     }
     display();
-    async function deleteinstrument(room) {
-      var x = room;
-      alert("You are going to delete " + x);
-      await deleteDoc(doc(db, "Payment", x));
-      console.log("Document successfully deleted!", x);
-      let tb = document.getElementById("payment");
-      while (tb.rows.length > 1) {
-        tb.deleteRow(1);
-      }
-      display();
+    // async function deleteinstrument(room) {
+    //   var x = room;
+    //   alert("You are going to delete " + x);
+    //   await deleteDoc(doc(db, "Payment", x));
+    //   console.log("Document successfully deleted!", x);
+    //   let tb = document.getElementById("payment");
+    //   while (tb.rows.length > 1) {
+    //     tb.deleteRow(1);
+    //   }
+    //   display();
     }
     // update the payment history if needed
     // async function updateinstrument(room) {
@@ -159,7 +158,7 @@ export default {
     //   }
     //   display();
     // }
-  },
+  // },
 }
 </script>
 

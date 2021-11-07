@@ -40,9 +40,9 @@
     <br />
     <p class="text-3xl hover:text-gray-700"><b>Regular Menu for {{ currentDate }}</b></p>
     <br />
-    <h2 class="text-xl text-gray-700 hover:text-gray-900"><b>Instructions: </b>Select individually for each meals and click submit to order: )</h2>
-    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you need to change your meal selection, simply submit an order again.</h2>
-    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you forget to select your meal, we will provide you a default meal.</h2>
+    <h2 class="text-xl text-gray-700 hover:text-gray-900"><b>Instructions: </b>Select individually for each meals and click submit to order 🍴</h2>
+    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you need to change your meal selection, simply submit the order again.</h2>
+    <h2 class="text-lg text-gray-700 hover:text-gray-900">If you forget to select your meal, we will provide you with a default meal.</h2>
     <br />
     <div class="form_container">
       <form
