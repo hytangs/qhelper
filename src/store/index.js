@@ -126,6 +126,16 @@ export default createStore({
       room: '0000',
       name: 'name',
       date: 'YYYYMMDD',
+    }],
+
+    shopOrderRoster: [{
+      room: '0000',
+      name: 'name',
+      order: 'order',
+      amount: '$X',
+      delivery: 'delivery',
+      status: 'received',
+      time: 'YYYYMMDD',
     }]
   },
 
@@ -188,6 +198,10 @@ export default createStore({
 
     alterHealthCheckOut(state, meta) {
       state.healthCheckOutRoster = meta
+    },
+
+    alterShopOrders(state, meta) {
+      state.shopOrderRoster = meta
     },
 
     alterFeedbackData(state, meta) {

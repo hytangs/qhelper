@@ -458,6 +458,35 @@ export default {
 
             // delete guest from health check out
             await deleteDoc(doc(db, "HealthCheckout", roomNumber));
+        },
+
+        async getShopOrders() {
+            const shopDoc = await getDocs(collection(db, "ShopOrder"))
+            let outputMeta = []
+            shopDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+
+                if (roomNumber !== "block") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        room: x["Room"],
+                        name: x["Name"],
+                        order: x["ItemsOrdered"],
+                        amount: x["PaymentAmount"],
+                        delivery: x["DeliveryMethod"],
+                        status: x["OrderStatus"],
+                        time: x["TimeOfOrder"],
+                    })
+                }
+            })
+            return outputMeta
+        },
+
+        async completeShopOrder(roomNumber) {
+            await updateDoc(doc(db, "ShopOrder", roomNumber), {
+                OrderStatus: "Order Delivered"
+            })
+            console.log("Document successfully updated!", roomNumber)
         }
     }
 }
