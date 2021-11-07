@@ -36,7 +36,7 @@
             <nav-bar-item @click="settings()">
               <nav-bar-item-label :icon="mdiCogOutline" label="Settings"/>
             </nav-bar-item>
-            <nav-bar-item href="https://outlook.com">
+            <nav-bar-item href="https://outlook.com" target="_blank">
               <nav-bar-item-label :icon="mdiEmail" label="Messages"/>
             </nav-bar-item>
             <nav-bar-menu-divider/>

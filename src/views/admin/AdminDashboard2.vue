@@ -26,23 +26,15 @@
     >
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
         <card-widget
-          trend=" updated "
+          trend=" "
           trend-type="up"
           color="text-green-500"
           :icon="mdiBed"
-          :number=store.state.totalrooms
-          label="Total Rooms"
-        />
-        <card-widget
-          trend=" updated "
-          trend-type="up"
-          color="text-green-500"
-          :icon="mdiAccountMultiple"
           :number=store.state.occupiedrooms
           label="Occupied Rooms"
         />
         <card-widget
-          trend=" updated "
+          trend=" "
           trend-type="up"
           color="text-green-500"
           :icon="mdiBedEmpty"
@@ -50,29 +42,12 @@
           label="Vacant Rooms"
         />
         <card-widget
-          trend=" updated "
+          trend=" "
           trend-type="up"
           color="text-green-500"
           :icon="mdiAccountMultiple"
           :number=store.state.countstaff
           label="Current Employees"
-        />
-        <card-widget
-          trend=" updated "
-          trend-type="up"
-          color="text-green-500"
-          :icon="mdiCartOutline"
-          :number="17820"
-          prefix="$"
-          label="Finance"
-        />
-        <card-widget
-          trend=" updated "
-          trend-type="up"
-          color="text-green-500"
-          :icon="mdiCalendar"
-          :number=datetoday
-          label="Date"
         />
       </div>
     </card-component>
@@ -80,12 +55,12 @@
     <!-- <card-component :icon="mdiAccountMultiple" class="mb-12" title="Internal Communication" has-table>
       <internal-communication />
     </card-component> -->
-    <card-component :icon="mdiAccountMultiple" class="mb-12" title="Assistance Request" has-table>
-      <assistance-request />
+    <card-component :icon="mdiCalendar" class="mb-12" title="Public Broadcast" has-table>
+      <GuestRoomBroadcast/>
     </card-component>
 
     <card-component
-      title="Booking Summary"
+      title="Booking Summary (Static Demo Only: Extendable Functionality)"
       :icon="mdiFinance"
       :header-icon="mdiReload"
       class="mb-6"
@@ -105,10 +80,6 @@
         </card-component>
       </div>
     </card-component>
-
-    <card-component class="mb-6" title="Public Broadcast" has-table>
-        <GuestRoomBroadcast/>
-      </card-component>
 
   </main-section>
   <footer-bar v-if="zone > '0'"/>
@@ -153,7 +124,7 @@ import FooterBar from "../../../src/components/plugins/FooterBar";
 import Overlay from "../../../src/components/plugins/Overlay";
 import localsession from "../../store/localsession";
 //import InternalCommunication from "../../../src/components/admin/admin-components/InternalCommunication";
-import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
+//import AssistanceRequest from "../../components/admin/admin-components/AssistanceRequest.vue";
 import GuestRoomBroadcast from '../../components/admin/admin-components/PublicBroadcast';
 import connector from "../../connector";
 import datequery from "../../components/plugins/helpers/datequery";
@@ -173,7 +144,7 @@ export default {
     NavBar,
     CardComponent,
     // InternalCommunication,
-    AssistanceRequest,
+    //AssistanceRequest,
     PieChart,
     GuestRoomBroadcast
   },
