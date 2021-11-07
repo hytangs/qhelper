@@ -36,7 +36,10 @@
 
   <br /><br /><br /><br />
 
-  <div id="contact-page" v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
+  <div
+    id="contact-page"
+    v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'"
+  >
     <div class="text-center">
       <br /><br />
       <h1 class="text-3xl text-blue-500 mb-6">How Can We Help You?</h1>
@@ -97,7 +100,11 @@
                     />
                   </svg>
                   <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                    <input type="radio" name="sample-checkbox" value="very bad" />
+                    <input
+                      type="radio"
+                      name="sample-checkbox"
+                      value="very bad"
+                    />
                     <span class="check"></span
                     ><span class="control-label">Very Bad</span>
                   </label>
@@ -107,7 +114,11 @@
                     ><span class="control-label">Bad</span>
                   </label>
                   <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                    <input type="radio" name="sample-checkbox" value="acceptable" />
+                    <input
+                      type="radio"
+                      name="sample-checkbox"
+                      value="acceptable"
+                    />
                     <span class="check"></span
                     ><span class="control-label">Acceptable</span>
                   </label>
@@ -117,7 +128,11 @@
                     ><span class="control-label">Good</span>
                   </label>
                   <label class="checkbox mr-6 mb-3 last:mr-0 checkbox">
-                    <input type="radio" name="sample-checkbox" value="very good" />
+                    <input
+                      type="radio"
+                      name="sample-checkbox"
+                      value="very good"
+                    />
                     <span class="check"></span
                     ><span class="control-label">Very Good</span>
                   </label>
@@ -173,7 +188,7 @@
               >
                 <button
                   class="fifth inline-flex cursor-pointer justify-center items-center whitespace-nowrap focus:outline-none transition-colors focus:ring duration-150 border rounded ring-blue-700 p-2 hover:bg-blue-600 bg-blue-500 text-white border-blue-600 mr-3 last:mr-0 mb-3"
-                  type="submit"
+                  type="button"
                   @click="savetofs()"
                 >
                   <span class="px-2">Submit</span>
@@ -189,7 +204,9 @@
     <br />
     <p class="text-3xl hover:text-gray-700 left-1"><b>Unauthorized Guest</b></p>
     <br />
-    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">Please contact the web administrator for assistance.</h2>
+    <h2 class="text-xl text-gray-700 hover:text-gray-900 left-1">
+      Please contact the web administrator for assistance.
+    </h2>
   </div>
 </template>
 
@@ -217,22 +234,27 @@ export default {
   methods: {
     async savetofs() {
       console.log("Hi");
-      console.log(document.querySelector('input[name="sample-checkbox"]:checked').value);
+      console.log(
+        document.querySelector('input[name="sample-checkbox"]:checked').value
+      );
+      console.log(this.guestroom);
       try {
         const docRef = await setDoc(doc(db, "Feedback", this.guestroom), {
-          Score: document.querySelector('input[name="sample-checkbox"]:checked').value,
+          Score: document.querySelector('input[name="sample-checkbox"]:checked')
+            .value,
           Name: this.guestname,
           Room: this.guestroom,
           Feedback: document.getElementById("feedback").value,
         });
         console.log(docRef);
-        this.$emit("added");
+        //this.$emit("added");
         alert("Feedback submitted successfully. Thank you!");
       } catch (e) {
         console.log(e);
         alert("Feedback failed to submit. Please try again.");
       } finally {
         //pass
+        document.getElementById("feedback").value = "";
       }
     },
   },
