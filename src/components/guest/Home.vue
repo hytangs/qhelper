@@ -66,7 +66,7 @@
           </div>
           <div class="subcards2">
             <!--Quarantine Time to be located here-->
-            <h1 class="text-4xl"><b>&nbsp;&nbsp; &nbsp;&nbsp; $ {{ this.pcrtest }}</b></h1>
+            <h1 class="text-4xl">&nbsp;<b>  {{ this.pcrtest }}</b></h1>
             <br/>
             <p>&nbsp;&nbsp; Payment will be done at checkout.</p>
           </div>
