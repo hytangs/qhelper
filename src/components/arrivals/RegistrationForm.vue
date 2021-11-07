@@ -1,5 +1,5 @@
 <template>
-<full-screen-section bg = "login" id = "container" v-slot="{ cardClass, cardRounded }">
+<full-screen-section class="bg" id = "container" v-slot="{ cardClass, cardRounded }">
   <card-component style="overflow-y:scroll; height:600px;"
   form id = "regform" :class="cardClass" :rounded="cardRounded" @submit.prevent="submit">
       <h1 class="text-3xl">QHelper <b>Miracle Check In</b></h1> <br>
@@ -422,4 +422,13 @@ export default {
 
 
 <style scoped>
+.bg{
+  background: url("https://mocah.org/uploads/posts/353870-4k-wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+
 </style>

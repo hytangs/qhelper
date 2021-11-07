@@ -1,9 +1,10 @@
 <template>
-<full-screen-section bg="login">
+<full-screen-section class="bg">
   <div class="grid">
     <div class="row text-center py-20 lg:px-0 lg:max-w-2xl lg:mx-auto text-3xl text-dark">
-      <h1>Hi {{this.$route.params.fname}}, Please select the room type according to your preference.</h1>
-    </div>
+      <div class="welcome">
+      <h1 class="text">Hi {{this.$route.params.fname}}, Please select the room type according to your preference.</h1>
+    </div></div>
     <div class="row">
       <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-4 text-xl">
         <card-component>
@@ -260,4 +261,20 @@ img{
     margin-right: auto;
 }
 
+.bg{
+  background: url("https://mocah.org/uploads/posts/353870-4k-wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.welcome{
+  background-color:rgb(0, 0, 0, 0.4);
+}
+
+.text{
+  color: white;
+}
 </style>

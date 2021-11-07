@@ -1,5 +1,5 @@
 <template>
-  <full-screen-section bg="login">
+  <full-screen-section class="bg">
     <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-2 ">
       <card-component>
         <div class="text-center py-24 lg:py-4 text-gray-500 dark:text-gray-400">
@@ -159,4 +159,14 @@ h1 {
 #rules {
   margin: 60px auto 20px;
 }
+
+.bg{
+  background: url("https://mocah.org/uploads/posts/353870-4k-wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+}
+
 </style>

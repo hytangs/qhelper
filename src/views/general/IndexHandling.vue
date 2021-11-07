@@ -1,5 +1,5 @@
 <template>
-    <full-screen-section bg="login" v-slot="{ cardClass, cardRounded }">
+    <full-screen-section class = "bg" v-slot="{ cardClass, cardRounded }">
       <card-component
         :class="cardClass"
         :rounded="cardRounded"
@@ -57,5 +57,14 @@ export default {
 #index {
   margin-top: 50px;
   margin-left: 100px;
+}
+
+.bg{
+  background: url("https://mocah.org/uploads/posts/353870-4k-wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
 }
 </style>
