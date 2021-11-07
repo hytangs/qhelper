@@ -487,6 +487,93 @@ export default {
                 OrderStatus: "Order Delivered"
             })
             console.log("Document successfully updated!", roomNumber)
-        }
+        },
+
+        async getBreakfast(){
+            const shopDoc = await getDocs(collection(db, "Breakfast"))
+            let outputMeta = []
+            shopDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+
+                if (roomNumber !== "block") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        room: roomNumber,
+                        name: x["Name"],
+                        selection: x["Selection"],
+                        request: x["Request"],
+                        status: x["OrderStatus"],
+                        date: x["OrderDate"],
+                    })
+                }
+            })
+            return outputMeta
+        },
+
+        async getLunch(){
+            const shopDoc = await getDocs(collection(db, "Lunch"))
+            let outputMeta = []
+            shopDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+
+                if (roomNumber !== "block") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        room: roomNumber,
+                        name: x["Name"],
+                        selection: x["Selection"],
+                        request: x["Request"],
+                        status: x["OrderStatus"],
+                        date: x["OrderDate"],
+                    })
+                }
+            })
+            return outputMeta
+        },
+
+        async getDinner(){
+            const shopDoc = await getDocs(collection(db, "Dinner"))
+            let outputMeta = []
+            shopDoc.forEach((doc) => {
+                var roomNumber = doc.id;
+
+                if (roomNumber !== "block") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        room: roomNumber,
+                        name: x["Name"],
+                        selection: x["Selection"],
+                        request: x["Request"],
+                        status: x["OrderStatus"],
+                        date: x["OrderDate"],
+                    })
+                }
+            })
+            return outputMeta
+        },
+
+        async completeBreakfast(roomNumber) {
+            alert("You are going to update the Breakfast's order status for room " + roomNumber)
+            await updateDoc(doc(db, "Breakfast", roomNumber), {
+                OrderStatus: "Order Delivered"
+            })
+            console.log("Document successfully updated!", roomNumber)
+        },
+
+        async completeLunch(roomNumber) {
+            alert("You are going to update the Lunch's order status for room " + roomNumber)
+            await updateDoc(doc(db, "Lunch", roomNumber), {
+                OrderStatus: "Order Delivered"
+            })
+            console.log("Document successfully updated!", roomNumber)
+        },
+
+        async completeDinner(roomNumber) {
+            alert("You are going to update the Dinner's order status for room " + roomNumber)
+            await updateDoc(doc(db, "Dinner", roomNumber), {
+                OrderStatus: "Order Delivered"
+            })
+            console.log("Document successfully updated!", roomNumber)
+        },
     }
 }
