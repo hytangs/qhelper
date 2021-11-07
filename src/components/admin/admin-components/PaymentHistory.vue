@@ -10,7 +10,7 @@
         <th>Room</th>
         <th>Payment Amount</th>
         <th>Payment Method</th>
-        <th>Duration of Stay</th>
+        <!-- <th>Duration of Stay</th> -->
         <th>Checkout Date</th>
         <th>Time of Payment</th>
         <th></th>
@@ -94,7 +94,7 @@ export default {
         var room = yy.Room;
         var paymentAmount = yy.PaymentAmount;
         var paymentMethod = yy.PaymentMethod;
-        var duration = yy.DurationOfStay;
+        //var duration = yy.DurationOfStay;
         var checkout = yy.CheckoutDate;
         var timeOfPayment = yy.TimeOfPayment;
 
@@ -105,15 +105,15 @@ export default {
         var cell5 = row.insertCell(4);
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
-        var cell8 = row.insertCell(7);
+        //var cell8 = row.insertCell(7);
 
         cell1.innerHTML = name;
         cell2.innerHTML = room;
         cell3.innerHTML = paymentAmount;
         cell4.innerHTML = paymentMethod;
-        cell5.innerHTML = duration;
-        cell6.innerHTML = checkout;
-        cell7.innerHTML = timeOfPayment;
+        //cell5.innerHTML = duration;
+        cell5.innerHTML = checkout;
+        cell6.innerHTML = timeOfPayment;
         
         var bu = document.createElement("button");
         bu.className = "bwt";
@@ -122,7 +122,7 @@ export default {
         bu.onclick = function() {
           deleteinstrument(room);
         };
-        cell8.appendChild(bu);
+        cell7.appendChild(bu);
 
         // var bu2 = document.createElement("button");
         // bu2.className = "bwt";
