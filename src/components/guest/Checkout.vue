@@ -8,7 +8,7 @@
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
       <li><a class = "title" href = "#contact">Contact</a></li>
       <li><a class = "title" href = "#checkout">Checkout</a></li>
-      
+
     </ul>
     <a class="color flex items-center flex-grow-0 flex-shrink-0 relative cursor-pointer hover:text-white text-dark dark:text-white dark:hover:text-gray-400 py-2 px-3 lg:w-16 lg:justify-center" href="/">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,13 +36,13 @@
         <Payment/>
       </div>
       <button v-on:click="showpay = !showpay" v-if="showpay && authorized" class="donebtn">Done </button>
-      <button v-on:click="complete" v-else class="donebtn"> Check-out Restricted</button>
+      <button v-on:click="complete" v-if="!authorized" class="donebtn"> Check-out Restricted</button>
 
       <div v-if="!showpay" class="checkoutlist-container">
         <div v-if="showlist">
             <Arrival/>
             <br>
-            <button v-on:click="showlist = !showlist, checkout" class="setbtn">We're All Set!</button>
+            <button v-on:click="showlist = !showlist, doCheckOut()" class="setbtn">We're All Set!</button>
         </div>
       </div>
       <div id="finally" v-if="!showlist">
