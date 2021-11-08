@@ -4,7 +4,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     meta: {
-      title: 'QHelper Running',
+      title: 'Welcome',
       fullScreen: true
     },
     path: '/',
