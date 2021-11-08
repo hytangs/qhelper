@@ -7,8 +7,9 @@
       <li><a class = "title" href = "#meals">Meals</a></li>
       <li><a class = "title" href = "#shop">Shop</a></li>
       <li><a class = "title" href = "#entertainment">Entertainment</a></li>
-      <li><a class = "title" href = "#checkout">Checkout</a></li>
       <li><a class = "title" href = "#contact">Contact</a></li>
+      <li><a class = "title" href = "#checkout">Checkout</a></li>
+      
     </ul>
     <!--<div class="date">
       <p>Date & Time : {{currentDateTime()}} {{ dateTime.hours }}:{{ dateTime.minutes }}:{{ dateTime.seconds }}</p>
