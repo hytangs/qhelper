@@ -6,14 +6,18 @@
       <li><a class="title" href="#meals">Meals</a></li>
       <li><a class="title" href="#shop">Shop</a></li>
       <li><a class="title" href="#entertainment">Entertainment</a></li>
+      <li><a class = "title" href = "#contact">Contact</a></li>
       <li><a class="title" href="#checkout">Checkout</a></li>
-      <li><a class="title" href="#contact">Contact</a></li>
+      
     </ul>
     <a
       class="color flex items-center flex-grow-0 flex-shrink-0 relative cursor-pointer hover:text-white text-dark dark:text-white dark:hover:text-gray-400 py-2 px-3 lg:w-16 lg:justify-center"
       href="/"
     >
-      <span
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+</svg>
+      <!--<span
         class="inline-flex justify-center items-center w-6 h-6 transition-colors"
         data-v-3ca1866b=""
       >
@@ -30,7 +34,7 @@
           ></path>
         </svg>
       </span>
-      <span class="px-2 transition-colors lg:hidden">Log out</span></a
+      <span class="px-2 transition-colors lg:hidden">Log out</span>--></a
     >
   </header>
 
