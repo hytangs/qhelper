@@ -1,5 +1,14 @@
 <template>
 
+<modal-box v-model="isModalActive" title="Modify Room Rate">
+  <field label="Room Rate" help="Minimum length: 5">
+    <control placeholder="Example: 400" v-model="new_rate" />
+  </field>
+  <jb-buttons type="justify-left lg:justify-left" no-wrap>
+    <jb-button color="info" label="Confirm" v-on:click="modifyRate()"/>
+  </jb-buttons>
+</modal-box>
+
 <table>
     <thead>
       <tr>
@@ -12,14 +21,14 @@
     </thead>
 
     <tbody>
-      <tr v-for="room in store.state.roomTypeDefault" :key="room.roomPrice">
+      <tr v-for="room in itemsPaginated" :key="room.roomPrice">
         <td data-label="Room Type"> {{room.roomType}} </td>
         <td data-label="Rate"> ${{room.roomPrice}}</td>
         <td data-label="Vacancy"> {{room.roomVacancy}} </td>
         <td data-label="Total Rooms"> {{room.roomTotal}}</td>
         <td class="actions-cell">
           <jb-buttons type="justify-start lg:justify-end" no-wrap>
-            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small  />
+            <jb-button class="mr-3" color="light" :icon="mdiPencilOutline" small @click="isModalActive = true, rememberType(room.roomType)" />
           </jb-buttons>
         </td>
       </tr>
@@ -28,12 +37,14 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { mdiPencilOutline } from '@mdi/js'
 import JbButtons from '../../plugins/JbButtons'
 import JbButton from '../../plugins/JbButton'
-//import ModalBox from '../../plugins/ModalBox'
+import ModalBox from '../../plugins/ModalBox'
+import Field from '../../plugins/Field'
+import Control from '../../plugins/Control'
 import connector from "../../../connector";
 // import firebaseApp from '../firebase.js';
 // import {getFirestore} from "firebase/firestore"
@@ -47,7 +58,16 @@ export default {
   components: {
     JbButtons,
     JbButton,
-    //ModalBox
+    ModalBox,
+    Field,
+    Control
+  },
+
+  data() {
+    return {
+      new_rate: "",
+      room_type: "",
+    }
   },
 
   setup() {
@@ -55,11 +75,24 @@ export default {
 
     const darkMode = computed(() => store.state.darkMode)
 
+    const items = computed(() => store.state.roomTypeDefault)
+
+    const isModalActive = ref(false)
+
+    const perPage = ref(10)
+
+    const currentPage = ref(0)
+
+    const itemsPaginated = computed(
+      () => items.value.slice(perPage.value * currentPage.value, perPage.value * (currentPage.value + 1))
+    )
+
     return {
         mdiPencilOutline,
-        //isModalActive,
+        isModalActive,
         darkMode,
-        store
+        store,
+        itemsPaginated
       }
   },
 
@@ -68,6 +101,19 @@ export default {
     let meta = await connector.methods.getRoomTypeInfo().then(x => x)
     console.log(meta)
     store.commit('alterroomtype' , meta)
+  },
+
+  methods: {
+    rememberType(roomType) {
+      this.room_type = roomType
+    },
+
+    async modifyRate() {
+      await connector.methods.modifyRoomRate(this.room_type, this.new_rate)
+      alert("You have changed the room rate of " + this.room_type + " to $" + this.new_rate + "!")
+      let meta = await connector.methods.getRoomTypeInfo().then(x => x)
+      this.$store.commit('alterroomtype' , meta);
+    }
   }
 
 

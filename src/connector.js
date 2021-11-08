@@ -593,5 +593,23 @@ export default {
             })
             return outputMeta
         },
+
+        async modifyRoomRate(roomType, newRate) {
+            var type = ""
+            if (roomType === "Double Room") {
+                type = "Double"
+            } else if (roomType === "Single Room") {
+                type = "Single"
+            } else if (roomType === "Premium Double Room") {
+                type = "PremiumDouble"
+            } else {
+                type = "Apartment"
+            }
+            const roomDoc = doc(db, "RoomMeta", type)
+
+            await updateDoc(roomDoc, {
+                price: newRate
+            })
+        }
     }
 }
