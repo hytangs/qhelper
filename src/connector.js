@@ -576,5 +576,22 @@ export default {
             })
             console.log("Document successfully updated!", roomNumber)
         },
+
+        async getAnnouncement(){
+            const shopDoc = await getDocs(collection(db, "Notification"))
+            let outputMeta = []
+            shopDoc.forEach((doc) => {
+                var ID = doc.id;
+
+                if (ID !== "block") {
+                    var x = doc.data();
+                    outputMeta.push({
+                        id: ID,
+                        announcement: x["contains"]
+                    })
+                }
+            })
+            return outputMeta
+        },
     }
 }
