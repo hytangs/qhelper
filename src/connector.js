@@ -144,7 +144,7 @@ export default {
                 var output = [];
 
                 for (var key in x) {
-                    if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
+                    if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name' && key !== 'identity') {
                         var roomStatus = x[key];
                         var roomGuest;
                         var checkout;
@@ -214,7 +214,7 @@ export default {
             var x = roomTypeToAssign.data();
             var assigned;
             for (var key in x) {
-                if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name') {
+                if (key !== 'vacant' && key !== 'total' && key !== 'price' && key !== 'name' && key !== 'identity') {
                     console.log(key + " -> " + x[key]);
                     if (x[key] === '0') {
                         assigned = key;

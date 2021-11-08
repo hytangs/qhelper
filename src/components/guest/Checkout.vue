@@ -57,12 +57,42 @@ import Arrival from './Arrival'
 import Payment from './Payment'
 import localsession from "../../store/localsession";
 
+import firebaseApp from "../../firebase.js";
+import {getFirestore, getDocs, collection} from "firebase/firestore";
+import { updateDoc, doc, deleteDoc } from "firebase/firestore";
+
+const db = getFirestore(firebaseApp);
+
 export default {
   name: "checkout",
   components:{
     Arrival,
     Payment
   },
+
+  methods: {
+    async doCheckOut(room) {
+      await deleteDoc(doc(db, "RegInfo", room));
+
+      var out_roomtype;
+      var vacant;
+
+      const docRef = await getDocs(collection(db, "RoomMeta"))
+      docRef.forEach((doc) => {
+        var x = doc.data();
+        if (x[room] !== '' && x[room] !== 'undefined' && x['room'].length === 8) {
+          out_roomtype = x['identity']
+          vacant = parseInt(x['vacant']) + 1
+        }
+      });
+
+      await updateDoc(doc(db, "RoomMeta", out_roomtype), {
+        vacant: String(vacant),
+        [room]: '0',
+      })
+    }
+  },
+
   data() {
         return {
             showpay: true,

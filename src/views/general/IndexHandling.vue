@@ -6,8 +6,8 @@
       >
         <h1 class="text-3xl">Welcome to <b>QHelper!</b></h1>
         <br>
-        <p>QHelper is World's First integrated solution to efficient quarantine hotel processing. </p>
-        <p>We hope you will like this service, made in Singapore. </p>
+        <p>QHelper is World's <b> First </b> integrated solution to efficient quarantine hotel processing. </p>
+        <p>We hope you will like this service, born in Singapore. </p>
         <p>Please enter via respective portals.</p>
 
         <divider />
