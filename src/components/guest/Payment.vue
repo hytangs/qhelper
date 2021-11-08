@@ -1,9 +1,10 @@
 <template>
   <div id="payment">
     <div class="w-1/2 my-8 mx-auto">
-      <h1 class="text-3xl text-gray-500">Payment</h1>
-      <p class="text-gray-400">All transaction are secure and encrypted</p>
-      <p class="text-gray-400">Your Total Cost is: {{ this.finance }}</p>
+      <h1 class="text-2xl text-black-800"><b>Make Payment</b></h1>
+      <br />
+      <p class="text-lg text-gray-800 hover:text-gray-600">All transaction are secure and encrypted.</p>
+      <p class="text-lg text-gray-800 hover:text-gray-600">Your Total Cost is: <b>${{ this.finance }}</b></p>
       <div class="panel mt-8">
         <div class="rounded border border-gray-300">
           <!-- pannel inner -->
@@ -129,6 +130,7 @@
 
       <!-- Billing Address -->
       <div class="bg-gray-100 border rounded mt-8 px-6 py-3">
+        <h1 class="text-xl"><b>Billing Information</b></h1>
         <label class="block mt-4">
           <select
             class="form-select mt-1 block w-full rounded-md border-gray-400 text-gray-400 h-14"
@@ -142,14 +144,14 @@
             <input
               type="text"
               class="form-input mt-1 block w-full rounded-md border-gray-300 h-14"
-              placeholder="First Name"
+              placeholder="Billing First Name"
             />
           </label>
           <label class="block mt-3">
             <input
               type="text"
               class="form-input mt-1 block w-full rounded-md border-gray-300 h-14"
-              placeholder="Last Name"
+              placeholder="Billing Last Name"
             />
           </label>
         </div>
@@ -157,14 +159,14 @@
           <input
             type="text"
             class="form-input mt-1 block w-full rounded-md border-gray-300 h-14"
-            placeholder="Address"
+            placeholder="Billing Address (First Line)"
           />
         </label>
         <label class="block mt-3">
           <input
             type="text"
             class="form-input mt-1 block w-full rounded-md border-gray-300 h-14"
-            placeholder="Apartment,suites,etc(optional)"
+            placeholder="Billing Address (Second Line)"
           />
         </label>
         <label class="block mt-3">

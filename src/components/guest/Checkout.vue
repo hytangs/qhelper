@@ -23,17 +23,22 @@
   <div id="checkout-page" v-if="this.guestroom !== 'Undefined' && this.guestroom !== 'null'">
     <div class="text-center">
       <br><br>
-      <h1 class="text-3xl text-blue-500 mb-6">Our Final Goodbye...</h1>
+      <h1 class="text-3xl text-gray-800 hover:text-gray-600 mb-6" v-if="authorized">Our Final Goodbye...</h1>
+      <h1 class="text-3xl text-gray-800 hover:text-gray-600 mb-6" v-if="!authorized">Sorry, but it's not ready.</h1>
       <br>
-      <div v-if="showpay" class="payment-container">
+      <p class="text-gray-700 hover:text-gray-600" v-if="!authorized">Please remain in your room. Thank you for keeping Singapore safe!</p>
+      <br>
+      <div v-if="showpay && authorized" class="payment-container">
         <Payment/>
       </div>
-      <button v-on:click="showpay = !showpay" v-if="showpay" class="donebtn">Done</button>
+      <button v-on:click="showpay = !showpay" v-if="showpay && authorized" class="donebtn">Done </button>
+      <button v-on:click="complete" v-else class="donebtn"> Check-out Restricted</button>
+
       <div v-if="!showpay" class="checkoutlist-container">
         <div v-if="showlist">
             <Arrival/>
             <br>
-            <button v-on:click="showlist = !showlist" class="setbtn">We're All Set!</button>
+            <button v-on:click="showlist = !showlist, checkout" class="setbtn">We're All Set!</button>
         </div>
       </div>
       <div id="finally" v-if="!showlist">
@@ -60,6 +65,7 @@ import localsession from "../../store/localsession";
 import firebaseApp from "../../firebase.js";
 import {getFirestore, getDocs, collection} from "firebase/firestore";
 import { updateDoc, doc, deleteDoc } from "firebase/firestore";
+import datequery from "../plugins/helpers/datequery";
 
 const db = getFirestore(firebaseApp);
 
@@ -71,33 +77,53 @@ export default {
   },
 
   methods: {
-    async doCheckOut(room) {
-      await deleteDoc(doc(db, "RegInfo", room));
+    complete() {
+      alert('Check out early is only allowed for exceptional medical situations. Please contact our staff for assistance.')
+    },
 
-      var out_roomtype;
-      var vacant;
+    async doCheckOut() {
+      const room = this.guestroom;
 
-      const docRef = await getDocs(collection(db, "RoomMeta"))
-      docRef.forEach((doc) => {
-        var x = doc.data();
-        if (x[room] !== '' && x[room] !== 'undefined' && x['room'].length === 8) {
-          out_roomtype = x['identity']
-          vacant = parseInt(x['vacant']) + 1
-        }
-      });
+      if (this.checkout < datequery.methods.fetchTodayString()) {
+        alert("Check out early is only allowed for exceptional medical situations. Please contact our staff for assistance.")
+      } else {
+        await deleteDoc(doc(db, "RegInfo", room));
 
-      await updateDoc(doc(db, "RoomMeta", out_roomtype), {
-        vacant: String(vacant),
-        [room]: '0',
-      })
+        var out_roomtype;
+        var vacant;
+
+        const docRef = await getDocs(collection(db, "RoomMeta"))
+        docRef.forEach((doc) => {
+          var x = doc.data();
+          if (x[room] !== '' && x[room] !== 'undefined' && x['room'].length === 8) {
+            out_roomtype = x['identity']
+            vacant = parseInt(x['vacant']) + 1
+          }
+        });
+
+        await updateDoc(doc(db, "RoomMeta", out_roomtype), {
+          vacant: String(vacant),
+          [room]: '0',
+        });
+
+        alert("Check out completed and recorded. Please note that you will not be able to login again. If you have any further concerns, please contact the hotel helpline. Thank you.")
+      }
     }
   },
 
   data() {
+        var checkout;
+        if (localsession.methods.getGuestCheckout() <= datequery.methods.fetchTodayString()) {
+          checkout = true;
+        } else {
+          checkout = false;
+        }
         return {
             showpay: true,
-            showlist:true,
+            showlist: true,
             guestroom: localsession.methods.getGuestRoom(),
+            checkout: localsession.methods.getGuestCheckout(),
+            authorized: checkout,
         }
     }
 }
