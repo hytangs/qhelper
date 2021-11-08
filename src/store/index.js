@@ -165,6 +165,11 @@ export default createStore({
       date: 'YYYYMMDD',
     }],
 
+    announcementRoster: [{
+      id: '0',
+      announcement: 'content',
+    }],
+
     healthpass: 'Please Declare',
   },
 
@@ -247,6 +252,10 @@ export default createStore({
 
     alterFeedbackData(state, meta) {
       state.feedbackData = meta
+    },
+
+    alterAnnouncementRoster(state, meta) {
+      state.announcementRoster = meta
     },
 
     changeFname(state, payload) {
