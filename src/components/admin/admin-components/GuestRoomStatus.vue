@@ -6,7 +6,7 @@
         <th>Room Guest Name</th>
         <th>Guest Status</th>
         <th>Room Type</th>
-        <th>Checkout Date</th>
+        <th>Check In Date</th>
         <th></th>
       </tr>
     </thead>

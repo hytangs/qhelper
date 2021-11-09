@@ -35,7 +35,7 @@
       <div v-if="showpay && authorized" class="payment-container">
         <Payment/>
       </div>
-      <button v-on:click="showpay = !showpay" v-if="showpay && authorized" class="donebtn">Done </button>
+      <button v-on:click="showpay = !showpay" v-if="showpay && authorized" class="donebtn"> Done </button>
       <button v-on:click="complete" v-if="!authorized" class="donebtn"> Check-out Restricted</button>
 
       <div v-if="!showpay" class="checkoutlist-container">
@@ -46,10 +46,16 @@
         </div>
       </div>
       <div id="finally" v-if="!showlist">
-          <br><br><br><br><br><br><br><br><br><br>
-          <h1>We hope that you have enjoyed your stay</h1>
+          <br><br>
+          <p class="text-gray-900 hover:text-gray-600 text-2xl">We hope that you have enjoyed your stay.</p>
           <br>
-          <h1>Thank you and have a pleasant journey!</h1>
+          <p class="text-gray-900 hover:text-gray-600 text-2xl">Thank you and have a pleasant journey!</p>
+          <br>
+          <div id="qrcode" class="center">
+            <p class="text-gray-900 hover:text-gray-600 text-xl">Exit Pass for {{this.guestname}}</p>
+            <QrcodeVue :value=this.exportQRValue :size="275" />
+            <p class="text-gray-900 hover:text-gray-600 text-xl">Valid for {{this.checkout}}</p>
+          </div>
         </div>
     </div><br><br>
     </div>
@@ -70,6 +76,7 @@ import firebaseApp from "../../firebase.js";
 import {getFirestore, getDocs, collection} from "firebase/firestore";
 import { updateDoc, doc, deleteDoc } from "firebase/firestore";
 import datequery from "../plugins/helpers/datequery";
+import QrcodeVue from "qrcode.vue";
 
 const db = getFirestore(firebaseApp);
 
@@ -77,7 +84,8 @@ export default {
   name: "checkout",
   components:{
     Arrival,
-    Payment
+    Payment,
+    QrcodeVue
   },
 
   methods: {
@@ -99,9 +107,13 @@ export default {
         const docRef = await getDocs(collection(db, "RoomMeta"))
         docRef.forEach((doc) => {
           var x = doc.data();
-          if (x[room] !== '' && x[room] !== 'undefined' && x['room'].length === 8) {
-            out_roomtype = x['identity']
-            vacant = parseInt(x['vacant']) + 1
+          try {
+            if (x[room] !== '' && x[room] !== 'undefined' && x[room].length === 8) {
+              out_roomtype = x['identity']
+              vacant = parseInt(x['vacant']) + 1
+            }
+          } catch (e) {
+            //pass
           }
         });
 
@@ -112,6 +124,14 @@ export default {
 
         alert("Check out completed and recorded. Please note that you will not be able to login again. If you have any further concerns, please contact the hotel helpline. Thank you.")
       }
+    },
+
+    emitQR() {
+      this.exportQRValue = "{ QRREAD/" + String(this.$route.params.roomNumber) + "/"
+          + String(this.$route.params.fname) + "/"
+          + String(this.$route.params.lname) + "/"
+          + datequery.methods.fetchTodayString() + "/"
+          + "QHELPER/QR02 }";
     }
   },
 
@@ -127,9 +147,15 @@ export default {
             showlist: true,
             guestroom: localsession.methods.getGuestRoom(),
             checkout: localsession.methods.getGuestCheckout(),
+            guestname: localsession.methods.getGuestName(),
             authorized: checkout,
+            exportQRValue: "{ QRREAD/UNDEFINED/QHELPER/QR02 }"
         }
-    }
+    },
+
+  mounted() {
+    this.emitQR();
+  }
 }
 </script>
 
@@ -142,6 +168,18 @@ export default {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+#qrcode {
+  width: 275px;
+  height: 275px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 header{
   position: fixed;
