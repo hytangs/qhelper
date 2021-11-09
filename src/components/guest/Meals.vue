@@ -439,9 +439,9 @@ export default {
             priceUnit: " SGD",
             selected: false,
             src:
-              "https://www.dcvelocity.com/ext/resources/images/articles/2020/202005/20200514impossible_burger.jpg?1589468649",
+              "https://www.meatpoultry.com/ext/resources/MPImages/01-2019/010719/ImpossibleFoods-2.jpg?1571951289",
             lgSrc:
-              "https://www.dcvelocity.com/ext/resources/images/articles/2020/202005/20200514impossible_burger.jpg?1589468649",
+              "https://www.meatpoultry.com/ext/resources/MPImages/01-2019/010719/ImpossibleFoods-2.jpg?1571951289",
           },
           {
             name: "Japanese Ramen",
