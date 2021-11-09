@@ -14,13 +14,13 @@
         <th>Room Info</th>
         <th>Start Date</th>
         <th>End Date</th>
-        <th>Next PCR Test</th>
+        <th>PCR Tests</th>
         <th>Quarantine Plan</th>
         <th>Departure Country</th>
         <th></th>
       </tr>
     </thead>
-    
+
     <tbody>
       <tr v-for="guest in itemsPaginated" :key="guest.room">
         <td data-label="Room Info"> {{guest.room}} </td>
@@ -94,7 +94,7 @@ export default {
     // })
 
     return {
-      mdiPencilOutline, 
+      mdiPencilOutline,
       mdiAccountCancel,
       isModalActive,
       isModalDangerActive,
