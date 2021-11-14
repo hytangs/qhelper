@@ -18,8 +18,8 @@
 <modal-box v-model="isModalActive" title="Add New Staff">
   <p>Staff Information</p>
   <field label="Name" help="Minimum length: 5">
-    <control placeholder="Account Name" v-model="new_name" id = "account"/>
-    <control placeholder="Staff Name" v-model="new_id" id = "name"/>
+    <control placeholder="Account Name" v-model="new_id" id = "account"/>
+    <control placeholder="Staff Name" v-model="new_name" id = "name"/>
   </field>
   <field label="Position">
     <control :options="positionOptions" v-model="new_position" id = "position"/>
